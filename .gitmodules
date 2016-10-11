@@ -1,0 +1,3 @@
+[submodule "DigoFramework"]
+	path = DigoFramework
+	url = https://github.com/digovc/DigoFramework.git
