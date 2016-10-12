@@ -70,6 +70,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppRpg.cs" />
+    <Compile Include="Controle\EditAtributo\EditAtributoBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoBase.Designer.cs">
+      <DependentUpon>EditAtributoBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoTexto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoTexto.Designer.cs">
+      <DependentUpon>EditAtributoTexto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\Painel\PnlPropriedadeGrupo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\Painel\PnlPropriedadeGrupo.Designer.cs">
+      <DependentUpon>PnlPropriedadeGrupo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockRpgBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockRpgBase.Designer.cs">
+      <DependentUpon>TabDockRpgBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockJogoExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockJogoExplorer.Designer.cs">
+      <DependentUpon>TabDockJogoExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockPropriedade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockPropriedade.Designer.cs">
+      <DependentUpon>TabDockPropriedade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TreeNodeRpg.cs" />
+    <Compile Include="Dominio\Atributo.cs" />
+    <Compile Include="Dominio\ContainerDominioBase.cs" />
+    <Compile Include="Dominio\GrupoDominio.cs" />
+    <Compile Include="Dominio\JogoDominio.cs" />
+    <Compile Include="Dominio\RpgDominioBase.cs" />
     <Compile Include="Frm\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +127,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controle\EditAtributo\EditAtributoBase.resx">
+      <DependentUpon>EditAtributoBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\EditAtributo\EditAtributoTexto.resx">
+      <DependentUpon>EditAtributoTexto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\Painel\PnlPropriedadeGrupo.resx">
+      <DependentUpon>PnlPropriedadeGrupo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockRpgBase.resx">
+      <DependentUpon>TabDockRpgBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockJogoExplorer.resx">
+      <DependentUpon>TabDockJogoExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockPropriedade.resx">
+      <DependentUpon>TabDockPropriedade.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,9 +168,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controle\DockPanel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DigoFramework\DigoFramework.csproj">
       <Project>{93078DE5-A910-4AD6-A942-657582105493}</Project>

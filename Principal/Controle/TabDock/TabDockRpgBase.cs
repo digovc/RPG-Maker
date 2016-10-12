@@ -1,8 +1,8 @@
-﻿using DigoFramework.Frm;
+﻿using DigoFramework.Controle.DockPanel.TabDock;
 
-namespace Rpg.Frm
+namespace Rpg.Controle.TabDock
 {
-    public partial class FrmRpgBase : FrmBase
+    public partial class TabDockRpgBase : TabDockBase
     {
         #region Constantes
 
@@ -14,7 +14,7 @@ namespace Rpg.Frm
 
         #region Construtores
 
-        public FrmRpgBase()
+        public TabDockRpgBase()
         {
             this.InitializeComponent();
         }

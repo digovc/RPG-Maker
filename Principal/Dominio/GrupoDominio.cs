@@ -1,8 +1,6 @@
-﻿using DigoFramework.Frm;
-
-namespace Rpg.Frm
+﻿namespace Rpg.Dominio
 {
-    public partial class FrmRpgBase : FrmBase
+    public class GrupoDominio : ContainerDominioBase
     {
         #region Constantes
 
@@ -14,14 +12,14 @@ namespace Rpg.Frm
 
         #region Construtores
 
-        public FrmRpgBase()
-        {
-            this.InitializeComponent();
-        }
-
         #endregion Construtores
 
         #region Métodos
+
+        protected override string getStrNomeDefault()
+        {
+            return "Grupo desconhecido";
+        }
 
         #endregion Métodos
 
