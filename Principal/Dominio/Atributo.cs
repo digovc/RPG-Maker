@@ -19,12 +19,29 @@ namespace Rpg.Dominio
 
         #region Atributos
 
+        private decimal _decValor;
         private EnmTipo _enmTipo = EnmTipo.TEXTO;
         private RpgDominioBase _objDominio;
         private string _strDescricao;
         private string _strGrupo;
         private string _strNome;
         private string _strValor;
+
+        [JsonIgnore]
+        public decimal decValor
+        {
+            get
+            {
+                return _decValor = (Convert.ToDecimal(this.strValor));
+            }
+
+            set
+            {
+                _decValor = value;
+
+                this.strValor = _decValor.ToString();
+            }
+        }
 
         public EnmTipo enmTipo
         {
@@ -36,6 +53,27 @@ namespace Rpg.Dominio
             set
             {
                 _enmTipo = value;
+            }
+        }
+
+        [JsonIgnore]
+        public RpgDominioBase objDominio
+        {
+            get
+            {
+                return _objDominio;
+            }
+
+            set
+            {
+                if (_objDominio == value)
+                {
+                    return;
+                }
+
+                _objDominio = value;
+
+                this.setObjDominio(_objDominio);
             }
         }
 
@@ -95,27 +133,6 @@ namespace Rpg.Dominio
                 _strValor = value;
 
                 this.setStrValor(_strValor);
-            }
-        }
-
-        [JsonIgnore]
-        public RpgDominioBase objDominio
-        {
-            get
-            {
-                return _objDominio;
-            }
-
-            set
-            {
-                if (_objDominio == value)
-                {
-                    return;
-                }
-
-                _objDominio = value;
-
-                this.setObjDominio(_objDominio);
             }
         }
 

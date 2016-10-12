@@ -43,6 +43,8 @@ namespace Rpg.Dominio
                 return;
             }
 
+            objDominio.objDominioPai = this;
+
             if (this.lstObjFilho.Contains(objDominio))
             {
                 return;
@@ -51,7 +53,7 @@ namespace Rpg.Dominio
             this.lstObjFilho.Add(objDominio);
         }
 
-        internal virtual bool validarItem(Type clsDominio)
+        internal virtual bool validarItem(RpgDominioBase objDominio)
         {
             return true;
         }

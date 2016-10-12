@@ -1,13 +1,13 @@
 ﻿namespace Rpg.Controle.TabDock
 {
-    partial class TabDockPropriedade
+    partial class TabDockMapa
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,10 +20,10 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -36,15 +36,16 @@
             this.pnlConteudo.Name = "pnlConteudo";
             this.pnlConteudo.TabIndex = 1;
             // 
-            // TabDockPropriedade
+            // TabDockMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 453);
+            this.ClientSize = new System.Drawing.Size(782, 753);
             this.Controls.Add(this.pnlConteudo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "TabDockPropriedade";
-            this.Text = "Propriedades";
+            this.Name = "TabDockMapa";
+            this.Text = "Mapa";
+            this.Enter += new System.EventHandler(this.TabDockMapa_Enter);
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
             this.Controls.SetChildIndex(this.pnlConteudo, 0);
             this.ResumeLayout(false);

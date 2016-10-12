@@ -35,11 +35,12 @@
             this.tsmJogoCriar = new System.Windows.Forms.ToolStripMenuItem();
             this.exibirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExibirJogoManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExibirPropriedade = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdJogo = new System.Windows.Forms.OpenFileDialog();
             this.dcp = new DigoFramework.Controle.DockPanel.DockPanelGeral();
             this.pnlAtalho = new DigoFramework.Controle.Painel.PainelAtalho();
             this.sfdJogo = new System.Windows.Forms.SaveFileDialog();
-            this.tsmExibirPropriedade = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCamada = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +91,8 @@
             // 
             this.exibirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmExibirJogoManager,
-            this.tsmExibirPropriedade});
+            this.tsmExibirPropriedade,
+            this.tsmCamada});
             this.exibirToolStripMenuItem.Name = "exibirToolStripMenuItem";
             this.exibirToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.exibirToolStripMenuItem.Text = "Exibir";
@@ -100,6 +102,13 @@
             this.tsmExibirJogoManager.Name = "tsmExibirJogoManager";
             this.tsmExibirJogoManager.Size = new System.Drawing.Size(181, 26);
             this.tsmExibirJogoManager.Text = "Jogo manager";
+            // 
+            // tsmExibirPropriedade
+            // 
+            this.tsmExibirPropriedade.Name = "tsmExibirPropriedade";
+            this.tsmExibirPropriedade.Size = new System.Drawing.Size(181, 26);
+            this.tsmExibirPropriedade.Text = "Propriedades";
+            this.tsmExibirPropriedade.Click += new System.EventHandler(this.tsmExibirPropriedade_Click);
             // 
             // ofdJogo
             // 
@@ -120,12 +129,12 @@
             this.sfdJogo.FileName = "Novo RPG.json";
             this.sfdJogo.Filter = "JSON|*.json";
             // 
-            // tsmExibirPropriedade
+            // tsmCamada
             // 
-            this.tsmExibirPropriedade.Name = "tsmExibirPropriedade";
-            this.tsmExibirPropriedade.Size = new System.Drawing.Size(181, 26);
-            this.tsmExibirPropriedade.Text = "Propriedades";
-            this.tsmExibirPropriedade.Click += new System.EventHandler(this.tsmExibirPropriedade_Click);
+            this.tsmCamada.Name = "tsmCamada";
+            this.tsmCamada.Size = new System.Drawing.Size(181, 26);
+            this.tsmCamada.Text = "Camadas";
+            this.tsmCamada.Click += new System.EventHandler(this.tsmCamada_Click);
             // 
             // FrmPrincipal
             // 
@@ -133,6 +142,7 @@
             this.Controls.Add(this.dcp);
             this.Controls.Add(this.pnlAtalho);
             this.Controls.Add(this.mnu);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnu;
             this.Name = "FrmPrincipal";
             this.Text = "FrmPrincipal";
@@ -157,5 +167,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmJogoSalvar;
         private System.Windows.Forms.ToolStripMenuItem tsmJogoAbrir;
         private System.Windows.Forms.ToolStripMenuItem tsmExibirPropriedade;
+        private System.Windows.Forms.ToolStripMenuItem tsmCamada;
     }
 }

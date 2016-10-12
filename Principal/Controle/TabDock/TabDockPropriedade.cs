@@ -55,6 +55,12 @@ namespace Rpg.Controle.TabDock
 
             this.pnlConteudo.Controls.Clear();
 
+            if (objDominio is ArquivoRefDominio)
+            {
+                this.setObjDominioArqRef((ArquivoRefDominio)objDominio);
+                return;
+            }
+
             if (objDominio.lstAtt == null)
             {
                 return;
@@ -78,6 +84,21 @@ namespace Rpg.Controle.TabDock
             edtAtt.att = att;
 
             this.pnlConteudo.Controls.Add(edtAtt);
+        }
+
+        private void setObjDominioArqRef(ArquivoRefDominio objArqRef)
+        {
+            if (objArqRef == null)
+            {
+                return;
+            }
+
+            if (objArqRef.objArquivo == null)
+            {
+                return;
+            }
+
+            this.objDominio = objArqRef.objArquivo;
         }
 
         #endregion Métodos

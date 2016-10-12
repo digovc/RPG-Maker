@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Controle.Painel
 {
-    partial class PnlPropriedadeGrupo
+    partial class PnlCamada
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,21 +33,23 @@
             // 
             // lblTitulo
             // 
+            this.lblTitulo.AutoSize = true;
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(0, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(250, 25);
+            this.lblTitulo.Size = new System.Drawing.Size(46, 17);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Grupo";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitulo.Text = "label1";
             // 
-            // PnlPropriedadeGrupo
+            // PnlCamada
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitulo);
-            this.Name = "PnlPropriedadeGrupo";
+            this.Name = "PnlCamada";
             this.Size = new System.Drawing.Size(350, 25);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

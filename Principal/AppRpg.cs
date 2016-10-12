@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using DigoFramework;
 using DigoFramework.Json;
@@ -86,12 +87,7 @@ namespace Rpg
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.objJogo.attDirCompleto.strValor))
-            {
-                return;
-            }
-
-            File.WriteAllText(this.objJogo.attDirCompleto.strValor, Json.i.toJson(this.objJogo));
+            this.objJogo.salvar();
         }
 
         internal void abrirJogo(string dirJogo)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.TabDock;
@@ -14,9 +15,12 @@ namespace Rpg.Frm
 
         #region Atributos
 
+        private List<MapaDominio> _lstObjMapaAberto;
         private RpgDominioBase _objDominioSelecionado;
-        private TabDockJogoExplorer _tabDockJogoExplorer;
-
+        private TabDockCamada _tabDockCamada;
+        private TabDockExplorer _tabDockExplorer;
+        private TabDockMapa _tabDockMapa;
+        private TabDockMapa _tabDockMapaSelecionado;
         private TabDockPropriedade _tabDockPropriedade;
 
         public RpgDominioBase objDominioSelecionado
@@ -39,18 +43,76 @@ namespace Rpg.Frm
             }
         }
 
-        private TabDockJogoExplorer tabDockJogoExplorer
+        public TabDockMapa tabDockMapaSelecionado
         {
             get
             {
-                if (_tabDockJogoExplorer != null)
+                return _tabDockMapaSelecionado;
+            }
+
+            set
+            {
+                _tabDockMapaSelecionado = value;
+            }
+        }
+
+        private List<MapaDominio> lstObjMapaAberto
+        {
+            get
+            {
+                if (_lstObjMapaAberto != null)
                 {
-                    return _tabDockJogoExplorer;
+                    return _lstObjMapaAberto;
                 }
 
-                _tabDockJogoExplorer = new TabDockJogoExplorer();
+                _lstObjMapaAberto = new List<MapaDominio>();
 
-                return _tabDockJogoExplorer;
+                return _lstObjMapaAberto;
+            }
+        }
+
+        private TabDockCamada tabDockCamada
+        {
+            get
+            {
+                if (_tabDockCamada != null)
+                {
+                    return _tabDockCamada;
+                }
+
+                _tabDockCamada = new TabDockCamada();
+
+                return _tabDockCamada;
+            }
+        }
+
+        private TabDockExplorer tabDockExplorer
+        {
+            get
+            {
+                if (_tabDockExplorer != null)
+                {
+                    return _tabDockExplorer;
+                }
+
+                _tabDockExplorer = new TabDockExplorer();
+
+                return _tabDockExplorer;
+            }
+        }
+
+        private TabDockMapa tabDockMapa
+        {
+            get
+            {
+                if (_tabDockMapa != null)
+                {
+                    return _tabDockMapa;
+                }
+
+                _tabDockMapa = new TabDockMapa();
+
+                return _tabDockMapa;
             }
         }
 
@@ -82,6 +144,25 @@ namespace Rpg.Frm
 
         #region Métodos
 
+        internal void abrirMapa(MapaDominio objMapa)
+        {
+            if (objMapa == null)
+            {
+                return;
+            }
+
+            if (this.lstObjMapaAberto.Contains(objMapa))
+            {
+                return;
+            }
+
+            TabDockMapa tabMapa = new TabDockMapa();
+
+            tabMapa.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+
+            tabMapa.objMapa = objMapa;
+        }
+
         protected override void inicializar()
         {
             base.inicializar();
@@ -98,9 +179,9 @@ namespace Rpg.Frm
                 return;
             }
 
-            this.tabDockJogoExplorer.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+            this.tabDockExplorer.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
 
-            this.tabDockJogoExplorer.carregarJogo();
+            this.tabDockExplorer.carregarJogo();
         }
 
         private void abrirJogo()
@@ -151,6 +232,18 @@ namespace Rpg.Frm
 
         #region Eventos
 
+        private void tsmCamada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tabDockCamada.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         private void tsmExibirPropriedade_Click(object sender, EventArgs e)
         {
             try
@@ -192,6 +285,18 @@ namespace Rpg.Frm
             try
             {
                 this.salvarJogo();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmMapa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tabDockMapa.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockTop);
             }
             catch (Exception ex)
             {

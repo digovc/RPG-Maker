@@ -1,6 +1,6 @@
-﻿namespace Rpg.Controle.TabDock
+﻿namespace Rpg.Controle.Painel
 {
-    partial class TabDockPropriedade
+    partial class PnlItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlConteudo = new DigoFramework.Controle.Painel.PainelConteudo();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // pnlConteudo
+            // lblTitulo
             // 
-            this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.TabIndex = 1;
+            this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(250, 25);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Título";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TabDockPropriedade
+            // PnlItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 453);
-            this.Controls.Add(this.pnlConteudo);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "TabDockPropriedade";
-            this.Text = "Propriedades";
-            this.Controls.SetChildIndex(this.pnlAtalho, 0);
-            this.Controls.SetChildIndex(this.pnlConteudo, 0);
+            this.Controls.Add(this.lblTitulo);
+            this.Name = "PnlItem";
+            this.Size = new System.Drawing.Size(350, 25);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DigoFramework.Controle.Painel.PainelConteudo pnlConteudo;
+        private System.Windows.Forms.Label lblTitulo;
     }
 }

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Rpg.Controle.Painel
 {
-    public partial class PnlPropriedadeGrupo : UserControl
+    public partial class PnlItem : UserControl
     {
         #region Constantes
 
@@ -15,7 +15,7 @@ namespace Rpg.Controle.Painel
 
         #region Construtores
 
-        public PnlPropriedadeGrupo()
+        public PnlItem()
         {
             this.InitializeComponent();
 

@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Controle.TabDock
 {
-    partial class TabDockJogoExplorer
+    partial class TabDockExplorer
     {
         /// <summary> 
         /// Required designer variable.
@@ -34,7 +34,6 @@
             this.cmsAddItem = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddItemGrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemMapa = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddItemCamada = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemPersonagem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlAtalho.SuspendLayout();
             this.cmsAddItem.SuspendLayout();
@@ -47,12 +46,13 @@
             // trv
             // 
             this.trv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trv.Location = new System.Drawing.Point(0, 30);
-            this.trv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trv.Location = new System.Drawing.Point(0, 24);
+            this.trv.Margin = new System.Windows.Forms.Padding(4);
             this.trv.Name = "trv";
-            this.trv.Size = new System.Drawing.Size(379, 291);
+            this.trv.Size = new System.Drawing.Size(379, 297);
             this.trv.TabIndex = 0;
             this.trv.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trv_NodeMouseClick);
+            this.trv.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trv_NodeMouseDoubleClick);
             // 
             // btnAddItem
             // 
@@ -66,10 +66,9 @@
             this.cmsAddItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddItemGrupo,
             this.tsmAddItemMapa,
-            this.tsmAddItemCamada,
             this.tsmAddItemPersonagem});
             this.cmsAddItem.Name = "cmsAddItem";
-            this.cmsAddItem.Size = new System.Drawing.Size(166, 108);
+            this.cmsAddItem.Size = new System.Drawing.Size(166, 82);
             // 
             // tsmAddItemGrupo
             // 
@@ -83,12 +82,7 @@
             this.tsmAddItemMapa.Name = "tsmAddItemMapa";
             this.tsmAddItemMapa.Size = new System.Drawing.Size(165, 26);
             this.tsmAddItemMapa.Text = "Mapa";
-            // 
-            // tsmAddItemCamada
-            // 
-            this.tsmAddItemCamada.Name = "tsmAddItemCamada";
-            this.tsmAddItemCamada.Size = new System.Drawing.Size(165, 26);
-            this.tsmAddItemCamada.Text = "Camada";
+            this.tsmAddItemMapa.Click += new System.EventHandler(this.tsmAddItemMapa_Click);
             // 
             // tsmAddItemPersonagem
             // 
@@ -96,15 +90,16 @@
             this.tsmAddItemPersonagem.Size = new System.Drawing.Size(165, 26);
             this.tsmAddItemPersonagem.Text = "Personagem";
             // 
-            // TagDockJogoExplorer
+            // TabDockJogoExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 321);
             this.Controls.Add(this.trv);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.Name = "TagDockJogoExplorer";
+            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Name = "TabDockJogoExplorer";
+            this.Text = "Jogo";
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
             this.Controls.SetChildIndex(this.trv, 0);
             this.pnlAtalho.ResumeLayout(false);
@@ -120,7 +115,6 @@
         private System.Windows.Forms.ContextMenuStrip cmsAddItem;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemGrupo;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemMapa;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddItemCamada;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemPersonagem;
     }
 }

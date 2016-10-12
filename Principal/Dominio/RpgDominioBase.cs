@@ -14,6 +14,7 @@ namespace Rpg.Dominio
 
         private Atributo _attNome;
         private List<Atributo> _lstAtt;
+        private RpgDominioBase _objDominioPai;
 
         [JsonIgnore]
         public Atributo attNome
@@ -46,13 +47,37 @@ namespace Rpg.Dominio
             }
         }
 
+        [JsonIgnore]
+        public RpgDominioBase objDominioPai
+        {
+            get
+            {
+                return _objDominioPai;
+            }
+
+            set
+            {
+                _objDominioPai = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
 
+        public RpgDominioBase()
+        {
+        }
+
         #endregion Construtores
 
         #region Métodos
+
+        public void iniciar()
+        {
+            this.inicializar();
+            this.setEventos();
+        }
 
         internal void addAtt(Atributo att)
         {
@@ -72,6 +97,11 @@ namespace Rpg.Dominio
             }
 
             this.lstAtt.Add(att);
+        }
+
+        protected Atributo getAtt(string strAttNome, decimal decValor)
+        {
+            return this.getAtt(strAttNome, decValor.ToString());
         }
 
         protected Atributo getAtt(string strAttNome, string strValor = null)
@@ -102,6 +132,14 @@ namespace Rpg.Dominio
         protected virtual string getStrNomeDefault()
         {
             return "Domínio desconhecido";
+        }
+
+        protected virtual void inicializar()
+        {
+        }
+
+        protected virtual void setEventos()
+        {
         }
 
         #endregion Métodos
