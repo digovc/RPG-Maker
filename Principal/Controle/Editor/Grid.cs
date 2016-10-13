@@ -1,9 +1,8 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Rpg.Controle.Editor
 {
-    public class Grid
+    public class Grid : ElementoGraficoBase
     {
         #region Constantes
 
@@ -11,22 +10,10 @@ namespace Rpg.Controle.Editor
 
         #region Atributos
 
+        private SolidBrush _objBrush;
         private Display _objDisplay;
 
-        private Display objDisplay
-        {
-            get
-            {
-                return _objDisplay;
-            }
-
-            set
-            {
-                _objDisplay = value;
-            }
-        }
-
-        private SolidBrush _objBrush;
+        private Pen _pen;
 
         private SolidBrush objBrush
         {
@@ -43,7 +30,18 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private Pen _pen;
+        private Display objDisplay
+        {
+            get
+            {
+                return _objDisplay;
+            }
+
+            set
+            {
+                _objDisplay = value;
+            }
+        }
 
         private Pen pen
         {
@@ -82,6 +80,13 @@ namespace Rpg.Controle.Editor
                     this.renderizar(gpc, x, y);
                 }
             }
+        }
+
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.pen.DashPattern = new float[] { 5, 10 };
         }
 
         private void renderizar(Graphics gpc, int x, int y)
