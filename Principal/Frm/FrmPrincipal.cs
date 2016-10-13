@@ -18,6 +18,7 @@ namespace Rpg.Frm
 
         private List<MapaDominio> _lstObjMapaAberto;
         private RpgDominioBase _objDominioSelecionado;
+        private TabDockArte _tabDockArte;
         private TabDockCamada _tabDockCamada;
         private TabDockExplorer _tabDockExplorer;
         private TabDockMapa _tabDockMapa;
@@ -64,6 +65,20 @@ namespace Rpg.Frm
             }
         }
 
+        public TabDockPropriedade tabDockPropriedade
+        {
+            get
+            {
+                if (_tabDockPropriedade != null)
+                {
+                    return _tabDockPropriedade;
+                }
+
+                _tabDockPropriedade = new TabDockPropriedade();
+
+                return _tabDockPropriedade;
+            }
+        }
 
         private List<MapaDominio> lstObjMapaAberto
         {
@@ -77,6 +92,21 @@ namespace Rpg.Frm
                 _lstObjMapaAberto = new List<MapaDominio>();
 
                 return _lstObjMapaAberto;
+            }
+        }
+
+        private TabDockArte tabDockArte
+        {
+            get
+            {
+                if (_tabDockArte != null)
+                {
+                    return _tabDockArte;
+                }
+
+                _tabDockArte = new TabDockArte();
+
+                return _tabDockArte;
             }
         }
 
@@ -125,21 +155,6 @@ namespace Rpg.Frm
             }
         }
 
-        public TabDockPropriedade tabDockPropriedade
-        {
-            get
-            {
-                if (_tabDockPropriedade != null)
-                {
-                    return _tabDockPropriedade;
-                }
-
-                _tabDockPropriedade = new TabDockPropriedade();
-
-                return _tabDockPropriedade;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -152,16 +167,6 @@ namespace Rpg.Frm
         #endregion Construtores
 
         #region Métodos
-
-        private void setTabDockMapaSelecionado(TabDockMapa tabDockMapaSelecionado)
-        {
-            if (tabDockMapaSelecionado == null)
-            {
-                return;
-            }
-
-            this.tabDockCamada.carregarMapa(tabDockMapaSelecionado.objMapa);
-        }
 
         internal void abrirMapa(MapaDominio objMapa)
         {
@@ -198,7 +203,7 @@ namespace Rpg.Frm
                 return;
             }
 
-            this.tabDockExplorer.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+            this.tabDockExplorer.Show(this.dcp, DockState.DockLeft);
 
             this.tabDockExplorer.carregarJogo();
         }
@@ -247,15 +252,37 @@ namespace Rpg.Frm
             this.tabDockPropriedade.objDominio = objDominioSelecionado;
         }
 
+        private void setTabDockMapaSelecionado(TabDockMapa tabDockMapaSelecionado)
+        {
+            if (tabDockMapaSelecionado == null)
+            {
+                return;
+            }
+
+            this.tabDockCamada.carregarMapa(tabDockMapaSelecionado.objMapa);
+        }
+
         #endregion Métodos
 
         #region Eventos
 
-        private void tsmCamada_Click(object sender, EventArgs e)
+        private void tsmExibirArte_Click(object sender, EventArgs e)
         {
             try
             {
-                this.tabDockCamada.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
+                this.tabDockArte.Show(this.dcp, DockState.DockLeft);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmExibirCamada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tabDockCamada.Show(this.dcp, DockState.DockRight);
             }
             catch (Exception ex)
             {
@@ -267,7 +294,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockPropriedade.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
+                this.tabDockPropriedade.Show(this.dcp, DockState.DockRight);
             }
             catch (Exception ex)
             {
@@ -315,7 +342,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockMapa.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.DockTop);
+                this.tabDockMapa.Show(this.dcp, DockState.DockTop);
             }
             catch (Exception ex)
             {

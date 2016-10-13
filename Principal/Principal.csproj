@@ -42,11 +42,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Management" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>..\DigoFramework\lib\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
@@ -84,6 +86,12 @@
     </Compile>
     <Compile Include="Controle\Painel\PnlItemCamada.Designer.cs">
       <DependentUpon>PnlItemCamada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockArte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockArte.Designer.cs">
+      <DependentUpon>TabDockArte.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockCamada.cs">
       <SubType>Form</SubType>
@@ -153,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemCamada.resx">
       <DependentUpon>PnlItemCamada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockArte.resx">
+      <DependentUpon>TabDockArte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockCamada.resx">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
