@@ -15,6 +15,8 @@ namespace Rpg.Controle.Editor
 
         private Pen _pen;
 
+        private Pen _penBorda;
+
         private SolidBrush objBrush
         {
             get
@@ -43,7 +45,22 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private Pen pen
+        private Pen penBorda
+        {
+            get
+            {
+                if (_penBorda != null)
+                {
+                    return _penBorda;
+                }
+
+                _penBorda = new Pen(new SolidBrush(Color.Gray));
+
+                return _penBorda;
+            }
+        }
+
+        private Pen penBordaTile
         {
             get
             {
@@ -73,23 +90,37 @@ namespace Rpg.Controle.Editor
 
         internal void renderizar(Graphics gpc)
         {
-            for (int x = 0; x < this.objDisplay.objMapa.attTamanhoX.intValor; x++)
-            {
-                for (int y = 0; y < this.objDisplay.objMapa.attTamanhoY.intValor; y++)
-                {
-                    this.renderizar(gpc, x, y);
-                }
-            }
+            this.renderizarBordaTile(gpc);
+            this.renderizarBorda(gpc);
         }
 
         protected override void inicializar()
         {
             base.inicializar();
 
-            this.pen.DashPattern = new float[] { 5, 10 };
+            this.penBordaTile.DashPattern = new float[] { 5, 10 };
         }
 
-        private void renderizar(Graphics gpc, int x, int y)
+        private void renderizarBorda(Graphics gpc)
+        {
+            int w = (this.objDisplay.objMapa.attTamanhoX.intValor * (Display.INT_TILE_TAMANHO + (this.objDisplay.intZoom * Display.INT_ZOOM)));
+            int h = (this.objDisplay.objMapa.attTamanhoY.intValor * (Display.INT_TILE_TAMANHO + (this.objDisplay.intZoom * Display.INT_ZOOM)));
+
+            gpc.DrawRectangle(this.penBorda, new Rectangle(this.objDisplay.intMoveX, this.objDisplay.intMoveY, w, h));
+        }
+
+        private void renderizarBordaTile(Graphics gpc)
+        {
+            for (int x = 0; x < this.objDisplay.objMapa.attTamanhoX.intValor; x++)
+            {
+                for (int y = 0; y < this.objDisplay.objMapa.attTamanhoY.intValor; y++)
+                {
+                    this.renderizarBordaTile(gpc, x, y);
+                }
+            }
+        }
+
+        private void renderizarBordaTile(Graphics gpc, int x, int y)
         {
             x = (x * Display.INT_TILE_TAMANHO + this.objDisplay.intMoveX + (x * this.objDisplay.intZoom * Display.INT_ZOOM));
             y = (y * Display.INT_TILE_TAMANHO + this.objDisplay.intMoveY + (y * this.objDisplay.intZoom * Display.INT_ZOOM));
@@ -97,7 +128,7 @@ namespace Rpg.Controle.Editor
             int w = (Display.INT_TILE_TAMANHO + (this.objDisplay.intZoom * Display.INT_ZOOM));
             int h = (Display.INT_TILE_TAMANHO + (this.objDisplay.intZoom * Display.INT_ZOOM));
 
-            gpc.DrawRectangle(this.pen, new Rectangle(x, y, w, h));
+            gpc.DrawRectangle(this.penBordaTile, new Rectangle(x, y, w, h));
         }
 
         #endregion Métodos
