@@ -21,6 +21,7 @@ namespace Rpg.Dominio
 
         private decimal _decValor;
         private EnmTipo _enmTipo = EnmTipo.TEXTO;
+        private int _intValor;
         private RpgDominioBase _objDominio;
         private string _strDescricao;
         private string _strGrupo;
@@ -53,6 +54,22 @@ namespace Rpg.Dominio
             set
             {
                 _enmTipo = value;
+            }
+        }
+
+        [JsonIgnore]
+        public int intValor
+        {
+            get
+            {
+                return _intValor = (int)this.decValor;
+            }
+
+            set
+            {
+                _intValor = value;
+
+                this.decValor = _intValor;
             }
         }
 

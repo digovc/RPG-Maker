@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.TabDock;
 using Rpg.Dominio;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Rpg.Frm
 {
@@ -52,9 +53,17 @@ namespace Rpg.Frm
 
             set
             {
+                if (_tabDockMapaSelecionado == value)
+                {
+                    return;
+                }
+
                 _tabDockMapaSelecionado = value;
+
+                this.setTabDockMapaSelecionado(_tabDockMapaSelecionado);
             }
         }
+
 
         private List<MapaDominio> lstObjMapaAberto
         {
@@ -116,7 +125,7 @@ namespace Rpg.Frm
             }
         }
 
-        private TabDockPropriedade tabDockPropriedade
+        public TabDockPropriedade tabDockPropriedade
         {
             get
             {
@@ -144,6 +153,16 @@ namespace Rpg.Frm
 
         #region Métodos
 
+        private void setTabDockMapaSelecionado(TabDockMapa tabDockMapaSelecionado)
+        {
+            if (tabDockMapaSelecionado == null)
+            {
+                return;
+            }
+
+            this.tabDockCamada.carregarMapa(tabDockMapaSelecionado.objMapa);
+        }
+
         internal void abrirMapa(MapaDominio objMapa)
         {
             if (objMapa == null)
@@ -158,9 +177,9 @@ namespace Rpg.Frm
 
             TabDockMapa tabMapa = new TabDockMapa();
 
-            tabMapa.Show(this.dcp, WeifenLuo.WinFormsUI.Docking.DockState.Document);
-
             tabMapa.objMapa = objMapa;
+
+            tabMapa.Show(this.dcp, DockState.Document);
         }
 
         protected override void inicializar()

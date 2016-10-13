@@ -1,5 +1,7 @@
 ﻿using System;
 using DigoFramework;
+using Rpg.Controle.Painel;
+using Rpg.Dominio;
 
 namespace Rpg.Controle.TabDock
 {
@@ -39,8 +41,57 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
+        internal void carregarMapa(MapaDominio objMapa)
+        {
+            if (objMapa == null)
+            {
+                return;
+            }
+
+            foreach (RpgDominioBase objDominio in objMapa.lstObjFilho)
+            {
+                if (objDominio == null)
+                {
+                    continue;
+                }
+
+                if (!(objDominio is CamadaDominio))
+                {
+                    return;
+                }
+
+                this.addCamada(objDominio as CamadaDominio);
+            }
+        }
+
         private void addCamada()
         {
+            if (AppRpg.i.frmPrincipal.tabDockMapaSelecionado == null)
+            {
+                return;
+            }
+
+            CamadaDominio objCamada = new CamadaDominio();
+
+            objCamada.attNome.strValor = "Camada desconhecida";
+
+            AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.addFilho(objCamada);
+
+            this.addCamada(objCamada);
+        }
+
+        private void addCamada(CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return;
+            }
+
+            PnlItemCamada pnlItemCamada = new PnlItemCamada();
+
+            pnlItemCamada.objDominio = objCamada;
+
+            this.pnlConteudo.Controls.Add(pnlItemCamada);
         }
 
         #endregion Métodos

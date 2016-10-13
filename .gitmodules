@@ -1,3 +1,6 @@
 [submodule "DigoFramework"]
 	path = DigoFramework
 	url = https://github.com/digovc/DigoFramework.git
+[submodule "OpenGL.Net"]
+	path = OpenGL.Net
+	url = https://github.com/digovc/OpenGL.Net.git

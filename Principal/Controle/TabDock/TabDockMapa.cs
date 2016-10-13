@@ -34,7 +34,6 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-
         #endregion Atributos
 
         #region Construtores
@@ -47,6 +46,15 @@ namespace Rpg.Controle.TabDock
         #endregion Construtores
 
         #region Métodos
+
+        private void carregarMapa()
+        {
+            this.SuspendLayout();
+
+            this.ctrDisplay.objMapa = this.objMapa;
+
+            this.ResumeLayout();
+        }
 
         private void processarEnter()
         {
@@ -61,6 +69,8 @@ namespace Rpg.Controle.TabDock
             }
 
             this.Text = this.objMapa.attNome.strValor;
+
+            this.carregarMapa();
         }
 
         #endregion Métodos
@@ -69,7 +79,6 @@ namespace Rpg.Controle.TabDock
 
         private void TabDockMapa_Enter(object sender, EventArgs e)
         {
-
             try
             {
                 this.processarEnter();

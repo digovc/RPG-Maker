@@ -15,23 +15,8 @@ namespace Rpg.Dominio
         private Atributo _attTamanhoY;
         private List<CamadaDominio> _lstObjCamada;
 
-        public List<CamadaDominio> lstObjCamada
-        {
-            get
-            {
-                if (_lstObjCamada != null)
-                {
-                    return _lstObjCamada;
-                }
-
-                _lstObjCamada = new List<CamadaDominio>();
-
-                return _lstObjCamada;
-            }
-        }
-
         [JsonIgnore]
-        private Atributo attTamanhoX
+        public Atributo attTamanhoX
         {
             get
             {
@@ -47,7 +32,7 @@ namespace Rpg.Dominio
         }
 
         [JsonIgnore]
-        private Atributo attTamanhoY
+        public Atributo attTamanhoY
         {
             get
             {
@@ -62,6 +47,21 @@ namespace Rpg.Dominio
             }
         }
 
+        public List<CamadaDominio> lstObjCamada
+        {
+            get
+            {
+                if (_lstObjCamada != null)
+                {
+                    return _lstObjCamada;
+                }
+
+                _lstObjCamada = new List<CamadaDominio>();
+
+                return _lstObjCamada;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -69,13 +69,15 @@ namespace Rpg.Dominio
         #endregion Construtores
 
         #region Métodos
+
         protected override void inicializar()
         {
             base.inicializar();
 
-            this.attTamanhoX.decValor = 25;
-            this.attTamanhoY.decValor = 25;
+            this.attTamanhoX.intValor = 25;
+            this.attTamanhoY.intValor = 25;
         }
+
         #endregion Métodos
 
         #region Eventos

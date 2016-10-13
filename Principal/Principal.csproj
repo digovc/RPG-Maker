@@ -52,10 +52,13 @@
     <Reference Include="Npgsql">
       <HintPath>..\DigoFramework\lib\Npgsql\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,9 +68,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>..\DigoFramework\lib\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRpg.cs" />
@@ -83,17 +89,24 @@
     <Compile Include="Controle\EditAtributo\EditAtributoTexto.Designer.cs">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\MapaEditor\Sprite.cs">
+    <Compile Include="Controle\Editor\Display.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controle\MapaEditor\Sprite.Designer.cs">
-      <DependentUpon>Sprite.cs</DependentUpon>
+    <Compile Include="Controle\Editor\Display.Designer.cs">
+      <DependentUpon>Display.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Painel\PnlItem.cs">
+    <Compile Include="Controle\Editor\Grid.cs" />
+    <Compile Include="Controle\Painel\PnlItemBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controle\Painel\PnlItem.Designer.cs">
-      <DependentUpon>PnlItem.cs</DependentUpon>
+    <Compile Include="Controle\Painel\PnlItemBase.Designer.cs">
+      <DependentUpon>PnlItemBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\Painel\PnlItemCamada.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\Painel\PnlItemCamada.Designer.cs">
+      <DependentUpon>PnlItemCamada.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockCamada.cs">
       <SubType>Form</SubType>
@@ -155,11 +168,14 @@
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoTexto.resx">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controle\MapaEditor\Sprite.resx">
-      <DependentUpon>Sprite.cs</DependentUpon>
+    <EmbeddedResource Include="Controle\Editor\Display.resx">
+      <DependentUpon>Display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controle\Painel\PnlItem.resx">
-      <DependentUpon>PnlItem.cs</DependentUpon>
+    <EmbeddedResource Include="Controle\Painel\PnlItemBase.resx">
+      <DependentUpon>PnlItemBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\Painel\PnlItemCamada.resx">
+      <DependentUpon>PnlItemCamada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockCamada.resx">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
