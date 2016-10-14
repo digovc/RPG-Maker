@@ -1,6 +1,8 @@
-﻿namespace Rpg.Controle.Editor
+﻿using DigoFramework.Controle;
+
+namespace Rpg.Controle
 {
-    public abstract class ElementoGraficoBase
+    public partial class UserControlRpgBase : UserControlBase
     {
         #region Constantes
 
@@ -12,23 +14,14 @@
 
         #region Construtores
 
-        public ElementoGraficoBase()
+        public UserControlRpgBase()
         {
-            this.iniciar();
+            this.InitializeComponent();
         }
 
         #endregion Construtores
 
         #region Métodos
-
-        protected virtual void inicializar()
-        {
-        }
-
-        private void iniciar()
-        {
-            this.inicializar();
-        }
 
         #endregion Métodos
 

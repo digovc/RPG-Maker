@@ -11,39 +11,39 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private Atributo _attTamanhoX;
-        private Atributo _attTamanhoY;
+        private Atributo _attQuantidadeX;
+        private Atributo _attQuantidadeY;
         private List<CamadaDominio> _lstObjCamada;
 
         [JsonIgnore]
-        public Atributo attTamanhoX
+        public Atributo attQuantidadeX
         {
             get
             {
-                if (_attTamanhoX != null)
+                if (_attQuantidadeX != null)
                 {
-                    return _attTamanhoX;
+                    return _attQuantidadeX;
                 }
 
-                _attTamanhoX = this.getAtt("Tamanho X");
+                _attQuantidadeX = this.getAtt("Quantidade X");
 
-                return _attTamanhoX;
+                return _attQuantidadeX;
             }
         }
 
         [JsonIgnore]
-        public Atributo attTamanhoY
+        public Atributo attQuantidadeY
         {
             get
             {
-                if (_attTamanhoY != null)
+                if (_attQuantidadeY != null)
                 {
-                    return _attTamanhoY;
+                    return _attQuantidadeY;
                 }
 
-                _attTamanhoY = this.getAtt("Tamanho Y");
+                _attQuantidadeY = this.getAtt("Quantidade Y");
 
-                return _attTamanhoY;
+                return _attQuantidadeY;
             }
         }
 
@@ -74,8 +74,8 @@ namespace Rpg.Dominio
         {
             base.inicializar();
 
-            this.attTamanhoX.intValor = 25;
-            this.attTamanhoY.intValor = 25;
+            this.attQuantidadeX.intValor = 25;
+            this.attQuantidadeY.intValor = 25;
         }
 
         #endregion Métodos

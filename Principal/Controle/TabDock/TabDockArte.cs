@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using DigoFramework;
+using Rpg.Dominio;
 
 namespace Rpg.Controle.TabDock
 {
@@ -18,7 +21,8 @@ namespace Rpg.Controle.TabDock
 
         private string _dirArteRoot;
 
-        private List<string> _lstStrExtensaoSuportada;
+        private List<string> _lstStrExtensaoSuportadaAudio;
+        private List<string> _lstStrExtensaoSuportadaImagem;
 
         private string dirArteRoot
         {
@@ -35,18 +39,33 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-        private List<string> lstStrExtensaoSuportada
+        private List<string> lstStrExtensaoSuportadaAudio
         {
             get
             {
-                if (_lstStrExtensaoSuportada != null)
+                if (_lstStrExtensaoSuportadaAudio != null)
                 {
-                    return _lstStrExtensaoSuportada;
+                    return _lstStrExtensaoSuportadaAudio;
                 }
 
-                _lstStrExtensaoSuportada = new List<string>();
+                _lstStrExtensaoSuportadaAudio = new List<string>();
 
-                return _lstStrExtensaoSuportada;
+                return _lstStrExtensaoSuportadaAudio;
+            }
+        }
+
+        private List<string> lstStrExtensaoSuportadaImagem
+        {
+            get
+            {
+                if (_lstStrExtensaoSuportadaImagem != null)
+                {
+                    return _lstStrExtensaoSuportadaImagem;
+                }
+
+                _lstStrExtensaoSuportadaImagem = new List<string>();
+
+                return _lstStrExtensaoSuportadaImagem;
             }
         }
 
@@ -86,12 +105,19 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            TreeNode trn = this.trv.Nodes.Add(DIR_ARTE_ROOT);
+            ArquivoDominio arqDirRoot = new ArquivoDominio();
 
-            this.carregarArteDir(this.dirArteRoot, trn);
+            arqDirRoot.attDirCompleto.strValor = this.dirArteRoot;
+            arqDirRoot.attNome.strValor = Path.GetFileName(this.dirArteRoot);
+
+            TreeNodeRpg trnDirRoot = new TreeNodeRpg(arqDirRoot);
+
+            this.trv.Nodes.Add(trnDirRoot);
+
+            this.carregarArteDir(this.dirArteRoot, trnDirRoot);
         }
 
-        private void carregarArteArq(string dirArqItem, TreeNode trn)
+        private void carregarArteArq(string dirArqItem, TreeNodeRpg trn)
         {
             string strExtencao = Path.GetExtension(dirArqItem);
 
@@ -102,15 +128,44 @@ namespace Rpg.Controle.TabDock
 
             strExtencao = strExtencao.ToLower();
 
-            if (!this.lstStrExtensaoSuportada.Contains(strExtencao))
+            if (this.lstStrExtensaoSuportadaAudio.Contains(strExtencao))
             {
+                this.carregarArteArq(dirArqItem, trn, typeof(AudioDominio));
                 return;
             }
 
-            trn.Nodes.Add(Path.GetFileName(dirArqItem));
+            if (this.lstStrExtensaoSuportadaImagem.Contains(strExtencao))
+            {
+                this.carregarArteArq(dirArqItem, trn, typeof(ImagemDominio));
+                return;
+            }
         }
 
-        private void carregarArteDir(string dir, TreeNode trn)
+        private void carregarArteArq(string dirArqItem, TreeNodeRpg trn, Type clsArq)
+        {
+            ArquivoDominio arq = (ArquivoDominio)Activator.CreateInstance(clsArq);
+
+            arq.attDirCompleto.strValor = dirArqItem;
+            arq.attNome.strValor = Path.GetFileName(dirArqItem);
+
+            TreeNodeRpg trnAudio = new TreeNodeRpg(arq);
+
+            trn.Nodes.Add(trnAudio);
+        }
+
+        private void carregarArteArqImagem(string dirArqItem, TreeNodeRpg trn)
+        {
+            ImagemDominio arqImagem = new ImagemDominio();
+
+            arqImagem.attDirCompleto.strValor = dirArqItem;
+            arqImagem.attNome.strValor = Path.GetFileName(dirArqItem);
+
+            TreeNodeRpg trnAudio = new TreeNodeRpg(arqImagem);
+
+            trn.Nodes.Add(trnAudio);
+        }
+
+        private void carregarArteDir(string dir, TreeNodeRpg trn)
         {
             if (!Directory.Exists(dir))
             {
@@ -119,7 +174,14 @@ namespace Rpg.Controle.TabDock
 
             foreach (string dirItem in Directory.GetDirectories(dir))
             {
-                TreeNode trnItem = trn.Nodes.Add(Path.GetFileName(dirItem));
+                ArquivoDominio arqDirItem = new ArquivoDominio();
+
+                arqDirItem.attDirCompleto.strValor = dirItem;
+                arqDirItem.attNome.strValor = Path.GetFileName(dirItem);
+
+                TreeNodeRpg trnItem = new TreeNodeRpg(arqDirItem);
+
+                trn.Nodes.Add(trnItem);
 
                 this.carregarArteDir(dirItem, trnItem);
             }
@@ -158,19 +220,70 @@ namespace Rpg.Controle.TabDock
         private void inicializarLstExtensaoSuportada()
         {
             // Áudio:
-            this.lstStrExtensaoSuportada.Add(".mp3");
-            this.lstStrExtensaoSuportada.Add(".wav");
-            this.lstStrExtensaoSuportada.Add(".wma");
+            this.lstStrExtensaoSuportadaAudio.Add(".mp3");
+            this.lstStrExtensaoSuportadaAudio.Add(".wav");
+            this.lstStrExtensaoSuportadaAudio.Add(".wma");
 
             // Imagem:
-            this.lstStrExtensaoSuportada.Add(".bmp");
-            this.lstStrExtensaoSuportada.Add(".jpg");
-            this.lstStrExtensaoSuportada.Add(".png");
+            this.lstStrExtensaoSuportadaImagem.Add(".bmp");
+            this.lstStrExtensaoSuportadaImagem.Add(".jpg");
+            this.lstStrExtensaoSuportadaImagem.Add(".png");
+        }
+
+        private void processarNodeDoubleClick(TreeNodeRpg trnArq)
+        {
+            if (trnArq == null)
+            {
+                return;
+            }
+
+            if (trnArq.objDominio == null)
+            {
+                return;
+            }
+
+            if (trnArq.objDominio is ImagemDominio)
+            {
+                this.abrirImagem((ImagemDominio)trnArq.objDominio);
+                return;
+            }
+        }
+
+        private void abrirImagem(ImagemDominio objImg)
+        {
+            if (objImg == null)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(objImg.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            if (!File.Exists(objImg.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            AppRpg.i.frmPrincipal.abrirImagem(objImg);
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void trv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs arg)
+        {
+            try
+            {
+                this.processarNodeDoubleClick((TreeNodeRpg)arg.Node);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
 
         #endregion Eventos
     }

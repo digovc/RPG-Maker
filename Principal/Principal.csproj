@@ -67,14 +67,27 @@
     <Compile Include="Controle\EditAtributo\EditAtributoTexto.Designer.cs">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Editor\Display.cs">
+    <Compile Include="Controle\Editor\DisplayBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controle\Editor\Display.Designer.cs">
-      <DependentUpon>Display.cs</DependentUpon>
+    <Compile Include="Controle\Editor\DisplayBase.Designer.cs">
+      <DependentUpon>DisplayBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Editor\ElementoGraficoBase.cs" />
-    <Compile Include="Controle\Editor\Grid.cs" />
+    <Compile Include="Controle\Editor\ImagemDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\Editor\ImagemDisplay.Designer.cs">
+      <DependentUpon>ImagemDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\Editor\MapaDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\Editor\MapaDisplay.Designer.cs">
+      <DependentUpon>MapaDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\Editor\GraficoBase.cs" />
+    <Compile Include="Controle\Editor\GridGrafico.cs" />
+    <Compile Include="Controle\Editor\SelecaoGrafico.cs" />
     <Compile Include="Controle\Painel\PnlItemBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +111,12 @@
     </Compile>
     <Compile Include="Controle\TabDock\TabDockCamada.Designer.cs">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockImagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockImagem.Designer.cs">
+      <DependentUpon>TabDockImagem.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockMapa.cs">
       <SubType>Form</SubType>
@@ -124,12 +143,20 @@
       <DependentUpon>TabDockPropriedade.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TreeNodeRpg.cs" />
+    <Compile Include="Controle\UserControlRpgBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\UserControlRpgBase.Designer.cs">
+      <DependentUpon>UserControlRpgBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\ArquivoDominio.cs" />
     <Compile Include="Dominio\ArquivoRefDominio.cs" />
     <Compile Include="Dominio\Atributo.cs" />
+    <Compile Include="Dominio\AudioDominio.cs" />
     <Compile Include="Dominio\CamadaDominio.cs" />
     <Compile Include="Dominio\ContainerDominioBase.cs" />
     <Compile Include="Dominio\GrupoDominio.cs" />
+    <Compile Include="Dominio\ImagemDominio.cs" />
     <Compile Include="Dominio\JogoDominio.cs" />
     <Compile Include="Dominio\MapaDominio.cs" />
     <Compile Include="Dominio\RpgDominioBase.cs" />
@@ -153,8 +180,8 @@
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoTexto.resx">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controle\Editor\Display.resx">
-      <DependentUpon>Display.cs</DependentUpon>
+    <EmbeddedResource Include="Controle\Editor\MapaDisplay.resx">
+      <DependentUpon>MapaDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemBase.resx">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
@@ -167,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockCamada.resx">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockImagem.resx">
+      <DependentUpon>TabDockImagem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockMapa.resx">
       <DependentUpon>TabDockMapa.cs</DependentUpon>

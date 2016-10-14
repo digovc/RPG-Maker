@@ -49,11 +49,7 @@ namespace Rpg.Controle.TabDock
 
         private void carregarMapa()
         {
-            this.SuspendLayout();
-
             this.ctrDisplay.objMapa = this.objMapa;
-
-            this.ResumeLayout();
         }
 
         private void processarEnter()

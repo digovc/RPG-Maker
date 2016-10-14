@@ -28,31 +28,6 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
-        private void addItemMapa()
-        {
-            if (AppRpg.i.objJogo == null)
-            {
-                return;
-            }
-
-            MapaDominio objMapa = new MapaDominio();
-
-
-            objMapa.attNome.strValor = "Mapa desconhecido";
-
-            objMapa.iniciar();
-
-            ArquivoRefDominio objArqRef = new ArquivoRefDominio();
-
-            objArqRef.attNome.strValor = objMapa.attNome.strValor;
-
-            this.addItem(objArqRef);
-
-            Directory.CreateDirectory(Path.GetDirectoryName(objArqRef.attDirArquivo.strValor));
-
-            File.WriteAllText(objArqRef.attDirArquivo.strValor, Json.i.toJson(objMapa));
-        }
-
         internal void carregarJogo()
         {
             if (AppRpg.i.objJogo == null)
@@ -77,6 +52,30 @@ namespace Rpg.Controle.TabDock
 
                 this.carregarJogo(objDominio, trnJogo);
             }
+        }
+
+        private void abrirArqRef(ArquivoRefDominio objArqRef)
+        {
+            if (objArqRef == null)
+            {
+                return;
+            }
+
+            if (objArqRef.objArquivo == null)
+            {
+                return;
+            }
+
+            if (objArqRef.objArquivo is MapaDominio)
+            {
+                this.abrirMapa(objArqRef.objArquivo as MapaDominio);
+                return;
+            }
+        }
+
+        private void abrirMapa(MapaDominio objMapa)
+        {
+            AppRpg.i.frmPrincipal.abrirMapa(objMapa);
         }
 
         private void addItem()
@@ -143,6 +142,30 @@ namespace Rpg.Controle.TabDock
             this.addItem(new GrupoDominio());
         }
 
+        private void addItemMapa()
+        {
+            if (AppRpg.i.objJogo == null)
+            {
+                return;
+            }
+
+            MapaDominio objMapa = new MapaDominio();
+
+            objMapa.attNome.strValor = "Mapa desconhecido";
+
+            objMapa.iniciar();
+
+            ArquivoRefDominio objArqRef = new ArquivoRefDominio();
+
+            objArqRef.attNome.strValor = objMapa.attNome.strValor;
+
+            this.addItem(objArqRef);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(objArqRef.attDirArquivo.strValor));
+
+            File.WriteAllText(objArqRef.attDirArquivo.strValor, Json.i.toJson(objMapa));
+        }
+
         private void addTrn(TreeNodeRpg trn)
         {
             if (this.trv.SelectedNode == null)
@@ -153,16 +176,6 @@ namespace Rpg.Controle.TabDock
             this.trv.SelectedNode.Nodes.Add(trn);
 
             this.trv.SelectedNode = trn;
-        }
-
-        private void processarNodeClick(TreeNodeRpg trn)
-        {
-            if (trn == null)
-            {
-                return;
-            }
-
-            AppRpg.i.frmPrincipal.objDominioSelecionado = trn.objDominio;
         }
 
         private void carregarJogo(RpgDominioBase objDominio, TreeNodeRpg trn)
@@ -194,6 +207,16 @@ namespace Rpg.Controle.TabDock
             }
         }
 
+        private void processarNodeClick(TreeNodeRpg trn)
+        {
+            if (trn == null)
+            {
+                return;
+            }
+
+            AppRpg.i.frmPrincipal.objDominioSelecionado = trn.objDominio;
+        }
+
         private void processarNodeDoubleClick(TreeNodeRpg trn)
         {
             if (trn == null)
@@ -206,35 +229,12 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            if (trn.objDominio is ArquivoRefDominio)
-            {
-                this.abrirArqRef(trn.objDominio as ArquivoRefDominio);
-                return;
-            }
-        }
-
-        private void abrirArqRef(ArquivoRefDominio objArqRef)
-        {
-            if (objArqRef == null)
+            if (!(trn.objDominio is ArquivoRefDominio))
             {
                 return;
             }
 
-            if (objArqRef.objArquivo == null)
-            {
-                return;
-            }
-
-            if (objArqRef.objArquivo is MapaDominio)
-            {
-                this.abrirMapa(objArqRef.objArquivo as MapaDominio);
-                return;
-            }
-        }
-
-        private void abrirMapa(MapaDominio objMapa)
-        {
-            AppRpg.i.frmPrincipal.abrirMapa(objMapa);
+            this.abrirArqRef(trn.objDominio as ArquivoRefDominio);
         }
 
         #endregion Métodos
@@ -267,7 +267,6 @@ namespace Rpg.Controle.TabDock
 
         private void trv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
             try
             {
                 this.processarNodeDoubleClick((TreeNodeRpg)e.Node);

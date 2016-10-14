@@ -1,9 +1,6 @@
-﻿using System;
-using DigoFramework.Controle.DockPanel.TabDock;
-
-namespace Rpg.Controle.TabDock
+﻿namespace Rpg.Dominio
 {
-    public partial class TabDockRpgBase : TabDockBase
+    public class AudioDominio : ArquivoDominio
     {
         #region Constantes
 
@@ -14,11 +11,6 @@ namespace Rpg.Controle.TabDock
         #endregion Atributos
 
         #region Construtores
-
-        public TabDockRpgBase()
-        {
-            this.InitializeComponent();
-        }
 
         #endregion Construtores
 

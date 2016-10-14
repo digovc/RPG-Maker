@@ -16,7 +16,7 @@ namespace Rpg.Frm
 
         #region Atributos
 
-        private List<MapaDominio> _lstObjMapaAberto;
+        private List<MapaDominio> _lstObjMapa;
         private RpgDominioBase _objDominioSelecionado;
         private TabDockArte _tabDockArte;
         private TabDockCamada _tabDockCamada;
@@ -80,18 +80,18 @@ namespace Rpg.Frm
             }
         }
 
-        private List<MapaDominio> lstObjMapaAberto
+        private List<MapaDominio> lstObjMapa
         {
             get
             {
-                if (_lstObjMapaAberto != null)
+                if (_lstObjMapa != null)
                 {
-                    return _lstObjMapaAberto;
+                    return _lstObjMapa;
                 }
 
-                _lstObjMapaAberto = new List<MapaDominio>();
+                _lstObjMapa = new List<MapaDominio>();
 
-                return _lstObjMapaAberto;
+                return _lstObjMapa;
             }
         }
 
@@ -155,6 +155,23 @@ namespace Rpg.Frm
             }
         }
 
+        private List<ImagemDominio> _lstObjImg;
+
+        private List<ImagemDominio> lstObjImg
+        {
+            get
+            {
+                if (_lstObjImg != null)
+                {
+                    return _lstObjImg;
+                }
+
+                _lstObjImg = new List<ImagemDominio>();
+
+                return _lstObjImg;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -175,7 +192,7 @@ namespace Rpg.Frm
                 return;
             }
 
-            if (this.lstObjMapaAberto.Contains(objMapa))
+            if (this.lstObjMapa.Contains(objMapa))
             {
                 return;
             }
@@ -185,6 +202,27 @@ namespace Rpg.Frm
             tabMapa.objMapa = objMapa;
 
             tabMapa.Show(this.dcp, DockState.Document);
+
+            this.lstObjMapa.Add(objMapa);
+        }
+
+        internal void abrirImagem(ImagemDominio objImg)
+        {
+            if (objImg == null)
+            {
+                return;
+            }
+
+            if (this.lstObjImg.Contains(objImg))
+            {
+                return;
+            }
+
+            TabDockImagem tabImagem = new TabDockImagem();
+
+            tabImagem.objImagem = objImg;
+
+            tabImagem.Show(this.dcp, DockState.DockRight);
         }
 
         protected override void inicializar()

@@ -1,6 +1,6 @@
-﻿namespace Rpg.Controle.Editor
+﻿namespace Rpg.Controle
 {
-    partial class Display
+    partial class UserControlRpgBase
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,14 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Display
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Name = "Display";
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion

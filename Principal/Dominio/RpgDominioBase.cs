@@ -99,7 +99,7 @@ namespace Rpg.Dominio
             this.lstAtt.Add(att);
         }
 
-        protected Atributo getAtt(string strAttNome, decimal decValor)
+        public Atributo getAtt(string strAttNome, decimal decValor)
         {
             return this.getAtt(strAttNome, decValor.ToString());
         }
