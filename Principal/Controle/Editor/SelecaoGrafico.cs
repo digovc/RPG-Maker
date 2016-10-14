@@ -44,7 +44,7 @@ namespace Rpg.Controle.Editor
                     return _penSelecao;
                 }
 
-                _penSelecao = new Pen(new SolidBrush(Color.Blue));
+                _penSelecao = new Pen(new SolidBrush(Color.DeepSkyBlue));
 
                 return _penSelecao;
             }
@@ -75,8 +75,6 @@ namespace Rpg.Controle.Editor
             int h = (this.objDisplay.intQuantidadeY * (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO)));
 
             gpc.DrawRectangle(this.penSelecao, this.rtgSelecao); 
-
-            // TODO: Parei aqui.
         }
 
         internal void selecionar(int x, int y)

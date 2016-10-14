@@ -26,7 +26,7 @@ namespace Rpg.Dominio
                 return;
             }
 
-            File.WriteAllText(this.attDirCompleto.strValor, Json.i.toJson(this));
+            File.WriteAllText(this.attDirCompleto.strValor, JsonRpg.i.toJson(this));
 
             this.salvarJogoArqRef(this);
         }

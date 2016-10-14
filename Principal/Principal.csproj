@@ -55,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRpg.cs" />
+    <Compile Include="Controle\AudioTrack.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\AudioTrack.Designer.cs">
+      <DependentUpon>AudioTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controle\EditAtributo\EditAtributoBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -105,6 +111,12 @@
     </Compile>
     <Compile Include="Controle\TabDock\TabDockArte.Designer.cs">
       <DependentUpon>TabDockArte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockAudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockAudio.Designer.cs">
+      <DependentUpon>TabDockAudio.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockCamada.cs">
       <SubType>Form</SubType>
@@ -172,8 +184,12 @@
     <Compile Include="Frm\FrmRpgBase.Designer.cs">
       <DependentUpon>FrmRpgBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="JsonRpg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controle\AudioTrack.resx">
+      <DependentUpon>AudioTrack.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoBase.resx">
       <DependentUpon>EditAtributoBase.cs</DependentUpon>
     </EmbeddedResource>

@@ -272,25 +272,20 @@ namespace Rpg.Controle.Editor
 
         private void processarMouseDown(MouseEventArgs arg)
         {
-            if (this.processarMouseDownClick(arg))
+            if (this.processarMouseDownMover(arg))
             {
                 return;
             }
 
-            if (this.processarMouseDownClickControl(arg))
+            if (this.processarMouseDownSelecionar(arg))
             {
                 return;
             }
         }
 
-        private bool processarMouseDownClick(MouseEventArgs arg)
+        private bool processarMouseDownMover(MouseEventArgs arg)
         {
-            if (!MouseButtons.Left.Equals(arg.Button))
-            {
-                return false;
-            }
-
-            if (Keys.Control.Equals(ModifierKeys))
+            if (!MouseButtons.Middle.Equals(arg.Button))
             {
                 return false;
             }
@@ -301,14 +296,9 @@ namespace Rpg.Controle.Editor
             return true;
         }
 
-        private bool processarMouseDownClickControl(MouseEventArgs arg)
+        private bool processarMouseDownSelecionar(MouseEventArgs arg)
         {
             if (!MouseButtons.Left.Equals(arg.Button))
-            {
-                return false;
-            }
-
-            if (!Keys.Control.Equals(ModifierKeys))
             {
                 return false;
             }
@@ -324,7 +314,7 @@ namespace Rpg.Controle.Editor
 
         private void processarMouseMove(MouseEventArgs arg)
         {
-            if (!MouseButtons.Left.Equals(arg.Button))
+            if (!MouseButtons.Middle.Equals(arg.Button))
             {
                 return;
             }

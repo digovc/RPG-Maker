@@ -68,7 +68,7 @@ namespace Rpg.Dominio
                 return;
             }
 
-            File.WriteAllText(this.attDirArquivo.strValor, Json.i.toJson(this.objArquivo));
+            File.WriteAllText(this.attDirArquivo.strValor, JsonRpg.i.toJson(this.objArquivo));
         }
 
         private Atributo getAttDirArquivo()
@@ -108,7 +108,7 @@ namespace Rpg.Dominio
                 return null;
             }
 
-            return Json.i.fromJson<ArquivoDominio>(File.ReadAllText(this.attDirArquivo.strValor));
+            return JsonRpg.i.fromJson<ArquivoDominio>(File.ReadAllText(this.attDirArquivo.strValor));
         }
 
         #endregion Métodos

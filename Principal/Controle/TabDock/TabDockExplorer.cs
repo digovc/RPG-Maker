@@ -163,7 +163,7 @@ namespace Rpg.Controle.TabDock
 
             Directory.CreateDirectory(Path.GetDirectoryName(objArqRef.attDirArquivo.strValor));
 
-            File.WriteAllText(objArqRef.attDirArquivo.strValor, Json.i.toJson(objMapa));
+            File.WriteAllText(objArqRef.attDirArquivo.strValor, JsonRpg.i.toJson(objMapa));
         }
 
         private void addTrn(TreeNodeRpg trn)

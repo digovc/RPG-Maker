@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using DigoFramework;
-using DigoFramework.Json;
 using Rpg.Dominio;
 using Rpg.Frm;
 
@@ -102,7 +99,7 @@ namespace Rpg
                 return;
             }
 
-            this.objJogo = Json.i.fromJson<JogoDominio>(File.ReadAllText(dirJogo));
+            this.objJogo = JsonRpg.i.fromJson<JogoDominio>(File.ReadAllText(dirJogo));
         }
 
         internal void criarJogo(string digJogo)
