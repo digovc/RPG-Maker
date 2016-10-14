@@ -1,8 +1,8 @@
-﻿using DigoFramework.Controle.DockPanel.TabDock;
+﻿using DigoFramework.Controle.DockPanel;
 
-namespace Rpg.Controle.TabDock
+namespace Rpg.Controle
 {
-    public partial class TabDockRpgBase : TabDockBase
+    public partial class DockPanelRpg : DockPanelBase
     {
         #region Constantes
 
@@ -14,7 +14,7 @@ namespace Rpg.Controle.TabDock
 
         #region Construtores
 
-        public TabDockRpgBase()
+        public DockPanelRpg()
         {
             this.InitializeComponent();
         }
@@ -22,6 +22,13 @@ namespace Rpg.Controle.TabDock
         #endregion Construtores
 
         #region Métodos
+
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.Theme = new WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme();
+        }
 
         #endregion Métodos
 

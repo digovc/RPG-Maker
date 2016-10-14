@@ -246,6 +246,11 @@ namespace Rpg.Controle.TabDock
 
         #region Eventos
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+        }
+
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             try

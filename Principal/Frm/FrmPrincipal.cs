@@ -16,10 +16,12 @@ namespace Rpg.Frm
 
         #region Atributos
 
+        private List<ImagemDominio> _lstObjImg;
         private List<MapaDominio> _lstObjMapa;
         private RpgDominioBase _objDominioSelecionado;
         private TabDockArte _tabDockArte;
         private TabDockCamada _tabDockCamada;
+        private TabDockDados _tabDockDados;
         private TabDockExplorer _tabDockExplorer;
         private TabDockMapa _tabDockMapa;
         private TabDockMapa _tabDockMapaSelecionado;
@@ -80,6 +82,21 @@ namespace Rpg.Frm
             }
         }
 
+        private List<ImagemDominio> lstObjImg
+        {
+            get
+            {
+                if (_lstObjImg != null)
+                {
+                    return _lstObjImg;
+                }
+
+                _lstObjImg = new List<ImagemDominio>();
+
+                return _lstObjImg;
+            }
+        }
+
         private List<MapaDominio> lstObjMapa
         {
             get
@@ -125,6 +142,21 @@ namespace Rpg.Frm
             }
         }
 
+        private TabDockDados tabDockDados
+        {
+            get
+            {
+                if (_tabDockDados != null)
+                {
+                    return _tabDockDados;
+                }
+
+                _tabDockDados = new TabDockDados();
+
+                return _tabDockDados;
+            }
+        }
+
         private TabDockExplorer tabDockExplorer
         {
             get
@@ -155,23 +187,6 @@ namespace Rpg.Frm
             }
         }
 
-        private List<ImagemDominio> _lstObjImg;
-
-        private List<ImagemDominio> lstObjImg
-        {
-            get
-            {
-                if (_lstObjImg != null)
-                {
-                    return _lstObjImg;
-                }
-
-                _lstObjImg = new List<ImagemDominio>();
-
-                return _lstObjImg;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -184,27 +199,6 @@ namespace Rpg.Frm
         #endregion Construtores
 
         #region Métodos
-
-        internal void abrirMapa(MapaDominio objMapa)
-        {
-            if (objMapa == null)
-            {
-                return;
-            }
-
-            if (this.lstObjMapa.Contains(objMapa))
-            {
-                return;
-            }
-
-            TabDockMapa tabMapa = new TabDockMapa();
-
-            tabMapa.objMapa = objMapa;
-
-            tabMapa.Show(this.dcp, DockState.Document);
-
-            this.lstObjMapa.Add(objMapa);
-        }
 
         internal void abrirImagem(ImagemDominio objImg)
         {
@@ -222,7 +216,28 @@ namespace Rpg.Frm
 
             tabImagem.objImagem = objImg;
 
-            tabImagem.Show(this.dcp, DockState.DockRight);
+            tabImagem.Show(this.pnlDockRpg, DockState.DockRight);
+        }
+
+        internal void abrirMapa(MapaDominio objMapa)
+        {
+            if (objMapa == null)
+            {
+                return;
+            }
+
+            if (this.lstObjMapa.Contains(objMapa))
+            {
+                return;
+            }
+
+            TabDockMapa tabMapa = new TabDockMapa();
+
+            tabMapa.objMapa = objMapa;
+
+            tabMapa.Show(this.pnlDockRpg, DockState.Document);
+
+            this.lstObjMapa.Add(objMapa);
         }
 
         protected override void inicializar()
@@ -241,7 +256,7 @@ namespace Rpg.Frm
                 return;
             }
 
-            this.tabDockExplorer.Show(this.dcp, DockState.DockLeft);
+            this.tabDockExplorer.Show(this.pnlDockRpg, DockState.DockLeft);
 
             this.tabDockExplorer.carregarJogo();
         }
@@ -308,7 +323,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockArte.Show(this.dcp, DockState.DockLeft);
+                this.tabDockArte.Show(this.pnlDockRpg, DockState.DockLeft);
             }
             catch (Exception ex)
             {
@@ -320,7 +335,19 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockCamada.Show(this.dcp, DockState.DockRight);
+                this.tabDockCamada.Show(this.pnlDockRpg, DockState.DockRight);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmExibirDados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tabDockDados.Show(this.pnlDockRpg, DockState.DockBottom);
             }
             catch (Exception ex)
             {
@@ -332,7 +359,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockPropriedade.Show(this.dcp, DockState.DockRight);
+                this.tabDockPropriedade.Show(this.pnlDockRpg, DockState.DockRight);
             }
             catch (Exception ex)
             {
@@ -380,7 +407,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockMapa.Show(this.dcp, DockState.DockTop);
+                this.tabDockMapa.Show(this.pnlDockRpg, DockState.DockTop);
             }
             catch (Exception ex)
             {

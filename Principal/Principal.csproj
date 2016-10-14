@@ -49,8 +49,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking">
-      <HintPath>..\DigoFramework\lib\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DigoFramework\Lib\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2013Blue">
+      <HintPath>..\DigoFramework\Lib\DockPanel\WeifenLuo.WinFormsUI.Docking.ThemeVS2013Blue.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +64,12 @@
     </Compile>
     <Compile Include="Controle\AudioTrack.Designer.cs">
       <DependentUpon>AudioTrack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\DockPanelRpg.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controle\DockPanelRpg.Designer.cs">
+      <DependentUpon>DockPanelRpg.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\EditAtributo\EditAtributoBase.cs">
       <SubType>UserControl</SubType>
@@ -123,6 +133,12 @@
     </Compile>
     <Compile Include="Controle\TabDock\TabDockCamada.Designer.cs">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockDados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockDados.Designer.cs">
+      <DependentUpon>TabDockDados.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockImagem.cs">
       <SubType>Form</SubType>
@@ -210,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockCamada.resx">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockDados.resx">
+      <DependentUpon>TabDockDados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockImagem.resx">
       <DependentUpon>TabDockImagem.cs</DependentUpon>

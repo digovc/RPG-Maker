@@ -31,7 +31,7 @@ namespace Rpg.Controle.Painel
                 return;
             }
 
-            AppRpg.i.frmPrincipal.tabDockPropriedade.objDominio = this.objDominio;
+            AppRpg.i.frmPrincipal.objDominioSelecionado = this.objDominio;
         }
 
         #endregion Métodos
