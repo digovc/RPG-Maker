@@ -17,8 +17,6 @@ namespace Rpg.Controle.Editor
 
         #region Atributos
 
-        private bool _booClick;
-        private GridGrafico _objGrid;
         private int _intMoveX;
         private int _intMoveXTemp;
         private int _intMoveY;
@@ -27,6 +25,7 @@ namespace Rpg.Controle.Editor
         private int _intQuantidadeY;
         private int _intTileTamanho;
         private int _intZoom;
+        private GridGrafico _objGrid;
         private SelecaoGrafico _objSelecao;
 
         public int intTileTamanho
@@ -142,19 +141,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private bool booClick
-        {
-            get
-            {
-                return _booClick;
-            }
-
-            set
-            {
-                _booClick = value;
-            }
-        }
-
         private int intMoveXTemp
         {
             get
@@ -247,6 +233,7 @@ namespace Rpg.Controle.Editor
 
         protected virtual void renderizar(PaintEventArgs arg)
         {
+            // TODO: Desenhar apenas o que é visto na tela.
             this.renderizarGrid(arg.Graphics);
             this.renderizarSelecao(arg.Graphics);
         }
@@ -264,10 +251,6 @@ namespace Rpg.Controle.Editor
         protected virtual bool validarRenderizar()
         {
             return true;
-        }
-
-        private void processarClick(EventArgs arg)
-        {
         }
 
         private void processarMouseDown(MouseEventArgs arg)
@@ -332,6 +315,16 @@ namespace Rpg.Controle.Editor
             (arg as HandledMouseEventArgs).Handled = true;
         }
 
+        private void renderizarLocal(PaintEventArgs arg)
+        {
+            if (!this.validarRenderizar())
+            {
+                return;
+            }
+
+            this.renderizar(arg);
+        }
+
         private void renderizarSelecao(Graphics grp)
         {
             this.objSelecao.renderizar(grp);
@@ -339,7 +332,7 @@ namespace Rpg.Controle.Editor
 
         private void selecionarTile(MouseEventArgs arg)
         {
-            this.objSelecao.selecionar(arg.X, arg.Y);
+            this.objSelecao.selecionarTile(arg.X, arg.Y);
         }
 
         private void setIntZoom(int intZoom)
@@ -388,26 +381,14 @@ namespace Rpg.Controle.Editor
         {
             base.OnMouseWheel(arg);
 
-            try
-            {
-                this.processarZoom(arg);
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
+            this.processarZoom(arg);
         }
 
         protected override void OnPaint(PaintEventArgs arg)
         {
             //base.OnPaint(arg);
 
-            if (!this.validarRenderizar())
-            {
-                return;
-            }
-
-            this.renderizar(arg);
+            this.renderizarLocal(arg);
         }
 
         #endregion Eventos

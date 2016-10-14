@@ -13,7 +13,7 @@ namespace Rpg
 
         private static JsonRpg _i;
 
-        public static JsonRpg i
+        public new static JsonRpg i
         {
             get
             {

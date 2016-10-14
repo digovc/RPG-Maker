@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using DigoFramework.Json;
 
 namespace Rpg.Dominio
@@ -31,11 +32,6 @@ namespace Rpg.Dominio
             this.salvarJogoArqRef(this);
         }
 
-        protected override string getStrNomeDefault()
-        {
-            return "RPG desconhecido";
-        }
-
         private void salvarJogoArqRef(RpgDominioBase objDominio)
         {
             if (objDominio == null)
@@ -55,6 +51,16 @@ namespace Rpg.Dominio
                     this.salvarJogoArqRef(objDominiofilho);
                 }
             }
+        }
+
+        internal static JogoDominio criar(string dirJogo)
+        {
+            JogoDominio objJogoResultado = new JogoDominio();
+
+            objJogoResultado.attDirCompleto.strValor = dirJogo;
+            objJogoResultado.attNome.strValor = "RPG Épico";
+
+            return objJogoResultado;
         }
 
         #endregion Métodos

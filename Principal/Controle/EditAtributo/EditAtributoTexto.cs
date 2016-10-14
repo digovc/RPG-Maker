@@ -41,7 +41,7 @@ namespace Rpg.Controle.EditAtributo
 
         #region Eventos
 
-        private void txtStrValor_TextChanged(object sender, System.EventArgs e)
+        private void txtStrValor_TextChanged(object sender, EventArgs e)
         {
             try
             {

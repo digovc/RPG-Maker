@@ -70,6 +70,17 @@ namespace Rpg.Dominio
 
         #region Métodos
 
+        internal static MapaDominio criar(int intIndex)
+        {
+            MapaDominio objMapaResultado = new MapaDominio();
+
+            objMapaResultado.attNome.strValor = string.Format("Mapa {0}", intIndex);
+
+            objMapaResultado.iniciar();
+
+            return objMapaResultado;
+        }
+
         protected override void inicializar()
         {
             base.inicializar();

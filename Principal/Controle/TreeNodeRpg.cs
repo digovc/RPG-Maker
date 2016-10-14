@@ -72,14 +72,14 @@ namespace Rpg.Controle
 
             this.Text = objDominio.attNome.strValor;
 
-            objDominio.attNome.onStrValorAlterado += this.onNomeAlterado;
+            objDominio.attNome.onStrValorAlterado += this.objDominio_onNomeAlterado;
         }
 
         #endregion Métodos
 
         #region Eventos
 
-        private void onNomeAlterado(object sender, EventArgs arg)
+        private void objDominio_onNomeAlterado(object sender, EventArgs arg)
         {
             try
             {

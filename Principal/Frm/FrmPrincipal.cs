@@ -297,7 +297,7 @@ namespace Rpg.Frm
                 return;
             }
 
-            this.tabDockCamada.carregarMapa(tabDockMapaSelecionado.objMapa);
+            this.tabDockCamada.objMapa = tabDockMapaSelecionado.objMapa;
         }
 
         #endregion Métodos

@@ -214,6 +214,7 @@ namespace Rpg.Controle.TabDock
             Directory.CreateDirectory(dirResultado);
             Directory.CreateDirectory(Path.Combine(dirResultado, DIR_AUDIO));
             Directory.CreateDirectory(Path.Combine(dirResultado, DIR_IMAGEM));
+
             return dirResultado;
         }
 

@@ -13,18 +13,25 @@ namespace Rpg.Controle.TabDock
 
         #region Atributos
 
-        private TabDockMapa _tabDockMapa;
+        private MapaDominio _objMapa;
 
-        public TabDockMapa tabDockMapa
+        internal MapaDominio objMapa
         {
             get
             {
-                return _tabDockMapa;
+                return _objMapa;
             }
 
             set
             {
-                _tabDockMapa = value;
+                if (_objMapa == value)
+                {
+                    return;
+                }
+
+                _objMapa = value;
+
+                this.setObjMapa(_objMapa);
             }
         }
 
@@ -40,29 +47,6 @@ namespace Rpg.Controle.TabDock
         #endregion Construtores
 
         #region Métodos
-
-        internal void carregarMapa(MapaDominio objMapa)
-        {
-            if (objMapa == null)
-            {
-                return;
-            }
-
-            foreach (RpgDominioBase objDominio in objMapa.lstObjFilho)
-            {
-                if (objDominio == null)
-                {
-                    continue;
-                }
-
-                if (!(objDominio is CamadaDominio))
-                {
-                    return;
-                }
-
-                this.addCamada(objDominio as CamadaDominio);
-            }
-        }
 
         private void addCamada()
         {
@@ -92,6 +76,34 @@ namespace Rpg.Controle.TabDock
             pnlItemCamada.objDominio = objCamada;
 
             this.pnlConteudo.Controls.Add(pnlItemCamada);
+        }
+
+        private void setObjMapa(MapaDominio objMapa)
+        {
+            if (objMapa == null)
+            {
+                return;
+            }
+
+            foreach (RpgDominioBase objDominio in objMapa.lstObjFilho)
+            {
+                this.setObjMapa(objMapa, objDominio);
+            }
+        }
+
+        private void setObjMapa(MapaDominio objMapa, RpgDominioBase objDominio)
+        {
+            if (objDominio == null)
+            {
+                return;
+            }
+
+            if (!(objDominio is CamadaDominio))
+            {
+                return;
+            }
+
+            this.addCamada(objDominio as CamadaDominio);
         }
 
         #endregion Métodos

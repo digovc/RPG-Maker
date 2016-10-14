@@ -77,7 +77,7 @@ namespace Rpg.Controle.Editor
             gpc.DrawRectangle(this.penSelecao, this.rtgSelecao); 
         }
 
-        internal void selecionar(int x, int y)
+        internal void selecionarTile(int x, int y)
         {
             if (x < this.objDisplay.intMoveX)
             {

@@ -11,7 +11,7 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private SolidBrush _objBrush;
-        private Pen _pen;
+        private Pen _penTile;
         private Pen _penBorda;
 
         private SolidBrush objBrush
@@ -44,18 +44,18 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private Pen penBordaTile
+        private Pen penTile
         {
             get
             {
-                if (_pen != null)
+                if (_penTile != null)
                 {
-                    return _pen;
+                    return _penTile;
                 }
 
-                _pen = new Pen(this.objBrush);
+                _penTile = new Pen(this.objBrush);
 
-                return _pen;
+                return _penTile;
             }
         }
 
@@ -83,7 +83,7 @@ namespace Rpg.Controle.Editor
         {
             base.inicializar();
 
-            this.penBordaTile.DashPattern = new float[] { 5, 10 };
+            this.penTile.DashPattern = new float[] { 5, 10 };
         }
 
         private void renderizarBorda(Graphics gpc)
@@ -113,7 +113,7 @@ namespace Rpg.Controle.Editor
             int w = (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
             int h = (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
 
-            gpc.DrawRectangle(this.penBordaTile, new Rectangle(x, y, w, h));
+            gpc.DrawRectangle(this.penTile, new Rectangle(x, y, w, h));
         }
 
         #endregion Métodos

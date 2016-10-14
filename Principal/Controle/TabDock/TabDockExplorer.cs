@@ -2,7 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using DigoFramework;
-using DigoFramework.Json;
 using Rpg.Dominio;
 
 namespace Rpg.Controle.TabDock
@@ -139,7 +138,12 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            this.addItem(new GrupoDominio());
+            if (this.trv.SelectedNode == null)
+            {
+                return;
+            }
+
+            this.addItem(GrupoDominio.criar(this.trv.SelectedNode.Nodes.Count));
         }
 
         private void addItemMapa()
@@ -149,11 +153,12 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            MapaDominio objMapa = new MapaDominio();
+            if (this.trv.SelectedNode == null)
+            {
+                return;
+            }
 
-            objMapa.attNome.strValor = "Mapa desconhecido";
-
-            objMapa.iniciar();
+            MapaDominio objMapa = MapaDominio.criar(this.trv.SelectedNode.Nodes.Count);
 
             ArquivoRefDominio objArqRef = new ArquivoRefDominio();
 

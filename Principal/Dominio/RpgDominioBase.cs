@@ -26,7 +26,7 @@ namespace Rpg.Dominio
                     return _attNome;
                 }
 
-                _attNome = this.getAtt("Nome", this.getStrNomeDefault());
+                _attNome = this.getAtt("Nome", null);
 
                 return _attNome;
             }
@@ -127,11 +127,6 @@ namespace Rpg.Dominio
             }
 
             return new Atributo(this, strAttNome, strValor);
-        }
-
-        protected virtual string getStrNomeDefault()
-        {
-            return "Domínio desconhecido";
         }
 
         protected virtual void inicializar()

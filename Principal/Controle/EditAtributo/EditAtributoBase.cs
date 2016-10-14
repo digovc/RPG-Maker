@@ -3,7 +3,7 @@ using Rpg.Dominio;
 
 namespace Rpg.Controle.EditAtributo
 {
-    public partial class EditAtributoBase : UserControl
+    public partial class EditAtributoBase : UserControlRpgBase
     {
         #region Constantes
 
@@ -40,8 +40,6 @@ namespace Rpg.Controle.EditAtributo
         public EditAtributoBase()
         {
             this.InitializeComponent();
-
-            this.iniciar();
         }
 
         #endregion Construtores
@@ -58,30 +56,10 @@ namespace Rpg.Controle.EditAtributo
             this.att.strValor = strValor;
         }
 
-        protected virtual void finalizar()
-        {
-        }
-
-        protected virtual void inicializar()
+        protected override void inicializar()
         {
             this.Dock = DockStyle.Top;
             this.Size = new System.Drawing.Size(350, 50);
-        }
-
-        protected virtual void montarLayout()
-        {
-        }
-
-        protected virtual void setEventos()
-        {
-        }
-
-        private void iniciar()
-        {
-            this.inicializar();
-            this.montarLayout();
-            this.setEventos();
-            this.finalizar();
         }
 
         protected virtual void setAtt(Atributo att)

@@ -119,11 +119,6 @@ namespace Rpg.Controle.Editor
                 return false;
             }
 
-            if (this.objImagem == null)
-            {
-                return false;
-            }
-
             if (this.bmp == null)
             {
                 return false;
@@ -154,11 +149,6 @@ namespace Rpg.Controle.Editor
 
         private void renderizarBmp(Graphics gpc)
         {
-            if (this.bmp == null)
-            {
-                return;
-            }
-
             int w = (this.bmp.Width + (this.intQuantidadeX * this.intZoom * INT_ZOOM_INCREMENTO));
             int h = (this.bmp.Height + (this.intQuantidadeY * this.intZoom * INT_ZOOM_INCREMENTO));
 

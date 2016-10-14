@@ -14,6 +14,7 @@ namespace Rpg
         #region Atributos
 
         private static AppRpg _i;
+
         private FrmPrincipal _frmPrincipal;
         private JogoDominio _objJogo;
 
@@ -102,23 +103,21 @@ namespace Rpg
             this.objJogo = JsonRpg.i.fromJson<JogoDominio>(File.ReadAllText(dirJogo));
         }
 
-        internal void criarJogo(string digJogo)
+        internal void criarJogo(string dirJogo)
         {
-            if (string.IsNullOrEmpty(digJogo))
+            if (string.IsNullOrEmpty(dirJogo))
             {
                 return;
             }
 
-            this.objJogo = new JogoDominio();
-
-            this.objJogo.attDirCompleto.strValor = digJogo;
+            this.objJogo = JogoDominio.criar(dirJogo);
 
             this.salvarJogo();
         }
 
         protected override string getStrAppNome()
         {
-            return "RPG Maker";
+            return "RPG Maker (Tabletop)";
         }
 
         private void setFrmPrincipal(FrmPrincipal frmPrincipal)

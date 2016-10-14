@@ -16,9 +16,13 @@
 
         #region Métodos
 
-        protected override string getStrNomeDefault()
+        internal static GrupoDominio criar(int intIndex)
         {
-            return "Grupo desconhecido";
+            GrupoDominio objGrupoResultado = new GrupoDominio();
+
+            objGrupoResultado.attNome.strValor = string.Format("Grupo {0}", intIndex);
+
+            return objGrupoResultado;
         }
 
         #endregion Métodos

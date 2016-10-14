@@ -3,7 +3,7 @@ using Rpg.Dominio;
 
 namespace Rpg.Controle.Painel
 {
-    public partial class PnlItemBase : UserControl
+    public partial class PnlItemBase : UserControlRpgBase
     {
         #region Constantes
 
@@ -40,37 +40,15 @@ namespace Rpg.Controle.Painel
         public PnlItemBase()
         {
             this.InitializeComponent();
-
-            this.iniciar();
         }
 
         #endregion Construtores
 
         #region Métodos
 
-        protected virtual void finalizar()
-        {
-        }
-
-        protected virtual void inicializar()
+        protected override void inicializar()
         {
             this.Dock = DockStyle.Top;
-        }
-
-        protected virtual void montarLayout()
-        {
-        }
-
-        protected virtual void setEventos()
-        {
-        }
-
-        private void iniciar()
-        {
-            this.inicializar();
-            this.montarLayout();
-            this.setEventos();
-            this.finalizar();
         }
 
         private void setObjDominio(RpgDominioBase objDominio)
