@@ -101,6 +101,13 @@ namespace Rpg
             }
 
             this.objJogo = JsonRpg.i.fromJson<JogoDominio>(File.ReadAllText(dirJogo));
+
+            if (objJogo == null)
+            {
+                return;
+            }
+
+            objJogo.iniciar();
         }
 
         internal void criarJogo(string dirJogo)

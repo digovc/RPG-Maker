@@ -46,6 +46,13 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.objDominio = AppRpg.i.frmPrincipal.objDominioSelecionado;
+        }
+
         private void setObjDominio(RpgDominioBase objDominio)
         {
             if (objDominio == null)

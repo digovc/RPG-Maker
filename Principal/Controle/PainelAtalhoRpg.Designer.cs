@@ -1,6 +1,6 @@
-﻿namespace Rpg.Controle.TabDock
+﻿namespace Rpg.Controle
 {
-    partial class TabDockRpgBase
+    partial class PainelAtalhoRpg
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,28 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlAtalho = new PainelAtalhoRpg();
             this.SuspendLayout();
             // 
-            // pnlAtalho
+            // PainelAtalhoRpg
             // 
-            this.pnlAtalho.Name = "pnlAtalho";
-            this.pnlAtalho.TabIndex = 0;
-            // 
-            // TabDockRpgBase
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.pnlAtalho);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "TabDockRpgBase";
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(219)))), ((int)(((byte)(233)))));
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        protected PainelAtalhoRpg pnlAtalho;
     }
 }

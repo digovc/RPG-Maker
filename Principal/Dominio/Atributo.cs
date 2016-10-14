@@ -19,6 +19,7 @@ namespace Rpg.Dominio
 
         #region Atributos
 
+        private bool _booSomenteLeitura;
         private decimal _decValor;
         private EnmTipo _enmTipo = EnmTipo.TEXTO;
         private int _intValor;
@@ -27,6 +28,20 @@ namespace Rpg.Dominio
         private string _strGrupo;
         private string _strNome;
         private string _strValor;
+
+        [JsonIgnore]
+        public bool booSomenteLeitura
+        {
+            get
+            {
+                return _booSomenteLeitura;
+            }
+
+            set
+            {
+                _booSomenteLeitura = value;
+            }
+        }
 
         [JsonIgnore]
         public decimal decValor

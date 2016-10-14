@@ -34,6 +34,7 @@ namespace Rpg.Controle.EditAtributo
                 return;
             }
 
+            this.txtStrValor.ReadOnly = att.booSomenteLeitura;
             this.txtStrValor.Text = att.strValor;
         }
 

@@ -85,7 +85,27 @@ namespace Rpg.Dominio
         {
             base.inicializar();
 
+            this.inicializarAttQuantidadeX();
+            this.inicializarAttQuantidadeY();
+        }
+
+        private void inicializarAttQuantidadeX()
+        {
+            if (this.attQuantidadeX.intValor > 0)
+            {
+                return;
+            }
+
             this.attQuantidadeX.intValor = 25;
+        }
+
+        private void inicializarAttQuantidadeY()
+        {
+            if (this.attQuantidadeY.intValor > 0)
+            {
+                return;
+            }
+
             this.attQuantidadeY.intValor = 25;
         }
 

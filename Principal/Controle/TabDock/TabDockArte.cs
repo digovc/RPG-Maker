@@ -11,9 +11,9 @@ namespace Rpg.Controle.TabDock
     {
         #region Constantes
 
-        private const string DIR_ARTE_ROOT = "Arte";
-        private const string DIR_AUDIO = "Audio";
-        private const string DIR_IMAGEM = "Imagem";
+        public const string DIR_ARTE_ROOT = "Arte";
+        public const string DIR_AUDIO = "Audio";
+        public const string DIR_IMAGEM = "Imagem";
 
         #endregion Constantes
 

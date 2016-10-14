@@ -1,6 +1,5 @@
-﻿using System;
-using System.IO;
-using DigoFramework.Json;
+﻿using System.IO;
+using Rpg.Controle.TabDock;
 
 namespace Rpg.Dominio
 {
@@ -19,6 +18,25 @@ namespace Rpg.Dominio
         #endregion Construtores
 
         #region Métodos
+
+        internal static JogoDominio criar(string dirJogo)
+        {
+            if (string.IsNullOrEmpty(dirJogo))
+            {
+                return null;
+            }
+
+            JogoDominio objJogoResultado = new JogoDominio();
+
+            objJogoResultado.attDirCompleto.strValor = dirJogo;
+            objJogoResultado.attNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
+
+            Directory.CreateDirectory(Path.Combine(Path.GetFileName(dirJogo), TabDockArte.DIR_ARTE_ROOT));
+            Directory.CreateDirectory(Path.Combine(Path.GetFileName(dirJogo), TabDockArte.DIR_ARTE_ROOT, TabDockArte.DIR_AUDIO));
+            Directory.CreateDirectory(Path.Combine(Path.GetFileName(dirJogo), TabDockArte.DIR_ARTE_ROOT, TabDockArte.DIR_IMAGEM));
+
+            return objJogoResultado;
+        }
 
         internal void salvar()
         {
@@ -51,16 +69,6 @@ namespace Rpg.Dominio
                     this.salvarJogoArqRef(objDominiofilho);
                 }
             }
-        }
-
-        internal static JogoDominio criar(string dirJogo)
-        {
-            JogoDominio objJogoResultado = new JogoDominio();
-
-            objJogoResultado.attDirCompleto.strValor = dirJogo;
-            objJogoResultado.attNome.strValor = "RPG Épico";
-
-            return objJogoResultado;
         }
 
         #endregion Métodos

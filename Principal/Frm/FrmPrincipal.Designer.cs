@@ -41,7 +41,7 @@
             this.tsmExibirDados = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdJogo = new System.Windows.Forms.OpenFileDialog();
             this.pnlDockRpg = new Rpg.Controle.DockPanelRpg();
-            this.pnlAtalho = new DigoFramework.Controle.Painel.PainelAtalho();
+            this.pnlAtalho = new Controle.PainelAtalhoRpg();
             this.sfdJogo = new System.Windows.Forms.SaveFileDialog();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
@@ -157,7 +157,7 @@
             // 
             // FrmPrincipal
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(219)))), ((int)(((byte)(233)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(85)))));
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.pnlDockRpg);
             this.Controls.Add(this.pnlAtalho);
@@ -178,7 +178,7 @@
         private System.Windows.Forms.MenuStrip mnu;
         private System.Windows.Forms.ToolStripMenuItem tsmArquivo;
         private Controle.DockPanelRpg pnlDockRpg;
-        private DigoFramework.Controle.Painel.PainelAtalho pnlAtalho;
+        private Controle.PainelAtalhoRpg pnlAtalho;
         private System.Windows.Forms.ToolStripMenuItem exibirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmExibirJogoManager;
         private System.Windows.Forms.ToolStripMenuItem tsmJogoCriar;

@@ -35,6 +35,12 @@ namespace Rpg.Dominio
         #endregion Construtores
 
         #region Métodos
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.attDirCompleto.booSomenteLeitura = true;
+        }
 
         #endregion Métodos
 

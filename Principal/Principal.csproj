@@ -104,6 +104,12 @@
     <Compile Include="Controle\Editor\GraficoBase.cs" />
     <Compile Include="Controle\Editor\GridGrafico.cs" />
     <Compile Include="Controle\Editor\SelecaoGrafico.cs" />
+    <Compile Include="Controle\PainelAtalhoRpg.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controle\PainelAtalhoRpg.Designer.cs">
+      <DependentUpon>PainelAtalhoRpg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controle\Painel\PnlItemBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Editor\MapaDisplay.resx">
       <DependentUpon>MapaDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\PainelAtalhoRpg.resx">
+      <DependentUpon>PainelAtalhoRpg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemBase.resx">
       <DependentUpon>PnlItemBase.cs</DependentUpon>

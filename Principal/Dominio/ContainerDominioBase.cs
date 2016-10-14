@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Rpg.Dominio
 {
@@ -56,6 +55,26 @@ namespace Rpg.Dominio
         internal virtual bool validarItem(RpgDominioBase objDominio)
         {
             return true;
+        }
+
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.inicializarLstObjFilho();
+        }
+
+        private void inicializarLstObjFilho()
+        {
+            if (this.lstObjFilho == null)
+            {
+                return;
+            }
+
+            foreach (RpgDominioBase objFilho in this.lstObjFilho)
+            {
+                objFilho?.iniciar();
+            }
         }
 
         #endregion Métodos
