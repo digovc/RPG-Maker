@@ -70,6 +70,21 @@ namespace Rpg.Dominio
 
         #region Métodos
 
+        public void addCamada(CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return;
+            }
+
+            if (this.lstObjCamada.Contains(objCamada))
+            {
+                return;
+            }
+
+            this.lstObjCamada.Add(objCamada);
+        }
+
         internal static MapaDominio criar(int intIndex)
         {
             MapaDominio objMapaResultado = new MapaDominio();

@@ -40,6 +40,7 @@
             // imgDisplay
             // 
             this.imgDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgDisplay.intTileTamanho = 0;
             this.imgDisplay.Location = new System.Drawing.Point(0, 24);
             this.imgDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.imgDisplay.Name = "imgDisplay";
@@ -76,8 +77,7 @@
         }
 
         #endregion
-
-        private Editor.ImagemDisplay imgDisplay;
-        private System.Windows.Forms.TextBox txtTileTamanho;
+        public System.Windows.Forms.TextBox txtTileTamanho;
+        public Editor.ImagemDisplay imgDisplay;
     }
 }

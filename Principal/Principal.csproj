@@ -83,6 +83,7 @@
     <Compile Include="Controle\EditAtributo\EditAtributoTexto.Designer.cs">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controle\Editor\CamadaGrafico.cs" />
     <Compile Include="Controle\Editor\DisplayBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +105,7 @@
     <Compile Include="Controle\Editor\GraficoBase.cs" />
     <Compile Include="Controle\Editor\GridGrafico.cs" />
     <Compile Include="Controle\Editor\SelecaoGrafico.cs" />
+    <Compile Include="Controle\Editor\TileGrafico.cs" />
     <Compile Include="Controle\PainelAtalhoRpg.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -194,6 +196,7 @@
     <Compile Include="Dominio\JogoDominio.cs" />
     <Compile Include="Dominio\MapaDominio.cs" />
     <Compile Include="Dominio\RpgDominioBase.cs" />
+    <Compile Include="Dominio\TileDominio.cs" />
     <Compile Include="Frm\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,27 +217,35 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoBase.resx">
       <DependentUpon>EditAtributoBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoTexto.resx">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Editor\MapaDisplay.resx">
       <DependentUpon>MapaDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\PainelAtalhoRpg.resx">
       <DependentUpon>PainelAtalhoRpg.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemBase.resx">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemCamada.resx">
       <DependentUpon>PnlItemCamada.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockArte.resx">
       <DependentUpon>TabDockArte.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockCamada.resx">
       <DependentUpon>TabDockCamada.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockDados.resx">
       <DependentUpon>TabDockDados.cs</DependentUpon>

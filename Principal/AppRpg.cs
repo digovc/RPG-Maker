@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using DigoFramework;
 using Rpg.Dominio;
 using Rpg.Frm;
@@ -16,6 +18,7 @@ namespace Rpg
         private static AppRpg _i;
 
         private FrmPrincipal _frmPrincipal;
+        private List<Bitmap> _lstBmpCache;
         private JogoDominio _objJogo;
 
         public new static AppRpg i
@@ -53,6 +56,21 @@ namespace Rpg
             }
         }
 
+        public List<Bitmap> lstBmpCache
+        {
+            get
+            {
+                if (_lstBmpCache != null)
+                {
+                    return _lstBmpCache;
+                }
+
+                _lstBmpCache = new List<Bitmap>();
+
+                return _lstBmpCache;
+            }
+        }
+
         public JogoDominio objJogo
         {
             get
@@ -77,6 +95,37 @@ namespace Rpg
         #endregion Construtores
 
         #region Métodos
+
+        public Bitmap getBmpCache(string dirImg)
+        {
+            if (string.IsNullOrEmpty(dirImg))
+            {
+                return null;
+            }
+
+            foreach (Bitmap bmp in this.lstBmpCache)
+            {
+                if (!dirImg.Equals(bmp.Tag))
+                {
+                    continue;
+                }
+
+                return bmp;
+            }
+
+            if (!File.Exists(dirImg))
+            {
+                return null;
+            }
+
+            Bitmap bmpNovo = new Bitmap(dirImg);
+
+            bmpNovo.Tag = dirImg;
+
+            this.lstBmpCache.Add(bmpNovo);
+
+            return bmpNovo;
+        }
 
         public void salvarJogo()
         {

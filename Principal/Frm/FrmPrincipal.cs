@@ -24,6 +24,7 @@ namespace Rpg.Frm
         private TabDockCamada _tabDockCamada;
         private TabDockDados _tabDockDados;
         private TabDockExplorer _tabDockExplorer;
+        private TabDockImagem _tabDockImagemSelecionada;
         private TabDockMapa _tabDockMapa;
         private TabDockMapa _tabDockMapaSelecionado;
         private TabDockPropriedade _tabDockPropriedade;
@@ -45,6 +46,19 @@ namespace Rpg.Frm
                 _objDominioSelecionado = value;
 
                 this.setObjDominioSelecionado(_objDominioSelecionado);
+            }
+        }
+
+        public TabDockImagem tabDockImagemSelecionada
+        {
+            get
+            {
+                return _tabDockImagemSelecionada;
+            }
+
+            set
+            {
+                _tabDockImagemSelecionada = value;
             }
         }
 

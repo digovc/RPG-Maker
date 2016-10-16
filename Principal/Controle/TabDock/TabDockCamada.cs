@@ -55,11 +55,16 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
+            if (AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa == null)
+            {
+                return;
+            }
+
             CamadaDominio objCamada = new CamadaDominio();
 
-            objCamada.attNome.strValor = "Camada desconhecida";
+            objCamada.attNome.strValor = string.Format("Camada {0}", AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.lstObjCamada.Count);
 
-            AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.addFilho(objCamada);
+            AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.addCamada(objCamada);
 
             this.addCamada(objCamada);
         }
@@ -80,30 +85,27 @@ namespace Rpg.Controle.TabDock
 
         private void setObjMapa(MapaDominio objMapa)
         {
+            this.pnlConteudo.Controls.Clear();
+
             if (objMapa == null)
             {
                 return;
             }
 
-            foreach (RpgDominioBase objDominio in objMapa.lstObjFilho)
+            foreach (CamadaDominio objCamada in objMapa.lstObjCamada)
             {
-                this.setObjMapa(objMapa, objDominio);
+                this.setObjMapa(objMapa, objCamada);
             }
         }
 
-        private void setObjMapa(MapaDominio objMapa, RpgDominioBase objDominio)
+        private void setObjMapa(MapaDominio objMapa, CamadaDominio objCamada)
         {
-            if (objDominio == null)
+            if (objCamada == null)
             {
                 return;
             }
 
-            if (!(objDominio is CamadaDominio))
-            {
-                return;
-            }
-
-            this.addCamada(objDominio as CamadaDominio);
+            this.addCamada(objCamada);
         }
 
         #endregion Métodos

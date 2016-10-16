@@ -55,6 +55,21 @@ namespace Rpg.Controle.Editor
             }
         }
 
+        public SelecaoGrafico objSelecao
+        {
+            get
+            {
+                if (_objSelecao != null)
+                {
+                    return _objSelecao;
+                }
+
+                _objSelecao = new SelecaoGrafico(this);
+
+                return _objSelecao;
+            }
+        }
+
         internal int intMoveX
         {
             get
@@ -64,7 +79,14 @@ namespace Rpg.Controle.Editor
 
             set
             {
+                if (_intMoveX == value)
+                {
+                    return;
+                }
+
                 _intMoveX = value;
+
+                this.setIntMoveX(_intMoveX);
             }
         }
 
@@ -77,7 +99,14 @@ namespace Rpg.Controle.Editor
 
             set
             {
+                if (_intMoveY == value)
+                {
+                    return;
+                }
+
                 _intMoveY = value;
+
+                this.setIntMoveY(_intMoveY);
             }
         }
 
@@ -182,21 +211,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private SelecaoGrafico objSelecao
-        {
-            get
-            {
-                if (_objSelecao != null)
-                {
-                    return _objSelecao;
-                }
-
-                _objSelecao = new SelecaoGrafico(this);
-
-                return _objSelecao;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -231,6 +245,10 @@ namespace Rpg.Controle.Editor
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
+        protected virtual void processarClick(MouseEventArgs arg)
+        {
+        }
+
         protected virtual void renderizar(PaintEventArgs arg)
         {
             // TODO: Desenhar apenas o que é visto na tela.
@@ -260,10 +278,22 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            if (this.processarMouseDownSelecionar(arg))
+            if (this.processarMouseDownClick(arg))
             {
                 return;
             }
+        }
+
+        private bool processarMouseDownClick(MouseEventArgs arg)
+        {
+            if (!MouseButtons.Left.Equals(arg.Button))
+            {
+                return false;
+            }
+
+            this.processarClick(arg);
+
+            return true;
         }
 
         private bool processarMouseDownMover(MouseEventArgs arg)
@@ -275,22 +305,6 @@ namespace Rpg.Controle.Editor
 
             this.intMoveXTemp = (arg.X - this.intMoveX);
             this.intMoveYTemp = (arg.Y - this.intMoveY);
-
-            return true;
-        }
-
-        private bool processarMouseDownSelecionar(MouseEventArgs arg)
-        {
-            if (!MouseButtons.Left.Equals(arg.Button))
-            {
-                return false;
-            }
-
-            if (this.intTileTamanho > 0)
-            {
-                this.selecionarTile(arg);
-                return true;
-            }
 
             return true;
         }
@@ -330,9 +344,14 @@ namespace Rpg.Controle.Editor
             this.objSelecao.renderizar(grp);
         }
 
-        private void selecionarTile(MouseEventArgs arg)
+        private void setIntMoveX(int intMoveX)
         {
-            this.objSelecao.selecionarTile(arg.X, arg.Y);
+            this.onMoveX?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void setIntMoveY(int intMoveY)
+        {
+            this.onMoveY?.Invoke(this, EventArgs.Empty);
         }
 
         private void setIntZoom(int intZoom)
@@ -348,6 +367,8 @@ namespace Rpg.Controle.Editor
                 this.intZoom = INT_ZOOM_MAXIMO;
                 return;
             }
+
+            this.onZooming?.Invoke(this, EventArgs.Empty);
 
             this.Invalidate();
         }
@@ -390,6 +411,12 @@ namespace Rpg.Controle.Editor
 
             this.renderizarLocal(arg);
         }
+
+        public event EventHandler onMoveX;
+
+        public event EventHandler onMoveY;
+
+        public event EventHandler onZooming;
 
         #endregion Eventos
     }

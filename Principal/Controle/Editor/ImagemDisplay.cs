@@ -29,7 +29,7 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private Bitmap bmp
+        public Bitmap bmp
         {
             get
             {
@@ -85,6 +85,17 @@ namespace Rpg.Controle.Editor
             }
 
             return (this.bmp.Height / this.intTileTamanho);
+        }
+
+        protected override void processarClick(MouseEventArgs arg)
+        {
+            base.processarClick(arg);
+
+            if (this.intTileTamanho > 0)
+            {
+                this.objSelecao.selecionarTile(arg.X, arg.Y);
+                return;
+            }
         }
 
         protected override void renderizar(PaintEventArgs arg)
@@ -144,7 +155,7 @@ namespace Rpg.Controle.Editor
                 return null;
             }
 
-            return new Bitmap(this.objImagem.attDirCompleto.strValor);
+            return AppRpg.i.getBmpCache(this.objImagem.attDirCompleto.strValor);
         }
 
         private void renderizarBmp(Graphics gpc)

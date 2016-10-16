@@ -81,6 +81,20 @@ namespace Rpg.Controle.TabDock
 
         #region Eventos
 
+        protected override void OnEnter(EventArgs e)
+        {
+            base.OnEnter(e);
+
+            try
+            {
+                AppRpg.i.frmPrincipal.tabDockImagemSelecionada = this;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         private void txtTileTamanho_TextChanged(object sender, EventArgs e)
         {
             try
@@ -93,7 +107,6 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-        
         #endregion Eventos
     }
 }

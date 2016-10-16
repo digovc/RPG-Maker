@@ -91,6 +91,26 @@ namespace Rpg.Controle.TabDock
             this.carregarArte();
         }
 
+        private void abrirImagem(ImagemDominio objImg)
+        {
+            if (objImg == null)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(objImg.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            if (!File.Exists(objImg.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            AppRpg.i.frmPrincipal.abrirImagem(objImg);
+        }
+
         private void carregarArte()
         {
             this.trv.Nodes.Clear();
@@ -248,26 +268,6 @@ namespace Rpg.Controle.TabDock
                 this.abrirImagem((ImagemDominio)trnArq.objDominio);
                 return;
             }
-        }
-
-        private void abrirImagem(ImagemDominio objImg)
-        {
-            if (objImg == null)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(objImg.attDirCompleto.strValor))
-            {
-                return;
-            }
-
-            if (!File.Exists(objImg.attDirCompleto.strValor))
-            {
-                return;
-            }
-
-            AppRpg.i.frmPrincipal.abrirImagem(objImg);
         }
 
         #endregion Métodos

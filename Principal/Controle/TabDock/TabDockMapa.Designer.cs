@@ -51,7 +51,6 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TabDockMapa";
             this.Text = "Mapa";
-            this.Enter += new System.EventHandler(this.TabDockMapa_Enter);
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
             this.Controls.SetChildIndex(this.ctrDisplay, 0);
             this.ResumeLayout(false);

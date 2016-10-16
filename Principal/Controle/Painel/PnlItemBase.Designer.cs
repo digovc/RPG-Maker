@@ -34,7 +34,6 @@
             // lblTitulo
             // 
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(0, 0);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(250, 25);

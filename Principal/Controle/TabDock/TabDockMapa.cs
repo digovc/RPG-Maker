@@ -12,7 +12,28 @@ namespace Rpg.Controle.TabDock
 
         #region Atributos
 
+        private CamadaDominio _objCamadaSelecioanda;
         private MapaDominio _objMapa;
+
+        public CamadaDominio objCamadaSelecioanda
+        {
+            get
+            {
+                return _objCamadaSelecioanda;
+            }
+
+            set
+            {
+                if (_objCamadaSelecioanda == value)
+                {
+                    return;
+                }
+
+                _objCamadaSelecioanda = value;
+
+                this.setObjCamadaSelecioanda(_objCamadaSelecioanda);
+            }
+        }
 
         public MapaDominio objMapa
         {
@@ -52,9 +73,9 @@ namespace Rpg.Controle.TabDock
             this.ctrDisplay.objMapa = this.objMapa;
         }
 
-        private void processarEnter()
+        private void setObjCamadaSelecioanda(CamadaDominio objCamadaSelecioanda)
         {
-            AppRpg.i.frmPrincipal.tabDockMapaSelecionado = this;
+            this.ctrDisplay.objCamadaSelecionada = objCamadaSelecioanda;
         }
 
         private void setObjMapa(MapaDominio objMapa)
@@ -73,11 +94,13 @@ namespace Rpg.Controle.TabDock
 
         #region Eventos
 
-        private void TabDockMapa_Enter(object sender, EventArgs e)
+        protected override void OnEnter(EventArgs e)
         {
+            base.OnEnter(e);
+
             try
             {
-                this.processarEnter();
+                AppRpg.i.frmPrincipal.tabDockMapaSelecionado = this;
             }
             catch (Exception ex)
             {

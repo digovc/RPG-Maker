@@ -1,5 +1,6 @@
 ﻿using System;
 using DigoFramework;
+using Rpg.Dominio;
 
 namespace Rpg.Controle.Painel
 {
@@ -31,7 +32,26 @@ namespace Rpg.Controle.Painel
                 return;
             }
 
+            this.lblTitulo.Font = new System.Drawing.Font(this.lblTitulo.Font, System.Drawing.FontStyle.Bold);
+
             AppRpg.i.frmPrincipal.objDominioSelecionado = this.objDominio;
+
+            this.processarClickMapaSelecionado();
+        }
+
+        private void processarClickMapaSelecionado()
+        {
+            if (AppRpg.i.frmPrincipal.tabDockMapaSelecionado == null)
+            {
+                return;
+            }
+
+            if (AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa == null)
+            {
+                return;
+            }
+
+            AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objCamadaSelecioanda = (CamadaDominio)this.objDominio;
         }
 
         #endregion Métodos
