@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.TabDock;
@@ -217,6 +218,8 @@ namespace Rpg.Frm
             tabImagem.objImagem = objImg;
 
             tabImagem.Show(this.pnlDockRpg, DockState.DockRight);
+
+            this.lstObjImg.Add(objImg);
         }
 
         internal void abrirMapa(MapaDominio objMapa)
@@ -285,6 +288,26 @@ namespace Rpg.Frm
             this.abrirJogo(AppRpg.i.objJogo);
         }
 
+        private void exibirTabDockArte()
+        {
+            if (AppRpg.i.objJogo == null)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(AppRpg.i.objJogo.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            if (!File.Exists(AppRpg.i.objJogo.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            this.tabDockArte.Show(this.pnlDockRpg, DockState.DockLeft);
+        }
+
         private void salvarJogo()
         {
             AppRpg.i.salvarJogo();
@@ -323,7 +346,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockArte.Show(this.pnlDockRpg, DockState.DockLeft);
+                this.exibirTabDockArte();
             }
             catch (Exception ex)
             {
