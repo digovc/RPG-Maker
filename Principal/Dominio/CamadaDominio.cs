@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Rpg.Dominio
 {
@@ -10,7 +11,24 @@ namespace Rpg.Dominio
 
         #region Atributos
 
+        private Atributo _attBooVisivel;
         private List<TileDominio> _lstObjTile;
+
+        [JsonIgnore]
+        public Atributo attBooVisivel
+        {
+            get
+            {
+                if (_attBooVisivel != null)
+                {
+                    return _attBooVisivel;
+                }
+
+                _attBooVisivel = this.getAtt("Visível", true);
+
+                return _attBooVisivel;
+            }
+        }
 
         public List<TileDominio> lstObjTile
         {
@@ -48,6 +66,13 @@ namespace Rpg.Dominio
             }
 
             this.lstObjTile.Add(objTile);
+        }
+
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.attBooVisivel.booValor = this.attBooVisivel.booValor;
         }
 
         #endregion Métodos

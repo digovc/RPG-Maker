@@ -11,39 +11,39 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private Atributo _attQuantidadeX;
-        private Atributo _attQuantidadeY;
+        private Atributo _attIntQuantidadeX;
+        private Atributo _attIntQuantidadeY;
         private List<CamadaDominio> _lstObjCamada;
 
         [JsonIgnore]
-        public Atributo attQuantidadeX
+        public Atributo attIntQuantidadeX
         {
             get
             {
-                if (_attQuantidadeX != null)
+                if (_attIntQuantidadeX != null)
                 {
-                    return _attQuantidadeX;
+                    return _attIntQuantidadeX;
                 }
 
-                _attQuantidadeX = this.getAtt("Quantidade X");
+                _attIntQuantidadeX = this.getAtt("Quantidade X");
 
-                return _attQuantidadeX;
+                return _attIntQuantidadeX;
             }
         }
 
         [JsonIgnore]
-        public Atributo attQuantidadeY
+        public Atributo attIntQuantidadeY
         {
             get
             {
-                if (_attQuantidadeY != null)
+                if (_attIntQuantidadeY != null)
                 {
-                    return _attQuantidadeY;
+                    return _attIntQuantidadeY;
                 }
 
-                _attQuantidadeY = this.getAtt("Quantidade Y");
+                _attIntQuantidadeY = this.getAtt("Quantidade Y");
 
-                return _attQuantidadeY;
+                return _attIntQuantidadeY;
             }
         }
 
@@ -89,7 +89,7 @@ namespace Rpg.Dominio
         {
             MapaDominio objMapaResultado = new MapaDominio();
 
-            objMapaResultado.attNome.strValor = string.Format("Mapa {0}", intIndex);
+            objMapaResultado.attStrNome.strValor = string.Format("Mapa {0}", intIndex);
 
             objMapaResultado.iniciar();
 
@@ -100,28 +100,28 @@ namespace Rpg.Dominio
         {
             base.inicializar();
 
-            this.inicializarAttQuantidadeX();
-            this.inicializarAttQuantidadeY();
+            this.inicializarattIntQuantidadeX();
+            this.inicializarattIntQuantidadeY();
         }
 
-        private void inicializarAttQuantidadeX()
+        private void inicializarattIntQuantidadeX()
         {
-            if (this.attQuantidadeX.intValor > 0)
+            if (this.attIntQuantidadeX.intValor > 0)
             {
                 return;
             }
 
-            this.attQuantidadeX.intValor = 25;
+            this.attIntQuantidadeX.intValor = 25;
         }
 
-        private void inicializarAttQuantidadeY()
+        private void inicializarattIntQuantidadeY()
         {
-            if (this.attQuantidadeY.intValor > 0)
+            if (this.attIntQuantidadeY.intValor > 0)
             {
                 return;
             }
 
-            this.attQuantidadeY.intValor = 25;
+            this.attIntQuantidadeY.intValor = 25;
         }
 
         #endregion Métodos

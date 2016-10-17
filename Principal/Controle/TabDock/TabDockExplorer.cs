@@ -162,7 +162,7 @@ namespace Rpg.Controle.TabDock
 
             ArquivoRefDominio objArqRef = new ArquivoRefDominio();
 
-            objArqRef.attNome.strValor = objMapa.attNome.strValor;
+            objArqRef.attStrNome.strValor = objMapa.attStrNome.strValor;
 
             this.addItem(objArqRef);
 

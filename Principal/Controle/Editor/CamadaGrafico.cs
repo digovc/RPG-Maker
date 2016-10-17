@@ -65,6 +65,11 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
+            if (!this.objCamada.attBooVisivel.booValor)
+            {
+                return;
+            }
+
             foreach (TileDominio objTile in this.objCamada.lstObjTile)
             {
                 this.getGfcTile(objTile).renderizar(gpc);

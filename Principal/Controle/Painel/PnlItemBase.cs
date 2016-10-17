@@ -58,7 +58,7 @@ namespace Rpg.Controle.Painel
                 return;
             }
 
-            this.lblTitulo.Text = objDominio.attNome.strValor;
+            this.lblTitulo.Text = objDominio.attStrNome.strValor;
         }
 
         #endregion Métodos

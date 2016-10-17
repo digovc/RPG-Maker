@@ -12,23 +12,23 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private Atributo _attNome;
+        private Atributo _attStrNome;
         private List<Atributo> _lstAtt;
         private RpgDominioBase _objDominioPai;
 
         [JsonIgnore]
-        public Atributo attNome
+        public Atributo attStrNome
         {
             get
             {
-                if (_attNome != null)
+                if (_attStrNome != null)
                 {
-                    return _attNome;
+                    return _attStrNome;
                 }
 
-                _attNome = this.getAtt("Nome", null);
+                _attStrNome = this.getAtt("Nome", null);
 
-                return _attNome;
+                return _attStrNome;
             }
         }
 
@@ -73,6 +73,16 @@ namespace Rpg.Dominio
 
         #region Métodos
 
+        public Atributo getAtt(string strattStrNome, decimal decValor)
+        {
+            return this.getAtt(strattStrNome, decValor.ToString());
+        }
+
+        public Atributo getAtt(string strattStrNome, bool booValor)
+        {
+            return this.getAtt(strattStrNome, booValor.ToString());
+        }
+
         public void iniciar()
         {
             this.inicializar();
@@ -99,14 +109,9 @@ namespace Rpg.Dominio
             this.lstAtt.Add(att);
         }
 
-        public Atributo getAtt(string strAttNome, decimal decValor)
+        protected Atributo getAtt(string strattStrNome, string strValor = null)
         {
-            return this.getAtt(strAttNome, decValor.ToString());
-        }
-
-        protected Atributo getAtt(string strAttNome, string strValor = null)
-        {
-            if (string.IsNullOrEmpty(strAttNome))
+            if (string.IsNullOrEmpty(strattStrNome))
             {
                 return null;
             }
@@ -118,7 +123,7 @@ namespace Rpg.Dominio
                     continue;
                 }
 
-                if (!strAttNome.Equals(att.strNome))
+                if (!strattStrNome.Equals(att.strNome))
                 {
                     continue;
                 }
@@ -126,7 +131,7 @@ namespace Rpg.Dominio
                 return att;
             }
 
-            return new Atributo(this, strAttNome, strValor);
+            return new Atributo(this, strattStrNome, strValor);
         }
 
         protected virtual void inicializar()

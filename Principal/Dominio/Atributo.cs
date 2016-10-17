@@ -20,6 +20,7 @@ namespace Rpg.Dominio
         #region Atributos
 
         private bool _booSomenteLeitura;
+        private bool _booValor;
         private decimal _decValor;
         private EnmTipo _enmTipo = EnmTipo.TEXTO;
         private int _intValor;
@@ -40,6 +41,22 @@ namespace Rpg.Dominio
             set
             {
                 _booSomenteLeitura = value;
+            }
+        }
+
+        [JsonIgnore]
+        public bool booValor
+        {
+            get
+            {
+                return _booValor = Convert.ToBoolean(this.strValor);
+            }
+
+            set
+            {
+                _booValor = value;
+
+                this.strValor = _booValor.ToString();
             }
         }
 

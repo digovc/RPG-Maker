@@ -29,7 +29,7 @@ namespace Rpg.Dominio
             JogoDominio objJogoResultado = new JogoDominio();
 
             objJogoResultado.attDirCompleto.strValor = dirJogo;
-            objJogoResultado.attNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
+            objJogoResultado.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
 
             Directory.CreateDirectory(Path.Combine(Path.GetFileName(dirJogo), TabDockArte.DIR_ARTE_ROOT));
             Directory.CreateDirectory(Path.Combine(Path.GetFileName(dirJogo), TabDockArte.DIR_ARTE_ROOT, TabDockArte.DIR_AUDIO));

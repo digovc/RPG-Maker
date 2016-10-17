@@ -81,7 +81,7 @@ namespace Rpg.Controle.Editor
                 return 0;
             }
 
-            return this.objMapa.attQuantidadeX.intValor;
+            return this.objMapa.attIntQuantidadeX.intValor;
         }
 
         protected override int getIntQuantidadeY()
@@ -91,7 +91,7 @@ namespace Rpg.Controle.Editor
                 return 0;
             }
 
-            return this.objMapa.attQuantidadeY.intValor;
+            return this.objMapa.attIntQuantidadeY.intValor;
         }
 
         protected override int getIntTileTamanho()

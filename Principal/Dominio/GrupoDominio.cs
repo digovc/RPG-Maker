@@ -20,7 +20,7 @@
         {
             GrupoDominio objGrupoResultado = new GrupoDominio();
 
-            objGrupoResultado.attNome.strValor = string.Format("Grupo {0}", intIndex);
+            objGrupoResultado.attStrNome.strValor = string.Format("Grupo {0}", intIndex);
 
             return objGrupoResultado;
         }

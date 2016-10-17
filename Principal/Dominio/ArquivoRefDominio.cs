@@ -82,13 +82,13 @@ namespace Rpg.Dominio
 
         private string getDirArquivo()
         {
-            string strResultado = (this.attNome.strValor + ".json");
+            string strResultado = (this.attStrNome.strValor + ".json");
 
             RpgDominioBase objDominioPai = this.objDominioPai;
 
             while (objDominioPai != null && !(objDominioPai is JogoDominio))
             {
-                strResultado = string.Format("{0}/{1}", objDominioPai.attNome.strValor, strResultado);
+                strResultado = string.Format("{0}/{1}", objDominioPai.attStrNome.strValor, strResultado);
 
                 objDominioPai = objDominioPai.objDominioPai;
             }

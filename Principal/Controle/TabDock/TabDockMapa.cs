@@ -85,7 +85,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            this.Text = this.objMapa.attNome.strValor;
+            this.Text = this.objMapa.attStrNome.strValor;
 
             this.carregarMapa();
         }

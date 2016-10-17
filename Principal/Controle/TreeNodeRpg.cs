@@ -55,12 +55,12 @@ namespace Rpg.Controle
                 return;
             }
 
-            if (this.objDominio.attNome == null)
+            if (this.objDominio.attStrNome == null)
             {
                 return;
             }
 
-            this.Text = this.objDominio.attNome.strValor;
+            this.Text = this.objDominio.attStrNome.strValor;
         }
 
         private void setObjDominio(RpgDominioBase objDominio)
@@ -70,9 +70,9 @@ namespace Rpg.Controle
                 return;
             }
 
-            this.Text = objDominio.attNome.strValor;
+            this.Text = objDominio.attStrNome.strValor;
 
-            objDominio.attNome.onStrValorAlterado += this.objDominio_onNomeAlterado;
+            objDominio.attStrNome.onStrValorAlterado += this.objDominio_onNomeAlterado;
         }
 
         #endregion Métodos

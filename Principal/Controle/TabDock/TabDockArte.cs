@@ -128,7 +128,7 @@ namespace Rpg.Controle.TabDock
             ArquivoDominio arqDirRoot = new ArquivoDominio();
 
             arqDirRoot.attDirCompleto.strValor = this.dirArteRoot;
-            arqDirRoot.attNome.strValor = Path.GetFileName(this.dirArteRoot);
+            arqDirRoot.attStrNome.strValor = Path.GetFileName(this.dirArteRoot);
 
             TreeNodeRpg trnDirRoot = new TreeNodeRpg(arqDirRoot);
 
@@ -166,7 +166,7 @@ namespace Rpg.Controle.TabDock
             ArquivoDominio arq = (ArquivoDominio)Activator.CreateInstance(clsArq);
 
             arq.attDirCompleto.strValor = dirArqItem;
-            arq.attNome.strValor = Path.GetFileName(dirArqItem);
+            arq.attStrNome.strValor = Path.GetFileName(dirArqItem);
 
             TreeNodeRpg trnAudio = new TreeNodeRpg(arq);
 
@@ -178,7 +178,7 @@ namespace Rpg.Controle.TabDock
             ImagemDominio arqImagem = new ImagemDominio();
 
             arqImagem.attDirCompleto.strValor = dirArqItem;
-            arqImagem.attNome.strValor = Path.GetFileName(dirArqItem);
+            arqImagem.attStrNome.strValor = Path.GetFileName(dirArqItem);
 
             TreeNodeRpg trnAudio = new TreeNodeRpg(arqImagem);
 
@@ -197,7 +197,7 @@ namespace Rpg.Controle.TabDock
                 ArquivoDominio arqDirItem = new ArquivoDominio();
 
                 arqDirItem.attDirCompleto.strValor = dirItem;
-                arqDirItem.attNome.strValor = Path.GetFileName(dirItem);
+                arqDirItem.attStrNome.strValor = Path.GetFileName(dirItem);
 
                 TreeNodeRpg trnItem = new TreeNodeRpg(arqDirItem);
 

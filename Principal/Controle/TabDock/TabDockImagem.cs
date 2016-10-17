@@ -72,7 +72,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            this.Text = objImagem.attNome.strValor;
+            this.Text = objImagem.attStrNome.strValor;
 
             this.txtTileTamanho.Text = AppRpg.i.objJogo.getAtt(this.objImagem.attDirCompleto.strValor, 0).strValor;
         }
