@@ -1,4 +1,5 @@
 ﻿using System;
+using DigoFramework;
 using Newtonsoft.Json;
 
 namespace Rpg.Dominio
@@ -49,7 +50,7 @@ namespace Rpg.Dominio
         {
             get
             {
-                return _booValor = Convert.ToBoolean(this.strValor);
+                return _booValor = Utils.getBoo(this.strValor);
             }
 
             set

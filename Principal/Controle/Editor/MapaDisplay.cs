@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Rpg.Controle.Editor.Grafico;
+using Rpg.Controle.TabDock;
 using Rpg.Dominio;
 
 namespace Rpg.Controle.Editor
@@ -20,6 +21,8 @@ namespace Rpg.Controle.Editor
         private List<CamadaGrafico> _lstGfcCamada;
         private CamadaDominio _objCamadaSelecionada;
         private MapaDominio _objMapa;
+
+        private TabDockMapa _tabDockMapa;
 
         public CamadaDominio objCamadaSelecionada
         {
@@ -51,6 +54,19 @@ namespace Rpg.Controle.Editor
                 _objMapa = value;
 
                 this.setObjMapa(_objMapa);
+            }
+        }
+
+        public TabDockMapa tabDockMapa
+        {
+            get
+            {
+                return _tabDockMapa;
+            }
+
+            set
+            {
+                _tabDockMapa = value;
             }
         }
 
@@ -91,7 +107,19 @@ namespace Rpg.Controle.Editor
         {
             base.processarClick(arg);
 
-            this.desenhar(arg.X, arg.Y);
+            switch (this.tabDockMapa.enmFerramenta)
+            {
+                case TabDockMapa.EnmFerramenta.BORRACHA:
+                    this.apagar(arg.X, arg.Y);
+                    return;
+
+                case TabDockMapa.EnmFerramenta.LAPIS:
+                    this.desenhar(arg.X, arg.Y);
+                    return;
+
+                case TabDockMapa.EnmFerramenta.SELECIONAR:
+                    return;
+            }
         }
 
         protected override void renderizar(PaintEventArgs arg)
@@ -114,6 +142,30 @@ namespace Rpg.Controle.Editor
             }
 
             return true;
+        }
+
+        private void apagar(int x, int y)
+        {
+            if (this.objCamadaSelecionada == null)
+            {
+                return;
+            }
+
+            if (!this.objMapa.lstObjCamada.Contains(this.objCamadaSelecionada))
+            {
+                return;
+            }
+
+            x = this.normalizarTileX(x);
+
+            y = this.normalizarTileY(y);
+
+            if (!this.objCamadaSelecionada.removerTile(x, y))
+            {
+                return;
+            }
+
+            this.Invalidate();
         }
 
         private void desenhar(int x, int y)
@@ -164,6 +216,20 @@ namespace Rpg.Controle.Editor
             this.Invalidate();
         }
 
+        private Rectangle desenharGridRtgMapa(int x, int y)
+        {
+            x = this.normalizarTileX(x);
+
+            y = this.normalizarTileY(y);
+
+            return new Rectangle(x, y, INT_TILE_TAMANHO, INT_TILE_TAMANHO);
+        }
+
+        private TileDominio desenharLivre(int intClickX, int intClickY)
+        {
+            throw new NotImplementedException();
+        }
+
         private TileDominio desenharTile(int x, int y)
         {
             TileDominio objTileResultado = new TileDominio();
@@ -183,24 +249,6 @@ namespace Rpg.Controle.Editor
             y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
 
             return new Rectangle(x, y, hw, hw);
-        }
-
-        private Rectangle desenharGridRtgMapa(int x, int y)
-        {
-            x -= this.intMoveX;
-            x -= (int)(x % (INT_TILE_TAMANHO * this.fltZoom));
-            x = (int)(x / this.fltZoom);
-
-            y -= this.intMoveY;
-            y -= (int)(y % (INT_TILE_TAMANHO * this.fltZoom));
-            y = (int)(y / this.fltZoom);
-
-            return new Rectangle(x, y, INT_TILE_TAMANHO, INT_TILE_TAMANHO);
-        }
-
-        private TileDominio desenharLivre(int intClickX, int intClickY)
-        {
-            throw new NotImplementedException();
         }
 
         private CamadaGrafico getGfcCamada(CamadaDominio objCamada)
@@ -225,6 +273,24 @@ namespace Rpg.Controle.Editor
             this.lstGfcCamada.Add(gfcCamadaNova);
 
             return gfcCamadaNova;
+        }
+
+        private int normalizarTileX(int x)
+        {
+            x = (x - this.intMoveX);
+            x = (int)(x - (x % (INT_TILE_TAMANHO * this.fltZoom)));
+            x = (int)(x / this.fltZoom + 1);
+
+            return x;
+        }
+
+        private int normalizarTileY(int y)
+        {
+            y = (y - this.intMoveY);
+            y = (int)(y - (y % (INT_TILE_TAMANHO * this.fltZoom)));
+            y = (int)(y / this.fltZoom + 1);
+
+            return y;
         }
 
         private void renderizarCamada(PaintEventArgs arg)

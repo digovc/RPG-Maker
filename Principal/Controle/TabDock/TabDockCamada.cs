@@ -79,9 +79,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            CamadaDominio objCamada = new CamadaDominio();
-
-            objCamada.attStrNome.strValor = string.Format("Camada {0}", AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.lstObjCamada.Count);
+            CamadaDominio objCamada = CamadaDominio.criar(AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.lstObjCamada.Count);
 
             AppRpg.i.frmPrincipal.tabDockMapaSelecionado.objMapa.addCamada(objCamada);
 

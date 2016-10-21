@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Controle.EditAtributo
 {
-    partial class EditAtributoTexto
+    partial class EditAtributoBoolen
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,38 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtStrValor = new System.Windows.Forms.TextBox();
+            this.ckbBooValor = new System.Windows.Forms.CheckBox();
             this.pnlCampo.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCampo
             // 
-            this.pnlCampo.Controls.Add(this.txtStrValor);
-            this.pnlCampo.Size = new System.Drawing.Size(1125, 25);
+            this.pnlCampo.Controls.Add(this.ckbBooValor);
             // 
-            // txtStrValor
+            // ckbBooValor
             // 
-            this.txtStrValor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStrValor.Location = new System.Drawing.Point(10, 0);
-            this.txtStrValor.Name = "txtStrValor";
-            this.txtStrValor.Size = new System.Drawing.Size(1105, 22);
-            this.txtStrValor.TabIndex = 1;
-            this.txtStrValor.TextChanged += new System.EventHandler(this.txtStrValor_TextChanged);
+            this.ckbBooValor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ckbBooValor.Location = new System.Drawing.Point(10, 0);
+            this.ckbBooValor.Name = "ckbBooValor";
+            this.ckbBooValor.Size = new System.Drawing.Size(330, 25);
+            this.ckbBooValor.TabIndex = 1;
+            this.ckbBooValor.UseVisualStyleBackColor = true;
+            this.ckbBooValor.CheckedChanged += new System.EventHandler(this.ckbBooValor_CheckedChanged);
             // 
-            // EditAtributoTexto
+            // EditAtributoBoolen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "EditAtributoTexto";
-            this.Size = new System.Drawing.Size(1125, 50);
+            this.Name = "EditAtributoBoolen";
             this.pnlCampo.ResumeLayout(false);
-            this.pnlCampo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtStrValor;
+        private System.Windows.Forms.CheckBox ckbBooValor;
     }
 }

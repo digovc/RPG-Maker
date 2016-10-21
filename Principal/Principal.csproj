@@ -71,11 +71,23 @@
     <Compile Include="Controle\DockPanelRpg.Designer.cs">
       <DependentUpon>DockPanelRpg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoAlcance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoAlcance.Designer.cs">
+      <DependentUpon>EditAtributoAlcance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controle\EditAtributo\EditAtributoBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controle\EditAtributo\EditAtributoBase.Designer.cs">
       <DependentUpon>EditAtributoBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoBoolen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoBoolen.Designer.cs">
+      <DependentUpon>EditAtributoBoolen.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\EditAtributo\EditAtributoTexto.cs">
       <SubType>UserControl</SubType>
@@ -215,9 +227,15 @@
     <EmbeddedResource Include="Controle\AudioTrack.resx">
       <DependentUpon>AudioTrack.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controle\EditAtributo\EditAtributoAlcance.resx">
+      <DependentUpon>EditAtributoAlcance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoBase.resx">
       <DependentUpon>EditAtributoBase.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\EditAtributo\EditAtributoBoolen.resx">
+      <DependentUpon>EditAtributoBoolen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoTexto.resx">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>

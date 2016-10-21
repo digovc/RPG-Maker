@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
+            this.pnlCampo = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -41,10 +42,20 @@
             this.lblTitulo.Text = "Título";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pnlCampo
+            // 
+            this.pnlCampo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCampo.Location = new System.Drawing.Point(0, 25);
+            this.pnlCampo.Name = "pnlCampo";
+            this.pnlCampo.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.pnlCampo.Size = new System.Drawing.Size(350, 25);
+            this.pnlCampo.TabIndex = 1;
+            // 
             // EditAtributoBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pnlCampo);
             this.Controls.Add(this.lblTitulo);
             this.Name = "EditAtributoBase";
             this.Size = new System.Drawing.Size(350, 50);
@@ -55,5 +66,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitulo;
+        protected System.Windows.Forms.Panel pnlCampo;
     }
 }

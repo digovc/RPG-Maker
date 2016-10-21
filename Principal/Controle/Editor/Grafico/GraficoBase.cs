@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Rpg.Controle.Editor.Grafico
@@ -95,6 +96,11 @@ namespace Rpg.Controle.Editor.Grafico
 
         private Bitmap getBmpCache()
         {
+            if (!this.validarRenderizar())
+            {
+                return null;
+            }
+
             Bitmap bmpCacheResultado = new Bitmap(this.objDisplay.intTamanhoX, this.objDisplay.intTamanhoY);
 
             using (Graphics gpc = Graphics.FromImage(bmpCacheResultado))
@@ -103,6 +109,11 @@ namespace Rpg.Controle.Editor.Grafico
             }
 
             return bmpCacheResultado;
+        }
+
+        protected virtual bool validarRenderizar()
+        {
+            return true;
         }
 
         private void iniciar()

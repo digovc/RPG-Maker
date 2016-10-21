@@ -53,6 +53,24 @@ namespace Rpg.Controle.TabDock
             this.objDominio = AppRpg.i.frmPrincipal.objDominioSelecionado;
         }
 
+        private EditAtributoBase getEdtAtt(Atributo.EnmTipo enmTipo)
+        {
+            switch (enmTipo)
+            {
+                case Atributo.EnmTipo.ALCANCE:
+                    return new EditAtributoAlcance();
+
+                case Atributo.EnmTipo.BOOLEAN:
+                    return new EditAtributoBoolen();
+
+                case Atributo.EnmTipo.NUMERICO:
+                    return new EditAtributoTexto();
+
+                default:
+                    return new EditAtributoTexto();
+            }
+        }
+
         private void setObjDominio(RpgDominioBase objDominio)
         {
             if (objDominio == null)
@@ -77,6 +95,12 @@ namespace Rpg.Controle.TabDock
             {
                 this.setObjDominio(att);
             }
+
+            Atributo attTest = new Atributo(null, "Alcance", "5;10");
+
+            attTest.enmTipo = Atributo.EnmTipo.ALCANCE;
+
+            this.setObjDominio(attTest);
         }
 
         private void setObjDominio(Atributo att)
@@ -86,7 +110,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            EditAtributoTexto edtAtt = new EditAtributoTexto();
+            EditAtributoBase edtAtt = this.getEdtAtt(att.enmTipo);
 
             edtAtt.att = att;
 

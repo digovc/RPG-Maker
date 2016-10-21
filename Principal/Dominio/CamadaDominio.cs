@@ -54,6 +54,17 @@ namespace Rpg.Dominio
 
         #region Métodos
 
+        internal static CamadaDominio criar(int intIndex)
+        {
+            CamadaDominio objCamada = new CamadaDominio();
+
+            objCamada.attStrNome.strValor = string.Format("Camada {0}", intIndex);
+
+            objCamada.iniciar();
+
+            return objCamada;
+        }
+
         internal void addTile(TileDominio objTile)
         {
             if (objTile == null)
@@ -68,7 +79,20 @@ namespace Rpg.Dominio
 
             this.lstObjTile.Add(objTile);
 
-            this.onAddTile?.Invoke(this, EventArgs.Empty);
+            this.onAddTile?.Invoke(objTile, EventArgs.Empty);
+        }
+
+        internal bool removerTile(int x, int y)
+        {
+            foreach (TileDominio objTile in this.lstObjTile)
+            {
+                if (this.removerTile(x, y, objTile))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         protected override void inicializar()
@@ -76,6 +100,25 @@ namespace Rpg.Dominio
             base.inicializar();
 
             this.attBooVisivel.booValor = this.attBooVisivel.booValor;
+            this.attBooVisivel.enmTipo = Atributo.EnmTipo.BOOLEAN;
+        }
+
+        private bool removerTile(int x, int y, TileDominio objTile)
+        {
+            if (objTile == null)
+            {
+                return false;
+            }
+
+            if (!objTile.rtgMapa.Contains(x, y))
+            {
+                return false;
+            }
+
+            this.lstObjTile.Remove(objTile);
+
+            this.onRemoverTile?.Invoke(objTile, EventArgs.Empty);
+            return true;
         }
 
         #endregion Métodos
@@ -83,6 +126,8 @@ namespace Rpg.Dominio
         #region Eventos
 
         public event EventHandler onAddTile;
+
+        public event EventHandler onRemoverTile;
 
         #endregion Eventos
     }

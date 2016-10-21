@@ -87,6 +87,26 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        protected override bool validarRenderizar()
+        {
+            if (!base.validarRenderizar())
+            {
+                return false;
+            }
+
+            if (this.objCamada == null)
+            {
+                return false;
+            }
+
+            if (!this.objCamada.attBooVisivel.booValor)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private TileGrafico getGfcTile(TileDominio objTile)
         {
             if (objTile == null)
@@ -118,7 +138,14 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
+            objCamada.attBooVisivel.onStrValorAlterado += ((o, e) =>
+            {
+                this.invalidar();
+                this.objDisplay.Invalidate();
+            });
+
             objCamada.onAddTile += ((o, e) => this.invalidar());
+            objCamada.onRemoverTile += ((o, e) => this.invalidar());
         }
 
         #endregion Métodos

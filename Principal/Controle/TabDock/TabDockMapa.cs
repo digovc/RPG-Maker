@@ -8,12 +8,33 @@ namespace Rpg.Controle.TabDock
     {
         #region Constantes
 
+        public enum EnmFerramenta
+        {
+            BORRACHA,
+            LAPIS,
+            SELECIONAR,
+        }
+
         #endregion Constantes
 
         #region Atributos
 
+        private EnmFerramenta _enmFerramenta = EnmFerramenta.LAPIS;
         private CamadaDominio _objCamadaSelecioanda;
         private MapaDominio _objMapa;
+
+        public EnmFerramenta enmFerramenta
+        {
+            get
+            {
+                return _enmFerramenta;
+            }
+
+            set
+            {
+                _enmFerramenta = value;
+            }
+        }
 
         public CamadaDominio objCamadaSelecioanda
         {
@@ -68,14 +89,21 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
+        protected override void inicializar()
+        {
+            base.inicializar();
+
+            this.ctrMapa.tabDockMapa = this;
+        }
+
         private void carregarMapa()
         {
-            this.ctrDisplay.objMapa = this.objMapa;
+            this.ctrMapa.objMapa = this.objMapa;
         }
 
         private void setObjCamadaSelecioanda(CamadaDominio objCamadaSelecioanda)
         {
-            this.ctrDisplay.objCamadaSelecionada = objCamadaSelecioanda;
+            this.ctrMapa.objCamadaSelecionada = objCamadaSelecioanda;
         }
 
         private void setObjMapa(MapaDominio objMapa)
@@ -101,6 +129,42 @@ namespace Rpg.Controle.TabDock
             try
             {
                 AppRpg.i.frmPrincipal.tabDockMapaSelecionado = this;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnBorracha_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.enmFerramenta = EnmFerramenta.BORRACHA;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnLapis_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.enmFerramenta = EnmFerramenta.LAPIS;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnSelecionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.enmFerramenta = EnmFerramenta.SELECIONAR;
             }
             catch (Exception ex)
             {
