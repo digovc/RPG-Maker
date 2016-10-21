@@ -11,7 +11,28 @@ namespace Rpg.Controle.Painel
 
         #region Atributos
 
+        private bool _booSelecionado;
         private RpgDominioBase _objDominio;
+
+        public bool booSelecionado
+        {
+            get
+            {
+                return _booSelecionado;
+            }
+
+            set
+            {
+                if (_booSelecionado == value)
+                {
+                    return;
+                }
+
+                _booSelecionado = value;
+
+                this.setBooSelecionado(_booSelecionado);
+            }
+        }
 
         public RpgDominioBase objDominio
         {
@@ -49,6 +70,11 @@ namespace Rpg.Controle.Painel
         protected override void inicializar()
         {
             this.Dock = DockStyle.Top;
+        }
+
+        private void setBooSelecionado(bool booSelecionado)
+        {
+            this.lblTitulo.Font = new System.Drawing.Font(this.lblTitulo.Font, booSelecionado ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular);
         }
 
         private void setObjDominio(RpgDominioBase objDominio)

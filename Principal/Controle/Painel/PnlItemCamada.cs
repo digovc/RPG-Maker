@@ -32,7 +32,9 @@ namespace Rpg.Controle.Painel
                 return;
             }
 
-            this.lblTitulo.Font = new System.Drawing.Font(this.lblTitulo.Font, System.Drawing.FontStyle.Bold);
+            AppRpg.i.frmPrincipal.tabDockCamada.limparCamadaSelecao();
+
+            this.booSelecionado = true;
 
             AppRpg.i.frmPrincipal.objDominioSelecionado = this.objDominio;
 

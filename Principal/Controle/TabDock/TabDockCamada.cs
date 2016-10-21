@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.Painel;
 using Rpg.Dominio;
@@ -47,6 +48,24 @@ namespace Rpg.Controle.TabDock
         #endregion Construtores
 
         #region Métodos
+
+        internal void limparCamadaSelecao()
+        {
+            if (this.pnlConteudo.Controls == null)
+            {
+                return;
+            }
+
+            foreach (Control ctr in this.pnlConteudo.Controls)
+            {
+                if (!(ctr is PnlItemCamada))
+                {
+                    continue;
+                }
+
+                (ctr as PnlItemCamada).booSelecionado = false;
+            }
+        }
 
         private void addCamada()
         {

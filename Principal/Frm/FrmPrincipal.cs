@@ -142,7 +142,7 @@ namespace Rpg.Frm
             }
         }
 
-        private TabDockCamada tabDockCamada
+        public TabDockCamada tabDockCamada
         {
             get
             {
