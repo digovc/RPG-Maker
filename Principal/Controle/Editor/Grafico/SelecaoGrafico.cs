@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using DigoFramework;
 
-namespace Rpg.Controle.Editor
+namespace Rpg.Controle.Editor.Grafico
 {
     public class SelecaoGrafico : GraficoBase
     {
@@ -14,7 +13,6 @@ namespace Rpg.Controle.Editor
 
         private Pen _penSelecao;
         private Rectangle _rtg;
-        private Rectangle _rtgFinal;
 
         public Rectangle rtg
         {
@@ -51,26 +49,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private Rectangle rtgFinal
-        {
-            get
-            {
-                if (_rtgFinal != default(Rectangle))
-                {
-                    return _rtgFinal;
-                }
-
-                _rtgFinal = this.getRtgFinal();
-
-                return _rtgFinal;
-            }
-
-            set
-            {
-                _rtgFinal = value;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -83,20 +61,15 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
-        internal override void renderizar(Graphics gpc)
+        internal void selecionarTile(int x, int y)
         {
-            base.renderizar(gpc);
+            this.limparSelecao();
 
-            if (this.rtg == default(Rectangle))
+            if (this.objDisplay.intTileTamanho < 10)
             {
                 return;
             }
 
-            gpc.DrawRectangle(this.penSelecao, this.rtgFinal);
-        }
-
-        internal void selecionarTile(int x, int y)
-        {
             if (x < this.objDisplay.intMoveX)
             {
                 return;
@@ -107,24 +80,32 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            int h = (this.objDisplay.intTileTamanho + this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO);
-
-            int w = h;
-
             x -= this.objDisplay.intMoveX;
-            x -= (x % h);
+            x -= (int)(x % (this.objDisplay.intTileTamanho * this.objDisplay.fltZoom));
+            x = (int)(x / this.objDisplay.fltZoom);
 
             y -= this.objDisplay.intMoveY;
-            y -= (y % w);
+            y -= (int)(y % (this.objDisplay.intTileTamanho * this.objDisplay.fltZoom));
+            y = (int)(y / this.objDisplay.fltZoom);
 
-            this.rtg = new Rectangle(x, y, w, h);
+            this.rtg = new Rectangle(x, y, this.objDisplay.intTileTamanho, this.objDisplay.intTileTamanho);
         }
 
         protected override void invalidar()
         {
             base.invalidar();
 
-            this.rtgFinal = default(Rectangle);
+           
+        }
+
+        public override void renderizar(Graphics gpc)
+        {
+            if (this.rtg == default(Rectangle))
+            {
+                return;
+            }
+
+            gpc.DrawRectangle(this.penSelecao, this.rtg);
         }
 
         protected override void setEventos()

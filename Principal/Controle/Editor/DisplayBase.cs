@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using DigoFramework;
+using Rpg.Controle.Editor.Grafico;
 
 namespace Rpg.Controle.Editor
 {
@@ -10,6 +10,7 @@ namespace Rpg.Controle.Editor
         #region Constantes
 
         internal const int INT_ZOOM_INCREMENTO = 2;
+
         private const int INT_ZOOM_MAXIMO = 25;
         private const int INT_ZOOM_MINIMO = -15;
 
@@ -17,16 +18,42 @@ namespace Rpg.Controle.Editor
 
         #region Atributos
 
+        private float _fltZoom = 1;
         private int _intMoveX;
         private int _intMoveXTemp;
         private int _intMoveY;
         private int _intMoveYTemp;
-        private int _intQuantidadeX;
-        private int _intQuantidadeY;
+        private int _intTamanhoX;
+        private int _intTamanhoY;
         private int _intTileTamanho;
-        private int _intZoom;
         private GridGrafico _objGrid;
         private SelecaoGrafico _objSelecao;
+
+        public int intTamanhoX
+        {
+            get
+            {
+                return _intTamanhoX;
+            }
+
+            set
+            {
+                _intTamanhoX = value;
+            }
+        }
+
+        public int intTamanhoY
+        {
+            get
+            {
+                return _intTamanhoY;
+            }
+
+            set
+            {
+                _intTamanhoY = value;
+            }
+        }
 
         public int intTileTamanho
         {
@@ -70,6 +97,26 @@ namespace Rpg.Controle.Editor
             }
         }
 
+        internal float fltZoom
+        {
+            get
+            {
+                return _fltZoom;
+            }
+
+            set
+            {
+                if (_fltZoom == value)
+                {
+                    return;
+                }
+
+                _fltZoom = value;
+
+                this.setfltZoom(_fltZoom);
+            }
+        }
+
         internal int intMoveX
         {
             get
@@ -110,63 +157,18 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        internal int intQuantidadeX
+        protected GridGrafico objGrid
         {
             get
             {
-                if (_intQuantidadeX != 0)
+                if (_objGrid != null)
                 {
-                    return _intQuantidadeX;
+                    return _objGrid;
                 }
 
-                _intQuantidadeX = this.getIntQuantidadeX();
+                _objGrid = new GridGrafico(this);
 
-                return _intQuantidadeX;
-            }
-
-            set
-            {
-                _intQuantidadeX = value;
-            }
-        }
-
-        internal int intQuantidadeY
-        {
-            get
-            {
-                if (_intQuantidadeY != 0)
-                {
-                    return _intQuantidadeY;
-                }
-
-                _intQuantidadeY = this.getIntQuantidadeY();
-
-                return _intQuantidadeY;
-            }
-
-            set
-            {
-                _intQuantidadeY = value;
-            }
-        }
-
-        internal int intZoom
-        {
-            get
-            {
-                return _intZoom;
-            }
-
-            set
-            {
-                if (_intZoom == value)
-                {
-                    return;
-                }
-
-                _intZoom = value;
-
-                this.setIntZoom(_intZoom);
+                return _objGrid;
             }
         }
 
@@ -196,21 +198,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private GridGrafico objGrid
-        {
-            get
-            {
-                if (_objGrid != null)
-                {
-                    return _objGrid;
-                }
-
-                _objGrid = new GridGrafico(this);
-
-                return _objGrid;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -223,16 +210,6 @@ namespace Rpg.Controle.Editor
         #endregion Construtores
 
         #region Métodos
-
-        protected virtual int getIntQuantidadeX()
-        {
-            return 0;
-        }
-
-        protected virtual int getIntQuantidadeY()
-        {
-            return 0;
-        }
 
         protected virtual int getIntTileTamanho()
         {
@@ -252,18 +229,20 @@ namespace Rpg.Controle.Editor
         protected virtual void renderizar(PaintEventArgs arg)
         {
             // TODO: Desenhar apenas o que é visto na tela.
-            this.renderizarGrid(arg.Graphics);
-            this.renderizarSelecao(arg.Graphics);
+            this.renderizarGrid(arg);
+            this.renderizarSelecao(arg);
         }
 
-        protected virtual void renderizarGrid(Graphics gpc)
+        protected virtual void renderizarGrid(PaintEventArgs arg)
         {
-            this.objGrid.renderizar(gpc);
+            this.objGrid.renderizar(arg);
         }
 
         protected virtual void setIntTileTamanho(int intTileTamanho)
         {
             this.Invalidate();
+
+            this.onIntTileTamanhoChanged?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual bool validarRenderizar()
@@ -324,7 +303,7 @@ namespace Rpg.Controle.Editor
 
         private void processarZoom(MouseEventArgs arg)
         {
-            this.intZoom += (arg.Delta > 0) ? 1 : -1;
+            this.fltZoom += (arg.Delta > 0) ? 0.1f : -0.1f;
 
             (arg as HandledMouseEventArgs).Handled = true;
         }
@@ -339,38 +318,38 @@ namespace Rpg.Controle.Editor
             this.renderizar(arg);
         }
 
-        private void renderizarSelecao(Graphics grp)
+        private void renderizarSelecao(PaintEventArgs arg)
         {
-            this.objSelecao.renderizar(grp);
+            this.objSelecao.renderizar(arg);
         }
 
-        private void setIntMoveX(int intMoveX)
+        private void setfltZoom(float fltZoom)
         {
-            this.onMoveX?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void setIntMoveY(int intMoveY)
-        {
-            this.onMoveY?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void setIntZoom(int intZoom)
-        {
-            if (intZoom < INT_ZOOM_MINIMO)
+            if (fltZoom < INT_ZOOM_MINIMO)
             {
-                this.intZoom = INT_ZOOM_MINIMO;
+                this.fltZoom = INT_ZOOM_MINIMO;
                 return;
             }
 
-            if (intZoom > INT_ZOOM_MAXIMO)
+            if (fltZoom > INT_ZOOM_MAXIMO)
             {
-                this.intZoom = INT_ZOOM_MAXIMO;
+                this.fltZoom = INT_ZOOM_MAXIMO;
                 return;
             }
 
             this.onZooming?.Invoke(this, EventArgs.Empty);
 
             this.Invalidate();
+        }
+
+        private void setIntMoveX(int intMoveX)
+        {
+            this.onMovingX?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void setIntMoveY(int intMoveY)
+        {
+            this.onMovingY?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion Métodos
@@ -412,9 +391,11 @@ namespace Rpg.Controle.Editor
             this.renderizarLocal(arg);
         }
 
-        public event EventHandler onMoveX;
+        public event EventHandler onIntTileTamanhoChanged;
 
-        public event EventHandler onMoveY;
+        public event EventHandler onMovingX;
+
+        public event EventHandler onMovingY;
 
         public event EventHandler onZooming;
 

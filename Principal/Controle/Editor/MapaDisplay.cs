@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Rpg.Controle.Editor.Grafico;
 using Rpg.Dominio;
 
 namespace Rpg.Controle.Editor
@@ -42,7 +43,14 @@ namespace Rpg.Controle.Editor
 
             set
             {
+                if (_objMapa == value)
+                {
+                    return;
+                }
+
                 _objMapa = value;
+
+                this.setObjMapa(_objMapa);
             }
         }
 
@@ -74,26 +82,6 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
-        protected override int getIntQuantidadeX()
-        {
-            if (this.objMapa == null)
-            {
-                return 0;
-            }
-
-            return this.objMapa.attIntQuantidadeX.intValor;
-        }
-
-        protected override int getIntQuantidadeY()
-        {
-            if (this.objMapa == null)
-            {
-                return 0;
-            }
-
-            return this.objMapa.attIntQuantidadeY.intValor;
-        }
-
         protected override int getIntTileTamanho()
         {
             return INT_TILE_TAMANHO;
@@ -110,7 +98,7 @@ namespace Rpg.Controle.Editor
         {
             base.renderizar(arg);
 
-            this.renderizarLstObjCamada(arg.Graphics);
+            this.renderizarCamada(arg);
         }
 
         protected override bool validarRenderizar()
@@ -168,7 +156,7 @@ namespace Rpg.Controle.Editor
             }
             else
             {
-                objTile = this.desenharGrid(x, y);
+                objTile = this.desenharTile(x, y);
             }
 
             this.objCamadaSelecionada.addTile(objTile);
@@ -176,47 +164,36 @@ namespace Rpg.Controle.Editor
             this.Invalidate();
         }
 
-        private TileDominio desenharGrid(int x, int y)
+        private TileDominio desenharTile(int x, int y)
         {
             TileDominio objTileResultado = new TileDominio();
 
-            objTileResultado.booFixo = !string.IsNullOrEmpty(AppRpg.i.frmPrincipal.tabDockImagemSelecionada.txtTileTamanho.Text);
+            objTileResultado.booFixo = true;
             objTileResultado.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
-            objTileResultado.rtgImg = this.desenharGridRtgImg(x, y);
+            objTileResultado.rtgImg = this.desenharTileRtgImg(x, y);
             objTileResultado.rtgMapa = this.desenharGridRtgMapa(x, y);
 
             return objTileResultado;
         }
 
-        private Rectangle desenharGridRtgImg(int x, int y)
+        private Rectangle desenharTileRtgImg(int x, int y)
         {
-            int h = (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Height - (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intZoom * INT_ZOOM_INCREMENTO));
-            int w = (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Width - (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intZoom * INT_ZOOM_INCREMENTO));
+            int hw = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho;
+            x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X;
+            y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
 
-            x = (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X - (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X % (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho + AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intZoom * INT_ZOOM_INCREMENTO)));
-
-            x = (x / (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho + AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intZoom * INT_ZOOM_INCREMENTO));
-            x = (x * AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho);
-
-            y = (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y - (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y % (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho + AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intZoom * INT_ZOOM_INCREMENTO)));
-
-            y = (y / (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho + AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intZoom * INT_ZOOM_INCREMENTO));
-            y = (y * AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho);
-
-            return new Rectangle(x, y, w, h);
+            return new Rectangle(x, y, hw, hw);
         }
 
         private Rectangle desenharGridRtgMapa(int x, int y)
         {
             x -= this.intMoveX;
-            x -= (x % (INT_TILE_TAMANHO + this.intZoom * INT_ZOOM_INCREMENTO));
-            x = (x / (INT_TILE_TAMANHO + this.intZoom * INT_ZOOM_INCREMENTO));
-            x = (x * INT_TILE_TAMANHO);
+            x -= (int)(x % (INT_TILE_TAMANHO * this.fltZoom));
+            x = (int)(x / this.fltZoom);
 
             y -= this.intMoveY;
-            y -= (y % (INT_TILE_TAMANHO + this.intZoom * INT_ZOOM_INCREMENTO));
-            y = (y / (INT_TILE_TAMANHO + this.intZoom * INT_ZOOM_INCREMENTO));
-            y = (y * INT_TILE_TAMANHO);
+            y -= (int)(y % (INT_TILE_TAMANHO * this.fltZoom));
+            y = (int)(y / this.fltZoom);
 
             return new Rectangle(x, y, INT_TILE_TAMANHO, INT_TILE_TAMANHO);
         }
@@ -250,7 +227,7 @@ namespace Rpg.Controle.Editor
             return gfcCamadaNova;
         }
 
-        private void renderizarLstObjCamada(Graphics gpc)
+        private void renderizarCamada(PaintEventArgs arg)
         {
             if (this.objMapa == null)
             {
@@ -259,8 +236,20 @@ namespace Rpg.Controle.Editor
 
             foreach (CamadaDominio objCamada in this.objMapa.lstObjCamada)
             {
-                this.getGfcCamada(objCamada).renderizar(gpc);
+                this.getGfcCamada(objCamada).renderizar(arg);
             }
+        }
+
+        private void setObjMapa(MapaDominio objMapa)
+        {
+            if (objMapa == null)
+            {
+                return;
+            }
+
+            // TODO: Quando alterar o tamanho do mapa, atualizar seu display.
+            this.intTamanhoX = (objMapa.attIntQuantidadeX.intValor * INT_TILE_TAMANHO);
+            this.intTamanhoY = (objMapa.attIntQuantidadeY.intValor * INT_TILE_TAMANHO);
         }
 
         #endregion Métodos

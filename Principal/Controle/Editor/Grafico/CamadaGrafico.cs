@@ -2,7 +2,7 @@
 using System.Drawing;
 using Rpg.Dominio;
 
-namespace Rpg.Controle.Editor
+namespace Rpg.Controle.Editor.Grafico
 {
     public class CamadaGrafico : GraficoBase
     {
@@ -14,6 +14,7 @@ namespace Rpg.Controle.Editor
 
         private List<TileGrafico> _lstGfcTile;
         private CamadaDominio _objCamada;
+        private MapaDisplay _objMapaDisplay;
 
         public CamadaDominio objCamada
         {
@@ -24,7 +25,14 @@ namespace Rpg.Controle.Editor
 
             private set
             {
+                if (_objCamada == value)
+                {
+                    return;
+                }
+
                 _objCamada = value;
+
+                this.setObjCamada(_objCamada);
             }
         }
 
@@ -43,6 +51,21 @@ namespace Rpg.Controle.Editor
             }
         }
 
+        private MapaDisplay objMapaDisplay
+        {
+            get
+            {
+                if (_objMapaDisplay != null)
+                {
+                    return _objMapaDisplay;
+                }
+
+                _objMapaDisplay = (this.objDisplay as MapaDisplay);
+
+                return _objMapaDisplay;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -56,20 +79,8 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
-        internal override void renderizar(Graphics gpc)
+        public override void renderizar(Graphics gpc)
         {
-            base.renderizar(gpc);
-
-            if (this.objCamada == null)
-            {
-                return;
-            }
-
-            if (!this.objCamada.attBooVisivel.booValor)
-            {
-                return;
-            }
-
             foreach (TileDominio objTile in this.objCamada.lstObjTile)
             {
                 this.getGfcTile(objTile).renderizar(gpc);
@@ -98,6 +109,16 @@ namespace Rpg.Controle.Editor
             this.lstGfcTile.Add(gfcTileNovo);
 
             return gfcTileNovo;
+        }
+
+        private void setObjCamada(CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return;
+            }
+
+            objCamada.onAddTile += ((o, e) => this.invalidar());
         }
 
         #endregion Métodos

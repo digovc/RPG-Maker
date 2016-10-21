@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Rpg.Controle.Editor
+namespace Rpg.Controle.Editor.Grafico
 {
     public class GridGrafico : GraficoBase
     {
@@ -11,8 +11,8 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private SolidBrush _objBrush;
-        private Pen _penTile;
         private Pen _penBorda;
+        private Pen _penTile;
 
         private SolidBrush objBrush
         {
@@ -71,10 +71,8 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
-        internal override void renderizar(Graphics gpc)
+        public override void renderizar(Graphics gpc)
         {
-            base.renderizar(gpc);
-
             this.renderizarTile(gpc);
             this.renderizarBorda(gpc);
         }
@@ -86,34 +84,43 @@ namespace Rpg.Controle.Editor
             this.penTile.DashPattern = new float[] { 5, 10 };
         }
 
+        protected override void setEventos()
+        {
+            base.setEventos();
+
+            this.objDisplay.onIntTileTamanhoChanged += ((o, e) => this.invalidar());
+        }
+
         private void renderizarBorda(Graphics gpc)
         {
-            int w = (this.objDisplay.intQuantidadeX * (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO)));
-            int h = (this.objDisplay.intQuantidadeY * (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO)));
+            gpc.DrawRectangle(this.penBorda, 0, 0, (this.objDisplay.intTamanhoX - 1), (this.objDisplay.intTamanhoY - 1));
+        }
 
-            gpc.DrawRectangle(this.penBorda, new Rectangle(this.objDisplay.intMoveX, this.objDisplay.intMoveY, w, h));
+        private void renderizarTile(Graphics gpc, int x, int y)
+        {
+            x = (x * this.objDisplay.intTileTamanho);
+            y = (y * this.objDisplay.intTileTamanho);
+
+            gpc.DrawRectangle(this.penTile, new Rectangle(x, y, this.objDisplay.intTileTamanho, this.objDisplay.intTileTamanho));
         }
 
         private void renderizarTile(Graphics gpc)
         {
-            for (int x = 0; x < this.objDisplay.intQuantidadeX; x++)
+            if (this.objDisplay.intTileTamanho < 10)
             {
-                for (int y = 0; y < this.objDisplay.intQuantidadeY; y++)
+                return;
+            }
+
+            int intQuantidadeX = (this.objDisplay.intTamanhoX / this.objDisplay.intTileTamanho);
+            int intQuantidadeY = (this.objDisplay.intTamanhoY / this.objDisplay.intTileTamanho);
+
+            for (int x = 0; x < intQuantidadeX; x++)
+            {
+                for (int y = 0; y < intQuantidadeY; y++)
                 {
-                    this.renderizarBordaTile(gpc, x, y);
+                    this.renderizarTile(gpc, x, y);
                 }
             }
-        }
-
-        private void renderizarBordaTile(Graphics gpc, int x, int y)
-        {
-            x = (x * this.objDisplay.intTileTamanho + this.objDisplay.intMoveX + (x * this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
-            y = (y * this.objDisplay.intTileTamanho + this.objDisplay.intMoveY + (y * this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
-
-            int w = (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
-            int h = (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
-
-            gpc.DrawRectangle(this.penTile, new Rectangle(x, y, w, h));
         }
 
         #endregion Métodos

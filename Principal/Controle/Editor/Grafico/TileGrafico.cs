@@ -2,7 +2,7 @@
 using System.Drawing;
 using Rpg.Dominio;
 
-namespace Rpg.Controle.Editor
+namespace Rpg.Controle.Editor.Grafico
 {
     public class TileGrafico : GraficoBase
     {
@@ -14,7 +14,6 @@ namespace Rpg.Controle.Editor
 
         private TileDominio _objTile;
         private Rectangle _rtgDestino;
-        private Rectangle _rtgOrigem;
 
         public TileDominio objTile
         {
@@ -49,21 +48,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private Rectangle rtgOrigem
-        {
-            get
-            {
-                if (_rtgOrigem != default(Rectangle))
-                {
-                    return _rtgOrigem;
-                }
-
-                _rtgOrigem = this.getRtgOrigem();
-
-                return _rtgOrigem;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -77,16 +61,14 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
-        internal override void renderizar(Graphics gpc)
+        public override void renderizar(Graphics gpc)
         {
-            base.renderizar(gpc);
-
             if (this.objTile == null)
             {
                 return;
             }
 
-            gpc.DrawImage(AppRpg.i.getBmpCache(this.objTile.dirImg), this.rtgDestino, this.rtgOrigem, GraphicsUnit.Pixel);
+            gpc.DrawImage(AppRpg.i.getBmpCache(this.objTile.dirImg), this.rtgDestino, this.objTile.rtgImg, GraphicsUnit.Pixel);
         }
 
         protected override void invalidar()
@@ -110,31 +92,7 @@ namespace Rpg.Controle.Editor
                 return default(Rectangle);
             }
 
-            int h = (this.objDisplay.intTileTamanho + (this.objDisplay.intZoom * DisplayBase.INT_ZOOM_INCREMENTO));
-
-            int w = h;
-
-            int x = ((this.objTile.rtgMapa.X / MapaDisplay.INT_TILE_TAMANHO) * h + this.objDisplay.intMoveX);
-            int y = ((this.objTile.rtgMapa.Y / MapaDisplay.INT_TILE_TAMANHO) * w + this.objDisplay.intMoveY);
-
-            return new Rectangle(x, y, (w + 2), h);
-        }
-
-        private Rectangle getRtgOrigem()
-        {
-            if (this.objTile == null)
-            {
-                return default(Rectangle);
-            }
-
-            int h = this.objTile.rtgImg.Height;
-
-            int w = this.objTile.rtgImg.Width;
-
-            int x = this.objTile.rtgImg.X;
-            int y = (this.objTile.rtgImg.Y);
-
-            return new Rectangle(x, y, w, h);
+            return new Rectangle(this.objTile.rtgMapa.X, this.objTile.rtgMapa.Y, MapaDisplay.INT_TILE_TAMANHO, MapaDisplay.INT_TILE_TAMANHO);
         }
 
         #endregion Métodos
@@ -145,7 +103,6 @@ namespace Rpg.Controle.Editor
         {
             this.invalidar();
         }
-
 
         #endregion Eventos
     }

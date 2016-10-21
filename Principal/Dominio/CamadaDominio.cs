@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Rpg.Dominio
@@ -66,6 +67,8 @@ namespace Rpg.Dominio
             }
 
             this.lstObjTile.Add(objTile);
+
+            this.onAddTile?.Invoke(this, EventArgs.Empty);
         }
 
         protected override void inicializar()
@@ -78,6 +81,8 @@ namespace Rpg.Dominio
         #endregion Métodos
 
         #region Eventos
+
+        public event EventHandler onAddTile;
 
         #endregion Eventos
     }

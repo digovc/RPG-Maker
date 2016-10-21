@@ -83,7 +83,7 @@
     <Compile Include="Controle\EditAtributo\EditAtributoTexto.Designer.cs">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Editor\CamadaGrafico.cs" />
+    <Compile Include="Controle\Editor\Grafico\CamadaGrafico.cs" />
     <Compile Include="Controle\Editor\DisplayBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,10 +102,10 @@
     <Compile Include="Controle\Editor\MapaDisplay.Designer.cs">
       <DependentUpon>MapaDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Editor\GraficoBase.cs" />
-    <Compile Include="Controle\Editor\GridGrafico.cs" />
-    <Compile Include="Controle\Editor\SelecaoGrafico.cs" />
-    <Compile Include="Controle\Editor\TileGrafico.cs" />
+    <Compile Include="Controle\Editor\Grafico\GraficoBase.cs" />
+    <Compile Include="Controle\Editor\Grafico\GridGrafico.cs" />
+    <Compile Include="Controle\Editor\Grafico\SelecaoGrafico.cs" />
+    <Compile Include="Controle\Editor\Grafico\TileGrafico.cs" />
     <Compile Include="Controle\PainelAtalhoRpg.cs">
       <SubType>Component</SubType>
     </Compile>
