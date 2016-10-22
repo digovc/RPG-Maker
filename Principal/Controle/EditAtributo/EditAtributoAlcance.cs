@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using DigoFramework;
+using Rpg.Dominio;
 
 namespace Rpg.Controle.EditAtributo
 {
@@ -107,6 +108,19 @@ namespace Rpg.Controle.EditAtributo
 
             return Color.FromArgb((int)(255 * (1 - x)), (int)(255 * x), 0);
         }
+
+        protected override void setAtt(Atributo att)
+        {
+            base.setAtt(att);
+
+            if (att == null)
+            {
+                return;
+            }
+
+            this.atualizarLayout();
+        }
+
 
         #endregion Métodos
 

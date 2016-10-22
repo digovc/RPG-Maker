@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using DigoFramework.Json;
 using Newtonsoft.Json;
 
 namespace Rpg.Dominio
@@ -45,6 +44,18 @@ namespace Rpg.Dominio
                 _objArquivo = this.getObjArquivo();
 
                 return _objArquivo;
+            }
+
+            set
+            {
+                if (_objArquivo == value)
+                {
+                    return;
+                }
+
+                _objArquivo = value;
+
+                this.setObjArquivo(_objArquivo);
             }
         }
 
@@ -113,6 +124,16 @@ namespace Rpg.Dominio
             objArqResultado.objPai = this;
 
             return objArqResultado;
+        }
+
+        private void setObjArquivo(ArquivoDominio objArq)
+        {
+            if (objArq == null)
+            {
+                return;
+            }
+
+            this.attStrNome.strValor = objArq.attStrNome.strValor;
         }
 
         #endregion Métodos

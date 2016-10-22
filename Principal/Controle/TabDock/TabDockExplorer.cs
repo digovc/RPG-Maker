@@ -104,29 +104,17 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            if (!(this.trv.SelectedNode is TreeNodeRpg))
-            {
-                return;
-            }
-
             if ((this.trv.SelectedNode as TreeNodeRpg).objDominio == null)
             {
                 return;
             }
 
-            RpgDominioBase objPai = (this.trv.SelectedNode as TreeNodeRpg).objDominio;
-
-            if (objPai is ArquivoRefDominio)
-            {
-                objPai = (objPai as ArquivoRefDominio).objArquivo;
-            }
-
-            if (!(objPai is ContainerDominioBase))
+            if (!((this.trv.SelectedNode as TreeNodeRpg).objDominio is ContainerDominioBase))
             {
                 return;
             }
 
-            ContainerDominioBase objPaiContainer = (objPai as ContainerDominioBase);
+            ContainerDominioBase objPaiContainer = ((this.trv.SelectedNode as TreeNodeRpg).objDominio as ContainerDominioBase);
 
             if (!objPaiContainer.validarItem(objDominio))
             {
@@ -134,6 +122,11 @@ namespace Rpg.Controle.TabDock
             }
 
             objPaiContainer.addFilho(objDominio);
+
+            if (objDominio is ArquivoRefDominio)
+            {
+                objDominio = (objDominio as ArquivoRefDominio).objArquivo;
+            }
 
             this.addTrn(new TreeNodeRpg(objDominio));
         }
@@ -184,7 +177,7 @@ namespace Rpg.Controle.TabDock
 
             ArquivoRefDominio objArqRef = new ArquivoRefDominio();
 
-            objArqRef.attStrNome.strValor = objMapa.attStrNome.strValor;
+            objArqRef.objArquivo = objMapa;
 
             this.addItem(objArqRef);
 
@@ -212,14 +205,14 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
+            if (objPai is ArquivoRefDominio)
+            {
+                objPai = (objPai as ArquivoRefDominio).objArquivo;
+            }
+
             TreeNodeRpg trnFilho = new TreeNodeRpg(objPai);
 
             trnPai.Nodes.Add(trnFilho);
-
-            if (objPai is ArquivoRefDominio)
-            {
-                this.carregarJogoArqRef((objPai as ArquivoRefDominio).objArquivo, trnFilho);
-            }
 
             if (!(typeof(ContainerDominioBase).IsAssignableFrom(objPai.GetType())))
             {
@@ -235,19 +228,6 @@ namespace Rpg.Controle.TabDock
 
                 objFilho.objPai = objPai;
 
-                this.carregarJogo(objFilho, trnFilho);
-            }
-        }
-
-        private void carregarJogoArqRef(ArquivoDominio objArq, TreeNodeRpg trnFilho)
-        {
-            if (objArq == null)
-            {
-                return;
-            }
-
-            foreach (RpgDominioBase objFilho in objArq.lstObjFilho)
-            {
                 this.carregarJogo(objFilho, trnFilho);
             }
         }

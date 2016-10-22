@@ -1,5 +1,6 @@
 ﻿using System;
 using DigoFramework;
+using Rpg.Dominio;
 
 namespace Rpg.Controle.EditAtributo
 {
@@ -23,6 +24,18 @@ namespace Rpg.Controle.EditAtributo
         #endregion Construtores
 
         #region Métodos
+
+        protected override void setAtt(Atributo att)
+        {
+            base.setAtt(att);
+
+            if (att == null)
+            {
+                return;
+            }
+
+            this.ckbBooValor.Checked = att.booValor;
+        }
 
         #endregion Métodos
 
