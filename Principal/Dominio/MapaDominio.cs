@@ -59,7 +59,7 @@ namespace Rpg.Dominio
 
             objMapaResultado.attStrNome.strValor = string.Format("Mapa {0}", intIndex);
 
-            objMapaResultado.iniciar();
+            objMapaResultado.iniciar(true);
 
             return objMapaResultado;
         }
@@ -79,17 +79,34 @@ namespace Rpg.Dominio
             return false;
         }
 
-        protected override void inicializar()
+        protected override void inicializar(bool booCriacao)
         {
-            base.inicializar();
+            base.inicializar(booCriacao);
 
+            this.inicializarAttIntQuantidadeX(booCriacao);
+            this.inicializarAttIntQuantidadeY(booCriacao);
+        }
+
+        private void inicializarAttIntQuantidadeX(bool booCriacao)
+        {
             this.attIntQuantidadeX.enmTipo = Atributo.EnmTipo.NUMERICO;
-            this.attIntQuantidadeX.intValor = 25;
             this.attIntQuantidadeX.intValorMaximo = 250;
 
+            if (booCriacao)
+            {
+                this.attIntQuantidadeX.intValor = 25;
+            }
+        }
+
+        private void inicializarAttIntQuantidadeY(bool booCriacao)
+        {
             this.attIntQuantidadeY.enmTipo = Atributo.EnmTipo.NUMERICO;
-            this.attIntQuantidadeY.intValor = 25;
             this.attIntQuantidadeY.intValorMaximo = 250;
+
+            if (booCriacao)
+            {
+                this.attIntQuantidadeY.intValor = 25;
+            }
         }
 
         #endregion Métodos

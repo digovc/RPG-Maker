@@ -241,6 +241,11 @@ namespace Rpg.Frm
             AppRpg.i.frmPrincipal = this;
 
             this.WindowState = FormWindowState.Maximized;
+
+            this.ofdJogo.Filter = ("RPG JSON|*" + AppRpg.STR_EXTENSAO);
+
+            this.sfdJogo.FileName = ("Novo RPG" + AppRpg.STR_EXTENSAO);
+            this.sfdJogo.Filter = this.ofdJogo.Filter;
         }
 
         private void abrirJogo(JogoDominio objJogo)

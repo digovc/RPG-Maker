@@ -191,6 +191,11 @@ namespace Rpg.Controle.TabDock
                 objPai = (objPai as ArquivoRefDominio).objArquivo;
             }
 
+            if (objPai == null)
+            {
+                return;
+            }
+
             TreeNodeRpg trnFilho = new TreeNodeRpg(objPai);
 
             trnPai.Nodes.Add(trnFilho);

@@ -60,6 +60,11 @@ namespace Rpg.Controle
                 return;
             }
 
+            if (this.Text == this.objDominio.attStrNome.strValor)
+            {
+                return;
+            }
+
             this.Text = this.objDominio.attStrNome.strValor;
         }
 

@@ -60,7 +60,7 @@ namespace Rpg.Dominio
 
             objCamada.attStrNome.strValor = string.Format("Camada {0}", intIndex);
 
-            objCamada.iniciar();
+            objCamada.iniciar(true);
 
             return objCamada;
         }
@@ -97,11 +97,20 @@ namespace Rpg.Dominio
             return false;
         }
 
-        protected override void inicializar()
+        protected override void inicializar(bool booCriacao)
         {
-            base.inicializar();
+            base.inicializar(booCriacao);
 
-            this.attBooVisivel.booValor = this.attBooVisivel.booValor;
+            this.inicializarAttBooVisivel(booCriacao);
+        }
+
+        private void inicializarAttBooVisivel(bool booCriacao)
+        {
+            if (booCriacao)
+            {
+                this.attBooVisivel.booValor = true;
+            }
+
             this.attBooVisivel.enmTipo = Atributo.EnmTipo.BOOLEAN;
         }
 

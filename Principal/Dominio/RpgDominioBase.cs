@@ -83,9 +83,9 @@ namespace Rpg.Dominio
             return this.getAtt(strattStrNome, booValor.ToString());
         }
 
-        public void iniciar()
+        public void iniciar(bool booCriacao)
         {
-            this.inicializar();
+            this.inicializar(booCriacao);
             this.setEventos();
         }
 
@@ -134,7 +134,7 @@ namespace Rpg.Dominio
             return new Atributo(this, strattStrNome, strValor);
         }
 
-        protected virtual void inicializar()
+        protected virtual void inicializar(bool booCriacao)
         {
         }
 

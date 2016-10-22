@@ -25,6 +25,20 @@ namespace Rpg.Controle.EditAtributo
 
         #region Métodos
 
+        protected override void atualizarCtrValor(string strValor)
+        {
+            base.atualizarCtrValor(strValor);
+
+            bool booValor = Utils.getBoo(strValor);
+
+            if (this.ckbBooValor.Checked == booValor)
+            {
+                return;
+            }
+
+            this.ckbBooValor.Checked = Utils.getBoo(strValor);
+        }
+
         protected override void setAtt(Atributo att)
         {
             base.setAtt(att);

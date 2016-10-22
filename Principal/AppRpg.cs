@@ -11,6 +11,8 @@ namespace Rpg
     {
         #region Constantes
 
+        internal static string STR_EXTENSAO = ".rpgjson";
+
         #endregion Constantes
 
         #region Atributos
@@ -156,7 +158,7 @@ namespace Rpg
                 return;
             }
 
-            objJogo.iniciar();
+            objJogo.iniciar(false);
         }
 
         internal void criarJogo(string dirJogo)

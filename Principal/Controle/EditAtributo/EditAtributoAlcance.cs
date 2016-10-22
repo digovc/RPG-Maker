@@ -26,6 +26,25 @@ namespace Rpg.Controle.EditAtributo
 
         #region Métodos
 
+        protected override void atualizarCtrValor(string strValor)
+        {
+            base.atualizarCtrValor(strValor);
+
+            this.atualizarLayout();
+        }
+
+        protected override void setAtt(Atributo att)
+        {
+            base.setAtt(att);
+
+            if (att == null)
+            {
+                return;
+            }
+
+            this.atualizarLayout();
+        }
+
         private void atualizarLayout()
         {
             if (string.IsNullOrEmpty(this.att.strValor))
@@ -108,19 +127,6 @@ namespace Rpg.Controle.EditAtributo
 
             return Color.FromArgb((int)(255 * (1 - x)), (int)(255 * x), 0);
         }
-
-        protected override void setAtt(Atributo att)
-        {
-            base.setAtt(att);
-
-            if (att == null)
-            {
-                return;
-            }
-
-            this.atualizarLayout();
-        }
-
 
         #endregion Métodos
 

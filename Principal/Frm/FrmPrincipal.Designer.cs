@@ -139,10 +139,6 @@
             this.tsmExibirDados.Text = "Dados";
             this.tsmExibirDados.Click += new System.EventHandler(this.tsmExibirDados_Click);
             // 
-            // ofdJogo
-            // 
-            this.ofdJogo.Filter = "JSON|*.json";
-            // 
             // pnlDockRpg
             // 
             this.pnlDockRpg.Name = "pnlDockRpg";
@@ -153,11 +149,6 @@
             this.pnlAtalho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(219)))), ((int)(((byte)(233)))));
             this.pnlAtalho.Name = "pnlAtalho";
             this.pnlAtalho.TabIndex = 3;
-            // 
-            // sfdJogo
-            // 
-            this.sfdJogo.FileName = "Novo RPG.json";
-            this.sfdJogo.Filter = "JSON|*.json";
             // 
             // toolStripMenuItem1
             // 

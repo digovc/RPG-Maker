@@ -25,6 +25,18 @@ namespace Rpg.Controle.EditAtributo
 
         #region Métodos
 
+        protected override void atualizarCtrValor(string strValor)
+        {
+            base.atualizarCtrValor(strValor);
+
+            if (this.txtStrValor.Text == strValor)
+            {
+                return;
+            }
+
+            this.txtStrValor.Text = strValor;
+        }
+
         protected override void setAtt(Atributo att)
         {
             base.setAtt(att);

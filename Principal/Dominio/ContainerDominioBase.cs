@@ -57,14 +57,14 @@ namespace Rpg.Dominio
             return true;
         }
 
-        protected override void inicializar()
+        protected override void inicializar(bool booCriacao)
         {
-            base.inicializar();
+            base.inicializar(booCriacao);
 
-            this.inicializarLstObjFilho();
+            this.inicializarLstObjFilho(booCriacao);
         }
 
-        private void inicializarLstObjFilho()
+        private void inicializarLstObjFilho(bool booCriacao)
         {
             if (this.lstObjFilho == null)
             {
@@ -73,8 +73,23 @@ namespace Rpg.Dominio
 
             foreach (RpgDominioBase objFilho in this.lstObjFilho)
             {
-                objFilho?.iniciar();
+                this.inicializarLstObjFilho(booCriacao, objFilho);
             }
+        }
+
+        private void inicializarLstObjFilho(bool booCriacao, RpgDominioBase objFilho)
+        {
+            if (objFilho == null)
+            {
+                return;
+            }
+
+            if (objFilho is ArquivoRefDominio)
+            {
+                this.inicializarLstObjFilho(booCriacao, (objFilho as ArquivoRefDominio).objArquivo);
+            }
+
+            objFilho.iniciar(booCriacao);
         }
 
         #endregion Métodos

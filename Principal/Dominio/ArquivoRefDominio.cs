@@ -11,9 +11,8 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private Atributo _attDirArquivo;
-
         private ArquivoDominio _objArquivo;
+        private Atributo _attDirArquivo;
 
         [JsonIgnore]
         public Atributo attDirArquivo
@@ -86,6 +85,11 @@ namespace Rpg.Dominio
         {
             Atributo attResultado = this.getAtt("Diretório");
 
+            if (!string.IsNullOrEmpty(attResultado.strValor))
+            {
+                return attResultado;
+            }
+
             attResultado.strValor = this.getDirArquivo();
 
             return attResultado;
@@ -93,13 +97,14 @@ namespace Rpg.Dominio
 
         private string getDirArquivo()
         {
-            string strResultado = (this.attStrNome.strValor + ".json");
+            string strResultado = (this.attStrNome.strValor + AppRpg.STR_EXTENSAO);
 
             RpgDominioBase objDominioPai = this.objPai;
 
             while (objDominioPai != null && !(objDominioPai is JogoDominio))
             {
-                strResultado = string.Format("{0}/{1}", objDominioPai.attStrNome.strValor, strResultado);
+                //strResultado = string.Format("{0}/{1}", objDominioPai.attStrNome.strValor, strResultado);
+                strResultado = Path.Combine(objDominioPai.attStrNome.strValor, strResultado);
 
                 objDominioPai = objDominioPai.objPai;
             }

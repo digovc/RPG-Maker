@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using DigoFramework;
 using Rpg.Dominio;
 
 namespace Rpg.Controle.EditAtributo
@@ -46,6 +48,10 @@ namespace Rpg.Controle.EditAtributo
 
         #region Métodos
 
+        protected virtual void atualizarCtrValor(string strValor)
+        {
+        }
+
         protected void atualizarStrValor(string strValor)
         {
             if (this.att == null)
@@ -70,11 +76,25 @@ namespace Rpg.Controle.EditAtributo
             }
 
             this.lblTitulo.Text = att.strNome;
+
+            att.onStrValorAlterado += att_onStrValorAlterado;
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void att_onStrValorAlterado(object sender, EventArgs e)
+        {
+            try
+            {
+                this.atualizarCtrValor(att.strValor);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
 
         #endregion Eventos
     }
