@@ -95,12 +95,6 @@ namespace Rpg.Controle.TabDock
             {
                 this.setObjDominio(att);
             }
-
-            Atributo attTest = new Atributo(null, "Alcance", "5;10");
-
-            attTest.enmTipo = Atributo.EnmTipo.ALCANCE;
-
-            this.setObjDominio(attTest);
         }
 
         private void setObjDominio(Atributo att)
