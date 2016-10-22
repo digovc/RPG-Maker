@@ -53,25 +53,6 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-        private void abrirArqRef(ArquivoRefDominio objArqRef)
-        {
-            if (objArqRef == null)
-            {
-                return;
-            }
-
-            if (objArqRef.objArquivo == null)
-            {
-                return;
-            }
-
-            if (objArqRef.objArquivo is MapaDominio)
-            {
-                this.abrirMapa(objArqRef.objArquivo as MapaDominio);
-                return;
-            }
-        }
-
         private void abrirMapa(MapaDominio objMapa)
         {
             AppRpg.i.frmPrincipal.abrirMapa(objMapa);
@@ -254,12 +235,11 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            if (!(trn.objDominio is ArquivoRefDominio))
+            if (trn.objDominio is MapaDominio)
             {
+                this.abrirMapa(trn.objDominio as MapaDominio);
                 return;
             }
-
-            this.abrirArqRef(trn.objDominio as ArquivoRefDominio);
         }
 
         #endregion Métodos

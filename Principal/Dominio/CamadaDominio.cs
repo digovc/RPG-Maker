@@ -77,6 +77,8 @@ namespace Rpg.Dominio
                 return;
             }
 
+            this.removerTile(objTile.rtgMapa.X, objTile.rtgMapa.Y);
+
             this.lstObjTile.Add(objTile);
 
             this.onAddTile?.Invoke(objTile, EventArgs.Empty);

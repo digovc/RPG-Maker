@@ -11,8 +11,8 @@ namespace Rpg.Controle.Editor
 
         internal const int INT_ZOOM_INCREMENTO = 2;
 
-        private const int INT_ZOOM_MAXIMO = 25;
-        private const int INT_ZOOM_MINIMO = -15;
+        private const float INT_ZOOM_MAXIMO = 5;
+        private const float INT_ZOOM_MINIMO = 1;
 
         #endregion Constantes
 
