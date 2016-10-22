@@ -41,8 +41,10 @@
             this.tsmExibirDados = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdJogo = new System.Windows.Forms.OpenFileDialog();
             this.pnlDockRpg = new Rpg.Controle.DockPanelRpg();
-            this.pnlAtalho = new Controle.PainelAtalhoRpg();
+            this.pnlAtalho = new Rpg.Controle.PainelAtalhoRpg();
             this.sfdJogo = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmReiniciar = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +57,7 @@
             this.mnu.Location = new System.Drawing.Point(0, 0);
             this.mnu.Name = "mnu";
             this.mnu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.mnu.Size = new System.Drawing.Size(284, 24);
+            this.mnu.Size = new System.Drawing.Size(284, 28);
             this.mnu.TabIndex = 0;
             this.mnu.Text = "menuStrip1";
             // 
@@ -64,29 +66,31 @@
             this.tsmArquivo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmJogoAbrir,
             this.tsmJogoSalvar,
-            this.tsmJogoCriar});
+            this.tsmJogoCriar,
+            this.toolStripMenuItem1,
+            this.tsmReiniciar});
             this.tsmArquivo.Name = "tsmArquivo";
-            this.tsmArquivo.Size = new System.Drawing.Size(61, 20);
+            this.tsmArquivo.Size = new System.Drawing.Size(73, 24);
             this.tsmArquivo.Text = "Arquivo";
             // 
             // tsmJogoAbrir
             // 
             this.tsmJogoAbrir.Name = "tsmJogoAbrir";
-            this.tsmJogoAbrir.Size = new System.Drawing.Size(105, 22);
+            this.tsmJogoAbrir.Size = new System.Drawing.Size(181, 26);
             this.tsmJogoAbrir.Text = "Abrir";
             this.tsmJogoAbrir.Click += new System.EventHandler(this.tsmJogoAbrir_Click);
             // 
             // tsmJogoSalvar
             // 
             this.tsmJogoSalvar.Name = "tsmJogoSalvar";
-            this.tsmJogoSalvar.Size = new System.Drawing.Size(105, 22);
+            this.tsmJogoSalvar.Size = new System.Drawing.Size(181, 26);
             this.tsmJogoSalvar.Text = "Salvar";
             this.tsmJogoSalvar.Click += new System.EventHandler(this.tsmJogoSalvar_Click);
             // 
             // tsmJogoCriar
             // 
             this.tsmJogoCriar.Name = "tsmJogoCriar";
-            this.tsmJogoCriar.Size = new System.Drawing.Size(105, 22);
+            this.tsmJogoCriar.Size = new System.Drawing.Size(181, 26);
             this.tsmJogoCriar.Text = "Criar";
             this.tsmJogoCriar.Click += new System.EventHandler(this.tsmJogoCriar_Click);
             // 
@@ -99,39 +103,39 @@
             this.tsmExibirArte,
             this.tsmExibirDados});
             this.exibirToolStripMenuItem.Name = "exibirToolStripMenuItem";
-            this.exibirToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.exibirToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.exibirToolStripMenuItem.Text = "Exibir";
             // 
             // tsmExibirJogoManager
             // 
             this.tsmExibirJogoManager.Name = "tsmExibirJogoManager";
-            this.tsmExibirJogoManager.Size = new System.Drawing.Size(149, 22);
+            this.tsmExibirJogoManager.Size = new System.Drawing.Size(179, 26);
             this.tsmExibirJogoManager.Text = "Jogo manager";
             // 
             // tsmExibirPropriedade
             // 
             this.tsmExibirPropriedade.Name = "tsmExibirPropriedade";
-            this.tsmExibirPropriedade.Size = new System.Drawing.Size(149, 22);
+            this.tsmExibirPropriedade.Size = new System.Drawing.Size(179, 26);
             this.tsmExibirPropriedade.Text = "Propriedades";
             this.tsmExibirPropriedade.Click += new System.EventHandler(this.tsmExibirPropriedade_Click);
             // 
             // tsmExibirCamada
             // 
             this.tsmExibirCamada.Name = "tsmExibirCamada";
-            this.tsmExibirCamada.Size = new System.Drawing.Size(149, 22);
+            this.tsmExibirCamada.Size = new System.Drawing.Size(179, 26);
             this.tsmExibirCamada.Text = "Camadas";
             // 
             // tsmExibirArte
             // 
             this.tsmExibirArte.Name = "tsmExibirArte";
-            this.tsmExibirArte.Size = new System.Drawing.Size(149, 22);
+            this.tsmExibirArte.Size = new System.Drawing.Size(179, 26);
             this.tsmExibirArte.Text = "Arte";
             this.tsmExibirArte.Click += new System.EventHandler(this.tsmExibirArte_Click);
             // 
             // tsmExibirDados
             // 
             this.tsmExibirDados.Name = "tsmExibirDados";
-            this.tsmExibirDados.Size = new System.Drawing.Size(149, 22);
+            this.tsmExibirDados.Size = new System.Drawing.Size(179, 26);
             this.tsmExibirDados.Text = "Dados";
             this.tsmExibirDados.Click += new System.EventHandler(this.tsmExibirDados_Click);
             // 
@@ -146,6 +150,7 @@
             // 
             // pnlAtalho
             // 
+            this.pnlAtalho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(219)))), ((int)(((byte)(233)))));
             this.pnlAtalho.Name = "pnlAtalho";
             this.pnlAtalho.TabIndex = 3;
             // 
@@ -153,6 +158,18 @@
             // 
             this.sfdJogo.FileName = "Novo RPG.json";
             this.sfdJogo.Filter = "JSON|*.json";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 6);
+            // 
+            // tsmReiniciar
+            // 
+            this.tsmReiniciar.Name = "tsmReiniciar";
+            this.tsmReiniciar.Size = new System.Drawing.Size(181, 26);
+            this.tsmReiniciar.Text = "Reiniciar";
+            this.tsmReiniciar.Click += new System.EventHandler(this.tsmReiniciar_Click);
             // 
             // FrmPrincipal
             // 
@@ -189,5 +206,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmExibirCamada;
         private System.Windows.Forms.ToolStripMenuItem tsmExibirArte;
         private System.Windows.Forms.ToolStripMenuItem tsmExibirDados;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmReiniciar;
     }
 }

@@ -407,6 +407,18 @@ namespace Rpg.Frm
             }
         }
 
+        private void tsmReiniciar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Application.Restart();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         #endregion Eventos
     }
 }

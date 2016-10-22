@@ -89,6 +89,12 @@
     <Compile Include="Controle\EditAtributo\EditAtributoBoolen.Designer.cs">
       <DependentUpon>EditAtributoBoolen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoNumerico.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\EditAtributo\EditAtributoNumerico.Designer.cs">
+      <DependentUpon>EditAtributoNumerico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controle\EditAtributo\EditAtributoTexto.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,6 +230,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoBoolen.resx">
       <DependentUpon>EditAtributoBoolen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\EditAtributo\EditAtributoNumerico.resx">
+      <DependentUpon>EditAtributoNumerico.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoTexto.resx">
       <DependentUpon>EditAtributoTexto.cs</DependentUpon>

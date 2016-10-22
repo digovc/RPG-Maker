@@ -25,6 +25,7 @@ namespace Rpg.Dominio
         private decimal _decValor;
         private EnmTipo _enmTipo = EnmTipo.TEXTO;
         private int _intValor;
+        private int _intValorMaximo;
         private RpgDominioBase _objDominio;
         private string _strDescricao;
         private string _strGrupo;
@@ -103,6 +104,19 @@ namespace Rpg.Dominio
                 _intValor = value;
 
                 this.decValor = _intValor;
+            }
+        }
+
+        public int intValorMaximo
+        {
+            get
+            {
+                return _intValorMaximo;
+            }
+
+            set
+            {
+                _intValorMaximo = value;
             }
         }
 

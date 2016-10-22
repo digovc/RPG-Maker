@@ -83,28 +83,13 @@ namespace Rpg.Dominio
         {
             base.inicializar();
 
-            this.inicializarattIntQuantidadeX();
-            this.inicializarattIntQuantidadeY();
-        }
-
-        private void inicializarattIntQuantidadeX()
-        {
-            if (this.attIntQuantidadeX.intValor > 0)
-            {
-                return;
-            }
-
+            this.attIntQuantidadeX.enmTipo = Atributo.EnmTipo.NUMERICO;
             this.attIntQuantidadeX.intValor = 25;
-        }
+            this.attIntQuantidadeX.intValorMaximo = 250;
 
-        private void inicializarattIntQuantidadeY()
-        {
-            if (this.attIntQuantidadeY.intValor > 0)
-            {
-                return;
-            }
-
+            this.attIntQuantidadeY.enmTipo = Atributo.EnmTipo.NUMERICO;
             this.attIntQuantidadeY.intValor = 25;
+            this.attIntQuantidadeY.intValorMaximo = 250;
         }
 
         #endregion Métodos

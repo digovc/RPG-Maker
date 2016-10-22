@@ -64,7 +64,7 @@ namespace Rpg.Controle.TabDock
                     return new EditAtributoBoolen();
 
                 case Atributo.EnmTipo.NUMERICO:
-                    return new EditAtributoTexto();
+                    return new EditAtributoNumerico();
 
                 default:
                     return new EditAtributoTexto();
