@@ -32,10 +32,10 @@
             this.trv = new System.Windows.Forms.TreeView();
             this.btnAddItem = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.cmsAddItem = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmAddItemGrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddItemPasta = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemMapa = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemPersonagem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddItemCAmada = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddItemCamada = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlAtalho.SuspendLayout();
             this.cmsAddItem.SuspendLayout();
             this.SuspendLayout();
@@ -65,19 +65,19 @@
             // 
             this.cmsAddItem.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsAddItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAddItemGrupo,
+            this.tsmAddItemPasta,
             this.tsmAddItemMapa,
-            this.tsmAddItemCAmada,
+            this.tsmAddItemCamada,
             this.tsmAddItemPersonagem});
             this.cmsAddItem.Name = "cmsAddItem";
             this.cmsAddItem.Size = new System.Drawing.Size(182, 136);
             // 
             // tsmAddItemGrupo
             // 
-            this.tsmAddItemGrupo.Name = "tsmAddItemGrupo";
-            this.tsmAddItemGrupo.Size = new System.Drawing.Size(181, 26);
-            this.tsmAddItemGrupo.Text = "Grupo";
-            this.tsmAddItemGrupo.Click += new System.EventHandler(this.tsmAddItemGrupo_Click);
+            this.tsmAddItemPasta.Name = "tsmAddItemPasta";
+            this.tsmAddItemPasta.Size = new System.Drawing.Size(181, 26);
+            this.tsmAddItemPasta.Text = "Pasta";
+            this.tsmAddItemPasta.Click += new System.EventHandler(this.tsmAddItemPasta_Click);
             // 
             // tsmAddItemMapa
             // 
@@ -94,10 +94,10 @@
             // 
             // tsmAddItemCAmada
             // 
-            this.tsmAddItemCAmada.Name = "tsmAddItemCAmada";
-            this.tsmAddItemCAmada.Size = new System.Drawing.Size(181, 26);
-            this.tsmAddItemCAmada.Text = "Camada";
-            this.tsmAddItemCAmada.Click += new System.EventHandler(this.tsmAddItemCAmada_Click);
+            this.tsmAddItemCamada.Name = "tsmAddItemCamada";
+            this.tsmAddItemCamada.Size = new System.Drawing.Size(181, 26);
+            this.tsmAddItemCamada.Text = "Camada";
+            this.tsmAddItemCamada.Click += new System.EventHandler(this.tsmAddItemCamada_Click);
             // 
             // TabDockExplorer
             // 
@@ -122,9 +122,9 @@
         private System.Windows.Forms.TreeView trv;
         private DigoFramework.Controle.Botao.BotaoAtalho btnAddItem;
         private System.Windows.Forms.ContextMenuStrip cmsAddItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddItemGrupo;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddItemPasta;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemMapa;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemPersonagem;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddItemCAmada;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddItemCamada;
     }
 }

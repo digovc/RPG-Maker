@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Dominio
 {
-    public class GrupoDominio : ContainerDominioBase
+    public class PastaDominio : ArquivoDominio
     {
         #region Constantes
 
@@ -16,13 +16,15 @@
 
         #region Métodos
 
-        internal static GrupoDominio criar(int intIndex)
+        internal static PastaDominio criar(int intIndex)
         {
-            GrupoDominio objGrupoResultado = new GrupoDominio();
+            PastaDominio objPastaResultado = new PastaDominio();
 
-            objGrupoResultado.attStrNome.strValor = string.Format("Grupo {0}", intIndex);
+            objPastaResultado.attStrNome.strValor = string.Format("Pasta {0}", intIndex);
 
-            return objGrupoResultado;
+            objPastaResultado.iniciar(true);
+
+            return objPastaResultado;
         }
 
         #endregion Métodos

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.TabDock;
@@ -20,7 +19,6 @@ namespace Rpg.Frm
         private List<ImagemDominio> _lstObjImg;
         private List<MapaDominio> _lstObjMapa;
         private RpgDominioBase _objSelecionado;
-        private TabDockArte _tabDockArte;
         private TabDockDados _tabDockDados;
         private TabDockExplorer _tabDockExplorer;
         private TabDockImagem _tabDockImagemSelecionada;
@@ -116,21 +114,6 @@ namespace Rpg.Frm
                 _lstObjMapa = new List<MapaDominio>();
 
                 return _lstObjMapa;
-            }
-        }
-
-        private TabDockArte tabDockArte
-        {
-            get
-            {
-                if (_tabDockArte != null)
-                {
-                    return _tabDockArte;
-                }
-
-                _tabDockArte = new TabDockArte();
-
-                return _tabDockArte;
             }
         }
 
@@ -242,10 +225,10 @@ namespace Rpg.Frm
 
             this.WindowState = FormWindowState.Maximized;
 
-            this.ofdJogo.Filter = ("RPG JSON|*" + AppRpg.STR_EXTENSAO);
+            this.ofdJogo.Filter = ("Jogo RPG Maker|*" + AppRpg.STR_EXTENSAO_JOGO);
 
-            this.sfdJogo.FileName = ("Novo RPG" + AppRpg.STR_EXTENSAO);
-            this.sfdJogo.Filter = this.ofdJogo.Filter;
+            this.sfdJogo.FileName = ("Novo Jogo RPG" + AppRpg.STR_EXTENSAO_JOGO);
+            this.sfdJogo.Filter = ("Jogo RPG Maker|*" + AppRpg.STR_EXTENSAO_JOGO);
         }
 
         private void abrirJogo(JogoDominio objJogo)
@@ -257,7 +240,7 @@ namespace Rpg.Frm
 
             this.tabDockExplorer.Show(this.pnlDockRpg, DockState.DockLeft);
 
-            this.tabDockExplorer.carregarJogo();
+            this.tabDockExplorer.abrirJogo();
         }
 
         private void abrirJogo()
@@ -284,29 +267,14 @@ namespace Rpg.Frm
             this.abrirJogo(AppRpg.i.objJogo);
         }
 
-        private void exibirTabDockArte()
-        {
-            if (AppRpg.i.objJogo == null)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(AppRpg.i.objJogo.attDirCompleto.strValor))
-            {
-                return;
-            }
-
-            if (!File.Exists(AppRpg.i.objJogo.attDirCompleto.strValor))
-            {
-                return;
-            }
-
-            this.tabDockArte.Show(this.pnlDockRpg, DockState.DockLeft);
-        }
-
         private void salvarJogo()
         {
-            AppRpg.i.salvarJogo();
+            AppRpg.i.objJogo.salvar();
+
+            foreach (MapaDominio objMapa in this.lstObjMapa)
+            {
+                objMapa.salvar();
+            }
         }
 
         private void setObjSelecionado(RpgDominioBase objDominioSelecionado)
@@ -327,18 +295,6 @@ namespace Rpg.Frm
         #endregion Métodos
 
         #region Eventos
-
-        private void tsmExibirArte_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.exibirTabDockArte();
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
-        }
 
         private void tsmExibirDados_Click(object sender, EventArgs e)
         {

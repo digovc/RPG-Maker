@@ -136,12 +136,6 @@
     <Compile Include="Controle\Painel\PnlItemBase.Designer.cs">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\TabDock\TabDockArte.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controle\TabDock\TabDockArte.Designer.cs">
-      <DependentUpon>TabDockArte.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controle\TabDock\TabDockAudio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,8 +190,7 @@
     <Compile Include="Dominio\Atributo.cs" />
     <Compile Include="Dominio\AudioDominio.cs" />
     <Compile Include="Dominio\CamadaDominio.cs" />
-    <Compile Include="Dominio\ContainerDominioBase.cs" />
-    <Compile Include="Dominio\GrupoDominio.cs" />
+    <Compile Include="Dominio\PastaDominio.cs" />
     <Compile Include="Dominio\ImagemDominio.cs" />
     <Compile Include="Dominio\JogoDominio.cs" />
     <Compile Include="Dominio\MapaDominio.cs" />
@@ -249,10 +242,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemBase.resx">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controle\TabDock\TabDockArte.resx">
-      <DependentUpon>TabDockArte.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockDados.resx">

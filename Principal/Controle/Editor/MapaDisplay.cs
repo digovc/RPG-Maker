@@ -146,7 +146,7 @@ namespace Rpg.Controle.Editor
 
         private void apagar(int x, int y, CamadaDominio objCamada)
         {
-            if (!this.objMapa.lstObjFilho.Contains(objCamada))
+            if (!this.objMapa.lstObjCamada.Contains(objCamada))
             {
                 return;
             }
@@ -300,14 +300,9 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            foreach (RpgDominioBase objDominio in this.objMapa.lstObjFilho)
+            foreach (CamadaDominio objCamada in this.objMapa.lstObjCamada)
             {
-                if (!(objDominio is CamadaDominio))
-                {
-                    continue;
-                }
-
-                this.getGfcCamada(objDominio as CamadaDominio).renderizar(arg);
+                this.getGfcCamada(objCamada).renderizar(arg);
             }
         }
 

@@ -109,6 +109,7 @@ namespace Rpg.Controle.TabDock
             edtAtt.att = att;
 
             this.pnlConteudo.Controls.Add(edtAtt);
+            this.pnlConteudo.Controls.SetChildIndex(edtAtt, 0);
         }
 
         private void setObjDominioArqRef(ArquivoRefDominio objArqRef)

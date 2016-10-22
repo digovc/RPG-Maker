@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Rpg.Dominio
 {
@@ -12,6 +13,8 @@ namespace Rpg.Dominio
 
         private Atributo _attIntQuantidadeX;
         private Atributo _attIntQuantidadeY;
+
+        private List<CamadaDominio> _lstObjCamada;
 
         [JsonIgnore]
         public Atributo attIntQuantidadeX
@@ -45,6 +48,21 @@ namespace Rpg.Dominio
             }
         }
 
+        public List<CamadaDominio> lstObjCamada
+        {
+            get
+            {
+                if (_lstObjCamada != null)
+                {
+                    return _lstObjCamada;
+                }
+
+                _lstObjCamada = new List<CamadaDominio>();
+
+                return _lstObjCamada;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -52,6 +70,21 @@ namespace Rpg.Dominio
         #endregion Construtores
 
         #region Métodos
+
+        public void addCamada(CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return;
+            }
+
+            if (this.lstObjCamada.Contains(objCamada))
+            {
+                return;
+            }
+
+            this.lstObjCamada.Add(objCamada);
+        }
 
         internal static MapaDominio criar(int intIndex)
         {
@@ -62,21 +95,6 @@ namespace Rpg.Dominio
             objMapaResultado.iniciar(true);
 
             return objMapaResultado;
-        }
-
-        internal override bool validarItem(RpgDominioBase objDominio)
-        {
-            if (!base.validarItem(objDominio))
-            {
-                return false;
-            }
-
-            if (objDominio is CamadaDominio)
-            {
-                return true;
-            }
-
-            return false;
         }
 
         protected override void inicializar(bool booCriacao)

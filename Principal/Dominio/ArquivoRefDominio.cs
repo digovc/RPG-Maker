@@ -1,9 +1,8 @@
 ﻿using System.IO;
-using Newtonsoft.Json;
 
 namespace Rpg.Dominio
 {
-    public class ArquivoRefDominio : ContainerDominioBase
+    public class ArquivoRefDominio : RpgDominioBase
     {
         #region Constantes
 
@@ -11,10 +10,9 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private ArquivoDominio _objArquivo;
         private Atributo _attDirArquivo;
+        private ArquivoDominio _objArquivo;
 
-        [JsonIgnore]
         public Atributo attDirArquivo
         {
             get
@@ -30,7 +28,6 @@ namespace Rpg.Dominio
             }
         }
 
-        [JsonIgnore]
         public ArquivoDominio objArquivo
         {
             get
@@ -97,7 +94,7 @@ namespace Rpg.Dominio
 
         private string getDirArquivo()
         {
-            string strResultado = (this.attStrNome.strValor + AppRpg.STR_EXTENSAO);
+            string strResultado = (this.attStrNome.strValor + AppRpg.STR_EXTENSAO_MAPA);
 
             RpgDominioBase objDominioPai = this.objPai;
 
@@ -131,14 +128,15 @@ namespace Rpg.Dominio
             return objArqResultado;
         }
 
-        private void setObjArquivo(ArquivoDominio objArq)
+        private void setObjArquivo(ArquivoDominio objArquivo)
         {
-            if (objArq == null)
+            if (objArquivo == null)
             {
                 return;
             }
 
-            this.attStrNome.strValor = objArq.attStrNome.strValor;
+            this.attDirArquivo.strValor = objArquivo.attDirCompleto.strValor;
+            this.attStrNome.strValor = objArquivo.attStrNome.strValor;
         }
 
         #endregion Métodos

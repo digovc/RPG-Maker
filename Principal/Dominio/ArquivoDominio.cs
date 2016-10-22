@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Rpg.Dominio
 {
-    public class ArquivoDominio : ContainerDominioBase
+    public class ArquivoDominio : RpgDominioBase
     {
         #region Constantes
 
@@ -39,6 +39,16 @@ namespace Rpg.Dominio
 
         #region Métodos
 
+        public void salvar()
+        {
+            if (string.IsNullOrEmpty(this.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            File.WriteAllText(this.attDirCompleto.strValor, JsonRpg.i.toJson(this));
+        }
+
         protected override void inicializar(bool booCriacao)
         {
             base.inicializar(booCriacao);
@@ -65,7 +75,7 @@ namespace Rpg.Dominio
                 return;
             }
 
-            string dirNovo = Path.Combine(Path.GetDirectoryName(this.attDirCompleto.strValor), (this.attStrNome.strValor + AppRpg.STR_EXTENSAO));
+            string dirNovo = Path.Combine(Path.GetDirectoryName(this.attDirCompleto.strValor), (this.attStrNome.strValor + AppRpg.STR_EXTENSAO_MAPA));
 
             File.Move(this.attDirCompleto.strValor, dirNovo);
 

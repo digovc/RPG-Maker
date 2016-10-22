@@ -11,7 +11,8 @@ namespace Rpg
     {
         #region Constantes
 
-        internal static string STR_EXTENSAO = ".rpgjson";
+        internal static string STR_EXTENSAO_JOGO = ".rpggamejson";
+        internal static string STR_EXTENSAO_MAPA = ".rpgmapjson";
 
         #endregion Constantes
 
@@ -129,16 +130,6 @@ namespace Rpg
             return bmpNovo;
         }
 
-        public void salvarJogo()
-        {
-            if (this.objJogo == null)
-            {
-                return;
-            }
-
-            this.objJogo.salvar();
-        }
-
         internal void abrirJogo(string dirJogo)
         {
             if (string.IsNullOrEmpty(dirJogo))
@@ -170,7 +161,7 @@ namespace Rpg
 
             this.objJogo = JogoDominio.criar(dirJogo);
 
-            this.salvarJogo();
+            this.objJogo.salvar();
         }
 
         protected override string getStrAppNome()
