@@ -84,13 +84,13 @@ namespace Rpg.Dominio
         {
             string strResultado = (this.attStrNome.strValor + ".json");
 
-            RpgDominioBase objDominioPai = this.objDominioPai;
+            RpgDominioBase objDominioPai = this.objPai;
 
             while (objDominioPai != null && !(objDominioPai is JogoDominio))
             {
                 strResultado = string.Format("{0}/{1}", objDominioPai.attStrNome.strValor, strResultado);
 
-                objDominioPai = objDominioPai.objDominioPai;
+                objDominioPai = objDominioPai.objPai;
             }
 
             return Path.Combine(Path.GetDirectoryName(AppRpg.i.objJogo.attDirCompleto.strValor), strResultado);
@@ -108,7 +108,11 @@ namespace Rpg.Dominio
                 return null;
             }
 
-            return JsonRpg.i.fromJson<ArquivoDominio>(File.ReadAllText(this.attDirArquivo.strValor));
+            ArquivoDominio objArqResultado = JsonRpg.i.fromJson<ArquivoDominio>(File.ReadAllText(this.attDirArquivo.strValor));
+
+            objArqResultado.objPai = this;
+
+            return objArqResultado;
         }
 
         #endregion Métodos

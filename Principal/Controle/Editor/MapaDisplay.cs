@@ -19,23 +19,8 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private List<CamadaGrafico> _lstGfcCamada;
-        private CamadaDominio _objCamadaSelecionada;
         private MapaDominio _objMapa;
-
         private TabDockMapa _tabDockMapa;
-
-        public CamadaDominio objCamadaSelecionada
-        {
-            get
-            {
-                return _objCamadaSelecionada;
-            }
-
-            set
-            {
-                _objCamadaSelecionada = value;
-            }
-        }
 
         public MapaDominio objMapa
         {
@@ -146,12 +131,22 @@ namespace Rpg.Controle.Editor
 
         private void apagar(int x, int y)
         {
-            if (this.objCamadaSelecionada == null)
+            if (AppRpg.i.frmPrincipal.objSelecionado == null)
             {
                 return;
             }
 
-            if (!this.objMapa.lstObjCamada.Contains(this.objCamadaSelecionada))
+            if (!(AppRpg.i.frmPrincipal.objSelecionado is CamadaDominio))
+            {
+                return;
+            }
+
+            this.apagar(x, y, (AppRpg.i.frmPrincipal.objSelecionado as CamadaDominio));
+        }
+
+        private void apagar(int x, int y, CamadaDominio objCamada)
+        {
+            if (!this.objMapa.lstObjFilho.Contains(objCamada))
             {
                 return;
             }
@@ -160,7 +155,7 @@ namespace Rpg.Controle.Editor
 
             y = this.normalizarTileY(y);
 
-            if (!this.objCamadaSelecionada.removerTile(x, y))
+            if (!objCamada.removerTile(x, y))
             {
                 return;
             }
@@ -170,16 +165,21 @@ namespace Rpg.Controle.Editor
 
         private void desenhar(int x, int y)
         {
-            if (this.objCamadaSelecionada == null)
+            if (AppRpg.i.frmPrincipal.objSelecionado == null)
             {
                 return;
             }
 
-            if (!this.objMapa.lstObjCamada.Contains(this.objCamadaSelecionada))
+            if (!(AppRpg.i.frmPrincipal.objSelecionado is CamadaDominio))
             {
                 return;
             }
 
+            this.desenhar(x, y, (AppRpg.i.frmPrincipal.objSelecionado as CamadaDominio));
+        }
+
+        private void desenhar(int x, int y, CamadaDominio objCamada)
+        {
             if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada == null)
             {
                 return;
@@ -211,7 +211,7 @@ namespace Rpg.Controle.Editor
                 objTile = this.desenharTile(x, y);
             }
 
-            this.objCamadaSelecionada.addTile(objTile);
+            objCamada.addTile(objTile);
 
             this.Invalidate();
         }
@@ -300,9 +300,14 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            foreach (CamadaDominio objCamada in this.objMapa.lstObjCamada)
+            foreach (RpgDominioBase objDominio in this.objMapa.lstObjFilho)
             {
-                this.getGfcCamada(objCamada).renderizar(arg);
+                if (!(objDominio is CamadaDominio))
+                {
+                    continue;
+                }
+
+                this.getGfcCamada(objDominio as CamadaDominio).renderizar(arg);
             }
         }
 

@@ -50,7 +50,7 @@ namespace Rpg.Controle.TabDock
         {
             base.inicializar();
 
-            this.objDominio = AppRpg.i.frmPrincipal.objDominioSelecionado;
+            this.objDominio = AppRpg.i.frmPrincipal.objSelecionado;
         }
 
         private EditAtributoBase getEdtAtt(Atributo.EnmTipo enmTipo)

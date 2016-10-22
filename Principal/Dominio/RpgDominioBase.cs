@@ -14,7 +14,7 @@ namespace Rpg.Dominio
 
         private Atributo _attStrNome;
         private List<Atributo> _lstAtt;
-        private RpgDominioBase _objDominioPai;
+        private RpgDominioBase _objPai;
 
         [JsonIgnore]
         public Atributo attStrNome
@@ -48,16 +48,16 @@ namespace Rpg.Dominio
         }
 
         [JsonIgnore]
-        public RpgDominioBase objDominioPai
+        public RpgDominioBase objPai
         {
             get
             {
-                return _objDominioPai;
+                return _objPai;
             }
 
             set
             {
-                _objDominioPai = value;
+                _objPai = value;
             }
         }
 

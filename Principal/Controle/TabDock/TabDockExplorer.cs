@@ -40,16 +40,16 @@ namespace Rpg.Controle.TabDock
 
             this.trv.Nodes.Add(trnJogo);
 
-            foreach (RpgDominioBase objDominio in AppRpg.i.objJogo.lstObjFilho)
+            foreach (RpgDominioBase objFilho in AppRpg.i.objJogo.lstObjFilho)
             {
-                if (objDominio == null)
+                if (objFilho == null)
                 {
                     continue;
                 }
 
-                objDominio.objDominioPai = AppRpg.i.objJogo;
+                objFilho.objPai = AppRpg.i.objJogo;
 
-                this.carregarJogo(objDominio, trnJogo);
+                this.carregarJogo(objFilho, trnJogo);
             }
         }
 
@@ -114,21 +114,43 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            if (!((this.trv.SelectedNode as TreeNodeRpg).objDominio is ContainerDominioBase))
+            RpgDominioBase objPai = (this.trv.SelectedNode as TreeNodeRpg).objDominio;
+
+            if (objPai is ArquivoRefDominio)
+            {
+                objPai = (objPai as ArquivoRefDominio).objArquivo;
+            }
+
+            if (!(objPai is ContainerDominioBase))
             {
                 return;
             }
 
-            ContainerDominioBase objContainer = ((this.trv.SelectedNode as TreeNodeRpg).objDominio as ContainerDominioBase);
+            ContainerDominioBase objPaiContainer = (objPai as ContainerDominioBase);
 
-            if (!objContainer.validarItem(objDominio))
+            if (!objPaiContainer.validarItem(objDominio))
             {
                 return;
             }
 
-            objContainer.addFilho(objDominio);
+            objPaiContainer.addFilho(objDominio);
 
             this.addTrn(new TreeNodeRpg(objDominio));
+        }
+
+        private void addItemCamada()
+        {
+            if (AppRpg.i.objJogo == null)
+            {
+                return;
+            }
+
+            if (this.trv.SelectedNode == null)
+            {
+                return;
+            }
+
+            this.addItem(CamadaDominio.criar(this.trv.SelectedNode.Nodes.Count));
         }
 
         private void addItemGrupo()
@@ -183,32 +205,50 @@ namespace Rpg.Controle.TabDock
             this.trv.SelectedNode = trn;
         }
 
-        private void carregarJogo(RpgDominioBase objDominio, TreeNodeRpg trn)
+        private void carregarJogo(RpgDominioBase objPai, TreeNodeRpg trnPai)
         {
-            if (objDominio == null)
+            if (objPai == null)
             {
                 return;
             }
 
-            TreeNodeRpg trnFilho = new TreeNodeRpg(objDominio);
+            TreeNodeRpg trnFilho = new TreeNodeRpg(objPai);
 
-            trn.Nodes.Add(trnFilho);
+            trnPai.Nodes.Add(trnFilho);
 
-            if (!(typeof(ContainerDominioBase).IsAssignableFrom(objDominio.GetType())))
+            if (objPai is ArquivoRefDominio)
+            {
+                this.carregarJogoArqRef((objPai as ArquivoRefDominio).objArquivo, trnFilho);
+            }
+
+            if (!(typeof(ContainerDominioBase).IsAssignableFrom(objPai.GetType())))
             {
                 return;
             }
 
-            foreach (RpgDominioBase objDominioFilho in (objDominio as ContainerDominioBase).lstObjFilho)
+            foreach (RpgDominioBase objFilho in (objPai as ContainerDominioBase).lstObjFilho)
             {
-                if (objDominioFilho == null)
+                if (objFilho == null)
                 {
                     continue;
                 }
 
-                objDominioFilho.objDominioPai = objDominio;
+                objFilho.objPai = objPai;
 
-                this.carregarJogo(objDominioFilho, trnFilho);
+                this.carregarJogo(objFilho, trnFilho);
+            }
+        }
+
+        private void carregarJogoArqRef(ArquivoDominio objArq, TreeNodeRpg trnFilho)
+        {
+            if (objArq == null)
+            {
+                return;
+            }
+
+            foreach (RpgDominioBase objFilho in objArq.lstObjFilho)
+            {
+                this.carregarJogo(objFilho, trnFilho);
             }
         }
 
@@ -219,7 +259,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            AppRpg.i.frmPrincipal.objDominioSelecionado = trn.objDominio;
+            AppRpg.i.frmPrincipal.objSelecionado = trn.objDominio;
         }
 
         private void processarNodeDoubleClick(TreeNodeRpg trn)
@@ -280,6 +320,18 @@ namespace Rpg.Controle.TabDock
             try
             {
                 this.processarNodeDoubleClick((TreeNodeRpg)e.Node);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmAddItemCAmada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.addItemCamada();
             }
             catch (Exception ex)
             {

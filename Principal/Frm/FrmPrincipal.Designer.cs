@@ -120,7 +120,6 @@
             this.tsmExibirCamada.Name = "tsmExibirCamada";
             this.tsmExibirCamada.Size = new System.Drawing.Size(149, 22);
             this.tsmExibirCamada.Text = "Camadas";
-            this.tsmExibirCamada.Click += new System.EventHandler(this.tsmExibirCamada_Click);
             // 
             // tsmExibirArte
             // 

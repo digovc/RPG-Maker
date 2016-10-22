@@ -50,7 +50,6 @@
             this.ctrMapa.Location = new System.Drawing.Point(0, 24);
             this.ctrMapa.Margin = new System.Windows.Forms.Padding(4);
             this.ctrMapa.Name = "ctrDisplay";
-            this.ctrMapa.objCamadaSelecionada = null;
             this.ctrMapa.objMapa = null;
             this.ctrMapa.Size = new System.Drawing.Size(1043, 888);
             this.ctrMapa.TabIndex = 0;

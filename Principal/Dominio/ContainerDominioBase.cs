@@ -35,14 +35,14 @@ namespace Rpg.Dominio
 
         #region Métodos
 
-        internal void addFilho(RpgDominioBase objDominio)
+        internal virtual void addFilho(RpgDominioBase objDominio)
         {
             if (objDominio == null)
             {
                 return;
             }
 
-            objDominio.objDominioPai = this;
+            objDominio.objPai = this;
 
             if (this.lstObjFilho.Contains(objDominio))
             {

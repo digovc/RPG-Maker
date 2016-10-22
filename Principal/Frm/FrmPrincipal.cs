@@ -19,9 +19,8 @@ namespace Rpg.Frm
 
         private List<ImagemDominio> _lstObjImg;
         private List<MapaDominio> _lstObjMapa;
-        private RpgDominioBase _objDominioSelecionado;
+        private RpgDominioBase _objSelecionado;
         private TabDockArte _tabDockArte;
-        private TabDockCamada _tabDockCamada;
         private TabDockDados _tabDockDados;
         private TabDockExplorer _tabDockExplorer;
         private TabDockImagem _tabDockImagemSelecionada;
@@ -29,23 +28,23 @@ namespace Rpg.Frm
         private TabDockMapa _tabDockMapaSelecionado;
         private TabDockPropriedade _tabDockPropriedade;
 
-        public RpgDominioBase objDominioSelecionado
+        public RpgDominioBase objSelecionado
         {
             get
             {
-                return _objDominioSelecionado;
+                return _objSelecionado;
             }
 
             set
             {
-                if (_objDominioSelecionado == value)
+                if (_objSelecionado == value)
                 {
                     return;
                 }
 
-                _objDominioSelecionado = value;
+                _objSelecionado = value;
 
-                this.setObjDominioSelecionado(_objDominioSelecionado);
+                this.setObjSelecionado(_objSelecionado);
             }
         }
 
@@ -71,14 +70,7 @@ namespace Rpg.Frm
 
             set
             {
-                if (_tabDockMapaSelecionado == value)
-                {
-                    return;
-                }
-
                 _tabDockMapaSelecionado = value;
-
-                this.setTabDockMapaSelecionado(_tabDockMapaSelecionado);
             }
         }
 
@@ -139,21 +131,6 @@ namespace Rpg.Frm
                 _tabDockArte = new TabDockArte();
 
                 return _tabDockArte;
-            }
-        }
-
-        public TabDockCamada tabDockCamada
-        {
-            get
-            {
-                if (_tabDockCamada != null)
-                {
-                    return _tabDockCamada;
-                }
-
-                _tabDockCamada = new TabDockCamada();
-
-                return _tabDockCamada;
             }
         }
 
@@ -327,7 +304,7 @@ namespace Rpg.Frm
             AppRpg.i.salvarJogo();
         }
 
-        private void setObjDominioSelecionado(RpgDominioBase objDominioSelecionado)
+        private void setObjSelecionado(RpgDominioBase objDominioSelecionado)
         {
             if (objDominioSelecionado == null)
             {
@@ -342,16 +319,6 @@ namespace Rpg.Frm
             this.tabDockPropriedade.objDominio = objDominioSelecionado;
         }
 
-        private void setTabDockMapaSelecionado(TabDockMapa tabDockMapaSelecionado)
-        {
-            if (tabDockMapaSelecionado == null)
-            {
-                return;
-            }
-
-            this.tabDockCamada.objMapa = tabDockMapaSelecionado.objMapa;
-        }
-
         #endregion Métodos
 
         #region Eventos
@@ -361,18 +328,6 @@ namespace Rpg.Frm
             try
             {
                 this.exibirTabDockArte();
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
-        }
-
-        private void tsmExibirCamada_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.tabDockCamada.Show(this.pnlDockRpg, DockState.DockRight);
             }
             catch (Exception ex)
             {

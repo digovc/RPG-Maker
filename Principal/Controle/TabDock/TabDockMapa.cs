@@ -20,7 +20,6 @@ namespace Rpg.Controle.TabDock
         #region Atributos
 
         private EnmFerramenta _enmFerramenta = EnmFerramenta.LAPIS;
-        private CamadaDominio _objCamadaSelecioanda;
         private MapaDominio _objMapa;
 
         public EnmFerramenta enmFerramenta
@@ -33,26 +32,6 @@ namespace Rpg.Controle.TabDock
             set
             {
                 _enmFerramenta = value;
-            }
-        }
-
-        public CamadaDominio objCamadaSelecioanda
-        {
-            get
-            {
-                return _objCamadaSelecioanda;
-            }
-
-            set
-            {
-                if (_objCamadaSelecioanda == value)
-                {
-                    return;
-                }
-
-                _objCamadaSelecioanda = value;
-
-                this.setObjCamadaSelecioanda(_objCamadaSelecioanda);
             }
         }
 
@@ -99,11 +78,6 @@ namespace Rpg.Controle.TabDock
         private void carregarMapa()
         {
             this.ctrMapa.objMapa = this.objMapa;
-        }
-
-        private void setObjCamadaSelecioanda(CamadaDominio objCamadaSelecioanda)
-        {
-            this.ctrMapa.objCamadaSelecionada = objCamadaSelecioanda;
         }
 
         private void setObjMapa(MapaDominio objMapa)

@@ -35,6 +35,7 @@
             this.tsmAddItemGrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemMapa = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemPersonagem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddItemCAmada = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlAtalho.SuspendLayout();
             this.cmsAddItem.SuspendLayout();
             this.SuspendLayout();
@@ -66,31 +67,39 @@
             this.cmsAddItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddItemGrupo,
             this.tsmAddItemMapa,
+            this.tsmAddItemCAmada,
             this.tsmAddItemPersonagem});
             this.cmsAddItem.Name = "cmsAddItem";
-            this.cmsAddItem.Size = new System.Drawing.Size(166, 82);
+            this.cmsAddItem.Size = new System.Drawing.Size(182, 136);
             // 
             // tsmAddItemGrupo
             // 
             this.tsmAddItemGrupo.Name = "tsmAddItemGrupo";
-            this.tsmAddItemGrupo.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemGrupo.Size = new System.Drawing.Size(181, 26);
             this.tsmAddItemGrupo.Text = "Grupo";
             this.tsmAddItemGrupo.Click += new System.EventHandler(this.tsmAddItemGrupo_Click);
             // 
             // tsmAddItemMapa
             // 
             this.tsmAddItemMapa.Name = "tsmAddItemMapa";
-            this.tsmAddItemMapa.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemMapa.Size = new System.Drawing.Size(181, 26);
             this.tsmAddItemMapa.Text = "Mapa";
             this.tsmAddItemMapa.Click += new System.EventHandler(this.tsmAddItemMapa_Click);
             // 
             // tsmAddItemPersonagem
             // 
             this.tsmAddItemPersonagem.Name = "tsmAddItemPersonagem";
-            this.tsmAddItemPersonagem.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemPersonagem.Size = new System.Drawing.Size(181, 26);
             this.tsmAddItemPersonagem.Text = "Personagem";
             // 
-            // TabDockJogoExplorer
+            // tsmAddItemCAmada
+            // 
+            this.tsmAddItemCAmada.Name = "tsmAddItemCAmada";
+            this.tsmAddItemCAmada.Size = new System.Drawing.Size(181, 26);
+            this.tsmAddItemCAmada.Text = "Camada";
+            this.tsmAddItemCAmada.Click += new System.EventHandler(this.tsmAddItemCAmada_Click);
+            // 
+            // TabDockExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,7 +107,7 @@
             this.Controls.Add(this.trv);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "TabDockJogoExplorer";
+            this.Name = "TabDockExplorer";
             this.Text = "Jogo";
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
             this.Controls.SetChildIndex(this.trv, 0);
@@ -116,5 +125,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemGrupo;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemMapa;
         private System.Windows.Forms.ToolStripMenuItem tsmAddItemPersonagem;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddItemCAmada;
     }
 }

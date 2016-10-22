@@ -130,12 +130,6 @@
     <Compile Include="Controle\Painel\PnlItemBase.Designer.cs">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Painel\PnlItemCamada.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controle\Painel\PnlItemCamada.Designer.cs">
-      <DependentUpon>PnlItemCamada.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controle\TabDock\TabDockArte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,12 +141,6 @@
     </Compile>
     <Compile Include="Controle\TabDock\TabDockAudio.Designer.cs">
       <DependentUpon>TabDockAudio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controle\TabDock\TabDockCamada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controle\TabDock\TabDockCamada.Designer.cs">
-      <DependentUpon>TabDockCamada.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockDados.cs">
       <SubType>Form</SubType>
@@ -253,16 +241,8 @@
       <DependentUpon>PnlItemBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controle\Painel\PnlItemCamada.resx">
-      <DependentUpon>PnlItemCamada.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockArte.resx">
       <DependentUpon>TabDockArte.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controle\TabDock\TabDockCamada.resx">
-      <DependentUpon>TabDockCamada.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockDados.resx">
