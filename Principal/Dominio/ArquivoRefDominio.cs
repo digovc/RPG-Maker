@@ -24,7 +24,7 @@ namespace Rpg.Dominio
                     return _attDirArquivo;
                 }
 
-                _attDirArquivo = this.getAttDirArquivo();
+                _attDirArquivo = this.getAtt("Diretório");
 
                 return _attDirArquivo;
             }
@@ -78,37 +78,6 @@ namespace Rpg.Dominio
             }
 
             File.WriteAllText(this.attDirArquivo.strValor, JsonRpg.i.toJson(this.objArquivo));
-        }
-
-        private Atributo getAttDirArquivo()
-        {
-            Atributo attResultado = this.getAtt("Diretório");
-
-            if (!string.IsNullOrEmpty(attResultado.strValor))
-            {
-                return attResultado;
-            }
-
-            attResultado.strValor = this.getDirArquivo();
-
-            return attResultado;
-        }
-
-        private string getDirArquivo()
-        {
-            string strResultado = (this.attStrNome.strValor + AppRpg.STR_EXTENSAO_MAPA);
-
-            RpgDominioBase objDominioPai = this.objPai;
-
-            while (objDominioPai != null && !(objDominioPai is JogoDominio))
-            {
-                //strResultado = string.Format("{0}/{1}", objDominioPai.attStrNome.strValor, strResultado);
-                strResultado = Path.Combine(objDominioPai.attStrNome.strValor, strResultado);
-
-                objDominioPai = objDominioPai.objPai;
-            }
-
-            return Path.Combine(Path.GetDirectoryName(AppRpg.i.objJogo.attDirCompleto.strValor), strResultado);
         }
 
         private ArquivoDominio getObjArquivo()

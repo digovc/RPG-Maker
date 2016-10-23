@@ -149,6 +149,9 @@ namespace Rpg
                 return;
             }
 
+            objJogo.attDirCompleto.strValor = dirJogo;
+            objJogo.attStrNome.strValor = Path.GetFileName(dirJogo);
+
             objJogo.iniciar(false);
         }
 

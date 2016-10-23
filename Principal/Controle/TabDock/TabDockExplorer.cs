@@ -170,13 +170,12 @@ namespace Rpg.Controle.TabDock
 
         private void abrirJogoArquivo(TreeNodeRpg trnPai, string dirArquivo, ArquivoDominio objArquivo)
         {
-
-            objArquivo.attDirCompleto.strValor = dirArquivo;
-            objArquivo.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirArquivo);
-
             ArquivoRefDominio arqRef = new ArquivoRefDominio();
 
             arqRef.objArquivo = objArquivo;
+
+            objArquivo.attDirCompleto.strValor = dirArquivo;
+            objArquivo.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirArquivo);
 
             trnPai.Nodes.Add(new TreeNodeRpg(arqRef));
         }
