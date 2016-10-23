@@ -78,6 +78,8 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
+            // TODO: Chamar o dispose para todos os componentes em vez de apenas limpar a lista.
+
             this.pnlConteudo.Controls.Clear();
 
             if (objDominio is ArquivoRefDominio)

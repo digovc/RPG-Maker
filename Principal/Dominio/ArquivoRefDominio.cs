@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using DigoFramework;
 
 namespace Rpg.Dominio
 {
@@ -123,7 +125,9 @@ namespace Rpg.Dominio
 
             ArquivoDominio objArqResultado = JsonRpg.i.fromJson<ArquivoDominio>(File.ReadAllText(this.attDirArquivo.strValor));
 
-            objArqResultado.objPai = this;
+            objArqResultado.objArqRef = this;
+
+            objArqResultado.iniciar(false);
 
             return objArqResultado;
         }
@@ -135,13 +139,39 @@ namespace Rpg.Dominio
                 return;
             }
 
-            this.attDirArquivo.strValor = objArquivo.attDirCompleto.strValor;
-            this.attStrNome.strValor = objArquivo.attStrNome.strValor;
+            objArquivo.objArqRef = this;
+
+            objArquivo.attDirCompleto.onStrValorAlterado += this.objArquivo_attDirCompleto_onStrValorAlterado;
+            objArquivo.attStrNome.onStrValorAlterado += this.objArquivo_attStrNome_onStrValorAlterado;
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void objArquivo_attDirCompleto_onStrValorAlterado(object sender, EventArgs e)
+        {
+            try
+            {
+                this.attDirArquivo.strValor = this.objArquivo.attDirCompleto.strValor;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void objArquivo_attStrNome_onStrValorAlterado(object sender, EventArgs e)
+        {
+            try
+            {
+                this.attStrNome.strValor = this.objArquivo.attStrNome.strValor;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
 
         #endregion Eventos
     }

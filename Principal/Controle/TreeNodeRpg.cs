@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Dominio;
@@ -66,6 +67,54 @@ namespace Rpg.Controle
             }
 
             this.Text = this.objDominio.attStrNome.strValor;
+
+            this.atualizarTextPasta();
+        }
+
+        private void atualizarTextPasta()
+        {
+            if (this.objDominio == null)
+            {
+                return;
+            }
+
+            if (!(this.objDominio is PastaDominio))
+            {
+                return;
+            }
+
+            foreach (TreeNode tnr in this.Nodes)
+            {
+                this.atualizarTextPasta((this.objDominio as PastaDominio), tnr as TreeNodeRpg);
+            }
+        }
+
+        private void atualizarTextPasta(PastaDominio objPastaPai, TreeNodeRpg tnrFilho)
+        {
+            if (tnrFilho.objDominio == null)
+            {
+                return;
+            }
+
+            if (tnrFilho.objDominio is ArquivoRefDominio)
+            {
+                this.atualizarTextPasta(objPastaPai, (tnrFilho.objDominio as ArquivoRefDominio));
+            }
+
+            if (!(tnrFilho.objDominio is PastaDominio))
+            {
+                return;
+            }
+
+            foreach (TreeNode tnrFilhoFilho in tnrFilho.Nodes)
+            {
+                this.atualizarTextPasta((tnrFilho.objDominio as PastaDominio), (tnrFilhoFilho as TreeNodeRpg));
+            }
+        }
+
+        private void atualizarTextPasta(PastaDominio objPastaPai, ArquivoRefDominio objArqRef)
+        {
+            objArqRef.attDirArquivo.strValor = Path.Combine(objPastaPai.attDirCompleto.strValor, (objArqRef.attStrNome.strValor + Path.GetExtension(objArqRef.attDirArquivo.strValor)));
         }
 
         private void setObjDominio(RpgDominioBase objDominio)

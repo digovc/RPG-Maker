@@ -15,6 +15,8 @@ namespace Rpg.Dominio
 
         private Atributo _attDirCompleto;
 
+        private ArquivoRefDominio _objArqRef;
+
         [JsonIgnore]
         public Atributo attDirCompleto
         {
@@ -28,6 +30,26 @@ namespace Rpg.Dominio
                 _attDirCompleto = this.getAtt("Diretório");
 
                 return _attDirCompleto;
+            }
+        }
+
+        public ArquivoRefDominio objArqRef
+        {
+            get
+            {
+                return _objArqRef;
+            }
+
+            set
+            {
+                if (_objArqRef == value)
+                {
+                    return;
+                }
+
+                _objArqRef = value;
+
+                this.setObjArqRef(_objArqRef);
             }
         }
 
@@ -49,6 +71,30 @@ namespace Rpg.Dominio
             File.WriteAllText(this.attDirCompleto.strValor, JsonRpg.i.toJson(this));
         }
 
+        protected virtual void atualizarNome()
+        {
+            if (!File.Exists(this.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.attStrNome.strValor))
+            {
+                return;
+            }
+
+            string dirNovo = Path.Combine(Path.GetDirectoryName(this.attDirCompleto.strValor), (this.attStrNome.strValor + Path.GetExtension(this.attDirCompleto.strValor)));
+
+            if (dirNovo.Equals(this.attDirCompleto.strValor))
+            {
+                return;
+            }
+
+            File.Move(this.attDirCompleto.strValor, dirNovo);
+
+            this.attDirCompleto.strValor = dirNovo;
+        }
+
         protected override void inicializar(bool booCriacao)
         {
             base.inicializar(booCriacao);
@@ -63,23 +109,19 @@ namespace Rpg.Dominio
             this.attStrNome.onStrValorAlterado += this.attStrNome_onStrValorAlterado;
         }
 
-        private void atualizarNome()
+        private void setObjArqRef(ArquivoRefDominio objArqRef)
         {
-            if (!File.Exists(this.attDirCompleto.strValor))
+            if (objArqRef == null)
             {
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.attStrNome.strValor))
-            {
-                return;
-            }
+            objArqRef.objArquivo = this;
 
-            string dirNovo = Path.Combine(Path.GetDirectoryName(this.attDirCompleto.strValor), (this.attStrNome.strValor + AppRpg.STR_EXTENSAO_MAPA));
+            objArqRef.attDirArquivo.onStrValorAlterado += this.objArqRef_attDirArquivo_onStrValorAlterado;
 
-            File.Move(this.attDirCompleto.strValor, dirNovo);
-
-            this.attDirCompleto.strValor = dirNovo;
+            this.attDirCompleto.strValor = objArqRef.attDirArquivo.strValor;
+            this.attStrNome.strValor = objArqRef.attStrNome.strValor;
         }
 
         #endregion Métodos
@@ -91,6 +133,18 @@ namespace Rpg.Dominio
             try
             {
                 this.atualizarNome();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void objArqRef_attDirArquivo_onStrValorAlterado(object sender, EventArgs e)
+        {
+            try
+            {
+                this.attDirCompleto.strValor = this.objArqRef.attDirArquivo.strValor;
             }
             catch (Exception ex)
             {
