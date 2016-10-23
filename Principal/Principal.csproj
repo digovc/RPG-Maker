@@ -194,6 +194,7 @@
     <Compile Include="Dominio\ImagemDominio.cs" />
     <Compile Include="Dominio\JogoDominio.cs" />
     <Compile Include="Dominio\MapaDominio.cs" />
+    <Compile Include="Dominio\PersonagemDominio.cs" />
     <Compile Include="Dominio\RpgDominioBase.cs" />
     <Compile Include="Dominio\TileDominio.cs" />
     <Compile Include="Frm\FrmPrincipal.cs">

@@ -13,7 +13,6 @@ namespace Rpg.Dominio
 
         private Atributo _attIntQuantidadeX;
         private Atributo _attIntQuantidadeY;
-
         private List<CamadaDominio> _lstObjCamada;
 
         [JsonIgnore]

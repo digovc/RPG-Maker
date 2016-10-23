@@ -13,9 +13,8 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private Atributo _attDirCompleto;
-
         private ArquivoRefDominio _objArqRef;
+        private Atributo _attDirCompleto;
 
         [JsonIgnore]
         public Atributo attDirCompleto
@@ -33,6 +32,7 @@ namespace Rpg.Dominio
             }
         }
 
+        [JsonIgnore]
         public ArquivoRefDominio objArqRef
         {
             get

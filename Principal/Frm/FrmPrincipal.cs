@@ -196,16 +196,16 @@ namespace Rpg.Frm
             this.lstObjImg.Add(objImg);
         }
 
-        internal void abrirMapa(MapaDominio objMapa)
+        internal bool abrirMapa(MapaDominio objMapa)
         {
             if (objMapa == null)
             {
-                return;
+                return false;
             }
 
             if (this.lstObjMapa.Contains(objMapa))
             {
-                return;
+                return false;
             }
 
             TabDockMapa tabMapa = new TabDockMapa();
@@ -215,6 +215,8 @@ namespace Rpg.Frm
             tabMapa.Show(this.pnlDockRpg, DockState.Document);
 
             this.lstObjMapa.Add(objMapa);
+
+            return true;
         }
 
         protected override void inicializar()

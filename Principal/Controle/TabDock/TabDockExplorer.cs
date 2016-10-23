@@ -192,8 +192,11 @@ namespace Rpg.Controle.TabDock
         }
 
         private void abrirMapa(TreeNodeRpg tnr, MapaDominio objMapa)
-        {            
-            AppRpg.i.frmPrincipal.abrirMapa(objMapa);
+        {
+            if (!AppRpg.i.frmPrincipal.abrirMapa(objMapa))
+            {
+                return;
+            }
 
             foreach (CamadaDominio objCamada in objMapa.lstObjCamada)
             {
