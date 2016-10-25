@@ -212,6 +212,7 @@
     <Compile Include="JsonRpg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemaRpg.cs" />
     <EmbeddedResource Include="Controle\AudioTrack.resx">
       <DependentUpon>AudioTrack.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,6 +292,10 @@
     <ProjectReference Include="..\DigoFramework\DigoFramework.csproj">
       <Project>{93078DE5-A910-4AD6-A942-657582105493}</Project>
       <Name>DigoFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web\NetZ.Web.csproj">
+      <Project>{bf12701f-12d8-41d0-9269-d8921568aa82}</Project>
+      <Name>NetZ.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

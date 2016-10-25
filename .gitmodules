@@ -4,3 +4,9 @@
 [submodule "OpenGL.Net"]
 	path = OpenGL.Net
 	url = https://github.com/digovc/OpenGL.Net.git
+[submodule "Web"]
+	path = Web
+	url = https://github.com/digovc/Web.git
+[submodule "Web.TypeScript"]
+	path = Web.TypeScript
+	url = https://github.com/digovc/Web.TypeScript.git

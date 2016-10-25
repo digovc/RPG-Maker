@@ -91,7 +91,7 @@ namespace Rpg
 
         #region Construtores
 
-        private AppRpg()
+        private AppRpg() : base("RPG Maker (Virtual Table Top)")
         {
         }
 
@@ -167,9 +167,9 @@ namespace Rpg
             this.objJogo.salvar();
         }
 
-        protected override string getStrAppNome()
+        protected override TemaBase getObjTema()
         {
-            return "RPG Maker (Tabletop)";
+            return TemaRpg.i;
         }
 
         private void setFrmPrincipal(FrmPrincipal frmPrincipal)
