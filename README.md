@@ -1,3 +1,3 @@
-# RPG Maker (Tabletop)
+# RPG Maker (Virtual Tabletop)
 
 // TODO
