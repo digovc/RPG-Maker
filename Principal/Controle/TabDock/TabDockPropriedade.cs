@@ -103,7 +103,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            PnlAttGrupo pnlAttGrupo = new PnlAttGrupo();
+            PnlAtributoGrupo pnlAttGrupo = new PnlAtributoGrupo();
 
             pnlAttGrupo.atualizarLayout(strGrupo, lstAttGrupo);
 

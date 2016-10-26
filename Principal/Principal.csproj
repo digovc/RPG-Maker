@@ -130,17 +130,23 @@
     <Compile Include="Controle\PainelAtalhoRpg.Designer.cs">
       <DependentUpon>PainelAtalhoRpg.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Painel\PnlAttGrupo.cs">
+    <Compile Include="Controle\Painel\PnlAtributoGrupo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controle\Painel\PnlAttGrupo.Designer.cs">
-      <DependentUpon>PnlAttGrupo.cs</DependentUpon>
+    <Compile Include="Controle\Painel\PnlAtributoGrupo.Designer.cs">
+      <DependentUpon>PnlAtributoGrupo.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\Painel\PnlItemBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controle\Painel\PnlItemBase.Designer.cs">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\Painel\PnlRpgTitulo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\Painel\PnlRpgTitulo.Designer.cs">
+      <DependentUpon>PnlRpgTitulo.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockAudio.cs">
       <SubType>Form</SubType>
@@ -254,12 +260,15 @@
       <DependentUpon>PainelAtalhoRpg.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controle\Painel\PnlAttGrupo.resx">
-      <DependentUpon>PnlAttGrupo.cs</DependentUpon>
+    <EmbeddedResource Include="Controle\Painel\PnlAtributoGrupo.resx">
+      <DependentUpon>PnlAtributoGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\Painel\PnlItemBase.resx">
       <DependentUpon>PnlItemBase.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\Painel\PnlRpgTitulo.resx">
+      <DependentUpon>PnlRpgTitulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockDados.resx">
       <DependentUpon>TabDockDados.cs</DependentUpon>

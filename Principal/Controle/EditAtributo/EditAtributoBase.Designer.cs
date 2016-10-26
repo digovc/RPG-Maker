@@ -29,16 +29,13 @@
         private void InitializeComponent()
         {
             this.pnlCampo = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.pnlComando = new System.Windows.Forms.Panel();
             this.btnJogadorVisivel = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnJogadorBloquear = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnBloquear = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.ctrLinha = new DigoFramework.Controle.Diverso.Linha();
-            this.pnlTitulo = new System.Windows.Forms.Panel();
-            this.txtTitulo = new System.Windows.Forms.TextBox();
+            this.pnlTitulo = new Rpg.Controle.Painel.PnlRpgTitulo();
             this.pnlComando.SuspendLayout();
-            this.pnlTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCampo
@@ -50,18 +47,6 @@
             this.pnlCampo.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pnlCampo.Size = new System.Drawing.Size(150, 115);
             this.pnlCampo.TabIndex = 1;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitulo.Location = new System.Drawing.Point(5, 0);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(140, 20);
-            this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Título";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // pnlComando
             // 
@@ -101,28 +86,14 @@
             this.ctrLinha.Name = "ctrLinha";
             this.ctrLinha.TabIndex = 0;
             // 
-            // pnlTitulo
+            // pnlRpgTitulo
             // 
-            this.pnlTitulo.Controls.Add(this.lblTitulo);
-            this.pnlTitulo.Controls.Add(this.txtTitulo);
+            this.pnlTitulo.booTituloFixo = true;
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitulo.Location = new System.Drawing.Point(0, 15);
-            this.pnlTitulo.Name = "pnlTitulo";
-            this.pnlTitulo.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.pnlTitulo.Name = "pnlRpgTitulo";
             this.pnlTitulo.Size = new System.Drawing.Size(150, 20);
-            this.pnlTitulo.TabIndex = 3;
-            // 
-            // txtTitulo
-            // 
-            this.txtTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTitulo.Location = new System.Drawing.Point(5, 0);
-            this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(140, 20);
-            this.txtTitulo.TabIndex = 1;
-            this.txtTitulo.Visible = false;
-            this.txtTitulo.Click += new System.EventHandler(this.txtTitulo_Click);
-            this.txtTitulo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTitulo_KeyUp);
-            this.txtTitulo.Leave += new System.EventHandler(this.txtTitulo_Leave);
+            this.pnlTitulo.TabIndex = 2;
             // 
             // EditAtributoBase
             // 
@@ -135,22 +106,17 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EditAtributoBase";
             this.pnlComando.ResumeLayout(false);
-            this.pnlTitulo.ResumeLayout(false);
-            this.pnlTitulo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblTitulo;
         protected System.Windows.Forms.Panel pnlCampo;
         private System.Windows.Forms.Panel pnlComando;
         private DigoFramework.Controle.Botao.BotaoAtalho btnBloquear;
         private DigoFramework.Controle.Botao.BotaoAtalho btnJogadorVisivel;
         private DigoFramework.Controle.Botao.BotaoAtalho btnJogadorBloquear;
         private DigoFramework.Controle.Diverso.Linha ctrLinha;
-        private System.Windows.Forms.Panel pnlTitulo;
-        private System.Windows.Forms.TextBox txtTitulo;
+        private Painel.PnlRpgTitulo pnlTitulo;
     }
 }

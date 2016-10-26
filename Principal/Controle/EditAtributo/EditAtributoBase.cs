@@ -81,6 +81,8 @@ namespace Rpg.Controle.EditAtributo
 
         protected override void inicializar()
         {
+            base.inicializar();
+
             this.Dock = DockStyle.Top;
             this.Size = new Size(350, 60);
         }
@@ -92,31 +94,27 @@ namespace Rpg.Controle.EditAtributo
                 return;
             }
 
-            this.lblTitulo.Text = att.strNome;
+            this.pnlTitulo.booTituloFixo = att.booNomeFixo;
+            this.pnlTitulo.strTitulo = att.strNome;
 
             att.onStrValorAlterado += this.att_onStrValorAlterado;
         }
 
-        private void alterarNome()
+        protected override void setEventos()
+        {
+            base.setEventos();
+
+            this.pnlTitulo.onStrTituloAlterado += this.pnlTitulo_onStrTituloAlterado;
+        }
+
+        private void atualizarAttStrNome()
         {
             if (this.att == null)
             {
                 return;
             }
 
-            if (this.att.booNomeFixo)
-            {
-                return;
-            }
-
-            this.lblTitulo.Visible = false;
-
-            this.txtTitulo.Text = this.lblTitulo.Text;
-
-            this.txtTitulo.Visible = true;
-
-            this.txtTitulo.SelectAll();
-            this.txtTitulo.Focus();
+            this.att.strNome = this.pnlTitulo.strTitulo;
         }
 
         private void bloquear()
@@ -147,34 +145,6 @@ namespace Rpg.Controle.EditAtributo
             }
 
             this.att.booJogadorVisivel = !this.att.booJogadorVisivel;
-        }
-
-        private void salvarTitulo(KeyEventArgs arg)
-        {
-            if (!Keys.Enter.Equals(arg.KeyCode))
-            {
-                return;
-            }
-
-            this.salvarTitulo();
-        }
-
-        private void salvarTitulo()
-        {
-            if (this.att == null)
-            {
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(this.txtTitulo.Text))
-            {
-                this.att.strNome = this.txtTitulo.Text;
-            }
-
-            this.lblTitulo.Text = this.att.strNome;
-            this.lblTitulo.Visible = true;
-
-            this.txtTitulo.Visible = false;
         }
 
         #endregion Métodos
@@ -229,47 +199,11 @@ namespace Rpg.Controle.EditAtributo
             }
         }
 
-        private void lblTitulo_Click(object sender, EventArgs e)
+        private void pnlTitulo_onStrTituloAlterado(object sender, EventArgs e)
         {
             try
             {
-                this.alterarNome();
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
-        }
-
-        private void txtTitulo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.salvarTitulo();
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
-        }
-
-        private void txtTitulo_KeyUp(object sender, KeyEventArgs arg)
-        {
-            try
-            {
-                this.salvarTitulo(arg);
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
-        }
-
-        private void txtTitulo_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                this.salvarTitulo();
+                this.atualizarAttStrNome();
             }
             catch (Exception ex)
             {
