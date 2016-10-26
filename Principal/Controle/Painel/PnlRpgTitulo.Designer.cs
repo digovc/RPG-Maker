@@ -1,4 +1,6 @@
-﻿namespace Rpg.Controle.Painel
+﻿using System;
+
+namespace Rpg.Controle.Painel
 {
     partial class PnlRpgTitulo
     {
@@ -36,20 +38,21 @@
             // 
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitulo.Location = new System.Drawing.Point(0, 0);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(3);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(150, 20);
+            this.lblTitulo.Size = new System.Drawing.Size(200, 20);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Título";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
+            this.lblTitulo.DoubleClick += new System.EventHandler(this.lblTitulo_DoubleClick);
             // 
             // txtTitulo
             // 
+            this.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitulo.Location = new System.Drawing.Point(0, 0);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(150, 20);
+            this.txtTitulo.Size = new System.Drawing.Size(200, 15);
             this.txtTitulo.TabIndex = 1;
             this.txtTitulo.Visible = false;
             this.txtTitulo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTitulo_KeyUp);
@@ -57,12 +60,13 @@
             // 
             // PnlRpgTitulo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtTitulo);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PnlRpgTitulo";
-            this.Size = new System.Drawing.Size(150, 20);
+            this.Size = new System.Drawing.Size(200, 20);
             this.ResumeLayout(false);
             this.PerformLayout();
 

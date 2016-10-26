@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.EditAtributo;
 using Rpg.Dominio;
@@ -9,6 +10,8 @@ namespace Rpg.Controle.Painel
     public partial class PnlAtributoGrupo : UserControlRpgBase
     {
         #region Constantes
+
+        private const int INT_HEIGHT_DEFAUL = 20;
 
         #endregion Constantes
 
@@ -56,10 +59,7 @@ namespace Rpg.Controle.Painel
 
             this.lstAttGrupo = lstAttGrupo;
 
-            this.Height = 15;
-
             this.pnlTitulo.strTitulo = strGrupo;
-            this.pnlConteudo.Height = 0;
 
             foreach (Atributo att in lstAttGrupo)
             {
@@ -71,7 +71,7 @@ namespace Rpg.Controle.Painel
         {
             base.inicializar();
 
-            this.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Dock = DockStyle.Top;
         }
 
         protected override void setEventos()
@@ -79,6 +79,11 @@ namespace Rpg.Controle.Painel
             base.setEventos();
 
             this.pnlTitulo.onStrTituloAlterado += this.pnlTitulo_onStrTituloAlterado;
+        }
+
+        private void abrirFecharGrupo()
+        {
+            this.pnlConteudo.Visible = !this.pnlConteudo.Visible;
         }
 
         private void addEdtAtt(EditAtributoBase edtAtt)
@@ -93,12 +98,8 @@ namespace Rpg.Controle.Painel
                 return;
             }
 
-            this.Controls.Add(edtAtt);
-            this.Controls.SetChildIndex(edtAtt, 0);
-
-            this.Height += edtAtt.Height;
-
-            this.pnlConteudo.Height += edtAtt.Height;
+            this.pnlConteudo.Controls.Add(edtAtt);
+            this.pnlConteudo.Controls.SetChildIndex(edtAtt, 0);
         }
 
         private void atualizarLayout(Atributo att)
@@ -148,9 +149,33 @@ namespace Rpg.Controle.Painel
             }
         }
 
+        private int getIntPnlConteudoHeight()
+        {
+            int intResultado = 0;
+
+            foreach (Control edtAtt in this.pnlConteudo.Controls)
+            {
+                intResultado += edtAtt.Size.Height;
+            }
+
+            return intResultado;
+        }
+
         #endregion Métodos
 
         #region Eventos
+
+        private void btnVisivel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.abrirFecharGrupo();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
 
         private void pnlTitulo_onStrTituloAlterado(object sender, EventArgs e)
         {

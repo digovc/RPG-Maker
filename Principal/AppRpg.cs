@@ -151,7 +151,7 @@ namespace Rpg
             }
 
             objJogo.attDirCompleto.strValor = dirJogo;
-            objJogo.attStrNome.strValor = Path.GetFileName(dirJogo);
+            objJogo.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
 
             objJogo.iniciar(false);
         }

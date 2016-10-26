@@ -12,7 +12,7 @@ namespace Rpg.Controle.Painel
 
         #region Atributos
 
-        private bool _booTituloFixo = true;
+        private bool _booTituloFixo;
         private string _strTitulo;
 
         public bool booTituloFixo
@@ -63,7 +63,7 @@ namespace Rpg.Controle.Painel
 
         private void alterarNome()
         {
-            if (!this.booTituloFixo)
+            if (this.booTituloFixo)
             {
                 return;
             }
@@ -114,7 +114,7 @@ namespace Rpg.Controle.Painel
         {
             try
             {
-                this.alterarNome();
+                this.InvokeOnClick(this, e);
             }
             catch (Exception ex)
             {
@@ -122,11 +122,11 @@ namespace Rpg.Controle.Painel
             }
         }
 
-        private void txtTitulo_Click(object sender, EventArgs e)
+        private void lblTitulo_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                this.salvarTitulo();
+                this.alterarNome();
             }
             catch (Exception ex)
             {

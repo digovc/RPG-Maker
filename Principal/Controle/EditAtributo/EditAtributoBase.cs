@@ -84,7 +84,6 @@ namespace Rpg.Controle.EditAtributo
             base.inicializar();
 
             this.Dock = DockStyle.Top;
-            this.Size = new Size(350, 60);
         }
 
         protected virtual void setAtt(Atributo att)

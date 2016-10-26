@@ -35,7 +35,6 @@
             // pnlCampo
             // 
             this.pnlCampo.Controls.Add(this.txtStrValor);
-            this.pnlCampo.Size = new System.Drawing.Size(1125, 25);
             // 
             // txtStrValor
             // 

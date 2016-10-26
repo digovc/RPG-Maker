@@ -45,7 +45,6 @@
             this.pnlCampo.Controls.Add(this.txtStrValorMaximo);
             this.pnlCampo.Controls.Add(this.lblDe);
             this.pnlCampo.Controls.Add(this.txtStrValor);
-            this.pnlCampo.Size = new System.Drawing.Size(1343, 25);
             // 
             // txtStrValor
             // 
