@@ -35,16 +35,18 @@
             // 
             this.pnlConteudo.BackColor = System.Drawing.Color.White;
             this.pnlConteudo.booPadding = false;
+            this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlConteudo.Name = "pnlConteudo";
             this.pnlConteudo.TabIndex = 1;
             // 
             // TabDockPropriedade
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 453);
+            this.ClientSize = new System.Drawing.Size(643, 558);
             this.Controls.Add(this.pnlConteudo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TabDockPropriedade";
             this.Text = "Propriedades";
             this.Controls.SetChildIndex(this.pnlAtalho, 0);

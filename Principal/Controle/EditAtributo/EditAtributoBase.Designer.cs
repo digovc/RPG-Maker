@@ -41,18 +41,18 @@
             // pnlCampo
             // 
             this.pnlCampo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCampo.Location = new System.Drawing.Point(0, 39);
+            this.pnlCampo.Location = new System.Drawing.Point(0, 41);
             this.pnlCampo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlCampo.Name = "pnlCampo";
             this.pnlCampo.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            this.pnlCampo.Size = new System.Drawing.Size(200, 61);
+            this.pnlCampo.Size = new System.Drawing.Size(200, 39);
             this.pnlCampo.TabIndex = 1;
             // 
             // pnlTitulo
             // 
             this.pnlTitulo.booTituloFixo = false;
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitulo.Location = new System.Drawing.Point(0, 19);
+            this.pnlTitulo.Location = new System.Drawing.Point(0, 21);
             this.pnlTitulo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlTitulo.Name = "pnlTitulo";
             this.pnlTitulo.Size = new System.Drawing.Size(200, 20);
@@ -68,7 +68,7 @@
             this.pnlComando.Location = new System.Drawing.Point(0, 1);
             this.pnlComando.Margin = new System.Windows.Forms.Padding(4);
             this.pnlComando.Name = "pnlComando";
-            this.pnlComando.Size = new System.Drawing.Size(200, 18);
+            this.pnlComando.Size = new System.Drawing.Size(200, 20);
             this.pnlComando.TabIndex = 2;
             // 
             // btnJogadorVisivel
@@ -109,7 +109,7 @@
             this.Controls.Add(this.ctrLinha);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EditAtributoBase";
-            this.Size = new System.Drawing.Size(200, 100);
+            this.Size = new System.Drawing.Size(200, 80);
             this.pnlComando.ResumeLayout(false);
             this.ResumeLayout(false);
 

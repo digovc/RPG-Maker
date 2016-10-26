@@ -61,7 +61,7 @@ namespace Rpg.Controle.Painel
 
         #region Métodos
 
-        private void alterarNome()
+        public void alterarNome()
         {
             if (this.booTituloFixo)
             {

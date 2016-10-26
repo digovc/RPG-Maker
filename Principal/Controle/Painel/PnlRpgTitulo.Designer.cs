@@ -37,10 +37,10 @@ namespace Rpg.Controle.Painel
             // lblTitulo
             // 
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(10, 0);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(3);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(200, 20);
+            this.lblTitulo.Size = new System.Drawing.Size(180, 20);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Título";
             this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
@@ -50,9 +50,9 @@ namespace Rpg.Controle.Painel
             // 
             this.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTitulo.Location = new System.Drawing.Point(0, 0);
+            this.txtTitulo.Location = new System.Drawing.Point(10, 0);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(200, 15);
+            this.txtTitulo.Size = new System.Drawing.Size(180, 15);
             this.txtTitulo.TabIndex = 1;
             this.txtTitulo.Visible = false;
             this.txtTitulo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTitulo_KeyUp);
@@ -64,8 +64,9 @@ namespace Rpg.Controle.Painel
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PnlRpgTitulo";
+            this.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.Size = new System.Drawing.Size(200, 20);
             this.ResumeLayout(false);
             this.PerformLayout();

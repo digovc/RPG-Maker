@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Rpg.Controle.EditAtributo;
 using Rpg.Controle.Painel;
 using Rpg.Dominio;
 
@@ -57,22 +55,6 @@ namespace Rpg.Controle.TabDock
             this.objDominio = AppRpg.i.frmPrincipal.objSelecionado;
         }
 
-        private void setObjDominio(RpgDominioBase objDominio)
-        {
-            if (objDominio == null)
-            {
-                return;
-            }
-
-            if (objDominio is ArquivoRefDominio)
-            {
-                this.setObjDominioArqRef((ArquivoRefDominio)objDominio);
-                return;
-            }
-
-            this.atualizarLayout();
-        }
-
         private void atualizarLayout()
         {
             // TODO: Chamar o dispose para todos os componentes em vez de apenas limpar a lista.
@@ -109,6 +91,22 @@ namespace Rpg.Controle.TabDock
 
             this.pnlConteudo.Controls.Add(pnlAttGrupo);
             this.pnlConteudo.Controls.SetChildIndex(pnlAttGrupo, 0);
+        }
+
+        private void setObjDominio(RpgDominioBase objDominio)
+        {
+            if (objDominio == null)
+            {
+                return;
+            }
+
+            if (objDominio is ArquivoRefDominio)
+            {
+                this.setObjDominioArqRef((ArquivoRefDominio)objDominio);
+                return;
+            }
+
+            this.atualizarLayout();
         }
 
         private void setObjDominioArqRef(ArquivoRefDominio objArquivoRef)

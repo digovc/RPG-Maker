@@ -47,6 +47,8 @@ namespace Rpg.Controle.Painel
 
         internal void atualizarLayout(string strGrupo, List<Atributo> lstAttGrupo)
         {
+            this.SuspendLayout();
+
             if (string.IsNullOrEmpty(strGrupo))
             {
                 return;
@@ -65,6 +67,8 @@ namespace Rpg.Controle.Painel
             {
                 this.atualizarLayout(att);
             }
+
+            this.ResumeLayout();
         }
 
         protected override void inicializar()
@@ -164,6 +168,18 @@ namespace Rpg.Controle.Painel
         #endregion Métodos
 
         #region Eventos
+
+        private void btnAlterarNome_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pnlTitulo.alterarNome();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
 
         private void btnVisivel_Click(object sender, EventArgs e)
         {
