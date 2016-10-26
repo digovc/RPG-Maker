@@ -51,7 +51,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "EditAtributoTexto";
-            this.Size = new System.Drawing.Size(1125, 50);
             this.pnlCampo.ResumeLayout(false);
             this.pnlCampo.PerformLayout();
             this.ResumeLayout(false);

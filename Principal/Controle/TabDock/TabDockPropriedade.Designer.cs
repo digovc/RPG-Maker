@@ -33,12 +33,14 @@
             // 
             // pnlConteudo
             // 
+            this.pnlConteudo.BackColor = System.Drawing.Color.White;
+            this.pnlConteudo.booPadding = false;
             this.pnlConteudo.Name = "pnlConteudo";
             this.pnlConteudo.TabIndex = 1;
             // 
             // TabDockPropriedade
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 453);
             this.Controls.Add(this.pnlConteudo);

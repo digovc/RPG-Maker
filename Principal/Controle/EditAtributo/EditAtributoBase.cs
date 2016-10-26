@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Dominio;
@@ -35,6 +37,21 @@ namespace Rpg.Controle.EditAtributo
             }
         }
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new Size Size
+        {
+            get
+            {
+                return base.Size;
+            }
+
+            private set
+            {
+                base.Size = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -65,7 +82,7 @@ namespace Rpg.Controle.EditAtributo
         protected override void inicializar()
         {
             this.Dock = DockStyle.Top;
-            this.Size = new System.Drawing.Size(350, 50);
+            this.Size = new Size(350, 60);
         }
 
         protected virtual void setAtt(Atributo att)
@@ -77,7 +94,37 @@ namespace Rpg.Controle.EditAtributo
 
             this.lblTitulo.Text = att.strNome;
 
-            att.onStrValorAlterado += att_onStrValorAlterado;
+            att.onStrValorAlterado += this.att_onStrValorAlterado;
+        }
+
+        private void bloquear()
+        {
+            if (this.att == null)
+            {
+                return;
+            }
+
+            this.att.booBloqueado = !this.att.booBloqueado;
+        }
+
+        private void jogadorBloquear()
+        {
+            if (this.att == null)
+            {
+                return;
+            }
+
+            this.att.booJogadorBloqueado = !this.att.booJogadorBloqueado;
+        }
+
+        private void jogadorVisivel()
+        {
+            if (this.att == null)
+            {
+                return;
+            }
+
+            this.att.booJogadorVisivel = !this.att.booJogadorVisivel;
         }
 
         #endregion Métodos
@@ -89,6 +136,43 @@ namespace Rpg.Controle.EditAtributo
             try
             {
                 this.atualizarCtrValor(att.strValor);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnBloquear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.bloquear();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnJogadorBloquear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.jogadorBloquear();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnJogadorVisivel_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                this.jogadorVisivel();
             }
             catch (Exception ex)
             {

@@ -20,6 +20,9 @@ namespace Rpg.Dominio
 
         #region Atributos
 
+        private bool _booBloqueado;
+        private bool _booJogadorBloqueado = true;
+        private bool _booJogadorVisivel = true;
         private bool _booSomenteLeitura;
         private bool _booValor;
         private decimal _decValor;
@@ -31,6 +34,45 @@ namespace Rpg.Dominio
         private string _strGrupo;
         private string _strNome;
         private string _strValor;
+
+        public bool booBloqueado
+        {
+            get
+            {
+                return _booBloqueado;
+            }
+
+            set
+            {
+                _booBloqueado = value;
+            }
+        }
+
+        public bool booJogadorBloqueado
+        {
+            get
+            {
+                return _booJogadorBloqueado;
+            }
+
+            set
+            {
+                _booJogadorBloqueado = value;
+            }
+        }
+
+        public bool booJogadorVisivel
+        {
+            get
+            {
+                return _booJogadorVisivel;
+            }
+
+            set
+            {
+                _booJogadorVisivel = value;
+            }
+        }
 
         [JsonIgnore]
         public bool booSomenteLeitura
