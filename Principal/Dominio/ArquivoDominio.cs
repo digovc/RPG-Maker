@@ -99,6 +99,7 @@ namespace Rpg.Dominio
         {
             base.inicializar(booCriacao);
 
+            this.attDirCompleto.booNomeFixo = true;
             this.attDirCompleto.booSomenteLeitura = true;
         }
 

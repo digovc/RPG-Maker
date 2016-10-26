@@ -152,6 +152,7 @@ namespace Rpg.Dominio
 
         protected virtual void inicializar(bool booCriacao)
         {
+            this.attStrNome.booNomeFixo = true;
         }
 
         protected virtual void setEventos()

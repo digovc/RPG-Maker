@@ -23,6 +23,7 @@ namespace Rpg.Dominio
         private bool _booBloqueado;
         private bool _booJogadorBloqueado = true;
         private bool _booJogadorVisivel = true;
+        private bool _booNomeFixo;
         private bool _booSomenteLeitura;
         private bool _booValor;
         private decimal _decValor;
@@ -71,6 +72,19 @@ namespace Rpg.Dominio
             set
             {
                 _booJogadorVisivel = value;
+            }
+        }
+
+        public bool booNomeFixo
+        {
+            get
+            {
+                return _booNomeFixo;
+            }
+
+            set
+            {
+                _booNomeFixo = value;
             }
         }
 

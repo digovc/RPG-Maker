@@ -97,6 +97,28 @@ namespace Rpg.Controle.EditAtributo
             att.onStrValorAlterado += this.att_onStrValorAlterado;
         }
 
+        private void alterarNome()
+        {
+            if (this.att == null)
+            {
+                return;
+            }
+
+            if (this.att.booNomeFixo)
+            {
+                return;
+            }
+
+            this.lblTitulo.Visible = false;
+
+            this.txtTitulo.Text = this.lblTitulo.Text;
+
+            this.txtTitulo.Visible = true;
+
+            this.txtTitulo.SelectAll();
+            this.txtTitulo.Focus();
+        }
+
         private void bloquear()
         {
             if (this.att == null)
@@ -125,6 +147,34 @@ namespace Rpg.Controle.EditAtributo
             }
 
             this.att.booJogadorVisivel = !this.att.booJogadorVisivel;
+        }
+
+        private void salvarTitulo(KeyEventArgs arg)
+        {
+            if (!Keys.Enter.Equals(arg.KeyCode))
+            {
+                return;
+            }
+
+            this.salvarTitulo();
+        }
+
+        private void salvarTitulo()
+        {
+            if (this.att == null)
+            {
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(this.txtTitulo.Text))
+            {
+                this.att.strNome = this.txtTitulo.Text;
+            }
+
+            this.lblTitulo.Text = this.att.strNome;
+            this.lblTitulo.Visible = true;
+
+            this.txtTitulo.Visible = false;
         }
 
         #endregion Métodos
@@ -169,10 +219,57 @@ namespace Rpg.Controle.EditAtributo
 
         private void btnJogadorVisivel_Click(object sender, EventArgs e)
         {
-
             try
             {
                 this.jogadorVisivel();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.alterarNome();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void txtTitulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.salvarTitulo();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void txtTitulo_KeyUp(object sender, KeyEventArgs arg)
+        {
+            try
+            {
+                this.salvarTitulo(arg);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void txtTitulo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                this.salvarTitulo();
             }
             catch (Exception ex)
             {
