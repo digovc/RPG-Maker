@@ -270,9 +270,9 @@ namespace Rpg.Frm
             this.sfdJogo.Filter = ("Jogo RPG Maker|*" + AppRpg.STR_EXTENSAO_JOGO);
         }
 
-        private void abrirJogo(JogoDominio objJogo)
+        private void abrirJogoTabDock()
         {
-            if (objJogo == null)
+            if (AppRpg.i.objJogo == null)
             {
                 return;
             }
@@ -291,7 +291,7 @@ namespace Rpg.Frm
 
             AppRpg.i.abrirJogo(this.ofdJogo.FileName);
 
-            this.abrirJogo(AppRpg.i.objJogo);
+            this.abrirJogoTabDock();
         }
 
         private void criarJogo()
@@ -303,7 +303,7 @@ namespace Rpg.Frm
 
             AppRpg.i.criarJogo(this.sfdJogo.FileName);
 
-            this.abrirJogo(AppRpg.i.objJogo);
+            this.abrirJogoTabDock();
         }
 
         private void salvarJogo()

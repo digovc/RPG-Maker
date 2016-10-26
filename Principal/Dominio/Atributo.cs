@@ -31,7 +31,7 @@ namespace Rpg.Dominio
         private int _intValorMaximo;
         private RpgDominioBase _objDominio;
         private string _strDescricao;
-        private string _strGrupo;
+        private string _strGrupo = "Geral";
         private string _strNome;
         private string _strValor;
 

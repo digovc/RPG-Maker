@@ -14,6 +14,7 @@ namespace Rpg.Dominio
 
         private Atributo _attStrNome;
         private List<Atributo> _lstAtt;
+        private List<string> _lstStrGrupo;
         private RpgDominioBase _objPai;
 
         [JsonIgnore]
@@ -44,6 +45,19 @@ namespace Rpg.Dominio
                 _lstAtt = new List<Atributo>();
 
                 return _lstAtt;
+            }
+        }
+
+        public List<string> lstStrGrupo
+        {
+            get
+            {
+                return _lstStrGrupo;
+            }
+
+            set
+            {
+                _lstStrGrupo = value;
             }
         }
 
@@ -107,6 +121,8 @@ namespace Rpg.Dominio
             }
 
             this.lstAtt.Add(att);
+
+            this.addStrGrupo(att.strGrupo);
         }
 
         protected Atributo getAtt(string strattStrNome, string strValor = null)
@@ -140,6 +156,26 @@ namespace Rpg.Dominio
 
         protected virtual void setEventos()
         {
+        }
+
+        private void addStrGrupo(string strGrupo)
+        {
+            if (string.IsNullOrEmpty(strGrupo))
+            {
+                return;
+            }
+
+            if (this.lstStrGrupo == null)
+            {
+                this.lstStrGrupo = new List<string>();
+            }
+
+            if (this.lstStrGrupo.Contains(strGrupo))
+            {
+                return;
+            }
+
+            this.lstStrGrupo.Add(strGrupo);
         }
 
         #endregion Métodos

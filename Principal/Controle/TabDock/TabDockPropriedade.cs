@@ -1,4 +1,8 @@
-﻿using Rpg.Controle.EditAtributo;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Rpg.Controle.EditAtributo;
+using Rpg.Controle.Painel;
 using Rpg.Dominio;
 
 namespace Rpg.Controle.TabDock
@@ -53,24 +57,6 @@ namespace Rpg.Controle.TabDock
             this.objDominio = AppRpg.i.frmPrincipal.objSelecionado;
         }
 
-        private EditAtributoBase getEdtAtt(Atributo.EnmTipo enmTipo)
-        {
-            switch (enmTipo)
-            {
-                case Atributo.EnmTipo.ALCANCE:
-                    return new EditAtributoAlcance();
-
-                case Atributo.EnmTipo.BOOLEAN:
-                    return new EditAtributoBoolen();
-
-                case Atributo.EnmTipo.NUMERICO:
-                    return new EditAtributoNumerico();
-
-                default:
-                    return new EditAtributoTexto();
-            }
-        }
-
         private void setObjDominio(RpgDominioBase objDominio)
         {
             if (objDominio == null)
@@ -78,55 +64,66 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            // TODO: Chamar o dispose para todos os componentes em vez de apenas limpar a lista.
-
-            this.pnlConteudo.Controls.Clear();
-
             if (objDominio is ArquivoRefDominio)
             {
                 this.setObjDominioArqRef((ArquivoRefDominio)objDominio);
                 return;
             }
 
+            this.atualizarLayout();
+        }
+
+        private void atualizarLayout()
+        {
+            // TODO: Chamar o dispose para todos os componentes em vez de apenas limpar a lista.
+            this.pnlConteudo.Controls.Clear();
+
             if (objDominio.lstAtt == null)
             {
                 return;
             }
 
-            foreach (Atributo att in objDominio.lstAtt)
+            foreach (string strGrupo in this.objDominio.lstStrGrupo)
             {
-                this.setObjDominio(att);
+                this.atualizarLayout(strGrupo);
             }
         }
 
-        private void setObjDominio(Atributo att)
+        private void atualizarLayout(string strGrupo)
         {
-            if (att == null)
+            if (string.IsNullOrEmpty(strGrupo))
             {
                 return;
             }
 
-            EditAtributoBase edtAtt = this.getEdtAtt(att.enmTipo);
+            List<Atributo> lstAttGrupo = this.objDominio.lstAtt.Where((att) => strGrupo.Equals(att.strGrupo)).ToList();
 
-            edtAtt.att = att;
+            if (lstAttGrupo == null)
+            {
+                return;
+            }
 
-            this.pnlConteudo.Controls.Add(edtAtt);
-            this.pnlConteudo.Controls.SetChildIndex(edtAtt, 0);
+            PnlAttGrupo pnlAttGrupo = new PnlAttGrupo();
+
+            pnlAttGrupo.atualizarLayout(strGrupo, lstAttGrupo);
+
+            this.pnlConteudo.Controls.Add(pnlAttGrupo);
+            this.pnlConteudo.Controls.SetChildIndex(pnlAttGrupo, 0);
         }
 
-        private void setObjDominioArqRef(ArquivoRefDominio objArqRef)
+        private void setObjDominioArqRef(ArquivoRefDominio objArquivoRef)
         {
-            if (objArqRef == null)
+            if (objArquivoRef == null)
             {
                 return;
             }
 
-            if (objArqRef.objArquivo == null)
+            if (objArquivoRef.objArquivo == null)
             {
                 return;
             }
 
-            this.objDominio = objArqRef.objArquivo;
+            this.objDominio = objArquivoRef.objArquivo;
         }
 
         #endregion Métodos
