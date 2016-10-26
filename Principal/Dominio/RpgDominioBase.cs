@@ -153,6 +153,11 @@ namespace Rpg.Dominio
         protected virtual void inicializar(bool booCriacao)
         {
             this.attStrNome.booFixo = true;
+
+            foreach (Atributo att in this.lstAtt)
+            {
+                this.inicializar(att);
+            }
         }
 
         protected virtual void setEventos()
@@ -177,6 +182,11 @@ namespace Rpg.Dominio
             }
 
             this.lstStrGrupo.Add(strGrupo);
+        }
+
+        private void inicializar(Atributo att)
+        {
+            att.objDominio = this;
         }
 
         #endregion Métodos

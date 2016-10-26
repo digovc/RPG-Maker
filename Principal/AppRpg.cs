@@ -133,27 +133,7 @@ namespace Rpg
 
         internal void abrirJogo(string dirJogo)
         {
-            if (string.IsNullOrEmpty(dirJogo))
-            {
-                return;
-            }
-
-            if (!File.Exists(dirJogo))
-            {
-                return;
-            }
-
-            this.objJogo = JsonRpg.i.fromJson<JogoDominio>(File.ReadAllText(dirJogo));
-
-            if (objJogo == null)
-            {
-                return;
-            }
-
-            objJogo.attDirCompleto.strValor = dirJogo;
-            objJogo.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
-
-            objJogo.iniciar(false);
+            this.objJogo = ArquivoDominio.fromJson<JogoDominio>(dirJogo);
         }
 
         internal void criarJogo(string dirJogo)

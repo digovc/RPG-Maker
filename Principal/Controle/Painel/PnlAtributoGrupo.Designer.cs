@@ -31,8 +31,9 @@
             this.pnlConteudo = new System.Windows.Forms.Panel();
             this.pnlTitulo = new Rpg.Controle.Painel.PnlRpgTitulo();
             this.pnlComando = new System.Windows.Forms.Panel();
-            this.btnVisivel = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnAlterarNome = new DigoFramework.Controle.Botao.BotaoAtalho();
+            this.btnVisivel = new DigoFramework.Controle.Botao.BotaoAtalho();
+            this.btnAddAtributo = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.pnlComando.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +61,7 @@
             // 
             // pnlComando
             // 
+            this.pnlComando.Controls.Add(this.btnAddAtributo);
             this.pnlComando.Controls.Add(this.btnAlterarNome);
             this.pnlComando.Controls.Add(this.btnVisivel);
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Top;
@@ -69,6 +71,13 @@
             this.pnlComando.Size = new System.Drawing.Size(200, 18);
             this.pnlComando.TabIndex = 3;
             // 
+            // btnAlterarNome
+            // 
+            this.btnAlterarNome.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAlterarNome.Name = "btnAlterarNome";
+            this.btnAlterarNome.TabIndex = 3;
+            this.btnAlterarNome.Click += new System.EventHandler(this.btnAlterarNome_Click);
+            // 
             // btnVisivel
             // 
             this.btnVisivel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -76,12 +85,12 @@
             this.btnVisivel.TabIndex = 2;
             this.btnVisivel.Click += new System.EventHandler(this.btnVisivel_Click);
             // 
-            // btnAlterarNome
+            // btnAddAtributo
             // 
-            this.btnAlterarNome.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAlterarNome.Name = "btnAlterarNome";
-            this.btnAlterarNome.TabIndex = 3;
-            this.btnAlterarNome.Click += new System.EventHandler(this.btnAlterarNome_Click);
+            this.btnAddAtributo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAddAtributo.Name = "btnAddAtributo";
+            this.btnAddAtributo.TabIndex = 4;
+            this.btnAddAtributo.Click += new System.EventHandler(this.btnAddAtributo_Click);
             // 
             // PnlAtributoGrupo
             // 
@@ -107,5 +116,6 @@
         private System.Windows.Forms.Panel pnlComando;
         private DigoFramework.Controle.Botao.BotaoAtalho btnVisivel;
         private DigoFramework.Controle.Botao.BotaoAtalho btnAlterarNome;
+        private DigoFramework.Controle.Botao.BotaoAtalho btnAddAtributo;
     }
 }

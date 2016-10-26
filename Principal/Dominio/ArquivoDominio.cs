@@ -13,8 +13,8 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private ArquivoRefDominio _objArqRef;
         private Atributo _attDirCompleto;
+        private ArquivoRefDominio _objArqRef;
 
         [JsonIgnore]
         public Atributo attDirCompleto
@@ -69,6 +69,28 @@ namespace Rpg.Dominio
             }
 
             File.WriteAllText(this.attDirCompleto.strValor, JsonRpg.i.toJson(this));
+        }
+
+        internal static T fromJson<T>(string dirArquivo) where T : ArquivoDominio
+        {
+            if (!File.Exists(dirArquivo))
+            {
+                return null;
+            }
+
+            T objResultado = JsonRpg.i.fromJson<T>(File.ReadAllText(dirArquivo));
+
+            if (objResultado == null)
+            {
+                return null;
+            }
+
+            objResultado.attDirCompleto.strValor = dirArquivo;
+            objResultado.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirArquivo);
+
+            objResultado.iniciar(false);
+
+            return objResultado;
         }
 
         protected virtual void atualizarNome()

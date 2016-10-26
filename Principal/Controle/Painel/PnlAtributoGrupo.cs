@@ -122,6 +122,28 @@ namespace Rpg.Controle.Painel
             this.pnlConteudo.Visible = !this.pnlConteudo.Visible;
         }
 
+        private void addAtributo()
+        {
+            if (this.lstAttGrupo == null)
+            {
+                return;
+            }
+
+            if (this.lstAttGrupo.Count < 1)
+            {
+                return;
+            }
+
+            if (this.lstAttGrupo[0].objDominio == null)
+            {
+                return;
+            }
+
+            Atributo att = new Atributo(this.lstAttGrupo[0].objDominio, string.Format("Atributo {0}", this.lstAttGrupo.Count));
+
+            this.atualizarLayout(att);
+        }
+
         private void addEdtAtt(EditAtributoBase edtAtt)
         {
             if (edtAtt == null)
@@ -203,6 +225,18 @@ namespace Rpg.Controle.Painel
         #endregion Métodos
 
         #region Eventos
+
+        private void btnAddAtributo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.addAtributo();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
 
         private void btnAlterarNome_Click(object sender, EventArgs e)
         {
