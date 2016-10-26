@@ -34,8 +34,8 @@
             this.cmsAddItem = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddItemPasta = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemMapa = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddItemPersonagem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddItemCamada = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddItemPersonagem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlAtalho.SuspendLayout();
             this.cmsAddItem.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +72,7 @@
             this.cmsAddItem.Name = "cmsAddItem";
             this.cmsAddItem.Size = new System.Drawing.Size(182, 136);
             // 
-            // tsmAddItemGrupo
+            // tsmAddItemPasta
             // 
             this.tsmAddItemPasta.Name = "tsmAddItemPasta";
             this.tsmAddItemPasta.Size = new System.Drawing.Size(181, 26);
@@ -86,18 +86,19 @@
             this.tsmAddItemMapa.Text = "Mapa";
             this.tsmAddItemMapa.Click += new System.EventHandler(this.tsmAddItemMapa_Click);
             // 
-            // tsmAddItemPersonagem
-            // 
-            this.tsmAddItemPersonagem.Name = "tsmAddItemPersonagem";
-            this.tsmAddItemPersonagem.Size = new System.Drawing.Size(181, 26);
-            this.tsmAddItemPersonagem.Text = "Personagem";
-            // 
-            // tsmAddItemCAmada
+            // tsmAddItemCamada
             // 
             this.tsmAddItemCamada.Name = "tsmAddItemCamada";
             this.tsmAddItemCamada.Size = new System.Drawing.Size(181, 26);
             this.tsmAddItemCamada.Text = "Camada";
             this.tsmAddItemCamada.Click += new System.EventHandler(this.tsmAddItemCamada_Click);
+            // 
+            // tsmAddItemPersonagem
+            // 
+            this.tsmAddItemPersonagem.Name = "tsmAddItemPersonagem";
+            this.tsmAddItemPersonagem.Size = new System.Drawing.Size(181, 26);
+            this.tsmAddItemPersonagem.Text = "Personagem";
+            this.tsmAddItemPersonagem.Click += new System.EventHandler(this.tsmAddItemPersonagem_Click);
             // 
             // TabDockExplorer
             // 

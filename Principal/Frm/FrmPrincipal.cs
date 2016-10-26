@@ -18,6 +18,7 @@ namespace Rpg.Frm
 
         private List<ImagemDominio> _lstObjImg;
         private List<MapaDominio> _lstObjMapa;
+        private List<PersonagemDominio> _lstObjPersonagem;
         private RpgDominioBase _objSelecionado;
         private TabDockDados _tabDockDados;
         private TabDockExplorer _tabDockExplorer;
@@ -117,6 +118,21 @@ namespace Rpg.Frm
             }
         }
 
+        private List<PersonagemDominio> lstObjPersonagem
+        {
+            get
+            {
+                if (_lstObjPersonagem != null)
+                {
+                    return _lstObjPersonagem;
+                }
+
+                _lstObjPersonagem = new List<PersonagemDominio>();
+
+                return _lstObjPersonagem;
+            }
+        }
+
         private TabDockDados tabDockDados
         {
             get
@@ -208,15 +224,36 @@ namespace Rpg.Frm
                 return false;
             }
 
-            TabDockMapa tabMapa = new TabDockMapa();
+            TabDockMapa tabDockMapa = new TabDockMapa();
 
-            tabMapa.objMapa = objMapa;
+            tabDockMapa.objMapa = objMapa;
 
-            tabMapa.Show(this.pnlDockRpg, DockState.Document);
+            tabDockMapa.Show(this.pnlDockRpg, DockState.Document);
 
             this.lstObjMapa.Add(objMapa);
 
             return true;
+        }
+
+        internal void abrirPersonagem(PersonagemDominio objPersonagem)
+        {
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            if (this.lstObjPersonagem.Contains(objPersonagem))
+            {
+                return;
+            }
+
+            TabDockPersonagem tabDockPersonagem = new TabDockPersonagem();
+
+            tabDockPersonagem.objPersonagem = objPersonagem;
+
+            tabDockPersonagem.Show(this.pnlDockRpg, DockState.Document);
+
+            this.lstObjPersonagem.Add(objPersonagem);
         }
 
         protected override void inicializar()

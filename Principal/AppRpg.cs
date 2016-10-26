@@ -13,6 +13,7 @@ namespace Rpg
 
         internal static string STR_EXTENSAO_JOGO = ".rpggamejson";
         internal static string STR_EXTENSAO_MAPA = ".rpgmapjson";
+        internal static string STR_EXTENSAO_PERSONAGEM = ".rpgpersonjson";
 
         #endregion Constantes
 

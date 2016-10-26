@@ -160,6 +160,12 @@
     <Compile Include="Controle\TabDock\TabDockMapa.Designer.cs">
       <DependentUpon>TabDockMapa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controle\TabDock\TabDockPersonagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controle\TabDock\TabDockPersonagem.Designer.cs">
+      <DependentUpon>TabDockPersonagem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controle\TabDock\TabDockRpgBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockMapa.resx">
       <DependentUpon>TabDockMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockPersonagem.resx">
+      <DependentUpon>TabDockPersonagem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockRpgBase.resx">
       <DependentUpon>TabDockRpgBase.cs</DependentUpon>

@@ -16,6 +16,17 @@
 
         #region Métodos
 
+        internal static PersonagemDominio criar(int intIndex)
+        {
+            PersonagemDominio objPersonagemResultado = new PersonagemDominio();
+
+            objPersonagemResultado.attStrNome.strValor = string.Format("Personagem {0}", intIndex);
+
+            objPersonagemResultado.iniciar(true);
+
+            return objPersonagemResultado;
+        }
+
         #endregion Métodos
 
         #region Eventos

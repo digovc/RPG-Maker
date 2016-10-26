@@ -90,15 +90,21 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
+            if (arqRef.objArquivo is ImagemDominio)
+            {
+                this.abrirImagem(arqRef.objArquivo as ImagemDominio);
+                return;
+            }
+
             if (arqRef.objArquivo is MapaDominio)
             {
                 this.abrirMapa(tnr, arqRef.objArquivo as MapaDominio);
                 return;
             }
 
-            if (arqRef.objArquivo is ImagemDominio)
+            if (arqRef.objArquivo is PersonagemDominio)
             {
-                this.abrirImagem(arqRef.objArquivo as ImagemDominio);
+                this.abrirPersonagem(tnr, arqRef.objArquivo as PersonagemDominio);
                 return;
             }
         }
@@ -166,6 +172,11 @@ namespace Rpg.Controle.TabDock
             {
                 this.abrirJogoArquivo(trnPai, dirArquivo, typeof(MapaDominio));
             }
+
+            if (AppRpg.STR_EXTENSAO_PERSONAGEM.Equals(strExtencao))
+            {
+                this.abrirJogoArquivo(trnPai, dirArquivo, typeof(PersonagemDominio));
+            }
         }
 
         private void abrirJogoArquivo(TreeNodeRpg trnPai, string dirArquivo, ArquivoDominio objArquivo)
@@ -222,6 +233,11 @@ namespace Rpg.Controle.TabDock
             }
 
             Process.Start(objPasta.attDirCompleto.strValor);
+        }
+
+        private void abrirPersonagem(TreeNodeRpg tnr, PersonagemDominio objPersonagem)
+        {
+            AppRpg.i.frmPrincipal.abrirPersonagem(objPersonagem);
         }
 
         private void addItem()
@@ -371,6 +387,51 @@ namespace Rpg.Controle.TabDock
             tnrPai.Nodes.Add(new TreeNodeRpg(objPasta));
         }
 
+        private void addItemPersonagem()
+        {
+            if (AppRpg.i.objJogo == null)
+            {
+                return;
+            }
+
+            if (this.trv.SelectedNode == null)
+            {
+                return;
+            }
+
+            this.addItemPersonagem(this.trv.SelectedNode as TreeNodeRpg);
+        }
+
+        private void addItemPersonagem(TreeNodeRpg tnrPai)
+        {
+            if (tnrPai.objDominio == null)
+            {
+                return;
+            }
+
+            if (!(tnrPai.objDominio is PastaDominio))
+            {
+                return;
+            }
+
+            this.addItemPersonagem(tnrPai, (tnrPai.objDominio as PastaDominio));
+        }
+
+        private void addItemPersonagem(TreeNodeRpg tnrPai, PastaDominio objPasta)
+        {
+            PersonagemDominio objPersonagem = PersonagemDominio.criar(tnrPai.Nodes.Count);
+
+            objPersonagem.attDirCompleto.strValor = Path.Combine(objPasta.attDirCompleto.strValor, (objPersonagem.attStrNome.strValor + AppRpg.STR_EXTENSAO_PERSONAGEM));
+
+            File.WriteAllText(objPersonagem.attDirCompleto.strValor, JsonRpg.i.toJson(objPersonagem));
+
+            ArquivoRefDominio arqRef = new ArquivoRefDominio();
+
+            arqRef.objArquivo = objPersonagem;
+
+            tnrPai.Nodes.Add(new TreeNodeRpg(arqRef));
+        }
+
         private List<string> getLstStrExtensaoSuportadaAudio()
         {
             List<string> lstStrResultado = new List<string>();
@@ -502,6 +563,18 @@ namespace Rpg.Controle.TabDock
             try
             {
                 this.addItemPasta();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmAddItemPersonagem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.addItemPersonagem();
             }
             catch (Exception ex)
             {
