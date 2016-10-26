@@ -10,10 +10,10 @@ namespace Rpg.Dominio
 
         public enum EnmTipo
         {
-            ALCANCE,
+            FAIXA,
+            ALFANUMERICO,
             BOOLEAN,
             NUMERICO,
-            TEXTO,
         }
 
         #endregion Constantes
@@ -23,11 +23,11 @@ namespace Rpg.Dominio
         private bool _booBloqueado;
         private bool _booJogadorBloqueado = true;
         private bool _booJogadorVisivel = true;
-        private bool _booNomeFixo;
+        private bool _booFixo;
         private bool _booSomenteLeitura;
         private bool _booValor;
         private decimal _decValor;
-        private EnmTipo _enmTipo = EnmTipo.TEXTO;
+        private EnmTipo _enmTipo = EnmTipo.ALFANUMERICO;
         private int _intValor;
         private int _intValorMaximo;
         private RpgDominioBase _objDominio;
@@ -75,16 +75,16 @@ namespace Rpg.Dominio
             }
         }
 
-        public bool booNomeFixo
+        public bool booFixo
         {
             get
             {
-                return _booNomeFixo;
+                return _booFixo;
             }
 
             set
             {
-                _booNomeFixo = value;
+                _booFixo = value;
             }
         }
 

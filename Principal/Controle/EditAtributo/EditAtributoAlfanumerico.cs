@@ -4,7 +4,7 @@ using Rpg.Dominio;
 
 namespace Rpg.Controle.EditAtributo
 {
-    public partial class EditAtributoTexto : EditAtributoBase
+    public partial class EditAtributoAlfanumerico : EditAtributoBase
     {
         #region Constantes
 
@@ -16,7 +16,7 @@ namespace Rpg.Controle.EditAtributo
 
         #region Construtores
 
-        public EditAtributoTexto()
+        public EditAtributoAlfanumerico()
         {
             this.InitializeComponent();
         }

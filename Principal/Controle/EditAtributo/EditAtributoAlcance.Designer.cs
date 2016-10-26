@@ -45,6 +45,7 @@
             this.pnlCampo.Controls.Add(this.txtStrValorMaximo);
             this.pnlCampo.Controls.Add(this.lblDe);
             this.pnlCampo.Controls.Add(this.txtStrValor);
+            this.pnlCampo.Size = new System.Drawing.Size(1186, 39);
             // 
             // txtStrValor
             // 
@@ -69,7 +70,7 @@
             this.lblDe.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblDe.Location = new System.Drawing.Point(60, 0);
             this.lblDe.Name = "lblDe";
-            this.lblDe.Size = new System.Drawing.Size(50, 25);
+            this.lblDe.Size = new System.Drawing.Size(50, 29);
             this.lblDe.TabIndex = 4;
             this.lblDe.Text = "de";
             this.lblDe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,7 +80,7 @@
             this.pnlEspaco.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlEspaco.Location = new System.Drawing.Point(160, 0);
             this.pnlEspaco.Name = "pnlEspaco";
-            this.pnlEspaco.Size = new System.Drawing.Size(25, 25);
+            this.pnlEspaco.Size = new System.Drawing.Size(25, 29);
             this.pnlEspaco.TabIndex = 6;
             // 
             // pnlProgressBar
@@ -90,7 +91,7 @@
             this.pnlProgressBar.Location = new System.Drawing.Point(185, 0);
             this.pnlProgressBar.Name = "pnlProgressBar";
             this.pnlProgressBar.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.pnlProgressBar.Size = new System.Drawing.Size(1148, 25);
+            this.pnlProgressBar.Size = new System.Drawing.Size(991, 29);
             this.pnlProgressBar.TabIndex = 7;
             // 
             // pnlProgressBarValor
@@ -98,7 +99,7 @@
             this.pnlProgressBarValor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlProgressBarValor.Location = new System.Drawing.Point(0, 10);
             this.pnlProgressBarValor.Name = "pnlProgressBarValor";
-            this.pnlProgressBarValor.Size = new System.Drawing.Size(1146, 3);
+            this.pnlProgressBarValor.Size = new System.Drawing.Size(989, 7);
             this.pnlProgressBarValor.TabIndex = 0;
             // 
             // EditAtributoAlcance

@@ -45,6 +45,38 @@ namespace Rpg.Controle.Painel
 
         #region Métodos
 
+        internal void atualizarAtributo(EditAtributoBase edtAtt)
+        {
+            if (edtAtt == null)
+            {
+                return;
+            }
+
+            if (!this.pnlConteudo.Controls.Contains(edtAtt))
+            {
+                return;
+            }
+
+            EditAtributoBase edtAttNovo = this.atualizarLayout(edtAtt.att);
+
+            int intIndex = this.pnlConteudo.Controls.IndexOf(edtAtt);
+
+            try
+            {
+                this.SuspendLayout();
+
+                this.pnlConteudo.Controls.Remove(edtAtt);
+
+                this.pnlConteudo.Controls.SetChildIndex(edtAttNovo, intIndex);
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
+
+            edtAtt.Dispose();
+        }
+
         internal void atualizarLayout(string strGrupo, List<Atributo> lstAttGrupo)
         {
             this.SuspendLayout();
@@ -106,18 +138,21 @@ namespace Rpg.Controle.Painel
             this.pnlConteudo.Controls.SetChildIndex(edtAtt, 0);
         }
 
-        private void atualizarLayout(Atributo att)
+        private EditAtributoBase atualizarLayout(Atributo att)
         {
             if (att == null)
             {
-                return;
+                return null;
             }
 
             EditAtributoBase edtAtt = this.getEdtAtt(att.enmTipo);
 
             edtAtt.att = att;
+            edtAtt.pnlGrupo = this;
 
             this.addEdtAtt(edtAtt);
+
+            return edtAtt;
         }
 
         private void atualizarStrGrupo()
@@ -139,7 +174,7 @@ namespace Rpg.Controle.Painel
         {
             switch (enmTipo)
             {
-                case Atributo.EnmTipo.ALCANCE:
+                case Atributo.EnmTipo.FAIXA:
                     return new EditAtributoAlcance();
 
                 case Atributo.EnmTipo.BOOLEAN:
@@ -149,7 +184,7 @@ namespace Rpg.Controle.Painel
                     return new EditAtributoNumerico();
 
                 default:
-                    return new EditAtributoTexto();
+                    return new EditAtributoAlfanumerico();
             }
         }
 

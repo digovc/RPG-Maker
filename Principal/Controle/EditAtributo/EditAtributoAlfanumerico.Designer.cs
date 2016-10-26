@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Controle.EditAtributo
 {
-    partial class EditAtributoTexto
+    partial class EditAtributoAlfanumerico
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,21 +35,22 @@
             // pnlCampo
             // 
             this.pnlCampo.Controls.Add(this.txtStrValor);
+            this.pnlCampo.Size = new System.Drawing.Size(1186, 39);
             // 
             // txtStrValor
             // 
             this.txtStrValor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtStrValor.Location = new System.Drawing.Point(10, 0);
             this.txtStrValor.Name = "txtStrValor";
-            this.txtStrValor.Size = new System.Drawing.Size(1105, 22);
+            this.txtStrValor.Size = new System.Drawing.Size(1166, 22);
             this.txtStrValor.TabIndex = 1;
             this.txtStrValor.TextChanged += new System.EventHandler(this.txtStrValor_TextChanged);
             // 
-            // EditAtributoTexto
+            // EditAtributoAlfanumerico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "EditAtributoTexto";
+            this.Name = "EditAtributoAlfanumerico";
             this.pnlCampo.ResumeLayout(false);
             this.pnlCampo.PerformLayout();
             this.ResumeLayout(false);
