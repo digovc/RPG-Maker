@@ -143,13 +143,19 @@ namespace Rpg.Dominio
 
             objArqRef.attDirArquivo.onStrValorAlterado += this.objArqRef_attDirArquivo_onStrValorAlterado;
 
-            if (string.IsNullOrEmpty(objArqRef.attStrNome.strValor))
+            if (File.Exists(objArqRef.attDirArquivo.strValor))
             {
+                this.attDirCompleto.strValor = objArqRef.attDirArquivo.strValor;
+                this.attStrNome.strValor = objArqRef.attStrNome.strValor;
                 return;
             }
 
-            this.attDirCompleto.strValor = objArqRef.attDirArquivo.strValor;
-            this.attStrNome.strValor = objArqRef.attStrNome.strValor;
+            if (File.Exists(this.attDirCompleto.strValor))
+            {
+                objArqRef.attDirArquivo.strValor = this.attDirCompleto.strValor;
+                objArqRef.attStrNome.strValor = this.attStrNome.strValor;
+                return;
+            }
         }
 
         #endregion Métodos

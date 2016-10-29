@@ -339,6 +339,7 @@ namespace Rpg.Controle.TabDock
             MapaDominio objMapa = MapaDominio.criar(tnrPai.Nodes.Count);
 
             objMapa.attDirCompleto.strValor = Path.Combine(objPasta.attDirCompleto.strValor, (objMapa.attStrNome.strValor + AppRpg.STR_EXTENSAO_MAPA));
+            objMapa.attStrNome.strValor = Path.GetFileNameWithoutExtension(objMapa.attDirCompleto.strValor);
 
             File.WriteAllText(objMapa.attDirCompleto.strValor, JsonRpg.i.toJson(objMapa));
 
