@@ -34,12 +34,14 @@
             // 
             // imgPersonagem
             // 
+            this.imgPersonagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.imgPersonagem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imgPersonagem.Location = new System.Drawing.Point(0, 24);
             this.imgPersonagem.Name = "imgPersonagem";
             this.imgPersonagem.Size = new System.Drawing.Size(482, 529);
             this.imgPersonagem.TabIndex = 1;
             this.imgPersonagem.TabStop = false;
+            this.imgPersonagem.Click += new System.EventHandler(this.imgPersonagem_Click);
             // 
             // TabDockPersonagem
             // 

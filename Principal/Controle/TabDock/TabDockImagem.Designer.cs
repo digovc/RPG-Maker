@@ -31,11 +31,13 @@
             this.imgDisplay = new Rpg.Controle.Editor.ImagemDisplay();
             this.txtTileTamanho = new System.Windows.Forms.TextBox();
             this.btnAtivarGrid = new DigoFramework.Controle.Botao.BotaoAtalho();
+            this.btnSelecionarTudo = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.pnlAtalho.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAtalho
             // 
+            this.pnlAtalho.Controls.Add(this.btnSelecionarTudo);
             this.pnlAtalho.Controls.Add(this.txtTileTamanho);
             this.pnlAtalho.Controls.Add(this.btnAtivarGrid);
             // 
@@ -72,6 +74,13 @@
             this.btnAtivarGrid.TabIndex = 2;
             this.btnAtivarGrid.Click += new System.EventHandler(this.btnAtivarGrid_Click);
             // 
+            // btnSelecionarTudo
+            // 
+            this.btnSelecionarTudo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSelecionarTudo.Name = "btnSelecionarTudo";
+            this.btnSelecionarTudo.TabIndex = 3;
+            this.btnSelecionarTudo.Click += new System.EventHandler(this.btnSelecionarTudo_Click);
+            // 
             // TabDockImagem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -94,5 +103,6 @@
         public System.Windows.Forms.TextBox txtTileTamanho;
         public Editor.ImagemDisplay imgDisplay;
         private DigoFramework.Controle.Botao.BotaoAtalho btnAtivarGrid;
+        private DigoFramework.Controle.Botao.BotaoAtalho btnSelecionarTudo;
     }
 }

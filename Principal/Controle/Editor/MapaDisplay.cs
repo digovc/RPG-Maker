@@ -220,7 +220,7 @@ namespace Rpg.Controle.Editor
         {
             TileDominio objTileResultado = new TileDominio();
 
-            objTileResultado.booFixo = true;
+            objTileResultado.booFixo = false;
             objTileResultado.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
             objTileResultado.rtgImg = this.desenharLivreRtgImg(x, y);
             objTileResultado.rtgMapa = this.desenharLivreRtgMapa(x, y, objTileResultado);

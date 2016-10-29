@@ -11,6 +11,8 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Atributos
 
+        private int _intInicialX;
+        private int _intInicialY;
         private Pen _penSelecao;
         private Rectangle _rtg;
 
@@ -34,6 +36,32 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        private int intInicialX
+        {
+            get
+            {
+                return _intInicialX;
+            }
+
+            set
+            {
+                _intInicialX = value;
+            }
+        }
+
+        private int intInicialY
+        {
+            get
+            {
+                return _intInicialY;
+            }
+
+            set
+            {
+                _intInicialY = value;
+            }
+        }
+
         private Pen penSelecao
         {
             get
@@ -46,34 +74,6 @@ namespace Rpg.Controle.Editor.Grafico
                 _penSelecao = new Pen(new SolidBrush(Color.DeepSkyBlue));
 
                 return _penSelecao;
-            }
-        }
-
-        private int _intInicialX ;
-
-        private int intInicialX
-        {
-            get
-            {
-                return _intInicialX;
-            }
-            set
-            {
-                _intInicialX = value;
-            }
-        }
-
-        private int _intInicialY ;
-
-        private int intInicialY
-        {
-            get
-            {
-                return _intInicialY;
-            }
-            set
-            {
-                _intInicialY = value;
             }
         }
 

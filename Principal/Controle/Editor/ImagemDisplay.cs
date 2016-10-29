@@ -78,6 +78,19 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
+        internal void selecionarTudo()
+        {
+            if (this.objImagem == null)
+            {
+                return;
+            }
+
+            int h = (this.bmp.Height - 1);
+            int w = (this.bmp.Width - 1);
+
+            this.objSelecao.rtg = new Rectangle(0, 0, w, h);
+        }
+
         protected override void processarClickLeft(MouseEventArgs arg)
         {
             base.processarClickLeft(arg);
@@ -123,6 +136,11 @@ namespace Rpg.Controle.Editor
             return true;
         }
 
+        private void addSelecao(MouseEventArgs arg)
+        {
+            this.objSelecao.addSelecao(arg.X, arg.Y);
+        }
+
         private void comecarSelecao(MouseEventArgs arg)
         {
             this.booSelecionando = true;
@@ -147,11 +165,6 @@ namespace Rpg.Controle.Editor
             }
 
             return AppRpg.i.getBmpCache(this.objImagem.attDirCompleto.strValor);
-        }
-
-        private void addSelecao(MouseEventArgs arg)
-        {
-            this.objSelecao.addSelecao(arg.X, arg.Y);
         }
 
         private void renderizarBmp(Graphics gpc)

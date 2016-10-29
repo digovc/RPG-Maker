@@ -270,18 +270,6 @@ namespace Rpg.Frm
             this.sfdJogo.Filter = ("Jogo RPG Maker|*" + AppRpg.STR_EXTENSAO_JOGO);
         }
 
-        private void abrirJogoTabDock()
-        {
-            if (AppRpg.i.objJogo == null)
-            {
-                return;
-            }
-
-            this.tabDockExplorer.Show(this.pnlDockRpg, DockState.DockLeft);
-
-            this.tabDockExplorer.abrirJogo();
-        }
-
         private void abrirJogo()
         {
             if (!DialogResult.OK.Equals(this.ofdJogo.ShowDialog()))
@@ -292,6 +280,18 @@ namespace Rpg.Frm
             AppRpg.i.abrirJogo(this.ofdJogo.FileName);
 
             this.abrirJogoTabDock();
+        }
+
+        private void abrirJogoTabDock()
+        {
+            if (AppRpg.i.objJogo == null)
+            {
+                return;
+            }
+
+            this.tabDockExplorer.Show(this.pnlDockRpg, DockState.DockLeft);
+
+            this.tabDockExplorer.abrirJogo();
         }
 
         private void criarJogo()
@@ -313,6 +313,11 @@ namespace Rpg.Frm
             foreach (MapaDominio objMapa in this.lstObjMapa)
             {
                 objMapa.salvar();
+            }
+
+            foreach (PersonagemDominio objPersonagem in this.lstObjPersonagem)
+            {
+                objPersonagem.salvar();
             }
         }
 

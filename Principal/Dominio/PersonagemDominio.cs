@@ -8,6 +8,21 @@
 
         #region Atributos
 
+        private TileDominio _objTile;
+
+        public TileDominio objTile
+        {
+            get
+            {
+                return _objTile;
+            }
+
+            set
+            {
+                _objTile = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores

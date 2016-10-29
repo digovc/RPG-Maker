@@ -49,7 +49,7 @@ namespace Rpg.Controle.TabDock
 
         private void ativarDesativarGrid()
         {
-            this.txtTileTamanho.Enabled = true;
+            this.txtTileTamanho.Enabled = !this.txtTileTamanho.Enabled;
             this.txtTileTamanho.Text = (!string.IsNullOrEmpty(this.txtTileTamanho.Text) ? this.txtTileTamanho.Text : "10");
 
             this.imgDisplay.intTileTamanho = this.txtTileTamanho.Enabled ? Convert.ToInt16(this.txtTileTamanho.Text) : 0;
@@ -83,6 +83,11 @@ namespace Rpg.Controle.TabDock
             this.Text = objImagem.attStrNome.strValor;
 
             this.txtTileTamanho.Text = AppRpg.i.objJogo.getAtt(this.objImagem.attDirCompleto.strValor, 0).strValor;
+        }
+
+        private void selecinarTudo()
+        {
+            this.imgDisplay.selecionarTudo();
         }
 
         #endregion Métodos
@@ -121,6 +126,19 @@ namespace Rpg.Controle.TabDock
             try
             {
                 this.atualizarTileTamanho();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnSelecionarTudo_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                this.selecinarTudo();
             }
             catch (Exception ex)
             {
