@@ -92,7 +92,7 @@ namespace Rpg.Controle.Editor.Grafico
                 return default(Rectangle);
             }
 
-            return new Rectangle(this.objTile.rtgMapa.X, this.objTile.rtgMapa.Y, MapaDisplay.INT_TILE_TAMANHO, MapaDisplay.INT_TILE_TAMANHO);
+            return this.objTile.rtgMapa;
         }
 
         #endregion Métodos

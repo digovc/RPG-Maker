@@ -14,6 +14,7 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private Bitmap _bmp;
+        private bool _booSelecionando;
         private ImagemDominio _objImagem;
 
         public Bitmap bmp
@@ -51,6 +52,19 @@ namespace Rpg.Controle.Editor
             }
         }
 
+        private bool booSelecionando
+        {
+            get
+            {
+                return _booSelecionando;
+            }
+
+            set
+            {
+                _booSelecionando = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -64,14 +78,26 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
-        protected override void processarClick(MouseEventArgs arg)
+        protected override void processarClickLeft(MouseEventArgs arg)
         {
-            base.processarClick(arg);
+            base.processarClickLeft(arg);
 
             if (this.intTileTamanho > 0)
             {
                 this.objSelecao.selecionarTile(arg.X, arg.Y);
                 return;
+            }
+
+            this.comecarSelecao(arg);
+        }
+
+        protected override void processarMouseMove(MouseEventArgs arg)
+        {
+            base.processarMouseMove(arg);
+
+            if (MouseButtons.Left.Equals(arg.Button))
+            {
+                this.addSelecao(arg);
             }
         }
 
@@ -97,6 +123,12 @@ namespace Rpg.Controle.Editor
             return true;
         }
 
+        private void comecarSelecao(MouseEventArgs arg)
+        {
+            this.booSelecionando = true;
+            this.objSelecao.comecarSelecao(arg.X, arg.Y);
+        }
+
         private Bitmap getBmp()
         {
             if (this.objImagem == null)
@@ -115,6 +147,11 @@ namespace Rpg.Controle.Editor
             }
 
             return AppRpg.i.getBmpCache(this.objImagem.attDirCompleto.strValor);
+        }
+
+        private void addSelecao(MouseEventArgs arg)
+        {
+            this.objSelecao.addSelecao(arg.X, arg.Y);
         }
 
         private void renderizarBmp(Graphics gpc)

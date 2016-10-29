@@ -88,9 +88,9 @@ namespace Rpg.Controle.Editor
             return INT_TILE_TAMANHO;
         }
 
-        protected override void processarClick(MouseEventArgs arg)
+        protected override void processarClickLeft(MouseEventArgs arg)
         {
-            base.processarClick(arg);
+            base.processarClickLeft(arg);
 
             switch (this.tabDockMapa.enmFerramenta)
             {
@@ -202,7 +202,7 @@ namespace Rpg.Controle.Editor
 
             TileDominio objTile = null;
 
-            if (string.IsNullOrEmpty(AppRpg.i.frmPrincipal.tabDockImagemSelecionada.txtTileTamanho.Text))
+            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho < 10)
             {
                 objTile = this.desenharLivre(x, y);
             }
@@ -216,18 +216,36 @@ namespace Rpg.Controle.Editor
             this.Invalidate();
         }
 
-        private Rectangle desenharGridRtgMapa(int x, int y)
+        private TileDominio desenharLivre(int x, int y)
+        {
+            TileDominio objTileResultado = new TileDominio();
+
+            objTileResultado.booFixo = true;
+            objTileResultado.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
+            objTileResultado.rtgImg = this.desenharLivreRtgImg(x, y);
+            objTileResultado.rtgMapa = this.desenharLivreRtgMapa(x, y, objTileResultado);
+
+            return objTileResultado;
+        }
+
+        private Rectangle desenharLivreRtgImg(int x, int y)
+        {
+            int h = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Height;
+            int w = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Width;
+
+            x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X;
+            y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
+
+            return new Rectangle(x, y, w, h);
+        }
+
+        private Rectangle desenharLivreRtgMapa(int x, int y, TileDominio objTile)
         {
             x = this.normalizarTileX(x);
 
             y = this.normalizarTileY(y);
 
-            return new Rectangle(x, y, INT_TILE_TAMANHO, INT_TILE_TAMANHO);
-        }
-
-        private TileDominio desenharLivre(int intClickX, int intClickY)
-        {
-            throw new NotImplementedException();
+            return new Rectangle(x, y, objTile.rtgImg.Width, objTile.rtgImg.Height);
         }
 
         private TileDominio desenharTile(int x, int y)
@@ -237,7 +255,7 @@ namespace Rpg.Controle.Editor
             objTileResultado.booFixo = true;
             objTileResultado.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
             objTileResultado.rtgImg = this.desenharTileRtgImg(x, y);
-            objTileResultado.rtgMapa = this.desenharGridRtgMapa(x, y);
+            objTileResultado.rtgMapa = this.desenharTileRtgMapa(x, y);
 
             return objTileResultado;
         }
@@ -249,6 +267,16 @@ namespace Rpg.Controle.Editor
             y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
 
             return new Rectangle(x, y, hw, hw);
+        }
+
+        private Rectangle desenharTileRtgMapa(int x, int y)
+        {
+            x = this.normalizarTileX(x);
+
+            y = this.normalizarTileY(y);
+            y = (y - (y % INT_TILE_TAMANHO));
+
+            return new Rectangle(x, y, INT_TILE_TAMANHO, INT_TILE_TAMANHO);
         }
 
         private CamadaGrafico getGfcCamada(CamadaDominio objCamada)
@@ -278,7 +306,6 @@ namespace Rpg.Controle.Editor
         private int normalizarTileX(int x)
         {
             x = (x - this.intMoveX);
-            x = (int)(x - (x % (INT_TILE_TAMANHO * this.fltZoom)));
             x = (int)(x / this.fltZoom + 1);
 
             return x;
@@ -287,7 +314,6 @@ namespace Rpg.Controle.Editor
         private int normalizarTileY(int y)
         {
             y = (y - this.intMoveY);
-            y = (int)(y - (y % (INT_TILE_TAMANHO * this.fltZoom)));
             y = (int)(y / this.fltZoom + 1);
 
             return y;

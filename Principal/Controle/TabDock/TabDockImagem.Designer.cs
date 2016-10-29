@@ -30,16 +30,20 @@
         {
             this.imgDisplay = new Rpg.Controle.Editor.ImagemDisplay();
             this.txtTileTamanho = new System.Windows.Forms.TextBox();
+            this.btnAtivarGrid = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.pnlAtalho.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAtalho
             // 
             this.pnlAtalho.Controls.Add(this.txtTileTamanho);
+            this.pnlAtalho.Controls.Add(this.btnAtivarGrid);
             // 
             // imgDisplay
             // 
             this.imgDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgDisplay.intTamanhoX = 0;
+            this.imgDisplay.intTamanhoY = 0;
             this.imgDisplay.intTileTamanho = 0;
             this.imgDisplay.Location = new System.Drawing.Point(0, 24);
             this.imgDisplay.Margin = new System.Windows.Forms.Padding(4);
@@ -51,12 +55,22 @@
             // txtTileTamanho
             // 
             this.txtTileTamanho.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtTileTamanho.Location = new System.Drawing.Point(0, 0);
+            this.txtTileTamanho.Enabled = false;
+            this.txtTileTamanho.Location = new System.Drawing.Point(30, 0);
             this.txtTileTamanho.Multiline = true;
             this.txtTileTamanho.Name = "txtTileTamanho";
-            this.txtTileTamanho.Size = new System.Drawing.Size(50, 24);
+            this.txtTileTamanho.Size = new System.Drawing.Size(35, 24);
             this.txtTileTamanho.TabIndex = 1;
+            this.txtTileTamanho.Text = "10";
+            this.txtTileTamanho.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTileTamanho.TextChanged += new System.EventHandler(this.txtTileTamanho_TextChanged);
+            // 
+            // btnAtivarGrid
+            // 
+            this.btnAtivarGrid.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAtivarGrid.Name = "btnAtivarGrid";
+            this.btnAtivarGrid.TabIndex = 2;
+            this.btnAtivarGrid.Click += new System.EventHandler(this.btnAtivarGrid_Click);
             // 
             // TabDockImagem
             // 
@@ -79,5 +93,6 @@
         #endregion
         public System.Windows.Forms.TextBox txtTileTamanho;
         public Editor.ImagemDisplay imgDisplay;
+        private DigoFramework.Controle.Botao.BotaoAtalho btnAtivarGrid;
     }
 }

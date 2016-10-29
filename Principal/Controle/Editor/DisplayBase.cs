@@ -222,7 +222,7 @@ namespace Rpg.Controle.Editor
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
-        protected virtual void processarClick(MouseEventArgs arg)
+        protected virtual void processarClickLeft(MouseEventArgs arg)
         {
         }
 
@@ -250,6 +250,14 @@ namespace Rpg.Controle.Editor
             return true;
         }
 
+        private void mover(MouseEventArgs arg)
+        {
+            this.intMoveX = (arg.X - this.intMoveXTemp);
+            this.intMoveY = (arg.Y - this.intMoveYTemp);
+
+            this.Invalidate();
+        }
+
         private void processarMouseDown(MouseEventArgs arg)
         {
             if (this.processarMouseDownMover(arg))
@@ -270,7 +278,7 @@ namespace Rpg.Controle.Editor
                 return false;
             }
 
-            this.processarClick(arg);
+            this.processarClickLeft(arg);
 
             return true;
         }
@@ -288,17 +296,12 @@ namespace Rpg.Controle.Editor
             return true;
         }
 
-        private void processarMouseMove(MouseEventArgs arg)
+        protected virtual void processarMouseMove(MouseEventArgs arg)
         {
-            if (!MouseButtons.Middle.Equals(arg.Button))
+            if (MouseButtons.Middle.Equals(arg.Button))
             {
-                return;
+                this.mover(arg);
             }
-
-            this.intMoveX = (arg.X - this.intMoveXTemp);
-            this.intMoveY = (arg.Y - this.intMoveYTemp);
-
-            this.Invalidate();
         }
 
         private void processarZoom(MouseEventArgs arg)
@@ -386,7 +389,11 @@ namespace Rpg.Controle.Editor
 
         protected override void OnPaint(PaintEventArgs arg)
         {
-            //base.OnPaint(arg);
+            if (DesignMode)
+            {
+                base.OnPaint(arg);
+                return;
+            }
 
             this.renderizarLocal(arg);
         }

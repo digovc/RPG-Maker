@@ -47,6 +47,14 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
+        private void ativarDesativarGrid()
+        {
+            this.txtTileTamanho.Enabled = true;
+            this.txtTileTamanho.Text = (!string.IsNullOrEmpty(this.txtTileTamanho.Text) ? this.txtTileTamanho.Text : "10");
+
+            this.imgDisplay.intTileTamanho = this.txtTileTamanho.Enabled ? Convert.ToInt16(this.txtTileTamanho.Text) : 0;
+        }
+
         private void atualizarTileTamanho()
         {
             if (string.IsNullOrEmpty(this.txtTileTamanho.Text))
@@ -81,6 +89,19 @@ namespace Rpg.Controle.TabDock
 
         #region Eventos
 
+        private void btnAtivarGrid_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                this.ativarDesativarGrid();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         protected override void OnEnter(EventArgs e)
         {
             base.OnEnter(e);
@@ -108,5 +129,6 @@ namespace Rpg.Controle.TabDock
         }
 
         #endregion Eventos
+
     }
 }

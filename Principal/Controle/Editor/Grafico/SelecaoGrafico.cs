@@ -49,6 +49,34 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        private int _intInicialX ;
+
+        private int intInicialX
+        {
+            get
+            {
+                return _intInicialX;
+            }
+            set
+            {
+                _intInicialX = value;
+            }
+        }
+
+        private int _intInicialY ;
+
+        private int intInicialY
+        {
+            get
+            {
+                return _intInicialY;
+            }
+            set
+            {
+                _intInicialY = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -60,6 +88,71 @@ namespace Rpg.Controle.Editor.Grafico
         #endregion Construtores
 
         #region Métodos
+
+        public override void renderizar(Graphics gpc)
+        {
+            if (this.rtg == default(Rectangle))
+            {
+                return;
+            }
+
+            gpc.DrawRectangle(this.penSelecao, this.rtg);
+        }
+
+        internal void addSelecao(int x, int y)
+        {
+            x = (x - this.objDisplay.intMoveX);
+            x = (int)(x / this.objDisplay.fltZoom);
+
+            y = (y - this.objDisplay.intMoveY);
+            y = (int)(y / this.objDisplay.fltZoom);
+
+            int w = (x - this.intInicialX);
+            int h = (y - this.intInicialY);
+
+            x = this.intInicialX;
+            y = this.intInicialY;
+
+            if (w < 0)
+            {
+                x = (x + w);
+                w = Math.Abs(w);
+            }
+
+            if (h < 0)
+            {
+                y = (y + h);
+                h = Math.Abs(h);
+            }
+
+            this.rtg = new Rectangle(x, y, w, h);
+        }
+
+        internal void comecarSelecao(int x, int y)
+        {
+            this.limparSelecao();
+
+            if (x < this.objDisplay.intMoveX)
+            {
+                return;
+            }
+
+            if (y < this.objDisplay.intMoveY)
+            {
+                return;
+            }
+
+            x = (x - this.objDisplay.intMoveX);
+            x = (int)(x / this.objDisplay.fltZoom);
+
+            y = (y - this.objDisplay.intMoveY);
+            y = (int)(y / this.objDisplay.fltZoom);
+
+            this.rtg = new Rectangle(x, y, 1, 1);
+
+            this.intInicialX = x;
+            this.intInicialY = y;
+        }
 
         internal void selecionarTile(int x, int y)
         {
@@ -80,32 +173,15 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            x -= this.objDisplay.intMoveX;
-            x -= (int)(x % (this.objDisplay.intTileTamanho * this.objDisplay.fltZoom));
+            x = (x - this.objDisplay.intMoveX);
+            x = (int)(x - (x % (this.objDisplay.intTileTamanho * this.objDisplay.fltZoom)));
             x = (int)(x / this.objDisplay.fltZoom);
 
-            y -= this.objDisplay.intMoveY;
-            y -= (int)(y % (this.objDisplay.intTileTamanho * this.objDisplay.fltZoom));
+            y = (y - this.objDisplay.intMoveY);
+            y = (int)(y - (y % (this.objDisplay.intTileTamanho * this.objDisplay.fltZoom)));
             y = (int)(y / this.objDisplay.fltZoom);
 
             this.rtg = new Rectangle(x, y, this.objDisplay.intTileTamanho, this.objDisplay.intTileTamanho);
-        }
-
-        protected override void invalidar()
-        {
-            base.invalidar();
-
-           
-        }
-
-        public override void renderizar(Graphics gpc)
-        {
-            if (this.rtg == default(Rectangle))
-            {
-                return;
-            }
-
-            gpc.DrawRectangle(this.penSelecao, this.rtg);
         }
 
         protected override void setEventos()
@@ -113,16 +189,6 @@ namespace Rpg.Controle.Editor.Grafico
             base.setEventos();
 
             this.objDisplay.onZooming += this.objDisplay_onZooming;
-        }
-
-        private Rectangle getRtgFinal()
-        {
-            int x = (this.rtg.X + this.objDisplay.intMoveX);
-            int y = (this.rtg.Y + this.objDisplay.intMoveY);
-            int w = (this.rtg.Width);
-            int h = (this.rtg.Height);
-
-            return new Rectangle(x, y, w, h);
         }
 
         private void limparSelecao()
