@@ -68,6 +68,21 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
+        internal void addPersonagem(PersonagemDominio objPersonagem)
+        {
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            if (this.objMapa == null)
+            {
+                return;
+            }
+
+            this.objMapa.addPersonagem(objPersonagem);
+        }
+
         protected override void inicializar()
         {
             base.inicializar();
@@ -145,6 +160,7 @@ namespace Rpg.Controle.TabDock
                 new Erro("Erro inesperado.\n", ex);
             }
         }
+
 
         #endregion Eventos
     }

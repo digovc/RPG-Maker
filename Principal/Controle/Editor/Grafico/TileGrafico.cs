@@ -4,7 +4,7 @@ using Rpg.Dominio;
 
 namespace Rpg.Controle.Editor.Grafico
 {
-    public class TileGrafico : GraficoBase
+    public class TileGrafico : GraficoSelecionavelBase
     {
         #region Constantes
 

@@ -15,6 +15,8 @@ namespace Rpg.Dominio
         private Atributo _attIntQuantidadeY;
         private List<CamadaDominio> _lstObjCamada;
 
+        private List<RelMapaPersonagemDominio> _lstObjRelMapaPersonagem;
+
         [JsonIgnore]
         public Atributo attIntQuantidadeX
         {
@@ -62,6 +64,21 @@ namespace Rpg.Dominio
             }
         }
 
+        public List<RelMapaPersonagemDominio> lstObjRelMapaPersonagem
+        {
+            get
+            {
+                if (_lstObjRelMapaPersonagem != null)
+                {
+                    return _lstObjRelMapaPersonagem;
+                }
+
+                _lstObjRelMapaPersonagem = new List<RelMapaPersonagemDominio>();
+
+                return _lstObjRelMapaPersonagem;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -94,6 +111,21 @@ namespace Rpg.Dominio
             objMapaResultado.iniciar(true);
 
             return objMapaResultado;
+        }
+
+        internal void addPersonagem(PersonagemDominio objPersonagem)
+        {
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            RelMapaPersonagemDominio objRelMapaPersonagem = new RelMapaPersonagemDominio();
+
+            objRelMapaPersonagem.attDirPersonagem.strValor = objPersonagem.attDirCompleto.strValor;
+            objRelMapaPersonagem.objPersonagem = objPersonagem;
+
+            this.lstObjRelMapaPersonagem.Add(objRelMapaPersonagem);
         }
 
         protected override void inicializar(bool booCriacao)

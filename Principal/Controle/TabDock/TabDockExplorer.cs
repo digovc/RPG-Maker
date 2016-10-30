@@ -12,6 +12,8 @@ namespace Rpg.Controle.TabDock
     {
         #region Constantes
 
+        private const string STR_MENU_CONTEXTO_NODE_ADD_MAPA = "Adicionar ao mapa";
+
         #endregion Constantes
 
         #region Atributos
@@ -225,6 +227,49 @@ namespace Rpg.Controle.TabDock
             tnrMapa.Nodes.Add(new TreeNodeRpg(objCamada));
         }
 
+        private void abrirMenuContexto(TreeNodeRpg tnr)
+        {
+            ContextMenuStrip cmsNode = new ContextMenuStrip();
+
+            if (tnr.objDominio == null)
+            {
+                return;
+            }
+
+            if (tnr.objDominio is ArquivoRefDominio)
+            {
+                this.abrirMenuContexto(cmsNode, (tnr.objDominio as ArquivoRefDominio));
+            }
+
+            if (cmsNode.Items.Count < 1)
+            {
+                return;
+            }
+
+            cmsNode.Show(Cursor.Position.X, Cursor.Position.Y);
+        }
+
+        private void abrirMenuContexto(ContextMenuStrip cmsNode, ArquivoRefDominio objArqRef)
+        {
+            if (objArqRef.objArquivo == null)
+            {
+                return;
+            }
+
+            if (objArqRef.objArquivo is PersonagemDominio)
+            {
+                this.abrirMenuContexto(cmsNode, objArqRef.objArquivo as PersonagemDominio);
+                return;
+            }
+        }
+
+        private void abrirMenuContexto(ContextMenuStrip cmsNode, PersonagemDominio objPersonagem)
+        {
+            ToolStripItem tsmAddPersonagemMapa = cmsNode.Items.Add(STR_MENU_CONTEXTO_NODE_ADD_MAPA);
+
+            tsmAddPersonagemMapa.Click += this.tsmAddPersonagemMapa_Click;
+        }
+
         private void abrirPasta(PastaDominio objPasta)
         {
             if (!Directory.Exists(objPasta.attDirCompleto.strValor))
@@ -433,6 +478,61 @@ namespace Rpg.Controle.TabDock
             tnrPai.Nodes.Add(new TreeNodeRpg(arqRef));
         }
 
+        private void addPersonagemMapa()
+        {
+            if (AppRpg.i.frmPrincipal.tabDockMapaSelecionado == null)
+            {
+                return;
+            }
+
+            if (this.trv.SelectedNode == null)
+            {
+                return;
+            }
+
+            this.addPersonagemMapa(trv.SelectedNode as TreeNodeRpg);
+        }
+
+        private void addPersonagemMapa(TreeNodeRpg tnr)
+        {
+            if (tnr.objDominio == null)
+            {
+                return;
+            }
+
+            if (!(tnr.objDominio is ArquivoRefDominio))
+            {
+                return;
+            }
+
+            this.addPersonagemMapa(tnr.objDominio as ArquivoRefDominio);
+        }
+
+        private void addPersonagemMapa(ArquivoRefDominio objArqRef)
+        {
+            if (objArqRef.objArquivo == null)
+            {
+                return;
+            }
+
+            if (!(objArqRef.objArquivo is PersonagemDominio))
+            {
+                return;
+            }
+
+            this.addPersonagemMapa(objArqRef.objArquivo as PersonagemDominio);
+        }
+
+        private void addPersonagemMapa(PersonagemDominio objPersonagem)
+        {
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            AppRpg.i.frmPrincipal.tabDockMapaSelecionado.addPersonagem(objPersonagem);
+        }
+
         private List<string> getLstStrExtensaoSuportadaAudio()
         {
             List<string> lstStrResultado = new List<string>();
@@ -455,14 +555,14 @@ namespace Rpg.Controle.TabDock
             return lstStrResultado;
         }
 
-        private void processarNodeClick(TreeNodeRpg trn)
+        private void processarNodeClick(TreeNodeMouseClickEventArgs arg)
         {
-            if (trn == null)
-            {
-                return;
-            }
+            this.selecionarItem(arg.Node as TreeNodeRpg);
 
-            AppRpg.i.frmPrincipal.objSelecionado = trn.objDominio;
+            if (MouseButtons.Right.Equals(arg.Button))
+            {
+                this.abrirMenuContexto(arg.Node as TreeNodeRpg);
+            }
         }
 
         private void processarNodeDoubleClick(TreeNodeRpg tnr)
@@ -479,7 +579,7 @@ namespace Rpg.Controle.TabDock
 
             if (tnr.objDominio is PastaDominio)
             {
-                this.abrirPasta(tnr.objDominio as PastaDominio);
+                //this.abrirPasta(tnr.objDominio as PastaDominio);
                 return;
             }
 
@@ -488,6 +588,16 @@ namespace Rpg.Controle.TabDock
                 this.abrirArquivoRef(tnr, (tnr.objDominio as ArquivoRefDominio));
                 return;
             }
+        }
+
+        private void selecionarItem(TreeNodeRpg tnr)
+        {
+            if (tnr == null)
+            {
+                return;
+            }
+
+            AppRpg.i.frmPrincipal.objSelecionado = tnr.objDominio;
         }
 
         #endregion Métodos
@@ -511,11 +621,11 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-        private void trv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void trv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs arg)
         {
             try
             {
-                this.processarNodeClick((TreeNodeRpg)e.Node);
+                this.processarNodeClick(arg);
             }
             catch (Exception ex)
             {
@@ -576,6 +686,18 @@ namespace Rpg.Controle.TabDock
             try
             {
                 this.addItemPersonagem();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmAddPersonagemMapa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.addPersonagemMapa();
             }
             catch (Exception ex)
             {

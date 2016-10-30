@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Rpg.Controle.Editor.Grafico;
@@ -19,6 +18,7 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private List<CamadaGrafico> _lstGfcCamada;
+        private List<PersonagemGrafico> _lstGfcPersonagem;
         private MapaDominio _objMapa;
         private TabDockMapa _tabDockMapa;
 
@@ -70,6 +70,21 @@ namespace Rpg.Controle.Editor
             }
         }
 
+        private List<PersonagemGrafico> lstGfcPersonagem
+        {
+            get
+            {
+                if (_lstGfcPersonagem != null)
+                {
+                    return _lstGfcPersonagem;
+                }
+
+                _lstGfcPersonagem = new List<PersonagemGrafico>();
+
+                return _lstGfcPersonagem;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -112,6 +127,7 @@ namespace Rpg.Controle.Editor
             base.renderizar(arg);
 
             this.renderizarCamada(arg);
+            this.renderizarPersonagem(arg);
         }
 
         protected override bool validarRenderizar()
@@ -303,6 +319,30 @@ namespace Rpg.Controle.Editor
             return gfcCamadaNova;
         }
 
+        private PersonagemGrafico getGfcPersonagem(RelMapaPersonagemDominio objRelMapaPersonagem)
+        {
+            if (objRelMapaPersonagem == null)
+            {
+                return null;
+            }
+
+            foreach (PersonagemGrafico gfcPersonagem in this.lstGfcPersonagem)
+            {
+                if (!objRelMapaPersonagem.Equals(gfcPersonagem.objRelMapaPersonagem))
+                {
+                    continue;
+                }
+
+                return gfcPersonagem;
+            }
+
+            PersonagemGrafico gfcPersonagemNova = new PersonagemGrafico(this, objRelMapaPersonagem);
+
+            this.lstGfcPersonagem.Add(gfcPersonagemNova);
+
+            return gfcPersonagemNova;
+        }
+
         private int normalizarTileX(int x)
         {
             x = (x - this.intMoveX);
@@ -329,6 +369,19 @@ namespace Rpg.Controle.Editor
             foreach (CamadaDominio objCamada in this.objMapa.lstObjCamada)
             {
                 this.getGfcCamada(objCamada).renderizar(arg);
+            }
+        }
+
+        private void renderizarPersonagem(PaintEventArgs arg)
+        {
+            if (this.objMapa == null)
+            {
+                return;
+            }
+
+            foreach (RelMapaPersonagemDominio objRelMapaPersonagem in this.objMapa.lstObjRelMapaPersonagem)
+            {
+                this.getGfcPersonagem(objRelMapaPersonagem).renderizar(arg);
             }
         }
 
