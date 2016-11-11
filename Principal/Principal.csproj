@@ -108,7 +108,6 @@
     <Compile Include="Controle\Editor\DisplayBase.Designer.cs">
       <DependentUpon>DisplayBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Editor\Grafico\GraficoSelecionavelBase.cs" />
     <Compile Include="Controle\Editor\Grafico\PersonagemGrafico.cs" />
     <Compile Include="Controle\Editor\ImagemDisplay.cs">
       <SubType>UserControl</SubType>
@@ -215,7 +214,7 @@
     <Compile Include="Dominio\JogoDominio.cs" />
     <Compile Include="Dominio\MapaDominio.cs" />
     <Compile Include="Dominio\PersonagemDominio.cs" />
-    <Compile Include="Dominio\RelMapaPersonagemDominio.cs" />
+    <Compile Include="Dominio\PersonagemTileDominio.cs" />
     <Compile Include="Dominio\RpgDominioBase.cs" />
     <Compile Include="Dominio\TileDominio.cs" />
     <Compile Include="Frm\FrmPrincipal.cs">

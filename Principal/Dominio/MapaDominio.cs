@@ -15,7 +15,7 @@ namespace Rpg.Dominio
         private Atributo _attIntQuantidadeY;
         private List<CamadaDominio> _lstObjCamada;
 
-        private List<RelMapaPersonagemDominio> _lstObjRelMapaPersonagem;
+        private List<PersonagemTileDominio> _lstObjPersonagemTile;
 
         [JsonIgnore]
         public Atributo attIntQuantidadeX
@@ -64,18 +64,18 @@ namespace Rpg.Dominio
             }
         }
 
-        public List<RelMapaPersonagemDominio> lstObjRelMapaPersonagem
+        public List<PersonagemTileDominio> lstObjPersonagemTile
         {
             get
             {
-                if (_lstObjRelMapaPersonagem != null)
+                if (_lstObjPersonagemTile != null)
                 {
-                    return _lstObjRelMapaPersonagem;
+                    return _lstObjPersonagemTile;
                 }
 
-                _lstObjRelMapaPersonagem = new List<RelMapaPersonagemDominio>();
+                _lstObjPersonagemTile = new List<PersonagemTileDominio>();
 
-                return _lstObjRelMapaPersonagem;
+                return _lstObjPersonagemTile;
             }
         }
 
@@ -120,12 +120,12 @@ namespace Rpg.Dominio
                 return;
             }
 
-            RelMapaPersonagemDominio objRelMapaPersonagem = new RelMapaPersonagemDominio();
+            PersonagemTileDominio objPersonagemTile = new PersonagemTileDominio();
 
-            objRelMapaPersonagem.attDirPersonagem.strValor = objPersonagem.attDirCompleto.strValor;
-            objRelMapaPersonagem.objPersonagem = objPersonagem;
+            objPersonagemTile.dirImg = objPersonagem.attDirCompleto.strValor;
+            objPersonagemTile.objPersonagem = objPersonagem;
 
-            this.lstObjRelMapaPersonagem.Add(objRelMapaPersonagem);
+            this.lstObjPersonagemTile.Add(objPersonagemTile);
         }
 
         protected override void inicializar(bool booCriacao)

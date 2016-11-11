@@ -2,7 +2,7 @@
 
 namespace Rpg.Dominio
 {
-    public class RelMapaPersonagemDominio : RpgDominioBase
+    public class PersonagemTileDominio : TileDominio
     {
         #region Constantes
 
@@ -10,25 +10,7 @@ namespace Rpg.Dominio
 
         #region Atributos
 
-        private Atributo _attDirPersonagem;
-
         private PersonagemDominio _objPersonagem;
-
-        [JsonIgnore]
-        public Atributo attDirPersonagem
-        {
-            get
-            {
-                if (_attDirPersonagem != null)
-                {
-                    return _attDirPersonagem;
-                }
-
-                _attDirPersonagem = this.getAtt("Diretório do personagem");
-
-                return _attDirPersonagem;
-            }
-        }
 
         [JsonIgnore]
         public PersonagemDominio objPersonagem

@@ -1,9 +1,8 @@
-﻿using System.Drawing;
-using Rpg.Dominio;
+﻿using Rpg.Dominio;
 
 namespace Rpg.Controle.Editor.Grafico
 {
-    public class PersonagemGrafico : GraficoSelecionavelBase
+    public class PersonagemGrafico : TileGrafico
     {
         #region Constantes
 
@@ -11,38 +10,17 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Atributos
 
-        private RelMapaPersonagemDominio _objRelMapaPersonagem;
-
-        public RelMapaPersonagemDominio objRelMapaPersonagem
-        {
-            get
-            {
-                return _objRelMapaPersonagem;
-            }
-
-            private set
-            {
-                _objRelMapaPersonagem = value;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
 
-        public PersonagemGrafico(DisplayBase objDisplay, RelMapaPersonagemDominio objRelMapaPersonagem) : base(objDisplay)
+        public PersonagemGrafico(DisplayBase objDisplay, PersonagemTileDominio objPersonagemTile) : base(objDisplay, objPersonagemTile)
         {
-            this.objRelMapaPersonagem = objRelMapaPersonagem;
         }
 
         #endregion Construtores
 
         #region Métodos
-
-        public override void renderizar(Graphics gpc)
-        {
-            gpc.DrawImage(AppRpg.i.getBmpCache(this.objRelMapaPersonagem.objPersonagem.objTile.dirImg), 0, 0);
-        }
 
         #endregion Métodos
 

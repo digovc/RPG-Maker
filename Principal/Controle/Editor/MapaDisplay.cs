@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Rpg.Controle.Editor.Grafico;
@@ -17,6 +18,7 @@ namespace Rpg.Controle.Editor
 
         #region Atributos
 
+        private PersonagemGrafico _gfcPersonagemSelecionado;
         private List<CamadaGrafico> _lstGfcCamada;
         private List<PersonagemGrafico> _lstGfcPersonagem;
         private MapaDominio _objMapa;
@@ -52,6 +54,31 @@ namespace Rpg.Controle.Editor
             set
             {
                 _tabDockMapa = value;
+            }
+        }
+
+        private PersonagemGrafico gfcPersonagemSelecionado
+        {
+            get
+            {
+                return _gfcPersonagemSelecionado;
+            }
+
+            set
+            {
+                if (_gfcPersonagemSelecionado == value)
+                {
+                    return;
+                }
+
+                if (_gfcPersonagemSelecionado != null)
+                {
+                    _gfcPersonagemSelecionado.booSelecionado = false;
+                }
+
+                _gfcPersonagemSelecionado = value;
+
+                this.setEventosGfcPersonagemSelecionado(_gfcPersonagemSelecionado);
             }
         }
 
@@ -118,6 +145,7 @@ namespace Rpg.Controle.Editor
                     return;
 
                 case TabDockMapa.EnmFerramenta.SELECIONAR:
+                    this.selecionar(arg.X, arg.Y);
                     return;
             }
         }
@@ -167,9 +195,9 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            x = this.normalizarTileX(x);
+            x = this.normalizarX(x);
 
-            y = this.normalizarTileY(y);
+            y = this.normalizarY(y);
 
             if (!objCamada.removerTile(x, y))
             {
@@ -257,9 +285,9 @@ namespace Rpg.Controle.Editor
 
         private Rectangle desenharLivreRtgMapa(int x, int y, TileDominio objTile)
         {
-            x = this.normalizarTileX(x);
+            x = this.normalizarX(x);
 
-            y = this.normalizarTileY(y);
+            y = this.normalizarY(y);
 
             return new Rectangle(x, y, objTile.rtgImg.Width, objTile.rtgImg.Height);
         }
@@ -287,9 +315,9 @@ namespace Rpg.Controle.Editor
 
         private Rectangle desenharTileRtgMapa(int x, int y)
         {
-            x = this.normalizarTileX(x);
+            x = this.normalizarX(x);
 
-            y = this.normalizarTileY(y);
+            y = this.normalizarY(y);
             y = (y - (y % INT_TILE_TAMANHO));
 
             return new Rectangle(x, y, INT_TILE_TAMANHO, INT_TILE_TAMANHO);
@@ -319,16 +347,16 @@ namespace Rpg.Controle.Editor
             return gfcCamadaNova;
         }
 
-        private PersonagemGrafico getGfcPersonagem(RelMapaPersonagemDominio objRelMapaPersonagem)
+        private PersonagemGrafico getGfcPersonagem(PersonagemTileDominio objPersonagemTile)
         {
-            if (objRelMapaPersonagem == null)
+            if (objPersonagemTile == null)
             {
                 return null;
             }
 
             foreach (PersonagemGrafico gfcPersonagem in this.lstGfcPersonagem)
             {
-                if (!objRelMapaPersonagem.Equals(gfcPersonagem.objRelMapaPersonagem))
+                if (!objPersonagemTile.Equals(gfcPersonagem.objTile))
                 {
                     continue;
                 }
@@ -336,14 +364,14 @@ namespace Rpg.Controle.Editor
                 return gfcPersonagem;
             }
 
-            PersonagemGrafico gfcPersonagemNova = new PersonagemGrafico(this, objRelMapaPersonagem);
+            PersonagemGrafico gfcPersonagemNova = new PersonagemGrafico(this, objPersonagemTile);
 
             this.lstGfcPersonagem.Add(gfcPersonagemNova);
 
             return gfcPersonagemNova;
         }
 
-        private int normalizarTileX(int x)
+        private int normalizarX(int x)
         {
             x = (x - this.intMoveX);
             x = (int)(x / this.fltZoom + 1);
@@ -351,7 +379,7 @@ namespace Rpg.Controle.Editor
             return x;
         }
 
-        private int normalizarTileY(int y)
+        private int normalizarY(int y)
         {
             y = (y - this.intMoveY);
             y = (int)(y / this.fltZoom + 1);
@@ -379,10 +407,82 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            foreach (RelMapaPersonagemDominio objRelMapaPersonagem in this.objMapa.lstObjRelMapaPersonagem)
+            foreach (PersonagemTileDominio objPersonagemTile in this.objMapa.lstObjPersonagemTile)
             {
-                this.getGfcPersonagem(objRelMapaPersonagem).renderizar(arg);
+                this.getGfcPersonagem(objPersonagemTile).renderizar(arg);
             }
+        }
+
+        private void selecionar(int x, int y)
+        {
+            if (this.objMapa == null)
+            {
+                return;
+            }
+
+            x = this.normalizarX(x);
+            y = this.normalizarY(y);
+
+            if (this.selecionarPersonagem(x, y))
+            {
+                return;
+            }
+
+            this.selecionarTile(x, y);
+        }
+
+        private bool selecionarPersonagem(int x, int y)
+        {
+            if (this.lstGfcPersonagem.Count < 1)
+            {
+                return false;
+            }
+
+            foreach (PersonagemGrafico gfcPersonagem in this.lstGfcPersonagem)
+            {
+                if (this.selecionarPersonagem(x, y, gfcPersonagem))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool selecionarPersonagem(int x, int y, PersonagemGrafico gfcPersonagem)
+        {
+            if (gfcPersonagem.objTile == null)
+            {
+                return false;
+            }
+
+            if (!gfcPersonagem.objTile.rtgMapa.Contains(x, y))
+            {
+                return false;
+            }
+
+            this.selecionarPersonagem(gfcPersonagem);
+            return true;
+        }
+
+        private void selecionarPersonagem(PersonagemGrafico gfcPersonagem)
+        {
+            this.gfcPersonagemSelecionado = gfcPersonagem;
+        }
+
+        private void selecionarTile(int x, int y)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void setEventosGfcPersonagemSelecionado(PersonagemGrafico gfcPersonagemSelecionado)
+        {
+            if (gfcPersonagemSelecionado == null)
+            {
+                return;
+            }
+
+            gfcPersonagemSelecionado.booSelecionado = true;
         }
 
         private void setObjMapa(MapaDominio objMapa)

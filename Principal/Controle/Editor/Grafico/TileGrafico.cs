@@ -4,7 +4,7 @@ using Rpg.Dominio;
 
 namespace Rpg.Controle.Editor.Grafico
 {
-    public class TileGrafico : GraficoSelecionavelBase
+    public class TileGrafico : GraficoBase
     {
         #region Constantes
 
@@ -12,8 +12,22 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Atributos
 
+        private bool _booSelecionado;
         private TileDominio _objTile;
         private Rectangle _rtgDestino;
+
+        public bool booSelecionado
+        {
+            get
+            {
+                return _booSelecionado;
+            }
+
+            set
+            {
+                _booSelecionado = value;
+            }
+        }
 
         public TileDominio objTile
         {
