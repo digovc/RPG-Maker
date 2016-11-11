@@ -25,6 +25,7 @@ namespace Rpg.Frm
         private TabDockImagem _tabDockImagemSelecionada;
         private TabDockMapa _tabDockMapa;
         private TabDockMapa _tabDockMapaSelecionado;
+        private TabDockMixer _tabDockMixer;
         private TabDockPropriedade _tabDockPropriedade;
 
         public RpgDominioBase objSelecionado
@@ -175,6 +176,21 @@ namespace Rpg.Frm
                 _tabDockMapa = new TabDockMapa();
 
                 return _tabDockMapa;
+            }
+        }
+
+        private TabDockMixer tabDockMixer
+        {
+            get
+            {
+                if (_tabDockMixer != null)
+                {
+                    return _tabDockMixer;
+                }
+
+                _tabDockMixer = new TabDockMixer();
+
+                return _tabDockMixer;
             }
         }
 
@@ -345,6 +361,18 @@ namespace Rpg.Frm
             try
             {
                 this.tabDockDados.Show(this.pnlDockRpg, DockState.DockBottom);
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tsmExibirMixer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tabDockMixer.Show(this.pnlDockRpg, DockState.DockBottom);
             }
             catch (Exception ex)
             {
