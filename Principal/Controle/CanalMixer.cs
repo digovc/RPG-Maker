@@ -209,7 +209,7 @@ namespace Rpg.Controle
                 return;
             }
 
-            this.objSoundOut.Volume = ((float)this.tcbVolume.Value / (float)this.tcbVolume.Maximum);
+            this.objSoundOut.Volume = ((float)this.tcbVolume.Value / this.tcbVolume.Maximum);
         }
 
         private void fadeOut()

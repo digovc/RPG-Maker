@@ -60,9 +60,11 @@
             // 
             this.tcbVolume.Dock = System.Windows.Forms.DockStyle.Left;
             this.tcbVolume.Location = new System.Drawing.Point(90, 0);
+            this.tcbVolume.Maximum = 100;
             this.tcbVolume.Name = "tcbVolume";
             this.tcbVolume.Size = new System.Drawing.Size(75, 25);
             this.tcbVolume.TabIndex = 3;
+            this.tcbVolume.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tcbVolume.ValueChanged += new System.EventHandler(this.tcbVolume_ValueChanged);
             // 
             // tcbTime

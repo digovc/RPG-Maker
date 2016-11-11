@@ -33,6 +33,7 @@
             // 
             // pnlMixer
             // 
+            this.pnlMixer.AutoScroll = true;
             this.pnlMixer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMixer.Location = new System.Drawing.Point(0, 25);
             this.pnlMixer.Name = "pnlMixer";
