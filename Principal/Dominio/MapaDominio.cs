@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Rpg.Dominio
@@ -88,7 +89,14 @@ namespace Rpg.Dominio
 
             set
             {
+                if (_objTileBackground == value)
+                {
+                    return;
+                }
+
                 _objTileBackground = value;
+
+                this.setObjTileBackground(_objTileBackground);
             }
         }
 
@@ -171,9 +179,16 @@ namespace Rpg.Dominio
             }
         }
 
+        private void setObjTileBackground(TileDominio objTileBackground)
+        {
+            this.onObjTileBackgroundChanged?.Invoke(this, objTileBackground);
+        }
+
         #endregion Métodos
 
         #region Eventos
+
+        public event EventHandler<TileDominio> onObjTileBackgroundChanged;
 
         #endregion Eventos
     }

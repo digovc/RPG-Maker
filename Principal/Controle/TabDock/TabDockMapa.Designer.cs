@@ -51,11 +51,11 @@
             this.ctrMapa.intTamanhoX = 0;
             this.ctrMapa.intTamanhoY = 0;
             this.ctrMapa.intTileTamanho = 50;
-            this.ctrMapa.Location = new System.Drawing.Point(0, 20);
+            this.ctrMapa.Location = new System.Drawing.Point(0, 25);
             this.ctrMapa.Margin = new System.Windows.Forms.Padding(4);
             this.ctrMapa.Name = "ctrMapa";
             this.ctrMapa.objMapa = null;
-            this.ctrMapa.Size = new System.Drawing.Size(1043, 721);
+            this.ctrMapa.Size = new System.Drawing.Size(1043, 716);
             this.ctrMapa.tabDockMapa = null;
             this.ctrMapa.TabIndex = 0;
             // 
@@ -92,6 +92,7 @@
             this.btnRemoverBackground.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnRemoverBackground.Name = "btnRemoverBackground";
             this.btnRemoverBackground.TabIndex = 5;
+            this.btnRemoverBackground.Click += new System.EventHandler(this.btnRemoverBackground_Click);
             // 
             // TabDockMapa
             // 

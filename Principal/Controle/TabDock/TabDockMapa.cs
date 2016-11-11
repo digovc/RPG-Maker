@@ -139,6 +139,16 @@ namespace Rpg.Controle.TabDock
             this.ctrMapa.objMapa = this.objMapa;
         }
 
+        private void removerBackground()
+        {
+            if (this.objMapa == null)
+            {
+                return;
+            }
+
+            this.objMapa.objTileBackground = null;
+        }
+
         private void setObjMapa(MapaDominio objMapa)
         {
             if (objMapa == null)
@@ -198,6 +208,18 @@ namespace Rpg.Controle.TabDock
             try
             {
                 this.enmFerramenta = EnmFerramenta.LAPIS;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnRemoverBackground_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.removerBackground();
             }
             catch (Exception ex)
             {

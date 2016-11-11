@@ -101,6 +101,7 @@
     <Compile Include="Controle\EditAtributo\EditAtributoAlfanumerico.Designer.cs">
       <DependentUpon>EditAtributoAlfanumerico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controle\Editor\Grafico\BackgroundGrafico.cs" />
     <Compile Include="Controle\Editor\Grafico\CamadaGrafico.cs" />
     <Compile Include="Controle\Editor\DisplayBase.cs">
       <SubType>UserControl</SubType>

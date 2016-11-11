@@ -18,6 +18,7 @@ namespace Rpg.Controle.Editor
 
         #region Atributos
 
+        private BackgroundGrafico _gfcBackground;
         private PersonagemGrafico _gfcPersonagemSelecionado;
         private List<CamadaGrafico> _lstGfcCamada;
         private List<PersonagemGrafico> _lstGfcPersonagem;
@@ -54,6 +55,21 @@ namespace Rpg.Controle.Editor
             set
             {
                 _tabDockMapa = value;
+            }
+        }
+
+        private BackgroundGrafico gfcBackground
+        {
+            get
+            {
+                if (_gfcBackground != null)
+                {
+                    return _gfcBackground;
+                }
+
+                _gfcBackground = new BackgroundGrafico(this, this.objMapa.objTileBackground);
+
+                return _gfcBackground;
             }
         }
 
@@ -154,6 +170,7 @@ namespace Rpg.Controle.Editor
         {
             base.renderizar(arg);
 
+            this.renderizarBackground(arg);
             this.renderizarCamada(arg);
             this.renderizarPersonagem(arg);
         }
@@ -387,6 +404,11 @@ namespace Rpg.Controle.Editor
             return y;
         }
 
+        private void renderizarBackground(PaintEventArgs arg)
+        {
+            this.gfcBackground.renderizar(arg);
+        }
+
         private void renderizarCamada(PaintEventArgs arg)
         {
             if (this.objMapa == null)
@@ -495,11 +517,18 @@ namespace Rpg.Controle.Editor
             // TODO: Quando alterar o tamanho do mapa, atualizar seu display.
             this.intTamanhoX = (objMapa.attIntQuantidadeX.intValor * INT_TILE_TAMANHO);
             this.intTamanhoY = (objMapa.attIntQuantidadeY.intValor * INT_TILE_TAMANHO);
+
+            this.objMapa.onObjTileBackgroundChanged += this.objMapa_onObjTileBackgroundChanged;
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void objMapa_onObjTileBackgroundChanged(object sender, TileDominio objTileBackground)
+        {
+            this.gfcBackground.objTile = objTileBackground;
+        }
 
         #endregion Eventos
     }

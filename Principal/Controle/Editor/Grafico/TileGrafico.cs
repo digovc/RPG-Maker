@@ -36,7 +36,7 @@ namespace Rpg.Controle.Editor.Grafico
                 return _objTile;
             }
 
-            private set
+            set
             {
                 _objTile = value;
             }
@@ -99,7 +99,7 @@ namespace Rpg.Controle.Editor.Grafico
             this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
-        private Rectangle getRtgDestino()
+        protected virtual Rectangle getRtgDestino()
         {
             if (this.objTile == null)
             {
