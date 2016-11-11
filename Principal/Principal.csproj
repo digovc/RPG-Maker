@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSCore">
+      <HintPath>..\Lib\CSCore.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\DigoFramework\lib\IonicZip\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -59,11 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRpg.cs" />
-    <Compile Include="Controle\AudioTrack.cs">
+    <Compile Include="Controle\CanalMixer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controle\AudioTrack.Designer.cs">
-      <DependentUpon>AudioTrack.cs</DependentUpon>
+    <Compile Include="Controle\CanalMixer.Designer.cs">
+      <DependentUpon>CanalMixer.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\DockPanelRpg.cs">
       <SubType>Component</SubType>
@@ -234,8 +237,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemaRpg.cs" />
-    <EmbeddedResource Include="Controle\AudioTrack.resx">
-      <DependentUpon>AudioTrack.cs</DependentUpon>
+    <EmbeddedResource Include="Controle\CanalMixer.resx">
+      <DependentUpon>CanalMixer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\EditAtributo\EditAtributoAlcance.resx">
       <DependentUpon>EditAtributoAlcance.cs</DependentUpon>
@@ -281,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockMapa.resx">
       <DependentUpon>TabDockMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TabDock\TabDockMixer.resx">
+      <DependentUpon>TabDockMixer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\TabDock\TabDockPersonagem.resx">
       <DependentUpon>TabDockPersonagem.cs</DependentUpon>

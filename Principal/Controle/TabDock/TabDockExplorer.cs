@@ -92,6 +92,12 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
+            if (arqRef.objArquivo is AudioDominio)
+            {
+                this.abrirAudio(arqRef.objArquivo as AudioDominio);
+                return;
+            }
+
             if (arqRef.objArquivo is ImagemDominio)
             {
                 this.abrirImagem(arqRef.objArquivo as ImagemDominio);
@@ -109,6 +115,11 @@ namespace Rpg.Controle.TabDock
                 this.abrirPersonagem(tnr, arqRef.objArquivo as PersonagemDominio);
                 return;
             }
+        }
+
+        private void abrirAudio(AudioDominio objAudio)
+        {
+            AppRpg.i.frmPrincipal.tabDockMixer.abrirAudio(objAudio);
         }
 
         private void abrirImagem(ImagemDominio objImg)

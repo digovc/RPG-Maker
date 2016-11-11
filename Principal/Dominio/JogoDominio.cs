@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Rpg.Dominio
 {
@@ -9,6 +10,23 @@ namespace Rpg.Dominio
         #endregion Constantes
 
         #region Atributos
+
+        private List<AudioDominio> _lstObjAudio;
+
+        public List<AudioDominio> lstObjAudio
+        {
+            get
+            {
+                if (_lstObjAudio != null)
+                {
+                    return _lstObjAudio;
+                }
+
+                _lstObjAudio = new List<AudioDominio>();
+
+                return _lstObjAudio;
+            }
+        }
 
         #endregion Atributos
 
@@ -31,6 +49,29 @@ namespace Rpg.Dominio
             objJogoResultado.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
 
             return objJogoResultado;
+        }
+
+        internal void addObjAudio(AudioDominio objAudio)
+        {
+            if (objAudio == null)
+            {
+                return;
+            }
+
+            if (this.lstObjAudio.Contains(objAudio))
+            {
+                return;
+            }
+
+            foreach (AudioDominio objAudio2 in this.lstObjAudio)
+            {
+                if (objAudio2.attDirCompleto.strValor.Equals(objAudio.attDirCompleto.strValor))
+                {
+                    return;
+                }
+            }
+
+            this.lstObjAudio.Add(objAudio);
         }
 
         #endregion Métodos

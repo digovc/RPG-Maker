@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using DigoFramework;
 using Rpg.Controle.TabDock;
@@ -71,6 +72,21 @@ namespace Rpg.Frm
             set
             {
                 _tabDockMapaSelecionado = value;
+            }
+        }
+
+        public TabDockMixer tabDockMixer
+        {
+            get
+            {
+                if (_tabDockMixer != null)
+                {
+                    return _tabDockMixer;
+                }
+
+                _tabDockMixer = new TabDockMixer();
+
+                return _tabDockMixer;
             }
         }
 
@@ -179,21 +195,6 @@ namespace Rpg.Frm
             }
         }
 
-        private TabDockMixer tabDockMixer
-        {
-            get
-            {
-                if (_tabDockMixer != null)
-                {
-                    return _tabDockMixer;
-                }
-
-                _tabDockMixer = new TabDockMixer();
-
-                return _tabDockMixer;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -206,6 +207,26 @@ namespace Rpg.Frm
         #endregion Construtores
 
         #region Métodos
+
+        private void fecharAplicacao()
+        {
+            this.fecharAplicacaoMixer();
+        }
+
+        private void fecharAplicacaoMixer()
+        {
+            if (!this.tabDockMixer.Visible)
+            {
+                return;
+            }
+
+            this.tabDockMixer.fecharAplicacao();
+        }
+
+        public void abrirMixer()
+        {
+            this.tabDockMixer.Show(this.pnlDockRpg, DockState.DockBottom);
+        }
 
         internal void abrirImagem(ImagemDominio objImg)
         {
@@ -356,6 +377,20 @@ namespace Rpg.Frm
 
         #region Eventos
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            try
+            {
+                this.fecharAplicacao();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         private void tsmExibirDados_Click(object sender, EventArgs e)
         {
             try
@@ -372,7 +407,7 @@ namespace Rpg.Frm
         {
             try
             {
-                this.tabDockMixer.Show(this.pnlDockRpg, DockState.DockBottom);
+                this.abrirMixer();
             }
             catch (Exception ex)
             {
