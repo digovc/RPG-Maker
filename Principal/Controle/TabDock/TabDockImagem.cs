@@ -52,7 +52,7 @@ namespace Rpg.Controle.TabDock
             this.txtTileTamanho.Enabled = !this.txtTileTamanho.Enabled;
             this.txtTileTamanho.Text = (!string.IsNullOrEmpty(this.txtTileTamanho.Text) ? this.txtTileTamanho.Text : "10");
 
-            this.imgDisplay.intTileTamanho = this.txtTileTamanho.Enabled ? Convert.ToInt16(this.txtTileTamanho.Text) : 0;
+            this.ctrImagem.intTileTamanho = this.txtTileTamanho.Enabled ? Convert.ToInt16(this.txtTileTamanho.Text) : 0;
         }
 
         private void atualizarTileTamanho()
@@ -68,12 +68,12 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            this.imgDisplay.intTileTamanho = Convert.ToInt16(this.txtTileTamanho.Text);
+            this.ctrImagem.intTileTamanho = Convert.ToInt16(this.txtTileTamanho.Text);
         }
 
         private void setObjImagem(ImagemDominio objImagem)
         {
-            this.imgDisplay.objImagem = objImagem;
+            this.ctrImagem.objImagem = objImagem;
 
             if (objImagem == null)
             {
@@ -87,7 +87,7 @@ namespace Rpg.Controle.TabDock
 
         private void selecinarTudo()
         {
-            this.imgDisplay.selecionarTudo();
+            this.ctrImagem.selecionarTudo();
         }
 
         #endregion Métodos

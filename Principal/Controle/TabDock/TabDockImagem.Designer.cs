@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.imgDisplay = new Rpg.Controle.Editor.ImagemDisplay();
+            this.ctrImagem = new Rpg.Controle.Editor.ImagemDisplay();
             this.txtTileTamanho = new System.Windows.Forms.TextBox();
             this.btnAtivarGrid = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnSelecionarTudo = new DigoFramework.Controle.Botao.BotaoAtalho();
@@ -41,18 +41,18 @@
             this.pnlAtalho.Controls.Add(this.txtTileTamanho);
             this.pnlAtalho.Controls.Add(this.btnAtivarGrid);
             // 
-            // imgDisplay
+            // ctrImagem
             // 
-            this.imgDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgDisplay.intTamanhoX = 0;
-            this.imgDisplay.intTamanhoY = 0;
-            this.imgDisplay.intTileTamanho = 0;
-            this.imgDisplay.Location = new System.Drawing.Point(0, 24);
-            this.imgDisplay.Margin = new System.Windows.Forms.Padding(4);
-            this.imgDisplay.Name = "imgDisplay";
-            this.imgDisplay.objImagem = null;
-            this.imgDisplay.Size = new System.Drawing.Size(379, 297);
-            this.imgDisplay.TabIndex = 1;
+            this.ctrImagem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrImagem.intTamanhoX = 0;
+            this.ctrImagem.intTamanhoY = 0;
+            this.ctrImagem.intTileTamanho = 0;
+            this.ctrImagem.Location = new System.Drawing.Point(0, 20);
+            this.ctrImagem.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrImagem.Name = "ctrImagem";
+            this.ctrImagem.objImagem = null;
+            this.ctrImagem.Size = new System.Drawing.Size(379, 301);
+            this.ctrImagem.TabIndex = 1;
             // 
             // txtTileTamanho
             // 
@@ -61,7 +61,7 @@
             this.txtTileTamanho.Location = new System.Drawing.Point(30, 0);
             this.txtTileTamanho.Multiline = true;
             this.txtTileTamanho.Name = "txtTileTamanho";
-            this.txtTileTamanho.Size = new System.Drawing.Size(35, 24);
+            this.txtTileTamanho.Size = new System.Drawing.Size(35, 20);
             this.txtTileTamanho.TabIndex = 1;
             this.txtTileTamanho.Text = "10";
             this.txtTileTamanho.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -83,16 +83,16 @@
             // 
             // TabDockImagem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 321);
-            this.Controls.Add(this.imgDisplay);
+            this.Controls.Add(this.ctrImagem);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TabDockImagem";
             this.Text = "TabDockImagem";
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
-            this.Controls.SetChildIndex(this.imgDisplay, 0);
+            this.Controls.SetChildIndex(this.ctrImagem, 0);
             this.pnlAtalho.ResumeLayout(false);
             this.pnlAtalho.PerformLayout();
             this.ResumeLayout(false);
@@ -101,7 +101,7 @@
 
         #endregion
         public System.Windows.Forms.TextBox txtTileTamanho;
-        public Editor.ImagemDisplay imgDisplay;
+        public Editor.ImagemDisplay ctrImagem;
         private DigoFramework.Controle.Botao.BotaoAtalho btnAtivarGrid;
         private DigoFramework.Controle.Botao.BotaoAtalho btnSelecionarTudo;
     }

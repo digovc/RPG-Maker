@@ -14,8 +14,8 @@ namespace Rpg.Dominio
         private Atributo _attIntQuantidadeX;
         private Atributo _attIntQuantidadeY;
         private List<CamadaDominio> _lstObjCamada;
-
         private List<PersonagemTileDominio> _lstObjPersonagemTile;
+        private TileDominio _objTileBackground;
 
         [JsonIgnore]
         public Atributo attIntQuantidadeX
@@ -76,6 +76,19 @@ namespace Rpg.Dominio
                 _lstObjPersonagemTile = new List<PersonagemTileDominio>();
 
                 return _lstObjPersonagemTile;
+            }
+        }
+
+        public TileDominio objTileBackground
+        {
+            get
+            {
+                return _objTileBackground;
+            }
+
+            set
+            {
+                _objTileBackground = value;
             }
         }
 

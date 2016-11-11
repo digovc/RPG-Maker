@@ -239,14 +239,14 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg == default(Rectangle))
+            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg == default(Rectangle))
             {
                 return;
             }
 
             TileDominio objTile = null;
 
-            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho < 10)
+            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.intTileTamanho < 10)
             {
                 objTile = this.desenharLivre(x, y);
             }
@@ -274,11 +274,11 @@ namespace Rpg.Controle.Editor
 
         private Rectangle desenharLivreRtgImg(int x, int y)
         {
-            int h = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Height;
-            int w = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Width;
+            int h = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Height;
+            int w = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Width;
 
-            x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X;
-            y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
+            x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.X;
+            y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Y;
 
             return new Rectangle(x, y, w, h);
         }
@@ -306,9 +306,9 @@ namespace Rpg.Controle.Editor
 
         private Rectangle desenharTileRtgImg(int x, int y)
         {
-            int hw = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.intTileTamanho;
-            x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X;
-            y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
+            int hw = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.intTileTamanho;
+            x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.X;
+            y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Y;
 
             return new Rectangle(x, y, hw, hw);
         }

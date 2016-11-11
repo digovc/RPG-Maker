@@ -102,7 +102,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg == default(Rectangle))
+            if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg == default(Rectangle))
             {
                 return;
             }
@@ -120,11 +120,11 @@ namespace Rpg.Controle.TabDock
 
         private Rectangle selecionarPersonagemRtgImg()
         {
-            int h = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Height;
-            int w = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Width;
+            int h = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Height;
+            int w = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Width;
 
-            int x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.X;
-            int y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.imgDisplay.objSelecao.rtg.Y;
+            int x = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.X;
+            int y = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.ctrImagem.objSelecao.rtg.Y;
 
             return new Rectangle(x, y, w, h);
         }
