@@ -210,6 +210,8 @@ namespace Rpg.Controle
             }
 
             this.objSoundOut.Volume = ((float)this.tcbVolume.Value / this.tcbVolume.Maximum);
+
+            this.objAudio.attIntVolume.decValor = (decimal)this.objSoundOut.Volume;
         }
 
         private void fadeOut()
@@ -312,7 +314,7 @@ namespace Rpg.Controle
             this.lblTimeIn.Text = "00:00";
             this.lblTimeOut.Text = this.objWave.GetLength().ToString(STR_TIME_FORMAT);
 
-            this.tcbVolume.Value = objAudio.attIntVolume.intValor;
+            this.tcbVolume.Value = (int)(objAudio.attIntVolume.decValor * this.tcbVolume.Maximum);
         }
 
         #endregion Métodos

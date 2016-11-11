@@ -122,7 +122,7 @@
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTitulo.Location = new System.Drawing.Point(0, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(500, 15);
+            this.lblTitulo.Size = new System.Drawing.Size(500, 20);
             this.lblTitulo.TabIndex = 6;
             this.lblTitulo.Text = "Nome do arquivo de audio";
             // 
@@ -141,7 +141,7 @@
             this.Controls.Add(this.pnlComando);
             this.Controls.Add(this.lblTitulo);
             this.Name = "CanalMixer";
-            this.Size = new System.Drawing.Size(500, 40);
+            this.Size = new System.Drawing.Size(500, 50);
             ((System.ComponentModel.ISupportInitialize)(this.tcbVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tcbTime)).EndInit();
             this.pnlComando.ResumeLayout(false);
