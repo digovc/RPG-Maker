@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using CSCore;
 using CSCore.Codecs;
 using CSCore.SoundOut;
@@ -14,15 +16,18 @@ namespace Rpg.Controle
     {
         #region Constantes
 
+        private const string STR_TIME_FORMAT = "mm':'ss";
+
         #endregion Constantes
 
         #region Atributos
 
+        private bool _booLoop;
         private AudioDominio _objAudio;
-
         private ISoundOut _objSoundOut;
         private IWaveSource _objWave;
         private TabDockMixer _tabDockMixer;
+        private Thread _trdTime;
 
         public AudioDominio objAudio
         {
@@ -44,6 +49,19 @@ namespace Rpg.Controle
             }
         }
 
+        private bool booLoop
+        {
+            get
+            {
+                return _booLoop;
+            }
+
+            set
+            {
+                _booLoop = value;
+            }
+        }
+
         private ISoundOut objSoundOut
         {
             get
@@ -56,11 +74,6 @@ namespace Rpg.Controle
                 _objSoundOut = this.getObjSoundOut();
 
                 return _objSoundOut;
-            }
-
-            set
-            {
-                _objSoundOut = value;
             }
         }
 
@@ -77,11 +90,6 @@ namespace Rpg.Controle
 
                 return _objWave;
             }
-
-            set
-            {
-                _objWave = value;
-            }
         }
 
         private TabDockMixer tabDockMixer
@@ -94,6 +102,21 @@ namespace Rpg.Controle
             set
             {
                 _tabDockMixer = value;
+            }
+        }
+
+        private Thread trdTime
+        {
+            get
+            {
+                if (_trdTime != null)
+                {
+                    return _trdTime;
+                }
+
+                _trdTime = this.getTrdTime();
+
+                return _trdTime;
             }
         }
 
@@ -125,6 +148,113 @@ namespace Rpg.Controle
             this.objWave.Dispose();
         }
 
+        private void atualizarLoop()
+        {
+            this.booLoop = !this.booLoop;
+        }
+
+        private void atualizarPosicao()
+        {
+            this.objWave.SetPosition(TimeSpan.FromSeconds(this.tcbTime.Value));
+        }
+
+        private void atualizarTime()
+        {
+            if (this.objWave == null)
+            {
+                return;
+            }
+
+            while (true)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    this.atualizarTimeThreadSafe();
+                });
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void atualizarTimeThreadSafe()
+        {
+            if (Math.Round(this.objWave.GetPosition().TotalSeconds) == Math.Round(this.objWave.GetLength().TotalSeconds))
+            {
+                this.atualizarTimeThreadSafeReiniciar();
+            }
+
+            this.tcbTime.Value = (int)this.objWave.GetPosition().TotalSeconds;
+
+            this.lblTimeIn.Text = this.objWave.GetPosition().ToString(STR_TIME_FORMAT);
+            this.lblTimeOut.Text = (this.objWave.GetLength() - this.objWave.GetPosition()).ToString(STR_TIME_FORMAT);
+        }
+
+        private void atualizarTimeThreadSafeReiniciar()
+        {
+            this.objWave.Position = 0;
+
+            if (this.booLoop)
+            {
+                this.objSoundOut.Play();
+                return;
+            }
+
+            this.objSoundOut.Stop();
+        }
+
+        private void atualizarVolume()
+        {
+            if (this.objSoundOut == null)
+            {
+                return;
+            }
+
+            this.objSoundOut.Volume = ((float)this.tcbVolume.Value / (float)this.tcbVolume.Maximum);
+        }
+
+        private void fadeOut()
+        {
+            try
+            {
+                if (ConfigRpg.i.intAudioFade <= 0)
+                {
+                    return;
+                }
+
+                float fltVolumeParte = this.objSoundOut.Volume / ConfigRpg.i.intAudioFade;
+
+                if (fltVolumeParte <= 0)
+                {
+                    return;
+                }
+
+                for (int i = 0; i < ConfigRpg.i.intAudioFade; i++)
+                {
+                    if ((this.objSoundOut.Volume - fltVolumeParte) <= 0)
+                    {
+                        return;
+                    }
+
+                    this.objSoundOut.Volume = (this.objSoundOut.Volume - fltVolumeParte);
+                    Thread.Sleep(1);
+                }
+            }
+            finally
+            {
+                this.objSoundOut.Pause();
+            }
+        }
+
+        private Thread getTrdTime()
+        {
+            Thread trdResultado = new Thread(this.atualizarTime);
+
+            trdResultado.IsBackground = true;
+            trdResultado.Priority = ThreadPriority.Lowest;
+
+            return trdResultado;
+        }
+
         private void reproduzir()
         {
             if (this.objAudio == null)
@@ -139,11 +269,27 @@ namespace Rpg.Controle
 
             if (PlaybackState.Playing.Equals(this.objSoundOut.PlaybackState))
             {
-                this.objSoundOut.Pause();
+                this.reproduzirPause();
                 return;
             }
 
+            this.reproduzirPlay();
+        }
+
+        private void reproduzirPause()
+        {
+            Task.Run(() => this.fadeOut());
+        }
+
+        private void reproduzirPlay()
+        {
+            this.objSoundOut.Volume = ((float)this.tcbVolume.Value / this.tcbVolume.Maximum);
             this.objSoundOut.Play();
+
+            if (!this.trdTime.IsAlive)
+            {
+                this.trdTime.Start();
+            }
         }
 
         private void setObjAudio(AudioDominio objAudio)
@@ -155,7 +301,17 @@ namespace Rpg.Controle
 
             this.lblTitulo.Text = Path.GetFileNameWithoutExtension(objAudio.attDirCompleto.strValor);
 
+            if (this.objWave == null)
+            {
+                return;
+            }
+
             this.tcbTime.Value = 0;
+            this.tcbTime.Maximum = (int)this.objWave.GetLength().TotalSeconds;
+
+            this.lblTimeIn.Text = "00:00";
+            this.lblTimeOut.Text = this.objWave.GetLength().ToString(STR_TIME_FORMAT);
+
             this.tcbVolume.Value = objAudio.attIntVolume.intValor;
         }
 
@@ -163,11 +319,23 @@ namespace Rpg.Controle
 
         #region Eventos
 
+        private void btnLoop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.atualizarLoop();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         private void btnPlay_Click(object sender, EventArgs e)
         {
             try
             {
-                Task.Run(() => this.reproduzir());
+                this.reproduzir();
             }
             catch (Exception ex)
             {
@@ -202,6 +370,30 @@ namespace Rpg.Controle
                 .ToWaveSource();
 
             return objWaveResultado;
+        }
+
+        private void tcbTime_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                this.atualizarPosicao();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void tcbVolume_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.atualizarVolume();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
         }
 
         #endregion Eventos

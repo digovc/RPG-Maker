@@ -33,9 +33,11 @@
             this.tcbVolume = new System.Windows.Forms.TrackBar();
             this.tcbTime = new System.Windows.Forms.TrackBar();
             this.pnlComando = new DigoFramework.Controle.Painel.PainelAtalho();
+            this.lblTimeOut = new System.Windows.Forms.Label();
+            this.lblTimeIn = new System.Windows.Forms.Label();
+            this.btnLoop = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.ctrLinha = new DigoFramework.Controle.Diverso.Linha();
-            this.btnLoop = new DigoFramework.Controle.Botao.BotaoAtalho();
             ((System.ComponentModel.ISupportInitialize)(this.tcbVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tcbTime)).BeginInit();
             this.pnlComando.SuspendLayout();
@@ -61,19 +63,23 @@
             this.tcbVolume.Name = "tcbVolume";
             this.tcbVolume.Size = new System.Drawing.Size(75, 25);
             this.tcbVolume.TabIndex = 3;
+            this.tcbVolume.ValueChanged += new System.EventHandler(this.tcbVolume_ValueChanged);
             // 
             // tcbTime
             // 
             this.tcbTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcbTime.Location = new System.Drawing.Point(165, 0);
+            this.tcbTime.Location = new System.Drawing.Point(199, 0);
             this.tcbTime.Name = "tcbTime";
-            this.tcbTime.Size = new System.Drawing.Size(335, 25);
+            this.tcbTime.Size = new System.Drawing.Size(267, 25);
             this.tcbTime.TabIndex = 4;
             this.tcbTime.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tcbTime.Scroll += new System.EventHandler(this.tcbTime_Scroll);
             // 
             // pnlComando
             // 
             this.pnlComando.Controls.Add(this.tcbTime);
+            this.pnlComando.Controls.Add(this.lblTimeOut);
+            this.pnlComando.Controls.Add(this.lblTimeIn);
             this.pnlComando.Controls.Add(this.tcbVolume);
             this.pnlComando.Controls.Add(this.btnLoop);
             this.pnlComando.Controls.Add(this.btnStop);
@@ -81,6 +87,33 @@
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComando.Name = "pnlComando";
             this.pnlComando.TabIndex = 5;
+            // 
+            // lblTimeOut
+            // 
+            this.lblTimeOut.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblTimeOut.Location = new System.Drawing.Point(466, 0);
+            this.lblTimeOut.Name = "lblTimeOut";
+            this.lblTimeOut.Size = new System.Drawing.Size(34, 25);
+            this.lblTimeOut.TabIndex = 7;
+            this.lblTimeOut.Text = "00:00";
+            this.lblTimeOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTimeIn
+            // 
+            this.lblTimeIn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTimeIn.Location = new System.Drawing.Point(165, 0);
+            this.lblTimeIn.Name = "lblTimeIn";
+            this.lblTimeIn.Size = new System.Drawing.Size(34, 25);
+            this.lblTimeIn.TabIndex = 6;
+            this.lblTimeIn.Text = "00:00";
+            this.lblTimeIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnLoop
+            // 
+            this.btnLoop.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoop.Name = "btnLoop";
+            this.btnLoop.TabIndex = 5;
+            this.btnLoop.Click += new System.EventHandler(this.btnLoop_Click);
             // 
             // lblTitulo
             // 
@@ -97,12 +130,6 @@
             this.ctrLinha.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrLinha.Name = "ctrLinha";
             this.ctrLinha.TabIndex = 7;
-            // 
-            // btnLoop
-            // 
-            this.btnLoop.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLoop.Name = "btnLoop";
-            this.btnLoop.TabIndex = 5;
             // 
             // CanalMixer
             // 
@@ -131,5 +158,7 @@
         private System.Windows.Forms.Label lblTitulo;
         private DigoFramework.Controle.Diverso.Linha ctrLinha;
         private DigoFramework.Controle.Botao.BotaoAtalho btnLoop;
+        private System.Windows.Forms.Label lblTimeIn;
+        private System.Windows.Forms.Label lblTimeOut;
     }
 }

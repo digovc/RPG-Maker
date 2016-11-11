@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRpg.cs" />
+    <Compile Include="ConfigRpg.cs" />
     <Compile Include="Controle\CanalMixer.cs">
       <SubType>UserControl</SubType>
     </Compile>

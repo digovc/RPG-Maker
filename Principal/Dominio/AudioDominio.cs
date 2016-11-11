@@ -22,7 +22,7 @@ namespace Rpg.Dominio
                     return _attIntVolume;
                 }
 
-                _attIntVolume = new Atributo(this, "Volume");
+                _attIntVolume = this.getAtt("Volume");
 
                 return _attIntVolume;
             }
@@ -42,6 +42,7 @@ namespace Rpg.Dominio
 
             if (booCriacao)
             {
+                this.attIntVolume.intValor = 100;
                 this.attIntVolume.objDominio = this;
             }
         }
