@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Controle.TabDock
 {
-    partial class TabDockAudio
+    partial class TabDockMixer
     {
         /// <summary>
         /// Required designer variable.

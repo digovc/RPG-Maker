@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Controle.TabDock
 {
-    public partial class TabDockAudio : TabDockRpgBase
+    public partial class TabDockMixer : TabDockRpgBase
     {
         #region Constantes
 
@@ -12,7 +12,7 @@
 
         #region Construtores
 
-        public TabDockAudio()
+        public TabDockMixer()
         {
             this.InitializeComponent();
         }

@@ -150,11 +150,11 @@
     <Compile Include="Controle\Painel\PnlRpgTitulo.Designer.cs">
       <DependentUpon>PnlRpgTitulo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\TabDock\TabDockAudio.cs">
+    <Compile Include="Controle\TabDock\TabDockMixer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controle\TabDock\TabDockAudio.Designer.cs">
-      <DependentUpon>TabDockAudio.cs</DependentUpon>
+    <Compile Include="Controle\TabDock\TabDockMixer.Designer.cs">
+      <DependentUpon>TabDockMixer.cs</DependentUpon>
     </Compile>
     <Compile Include="Controle\TabDock\TabDockDados.cs">
       <SubType>Form</SubType>
