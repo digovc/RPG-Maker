@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>main.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSCore">
       <HintPath>..\Lib\CSCore.dll</HintPath>
@@ -324,7 +327,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DigoFramework\DigoFramework.csproj">
       <Project>{93078DE5-A910-4AD6-A942-657582105493}</Project>
@@ -334,6 +336,10 @@
       <Project>{bf12701f-12d8-41d0-9269-d8921568aa82}</Project>
       <Name>NetZ.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="main.ico" />
+    <None Include="Resources\alterar nome.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

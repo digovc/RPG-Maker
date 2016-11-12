@@ -48,10 +48,10 @@
             // trv
             // 
             this.trv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trv.Location = new System.Drawing.Point(0, 24);
+            this.trv.Location = new System.Drawing.Point(0, 20);
             this.trv.Margin = new System.Windows.Forms.Padding(4);
             this.trv.Name = "trv";
-            this.trv.Size = new System.Drawing.Size(379, 297);
+            this.trv.Size = new System.Drawing.Size(484, 441);
             this.trv.TabIndex = 0;
             this.trv.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trv_NodeMouseClick);
             this.trv.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trv_NodeMouseDoubleClick);
@@ -72,33 +72,33 @@
             this.tsmAddItemCamada,
             this.tsmAddItemPersonagem});
             this.cmsAddItem.Name = "cmsAddItem";
-            this.cmsAddItem.Size = new System.Drawing.Size(166, 108);
+            this.cmsAddItem.Size = new System.Drawing.Size(141, 92);
             // 
             // tsmAddItemPasta
             // 
             this.tsmAddItemPasta.Name = "tsmAddItemPasta";
-            this.tsmAddItemPasta.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemPasta.Size = new System.Drawing.Size(140, 22);
             this.tsmAddItemPasta.Text = "Pasta";
             this.tsmAddItemPasta.Click += new System.EventHandler(this.tsmAddItemPasta_Click);
             // 
             // tsmAddItemMapa
             // 
             this.tsmAddItemMapa.Name = "tsmAddItemMapa";
-            this.tsmAddItemMapa.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemMapa.Size = new System.Drawing.Size(140, 22);
             this.tsmAddItemMapa.Text = "Mapa";
             this.tsmAddItemMapa.Click += new System.EventHandler(this.tsmAddItemMapa_Click);
             // 
             // tsmAddItemCamada
             // 
             this.tsmAddItemCamada.Name = "tsmAddItemCamada";
-            this.tsmAddItemCamada.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemCamada.Size = new System.Drawing.Size(140, 22);
             this.tsmAddItemCamada.Text = "Camada";
             this.tsmAddItemCamada.Click += new System.EventHandler(this.tsmAddItemCamada_Click);
             // 
             // tsmAddItemPersonagem
             // 
             this.tsmAddItemPersonagem.Name = "tsmAddItemPersonagem";
-            this.tsmAddItemPersonagem.Size = new System.Drawing.Size(165, 26);
+            this.tsmAddItemPersonagem.Size = new System.Drawing.Size(140, 22);
             this.tsmAddItemPersonagem.Text = "Personagem";
             this.tsmAddItemPersonagem.Click += new System.EventHandler(this.tsmAddItemPersonagem_Click);
             // 
@@ -106,13 +106,13 @@
             // 
             this.cmsNode.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsNode.Name = "cmsNode";
-            this.cmsNode.Size = new System.Drawing.Size(182, 32);
+            this.cmsNode.Size = new System.Drawing.Size(61, 4);
             // 
             // TabDockExplorer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 321);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.trv);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);

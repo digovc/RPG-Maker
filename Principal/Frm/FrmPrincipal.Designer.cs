@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.mnu = new System.Windows.Forms.MenuStrip();
             this.tsmArquivo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmJogoAbrir = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,11 +40,11 @@
             this.tsmExibirExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExibirPropriedade = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExibirDados = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExibirMixer = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdJogo = new System.Windows.Forms.OpenFileDialog();
             this.pnlDockRpg = new Rpg.Controle.DockPanelRpg();
             this.pnlAtalho = new Rpg.Controle.PainelAtalhoRpg();
             this.sfdJogo = new System.Windows.Forms.SaveFileDialog();
-            this.tsmExibirMixer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,22 +120,29 @@
             // tsmExibirExplorer
             // 
             this.tsmExibirExplorer.Name = "tsmExibirExplorer";
-            this.tsmExibirExplorer.Size = new System.Drawing.Size(152, 22);
+            this.tsmExibirExplorer.Size = new System.Drawing.Size(143, 22);
             this.tsmExibirExplorer.Text = "Explorer";
             // 
             // tsmExibirPropriedade
             // 
             this.tsmExibirPropriedade.Name = "tsmExibirPropriedade";
-            this.tsmExibirPropriedade.Size = new System.Drawing.Size(152, 22);
+            this.tsmExibirPropriedade.Size = new System.Drawing.Size(143, 22);
             this.tsmExibirPropriedade.Text = "Propriedades";
             this.tsmExibirPropriedade.Click += new System.EventHandler(this.tsmExibirPropriedade_Click);
             // 
             // tsmExibirDados
             // 
             this.tsmExibirDados.Name = "tsmExibirDados";
-            this.tsmExibirDados.Size = new System.Drawing.Size(152, 22);
+            this.tsmExibirDados.Size = new System.Drawing.Size(143, 22);
             this.tsmExibirDados.Text = "Dados";
             this.tsmExibirDados.Click += new System.EventHandler(this.tsmExibirDados_Click);
+            // 
+            // tsmExibirMixer
+            // 
+            this.tsmExibirMixer.Name = "tsmExibirMixer";
+            this.tsmExibirMixer.Size = new System.Drawing.Size(143, 22);
+            this.tsmExibirMixer.Text = "Mixer";
+            this.tsmExibirMixer.Click += new System.EventHandler(this.tsmExibirMixer_Click);
             // 
             // pnlDockRpg
             // 
@@ -148,13 +156,6 @@
             this.pnlAtalho.Name = "pnlAtalho";
             this.pnlAtalho.TabIndex = 3;
             // 
-            // tsmExibirMixer
-            // 
-            this.tsmExibirMixer.Name = "tsmExibirMixer";
-            this.tsmExibirMixer.Size = new System.Drawing.Size(152, 22);
-            this.tsmExibirMixer.Text = "Mixer";
-            this.tsmExibirMixer.Click += new System.EventHandler(this.tsmExibirMixer_Click);
-            // 
             // FrmPrincipal
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(85)))));
@@ -162,6 +163,7 @@
             this.Controls.Add(this.pnlDockRpg);
             this.Controls.Add(this.pnlAtalho);
             this.Controls.Add(this.mnu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnu;
             this.Name = "FrmPrincipal";

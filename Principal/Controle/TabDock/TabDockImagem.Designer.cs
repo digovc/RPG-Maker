@@ -47,11 +47,11 @@
             this.ctrImagem.intTamanhoX = 0;
             this.ctrImagem.intTamanhoY = 0;
             this.ctrImagem.intTileTamanho = 0;
-            this.ctrImagem.Location = new System.Drawing.Point(0, 20);
+            this.ctrImagem.Location = new System.Drawing.Point(0, 25);
             this.ctrImagem.Margin = new System.Windows.Forms.Padding(4);
             this.ctrImagem.Name = "ctrImagem";
             this.ctrImagem.objImagem = null;
-            this.ctrImagem.Size = new System.Drawing.Size(379, 301);
+            this.ctrImagem.Size = new System.Drawing.Size(484, 436);
             this.ctrImagem.TabIndex = 1;
             // 
             // txtTileTamanho
@@ -61,7 +61,7 @@
             this.txtTileTamanho.Location = new System.Drawing.Point(30, 0);
             this.txtTileTamanho.Multiline = true;
             this.txtTileTamanho.Name = "txtTileTamanho";
-            this.txtTileTamanho.Size = new System.Drawing.Size(35, 20);
+            this.txtTileTamanho.Size = new System.Drawing.Size(35, 25);
             this.txtTileTamanho.TabIndex = 1;
             this.txtTileTamanho.Text = "10";
             this.txtTileTamanho.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -85,7 +85,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 321);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.ctrImagem);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);

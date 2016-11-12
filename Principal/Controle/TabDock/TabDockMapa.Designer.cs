@@ -55,7 +55,7 @@
             this.ctrMapa.Margin = new System.Windows.Forms.Padding(4);
             this.ctrMapa.Name = "ctrMapa";
             this.ctrMapa.objMapa = null;
-            this.ctrMapa.Size = new System.Drawing.Size(1043, 716);
+            this.ctrMapa.Size = new System.Drawing.Size(484, 436);
             this.ctrMapa.tabDockMapa = null;
             this.ctrMapa.TabIndex = 0;
             // 
@@ -98,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 741);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.ctrMapa);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);

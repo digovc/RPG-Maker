@@ -50,20 +50,21 @@
             // pnlCampo
             // 
             this.pnlCampo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCampo.Location = new System.Drawing.Point(0, 41);
+            this.pnlCampo.Location = new System.Drawing.Point(0, 33);
+            this.pnlCampo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlCampo.Name = "pnlCampo";
-            this.pnlCampo.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
-            this.pnlCampo.Size = new System.Drawing.Size(200, 34);
+            this.pnlCampo.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
+            this.pnlCampo.Size = new System.Drawing.Size(300, 27);
             this.pnlCampo.TabIndex = 1;
             // 
             // pnlTitulo
             // 
             this.pnlTitulo.booTituloFixo = false;
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitulo.Location = new System.Drawing.Point(0, 21);
-            this.pnlTitulo.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlTitulo.Location = new System.Drawing.Point(0, 17);
             this.pnlTitulo.Name = "pnlTitulo";
-            this.pnlTitulo.Size = new System.Drawing.Size(200, 20);
+            this.pnlTitulo.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.pnlTitulo.Size = new System.Drawing.Size(300, 16);
             this.pnlTitulo.strTitulo = "Título";
             this.pnlTitulo.TabIndex = 2;
             // 
@@ -76,8 +77,9 @@
             this.pnlComando.Controls.Add(this.btnBloquear);
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComando.Location = new System.Drawing.Point(0, 1);
+            this.pnlComando.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlComando.Name = "pnlComando";
-            this.pnlComando.Size = new System.Drawing.Size(200, 20);
+            this.pnlComando.Size = new System.Drawing.Size(300, 16);
             this.pnlComando.TabIndex = 2;
             // 
             // btnJogadorVisivel
@@ -131,46 +133,47 @@
             this.tsmTipoFaixa,
             this.tsmTipoBoolean});
             this.cmsAlterarTipo.Name = "cmsAlterarTipo";
-            this.cmsAlterarTipo.Size = new System.Drawing.Size(174, 108);
+            this.cmsAlterarTipo.Size = new System.Drawing.Size(147, 92);
             // 
             // tsmTipoAlfanumerico
             // 
             this.tsmTipoAlfanumerico.Name = "tsmTipoAlfanumerico";
-            this.tsmTipoAlfanumerico.Size = new System.Drawing.Size(173, 26);
+            this.tsmTipoAlfanumerico.Size = new System.Drawing.Size(146, 22);
             this.tsmTipoAlfanumerico.Text = "Alfanumérico";
             this.tsmTipoAlfanumerico.Click += new System.EventHandler(this.tsmTipoAlfanumerico_Click);
             // 
             // tsmTipoNumerico
             // 
             this.tsmTipoNumerico.Name = "tsmTipoNumerico";
-            this.tsmTipoNumerico.Size = new System.Drawing.Size(173, 26);
+            this.tsmTipoNumerico.Size = new System.Drawing.Size(146, 22);
             this.tsmTipoNumerico.Text = "Numérico";
             this.tsmTipoNumerico.Click += new System.EventHandler(this.tsmTipoNumerico_Click);
             // 
             // tsmTipoFaixa
             // 
             this.tsmTipoFaixa.Name = "tsmTipoFaixa";
-            this.tsmTipoFaixa.Size = new System.Drawing.Size(173, 26);
+            this.tsmTipoFaixa.Size = new System.Drawing.Size(146, 22);
             this.tsmTipoFaixa.Text = "Faixa";
             this.tsmTipoFaixa.Click += new System.EventHandler(this.tsmTipoFaixa_Click);
             // 
             // tsmTipoBoolean
             // 
             this.tsmTipoBoolean.Name = "tsmTipoBoolean";
-            this.tsmTipoBoolean.Size = new System.Drawing.Size(173, 26);
+            this.tsmTipoBoolean.Size = new System.Drawing.Size(146, 22);
             this.tsmTipoBoolean.Text = "Sim ou não";
             this.tsmTipoBoolean.Click += new System.EventHandler(this.tsmTipoBoolean_Click);
             // 
             // EditAtributoBase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlCampo);
             this.Controls.Add(this.pnlTitulo);
             this.Controls.Add(this.pnlComando);
             this.Controls.Add(this.ctrLinha);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "EditAtributoBase";
-            this.Size = new System.Drawing.Size(200, 75);
+            this.Size = new System.Drawing.Size(300, 60);
             this.pnlComando.ResumeLayout(false);
             this.cmsAlterarTipo.ResumeLayout(false);
             this.ResumeLayout(false);

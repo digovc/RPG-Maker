@@ -37,14 +37,14 @@
             this.pnlMixer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMixer.Location = new System.Drawing.Point(0, 25);
             this.pnlMixer.Name = "pnlMixer";
-            this.pnlMixer.Size = new System.Drawing.Size(284, 236);
+            this.pnlMixer.Size = new System.Drawing.Size(484, 436);
             this.pnlMixer.TabIndex = 1;
             // 
             // TabDockMixer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.pnlMixer);
             this.Name = "TabDockMixer";
             this.Text = "TabDockAudio";

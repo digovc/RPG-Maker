@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlAtalho = new PainelAtalhoRpg();
+            this.pnlAtalho = new Rpg.Controle.PainelAtalhoRpg();
             this.SuspendLayout();
             // 
             // pnlAtalho
             // 
+            this.pnlAtalho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(219)))), ((int)(((byte)(233)))));
+            this.pnlAtalho.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAtalho.Name = "pnlAtalho";
             this.pnlAtalho.TabIndex = 0;
             // 
@@ -40,7 +42,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.pnlAtalho);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabDockRpgBase";
