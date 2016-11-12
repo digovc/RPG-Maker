@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.pnlCampo = new System.Windows.Forms.Panel();
             this.pnlTitulo = new Rpg.Controle.Painel.PnlRpgTitulo();
-            this.pnlComando = new System.Windows.Forms.Panel();
+            this.pnlComando = new DigoFramework.Controle.Painel.PainelAtalho();
             this.btnJogadorVisivel = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnJogadorBloquear = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnAlterarTipo = new DigoFramework.Controle.Botao.BotaoAtalho();
@@ -50,21 +50,21 @@
             // pnlCampo
             // 
             this.pnlCampo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCampo.Location = new System.Drawing.Point(0, 33);
-            this.pnlCampo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlCampo.Location = new System.Drawing.Point(0, 46);
+            this.pnlCampo.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCampo.Name = "pnlCampo";
             this.pnlCampo.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
-            this.pnlCampo.Size = new System.Drawing.Size(300, 27);
+            this.pnlCampo.Size = new System.Drawing.Size(300, 29);
             this.pnlCampo.TabIndex = 1;
             // 
             // pnlTitulo
             // 
             this.pnlTitulo.booTituloFixo = false;
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitulo.Location = new System.Drawing.Point(0, 17);
+            this.pnlTitulo.Location = new System.Drawing.Point(0, 26);
             this.pnlTitulo.Name = "pnlTitulo";
             this.pnlTitulo.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.pnlTitulo.Size = new System.Drawing.Size(300, 16);
+            this.pnlTitulo.Size = new System.Drawing.Size(300, 20);
             this.pnlTitulo.strTitulo = "Título";
             this.pnlTitulo.TabIndex = 2;
             // 
@@ -76,14 +76,12 @@
             this.pnlComando.Controls.Add(this.btnAlterarNome);
             this.pnlComando.Controls.Add(this.btnBloquear);
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlComando.Location = new System.Drawing.Point(0, 1);
-            this.pnlComando.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlComando.Name = "pnlComando";
-            this.pnlComando.Size = new System.Drawing.Size(300, 16);
             this.pnlComando.TabIndex = 2;
             // 
             // btnJogadorVisivel
             // 
+            this.btnJogadorVisivel.BackgroundImage = global::Rpg.Properties.Resources.visível_para_jogador;
             this.btnJogadorVisivel.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnJogadorVisivel.Name = "btnJogadorVisivel";
             this.btnJogadorVisivel.TabIndex = 2;
@@ -91,6 +89,7 @@
             // 
             // btnJogadorBloquear
             // 
+            this.btnJogadorBloquear.BackgroundImage = global::Rpg.Properties.Resources.bloquear_atributo_para_jogador;
             this.btnJogadorBloquear.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnJogadorBloquear.Name = "btnJogadorBloquear";
             this.btnJogadorBloquear.TabIndex = 1;
@@ -98,6 +97,7 @@
             // 
             // btnAlterarTipo
             // 
+            this.btnAlterarTipo.BackgroundImage = global::Rpg.Properties.Resources.alterar_tipo;
             this.btnAlterarTipo.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnAlterarTipo.Name = "btnAlterarTipo";
             this.btnAlterarTipo.TabIndex = 4;
@@ -105,6 +105,7 @@
             // 
             // btnAlterarNome
             // 
+            this.btnAlterarNome.BackgroundImage = global::Rpg.Properties.Resources.alterar_nome;
             this.btnAlterarNome.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnAlterarNome.Name = "btnAlterarNome";
             this.btnAlterarNome.TabIndex = 3;
@@ -112,6 +113,7 @@
             // 
             // btnBloquear
             // 
+            this.btnBloquear.BackgroundImage = global::Rpg.Properties.Resources.bloquear;
             this.btnBloquear.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnBloquear.Name = "btnBloquear";
             this.btnBloquear.TabIndex = 0;
@@ -171,9 +173,9 @@
             this.Controls.Add(this.pnlTitulo);
             this.Controls.Add(this.pnlComando);
             this.Controls.Add(this.ctrLinha);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EditAtributoBase";
-            this.Size = new System.Drawing.Size(300, 60);
+            this.Size = new System.Drawing.Size(300, 75);
             this.pnlComando.ResumeLayout(false);
             this.cmsAlterarTipo.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -181,7 +183,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel pnlComando;
+        private DigoFramework.Controle.Painel.PainelAtalho pnlComando;
         private DigoFramework.Controle.Botao.BotaoAtalho btnBloquear;
         private DigoFramework.Controle.Botao.BotaoAtalho btnJogadorVisivel;
         private DigoFramework.Controle.Botao.BotaoAtalho btnJogadorBloquear;

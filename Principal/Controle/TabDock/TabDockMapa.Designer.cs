@@ -61,6 +61,7 @@
             // 
             // btnLapis
             // 
+            this.btnLapis.BackgroundImage = global::Rpg.Properties.Resources.lápis;
             this.btnLapis.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnLapis.Name = "btnLapis";
             this.btnLapis.TabIndex = 1;
@@ -68,6 +69,7 @@
             // 
             // btnBorracha
             // 
+            this.btnBorracha.BackgroundImage = global::Rpg.Properties.Resources.borracha;
             this.btnBorracha.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnBorracha.Name = "btnBorracha";
             this.btnBorracha.TabIndex = 2;
@@ -75,6 +77,7 @@
             // 
             // btnSelecionar
             // 
+            this.btnSelecionar.BackgroundImage = global::Rpg.Properties.Resources.selecionar;
             this.btnSelecionar.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.TabIndex = 3;
@@ -82,6 +85,7 @@
             // 
             // btnAddBackground
             // 
+            this.btnAddBackground.BackgroundImage = global::Rpg.Properties.Resources.adicionar_background;
             this.btnAddBackground.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnAddBackground.Name = "btnAddBackground";
             this.btnAddBackground.TabIndex = 4;
@@ -89,6 +93,7 @@
             // 
             // btnRemoverBackground
             // 
+            this.btnRemoverBackground.BackgroundImage = global::Rpg.Properties.Resources.remover_background;
             this.btnRemoverBackground.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnRemoverBackground.Name = "btnRemoverBackground";
             this.btnRemoverBackground.TabIndex = 5;

@@ -339,6 +339,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.ico" />
+    <None Include="Resources\selecionar tudo.png" />
+    <None Include="Resources\alterar tipo.png" />
+    <None Include="Resources\bloquear.png" />
+    <None Include="Resources\visível para jogador.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\selecionar.png" />
+    <None Include="Resources\remover background.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\pause.png" />
+    <None Include="Resources\loop.png" />
+    <None Include="Resources\lápis.png" />
+    <None Include="Resources\grid.png" />
+    <None Include="Resources\borracha.png" />
+    <None Include="Resources\bloquear atributo para jogador.png" />
+    <None Include="Resources\adicionar item.png" />
+    <None Include="Resources\adicionar background.png" />
     <None Include="Resources\alterar nome.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -48,16 +48,17 @@
             // trv
             // 
             this.trv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trv.Location = new System.Drawing.Point(0, 20);
+            this.trv.Location = new System.Drawing.Point(0, 25);
             this.trv.Margin = new System.Windows.Forms.Padding(4);
             this.trv.Name = "trv";
-            this.trv.Size = new System.Drawing.Size(484, 441);
+            this.trv.Size = new System.Drawing.Size(484, 436);
             this.trv.TabIndex = 0;
             this.trv.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trv_NodeMouseClick);
             this.trv.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trv_NodeMouseDoubleClick);
             // 
             // btnAddItem
             // 
+            this.btnAddItem.BackgroundImage = global::Rpg.Properties.Resources.adicionar_item;
             this.btnAddItem.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.TabIndex = 0;

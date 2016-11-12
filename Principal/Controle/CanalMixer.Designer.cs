@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPlay = new DigoFramework.Controle.Botao.BotaoAtalho();
+            this.btnPlayPause = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnStop = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.tcbVolume = new System.Windows.Forms.TrackBar();
             this.tcbTime = new System.Windows.Forms.TrackBar();
@@ -43,15 +43,17 @@
             this.pnlComando.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnPlay
+            // btnPlayPause
             // 
-            this.btnPlay.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.TabIndex = 1;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            this.btnPlayPause.BackgroundImage = global::Rpg.Properties.Resources.play;
+            this.btnPlayPause.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPlayPause.Name = "btnPlayPause";
+            this.btnPlayPause.TabIndex = 1;
+            this.btnPlayPause.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // btnStop
             // 
+            this.btnStop.BackgroundImage = global::Rpg.Properties.Resources.stop;
             this.btnStop.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnStop.Name = "btnStop";
             this.btnStop.TabIndex = 2;
@@ -59,7 +61,7 @@
             // tcbVolume
             // 
             this.tcbVolume.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tcbVolume.Location = new System.Drawing.Point(90, 0);
+            this.tcbVolume.Location = new System.Drawing.Point(75, 0);
             this.tcbVolume.Maximum = 100;
             this.tcbVolume.Name = "tcbVolume";
             this.tcbVolume.Size = new System.Drawing.Size(75, 25);
@@ -70,9 +72,9 @@
             // tcbTime
             // 
             this.tcbTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcbTime.Location = new System.Drawing.Point(199, 0);
+            this.tcbTime.Location = new System.Drawing.Point(184, 0);
             this.tcbTime.Name = "tcbTime";
-            this.tcbTime.Size = new System.Drawing.Size(267, 25);
+            this.tcbTime.Size = new System.Drawing.Size(282, 25);
             this.tcbTime.TabIndex = 4;
             this.tcbTime.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tcbTime.Scroll += new System.EventHandler(this.tcbTime_Scroll);
@@ -85,7 +87,7 @@
             this.pnlComando.Controls.Add(this.tcbVolume);
             this.pnlComando.Controls.Add(this.btnLoop);
             this.pnlComando.Controls.Add(this.btnStop);
-            this.pnlComando.Controls.Add(this.btnPlay);
+            this.pnlComando.Controls.Add(this.btnPlayPause);
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComando.Name = "pnlComando";
             this.pnlComando.TabIndex = 5;
@@ -103,7 +105,7 @@
             // lblTimeIn
             // 
             this.lblTimeIn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTimeIn.Location = new System.Drawing.Point(165, 0);
+            this.lblTimeIn.Location = new System.Drawing.Point(150, 0);
             this.lblTimeIn.Name = "lblTimeIn";
             this.lblTimeIn.Size = new System.Drawing.Size(34, 25);
             this.lblTimeIn.TabIndex = 6;
@@ -112,6 +114,7 @@
             // 
             // btnLoop
             // 
+            this.btnLoop.BackgroundImage = global::Rpg.Properties.Resources.loop;
             this.btnLoop.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnLoop.Name = "btnLoop";
             this.btnLoop.TabIndex = 5;
@@ -152,7 +155,7 @@
 
         #endregion
 
-        private DigoFramework.Controle.Botao.BotaoAtalho btnPlay;
+        private DigoFramework.Controle.Botao.BotaoAtalho btnPlayPause;
         private DigoFramework.Controle.Botao.BotaoAtalho btnStop;
         private System.Windows.Forms.TrackBar tcbVolume;
         private System.Windows.Forms.TrackBar tcbTime;

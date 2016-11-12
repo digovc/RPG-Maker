@@ -58,7 +58,7 @@
             // 
             this.txtTileTamanho.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtTileTamanho.Enabled = false;
-            this.txtTileTamanho.Location = new System.Drawing.Point(30, 0);
+            this.txtTileTamanho.Location = new System.Drawing.Point(25, 0);
             this.txtTileTamanho.Multiline = true;
             this.txtTileTamanho.Name = "txtTileTamanho";
             this.txtTileTamanho.Size = new System.Drawing.Size(35, 25);
@@ -69,6 +69,7 @@
             // 
             // btnAtivarGrid
             // 
+            this.btnAtivarGrid.BackgroundImage = global::Rpg.Properties.Resources.grid;
             this.btnAtivarGrid.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnAtivarGrid.Name = "btnAtivarGrid";
             this.btnAtivarGrid.TabIndex = 2;
@@ -76,6 +77,7 @@
             // 
             // btnSelecionarTudo
             // 
+            this.btnSelecionarTudo.BackgroundImage = global::Rpg.Properties.Resources.selecionar_tudo;
             this.btnSelecionarTudo.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSelecionarTudo.Name = "btnSelecionarTudo";
             this.btnSelecionarTudo.TabIndex = 3;
