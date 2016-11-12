@@ -169,7 +169,7 @@ namespace Rpg.Controle.Editor
 
             if (MouseButtons.Left.Equals(arg.Button))
             {
-                this.moverSelecionado(arg);
+                this.redimensionarMoverSelecionado(arg);
             }
         }
 
@@ -399,7 +399,7 @@ namespace Rpg.Controle.Editor
             return gfcPersonagemNova;
         }
 
-        private void moverSelecionado(MouseEventArgs arg)
+        private void redimensionarMoverSelecionado(MouseEventArgs arg)
         {
             if (!TabDockMapa.EnmFerramenta.SELECIONAR.Equals(this.tabDockMapa.enmFerramenta))
             {
@@ -411,7 +411,9 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            this.gfcTileSelecionado.mover(arg);
+            this.gfcTileSelecionado.redimensionarMover(arg);
+
+            this.gfcTileSelecionado.invalidar();
         }
 
         private int normalizarX(int x)

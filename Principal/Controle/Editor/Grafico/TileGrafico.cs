@@ -20,6 +20,8 @@ namespace Rpg.Controle.Editor.Grafico
         private Pen _penSelecao;
         private Rectangle _rtgDestino;
 
+        private Rectangle _rtgRedimensionar;
+
         public TileDominio objTile
         {
             get
@@ -114,6 +116,54 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        private Rectangle rtgRedimensionar
+        {
+            get
+            {
+                if (_rtgRedimensionar != default(Rectangle))
+                {
+                    return _rtgRedimensionar;
+                }
+
+                _rtgRedimensionar = this.getRtgRedimensionar();
+
+                return _rtgRedimensionar;
+            }
+
+            set
+            {
+                _rtgRedimensionar = value;
+            }
+        }
+
+        private int _intRedimensionarXTemp ;
+
+        private int intRedimensionarXTemp
+        {
+            get
+            {
+                return _intRedimensionarXTemp;
+            }
+            set
+            {
+                _intRedimensionarXTemp = value;
+            }
+        }
+
+        private int _intRedimensionarYTemp ;
+
+        private int intRedimensionarYTemp
+        {
+            get
+            {
+                return _intRedimensionarYTemp;
+            }
+            set
+            {
+                _intRedimensionarYTemp = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -127,7 +177,7 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Métodos
 
-        public void mover(MouseEventArgs arg)
+        public void redimensionarMover(MouseEventArgs arg)
         {
             if (this.objTile == null)
             {
@@ -139,14 +189,16 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            int x = (this.normalizarX(arg.X) - this.intMoveXTemp);
-            int y = (this.normalizarY(arg.Y) - this.intMoveYTemp);
+            int x = this.normalizarX(arg.X);
+            int y = this.normalizarY(arg.Y);
 
-            this.objTile.rtgMapa = new Rectangle(x, y, this.objTile.rtgMapa.Width, this.objTile.rtgMapa.Height);
+            if (this.rtgRedimensionar.Contains(x, y))
+            {
+                this.redimensionar(x, y);
+                return;
+            }
 
-            this.invalidar();
-
-            this.gfcCamada?.invalidar();
+            this.mover(x, y);
         }
 
         public override void renderizar(Graphics gpc)
@@ -197,8 +249,6 @@ namespace Rpg.Controle.Editor.Grafico
             this.objTile.booSelecionado = false;
 
             this.invalidar();
-
-            this.gfcCamada?.invalidar();
         }
 
         internal override void invalidar()
@@ -206,6 +256,9 @@ namespace Rpg.Controle.Editor.Grafico
             base.invalidar();
 
             this.rtgDestino = default(Rectangle);
+            this.rtgRedimensionar = default(Rectangle);
+
+            this.gfcCamada?.invalidar();
         }
 
         internal TileGrafico selecionar(int x, int y)
@@ -223,13 +276,16 @@ namespace Rpg.Controle.Editor.Grafico
             x = this.normalizarX(x);
             y = this.normalizarY(y);
 
-            if (!this.objTile.rtgMapa.Contains(x, y))
+            if (!this.rtgDestino.Contains(x, y))
             {
                 return null;
             }
 
-            this.intMoveXTemp = (x - this.objTile.rtgMapa.X);
-            this.intMoveYTemp = (y - this.objTile.rtgMapa.Y);
+            this.intMoveXTemp = (x - this.rtgDestino.X);
+            this.intMoveYTemp = (y - this.rtgDestino.Y);
+            this.intRedimensionarXTemp = this.rtgDestino.Width;
+            this.intRedimensionarYTemp = this.rtgDestino.Height;
+
             this.objTile.booSelecionado = true;
 
             this.invalidar();
@@ -254,6 +310,34 @@ namespace Rpg.Controle.Editor.Grafico
             this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
+        private Rectangle getRtgRedimensionar()
+        {
+            int h = (int)(25 * this.objDisplay.fltZoom);
+
+            int w = h;
+
+            int x = (this.rtgDestino.X + this.rtgDestino.Width - w);
+            int y = (this.rtgDestino.Y + this.rtgDestino.Height - h);
+
+            return new Rectangle(x, y, w, h);
+        }
+
+        private void mover(int x, int y)
+        {
+            x = (x - this.intMoveXTemp);
+            y = (y - this.intMoveYTemp);
+
+            this.objTile.rtgMapa = new Rectangle(x, y, this.objTile.rtgMapa.Width, this.objTile.rtgMapa.Height);
+        }
+
+        private void redimensionar(int x, int y)
+        {
+            int h = (this.intRedimensionarYTemp + y - this.intMoveYTemp - this.rtgDestino.Y);
+            int w = (this.intRedimensionarXTemp + x - this.intMoveXTemp - this.rtgDestino.X);
+
+            this.objTile.rtgMapa = new Rectangle(this.rtgDestino.X, this.rtgDestino.Y, w, h);
+        }
+
         private void renderizarSelecionado(Graphics gpc)
         {
             if (!this.objTile.booSelecionado)
@@ -262,6 +346,7 @@ namespace Rpg.Controle.Editor.Grafico
             }
 
             gpc.DrawRectangle(this.penSelecao, this.rtgDestino);
+            gpc.DrawRectangle(this.penSelecao, this.rtgRedimensionar);
         }
 
         private void setObjTile(TileDominio objTile)
