@@ -87,6 +87,33 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        internal TileGrafico selecionarTile(int x, int y, CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return null;
+            }
+
+            if (!objCamada.Equals(this.objCamada))
+            {
+                return null;
+            }
+
+            foreach (TileGrafico gfcTile in this.lstGfcTile)
+            {
+                TileGrafico gfcResultado = gfcTile.selecionar(x, y);
+
+                if (gfcResultado != null)
+                {
+                    this.invalidar();
+
+                    return gfcResultado;
+                }
+            }
+
+            return null;
+        }
+
         protected override bool validarRenderizar()
         {
             if (!base.validarRenderizar())
@@ -125,6 +152,8 @@ namespace Rpg.Controle.Editor.Grafico
             }
 
             TileGrafico gfcTileNovo = new TileGrafico(this.objDisplay, objTile);
+
+            gfcTileNovo.gfcCamada = this;
 
             this.lstGfcTile.Add(gfcTileNovo);
 

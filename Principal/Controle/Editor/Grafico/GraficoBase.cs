@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Rpg.Controle.Editor.Grafico
@@ -76,11 +75,7 @@ namespace Rpg.Controle.Editor.Grafico
 
         public abstract void renderizar(Graphics gpc);
 
-        protected virtual void inicializar()
-        {
-        }
-
-        public virtual void invalidar()
+        internal virtual void invalidar()
         {
             if (_bmpCache != null)
             {
@@ -90,8 +85,33 @@ namespace Rpg.Controle.Editor.Grafico
             _bmpCache = null;
         }
 
+        protected virtual void inicializar()
+        {
+        }
+
+        protected int normalizarX(int x)
+        {
+            x = (x - this.objDisplay.intMoveX);
+            x = (int)(x / this.objDisplay.fltZoom + 1);
+
+            return x;
+        }
+
+        protected int normalizarY(int y)
+        {
+            y = (y - this.objDisplay.intMoveY);
+            y = (int)(y / this.objDisplay.fltZoom + 1);
+
+            return y;
+        }
+
         protected virtual void setEventos()
         {
+        }
+
+        protected virtual bool validarRenderizar()
+        {
+            return true;
         }
 
         private Bitmap getBmpCache()
@@ -109,11 +129,6 @@ namespace Rpg.Controle.Editor.Grafico
             }
 
             return bmpCacheResultado;
-        }
-
-        protected virtual bool validarRenderizar()
-        {
-            return true;
         }
 
         private void iniciar()

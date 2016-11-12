@@ -226,6 +226,14 @@ namespace Rpg.Controle.Editor
         {
         }
 
+        protected virtual void processarMouseMove(MouseEventArgs arg)
+        {
+            if (MouseButtons.Middle.Equals(arg.Button))
+            {
+                this.mover(arg);
+            }
+        }
+
         protected virtual void renderizar(PaintEventArgs arg)
         {
             // TODO: Desenhar apenas o que é visto na tela.
@@ -294,14 +302,6 @@ namespace Rpg.Controle.Editor
             this.intMoveYTemp = (arg.Y - this.intMoveY);
 
             return true;
-        }
-
-        protected virtual void processarMouseMove(MouseEventArgs arg)
-        {
-            if (MouseButtons.Middle.Equals(arg.Button))
-            {
-                this.mover(arg);
-            }
         }
 
         private void processarZoom(MouseEventArgs arg)

@@ -18,10 +18,10 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private BackgroundGrafico _gfcBackground;
+        private TileGrafico _gfcTileSelecionado;
         private List<CamadaGrafico> _lstGfcCamada;
         private List<PersonagemGrafico> _lstGfcPersonagem;
         private MapaDominio _objMapa;
-        private TileDominio _objTileSelecionado;
         private TabDockMapa _tabDockMapa;
 
         public MapaDominio objMapa
@@ -72,6 +72,29 @@ namespace Rpg.Controle.Editor
             }
         }
 
+        private TileGrafico gfcTileSelecionado
+        {
+            get
+            {
+                return _gfcTileSelecionado;
+            }
+
+            set
+            {
+                if (_gfcTileSelecionado == value)
+                {
+                    return;
+                }
+
+                if (_gfcTileSelecionado != null)
+                {
+                    _gfcTileSelecionado.objTile.booSelecionado = false;
+                }
+
+                _gfcTileSelecionado = value;
+            }
+        }
+
         private List<CamadaGrafico> lstGfcCamada
         {
             get
@@ -99,31 +122,6 @@ namespace Rpg.Controle.Editor
                 _lstGfcPersonagem = new List<PersonagemGrafico>();
 
                 return _lstGfcPersonagem;
-            }
-        }
-
-        private TileDominio objTileSelecionado
-        {
-            get
-            {
-                return _objTileSelecionado;
-            }
-
-            set
-            {
-                if (_objTileSelecionado == value)
-                {
-                    return;
-                }
-
-                if (_objTileSelecionado != null)
-                {
-                    _objTileSelecionado.booSelecionado = false;
-                }
-
-                _objTileSelecionado = value;
-
-                this.setObjTileSelecionado(_objTileSelecionado);
             }
         }
 
@@ -162,6 +160,16 @@ namespace Rpg.Controle.Editor
                 case TabDockMapa.EnmFerramenta.SELECIONAR:
                     this.selecionar(arg.X, arg.Y);
                     return;
+            }
+        }
+
+        protected override void processarMouseMove(MouseEventArgs arg)
+        {
+            base.processarMouseMove(arg);
+
+            if (MouseButtons.Left.Equals(arg.Button))
+            {
+                this.moverSelecionado(arg);
             }
         }
 
@@ -387,6 +395,13 @@ namespace Rpg.Controle.Editor
             return gfcPersonagemNova;
         }
 
+        private void moverSelecionado(MouseEventArgs arg)
+        {
+            this.gfcTileSelecionado?.mover(arg);
+
+            this.Invalidate();
+        }
+
         private int normalizarX(int x)
         {
             x = (x - this.intMoveX);
@@ -441,50 +456,7 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            x = this.normalizarX(x);
-            y = this.normalizarY(y);
-
-            if (this.selecionarPersonagem(x, y))
-            {
-                return;
-            }
-
             this.selecionarTile(x, y);
-        }
-
-        private bool selecionarPersonagem(int x, int y)
-        {
-            if (this.lstGfcPersonagem.Count < 1)
-            {
-                return false;
-            }
-
-            foreach (PersonagemGrafico gfcPersonagem in this.lstGfcPersonagem)
-            {
-                if (this.selecionarPersonagem(x, y, gfcPersonagem))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private bool selecionarPersonagem(int x, int y, PersonagemGrafico gfcPersonagem)
-        {
-            if (gfcPersonagem.objTile == null)
-            {
-                return false;
-            }
-
-            if (!gfcPersonagem.objTile.rtgMapa.Contains(x, y))
-            {
-                return false;
-            }
-
-            gfcPersonagem.objTile.booSelecionado = true;
-
-            return true;
         }
 
         private void selecionarTile(int x, int y)
@@ -509,47 +481,18 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            foreach (TileDominio objTile in objCamada.lstObjTile)
+            foreach (CamadaGrafico gfcCamada in this.lstGfcCamada)
             {
-                if (!this.selecionarTile(x, y, objTile))
+                TileGrafico gfcTileSelecionado = gfcCamada.selecionarTile(x, y, objCamada);
+
+                if (gfcTileSelecionado == null)
                 {
                     continue;
                 }
 
-                this.selecionarTileInvalidar(objCamada);
-                return;
+                this.gfcTileSelecionado = gfcTileSelecionado;
+                this.Invalidate();
             }
-        }
-
-        private bool selecionarTile(int x, int y, TileDominio objTile)
-        {
-            if (objTile == null)
-            {
-                return false;
-            }
-
-            if (!objTile.rtgMapa.Contains(x, y))
-            {
-                return false;
-            }
-
-            this.objTileSelecionado = objTile;
-
-            return true;
-        }
-
-        private void selecionarTileInvalidar(CamadaDominio objCamada)
-        {
-            foreach (CamadaGrafico gfcCamada in this.lstGfcCamada)
-            {
-                if (gfcCamada.objCamada.Equals(objCamada))
-                {
-                    gfcCamada.invalidar();
-                    break;
-                }
-            }
-
-            this.Invalidate();
         }
 
         private void setObjMapa(MapaDominio objMapa)

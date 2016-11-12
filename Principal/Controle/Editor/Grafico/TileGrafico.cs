@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 using Rpg.Dominio;
 
 namespace Rpg.Controle.Editor.Grafico
@@ -12,6 +13,9 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Atributos
 
+        private CamadaGrafico _gfcCamada;
+        private int _intMoveXTemp;
+        private int _intMoveYTemp;
         private TileDominio _objTile;
         private Pen _penSelecao;
         private Rectangle _rtgDestino;
@@ -33,6 +37,45 @@ namespace Rpg.Controle.Editor.Grafico
                 _objTile = value;
 
                 this.setObjTile(_objTile);
+            }
+        }
+
+        internal CamadaGrafico gfcCamada
+        {
+            get
+            {
+                return _gfcCamada;
+            }
+
+            set
+            {
+                _gfcCamada = value;
+            }
+        }
+
+        private int intMoveXTemp
+        {
+            get
+            {
+                return _intMoveXTemp;
+            }
+
+            set
+            {
+                _intMoveXTemp = value;
+            }
+        }
+
+        private int intMoveYTemp
+        {
+            get
+            {
+                return _intMoveYTemp;
+            }
+
+            set
+            {
+                _intMoveYTemp = value;
             }
         }
 
@@ -84,6 +127,28 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Métodos
 
+        public void mover(MouseEventArgs arg)
+        {
+            if (this.objTile == null)
+            {
+                return;
+            }
+
+            if (!this.objTile.booSelecionado)
+            {
+                return;
+            }
+
+            int x = (arg.X - this.intMoveXTemp);
+            int y = (arg.Y - this.intMoveYTemp);
+
+            this.objTile.rtgMapa = new Rectangle(x, y, this.objTile.rtgMapa.Width, this.objTile.rtgMapa.Height);
+
+            this.invalidar();
+
+            this.gfcCamada?.invalidar();
+        }
+
         public override void renderizar(Graphics gpc)
         {
             if (this.objTile == null)
@@ -96,6 +161,36 @@ namespace Rpg.Controle.Editor.Grafico
             this.renderizarSelecionado(gpc);
         }
 
+        internal TileGrafico selecionar(int x, int y)
+        {
+            if (this.objTile == null)
+            {
+                return null;
+            }
+
+            if (this.objTile.booFixo)
+            {
+                return null;
+            }
+
+            this.intMoveXTemp = (x - this.objTile.rtgMapa.X);
+            this.intMoveYTemp = (y - this.objTile.rtgMapa.Y);
+
+            x = this.normalizarX(x);
+            y = this.normalizarY(y);
+
+            if (!this.objTile.rtgMapa.Contains(x, y))
+            {
+                return null;
+            }
+
+            this.objTile.booSelecionado = true;
+
+            this.invalidar();
+
+            return this;
+        }
+
         protected virtual Rectangle getRtgDestino()
         {
             if (this.objTile == null)
@@ -106,7 +201,7 @@ namespace Rpg.Controle.Editor.Grafico
             return this.objTile.rtgMapa;
         }
 
-        public override void invalidar()
+        internal override void invalidar()
         {
             base.invalidar();
 
