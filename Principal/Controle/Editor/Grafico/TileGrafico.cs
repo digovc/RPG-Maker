@@ -215,6 +215,27 @@ namespace Rpg.Controle.Editor.Grafico
             this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
+        internal bool apagar(int x, int y)
+        {
+            if (this.objTile == null)
+            {
+                return false;
+            }
+
+            x = this.normalizarX(x);
+
+            y = this.normalizarY(y);
+
+            if (!this.rtgDestino.Contains(x, y))
+            {
+                return false;
+            }
+
+            this.invalidar();
+
+            return true;
+        }
+
         private void renderizarSelecionado(Graphics gpc)
         {
             if (!this.objTile.booSelecionado)

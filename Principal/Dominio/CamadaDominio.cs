@@ -77,24 +77,24 @@ namespace Rpg.Dominio
                 return;
             }
 
-            this.removerTile(objTile.rtgMapa.X, objTile.rtgMapa.Y);
-
             this.lstObjTile.Add(objTile);
 
             this.onAddTile?.Invoke(objTile, EventArgs.Empty);
         }
 
-        internal bool removerTile(int x, int y)
+        internal void removerTile(TileDominio objTile)
         {
-            foreach (TileDominio objTile in this.lstObjTile)
+            if (objTile == null)
             {
-                if (this.removerTile(x, y, objTile))
-                {
-                    return true;
-                }
+                return;
             }
 
-            return false;
+            if (!this.lstObjTile.Contains(objTile))
+            {
+                return;
+            }
+
+            this.lstObjTile.Remove(objTile);
         }
 
         protected override void inicializar(bool booCriacao)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using Rpg.Dominio;
 
@@ -176,6 +177,62 @@ namespace Rpg.Controle.Editor.Grafico
             objCamada.onAddTile += ((o, e) => this.invalidar());
             objCamada.onRemoverTile += ((o, e) => this.invalidar());
         }
+
+        internal bool apagar(int x, int y, CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return false ;
+            }
+
+            if (!objCamada.Equals(this.objCamada))
+            {
+                return false;
+            }
+
+            foreach (TileGrafico gfcTile in this.lstGfcTile)
+            {
+                if (gfcTile.apagar(x, y))
+                {
+                    this.apagar(objCamada, gfcTile);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void apagar(CamadaDominio objCamada, TileGrafico gfcTile)
+        {
+            if (!objCamada.lstObjTile.Contains(gfcTile.objTile))
+            {
+                return;
+            }
+
+            objCamada.removerTile(gfcTile.objTile);
+
+            this.removerGfcTile(gfcTile);
+
+            this.invalidar();
+        }
+
+        private void removerGfcTile(TileGrafico gfcTile)
+        {
+            if (gfcTile == null)
+            {
+                return;
+            }
+
+            if (!this.lstGfcTile.Contains(gfcTile))
+            {
+                return;
+            }
+
+            this.lstGfcTile.Remove(gfcTile);
+
+            gfcTile.Dispose();
+        }
+
 
         #endregion Métodos
 

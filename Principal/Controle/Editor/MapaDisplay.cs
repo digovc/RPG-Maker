@@ -219,15 +219,21 @@ namespace Rpg.Controle.Editor
                 return;
             }
 
-            x = this.normalizarX(x);
-
-            y = this.normalizarY(y);
-
-            if (!objCamada.removerTile(x, y))
+            foreach (CamadaGrafico gfcCamada in this.lstGfcCamada)
             {
-                return;
+                if (gfcCamada.apagar(x, y, objCamada))
+                {
+                    this.Invalidate();
+                    return;
+                }
             }
+        }
 
+        private void atualizarBackground(TileDominio objTileBackground)
+        {
+            this.gfcBackground.objTile = objTileBackground;
+
+            this.gfcBackground.invalidar();
             this.Invalidate();
         }
 
@@ -397,6 +403,11 @@ namespace Rpg.Controle.Editor
 
         private void moverSelecionado(MouseEventArgs arg)
         {
+            if (TabDockMapa.EnmFerramenta.SELECIONAR.Equals(this.tabDockMapa.enmFerramenta))
+            {
+                return;
+            }
+
             this.gfcTileSelecionado?.mover(arg);
 
             this.Invalidate();
@@ -525,7 +536,7 @@ namespace Rpg.Controle.Editor
 
         private void objMapa_onObjTileBackgroundChanged(object sender, TileDominio objTileBackground)
         {
-            this.gfcBackground.objTile = objTileBackground;
+            this.atualizarBackground(objTileBackground);
         }
 
         #endregion Eventos

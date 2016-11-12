@@ -1,9 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Rpg.Controle.Editor.Grafico
 {
-    public abstract class GraficoBase
+    public abstract class GraficoBase : IDisposable
     {
         #region Constantes
 
@@ -56,6 +57,11 @@ namespace Rpg.Controle.Editor.Grafico
         #endregion Construtores
 
         #region Métodos
+
+        public virtual void Dispose()
+        {
+            this.bmpCache?.Dispose();
+        }
 
         public void renderizar(PaintEventArgs arg)
         {
