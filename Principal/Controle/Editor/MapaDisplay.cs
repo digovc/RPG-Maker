@@ -157,6 +157,7 @@ namespace Rpg.Controle.Editor
                     this.desenhar(arg.X, arg.Y);
                     return;
 
+                case TabDockMapa.EnmFerramenta.REDIMENSIONAR:
                 case TabDockMapa.EnmFerramenta.SELECIONAR:
                     this.selecionar(arg.X, arg.Y);
                     return;
@@ -169,7 +170,7 @@ namespace Rpg.Controle.Editor
 
             if (MouseButtons.Left.Equals(arg.Button))
             {
-                this.redimensionarMoverSelecionado(arg);
+                this.processarMouseMoveLeft(arg);
             }
         }
 
@@ -399,23 +400,6 @@ namespace Rpg.Controle.Editor
             return gfcPersonagemNova;
         }
 
-        private void redimensionarMoverSelecionado(MouseEventArgs arg)
-        {
-            if (!TabDockMapa.EnmFerramenta.SELECIONAR.Equals(this.tabDockMapa.enmFerramenta))
-            {
-                return;
-            }
-
-            if (this.gfcTileSelecionado == null)
-            {
-                return;
-            }
-
-            this.gfcTileSelecionado.redimensionarMover(arg);
-
-            this.gfcTileSelecionado.invalidar();
-        }
-
         private int normalizarX(int x)
         {
             x = (x - this.intMoveX);
@@ -430,6 +414,41 @@ namespace Rpg.Controle.Editor
             y = (int)(y / this.fltZoom + 1);
 
             return y;
+        }
+
+        private void processarMouseMoveLeft(MouseEventArgs arg)
+        {
+            if (this.gfcTileSelecionado == null)
+            {
+                return;
+            }
+
+            switch (this.tabDockMapa.enmFerramenta)
+            {
+                case TabDockMapa.EnmFerramenta.REDIMENSIONAR:
+                    this.gfcTileSelecionado.redimensionar(arg);
+                    return;
+
+                case TabDockMapa.EnmFerramenta.SELECIONAR:
+                    this.gfcTileSelecionado.mover(arg);
+                    return;
+            }
+        }
+
+        private void redimensionarMoverSelecionado(MouseEventArgs arg)
+        {
+            if (this.gfcTileSelecionado == null)
+            {
+                return;
+            }
+
+            if (TabDockMapa.EnmFerramenta.SELECIONAR.Equals(this.tabDockMapa.enmFerramenta))
+            {
+                this.gfcTileSelecionado.redimensionar(arg);
+                return;
+            }
+
+            this.gfcTileSelecionado.redimensionar(arg);
         }
 
         private void renderizarBackground(PaintEventArgs arg)

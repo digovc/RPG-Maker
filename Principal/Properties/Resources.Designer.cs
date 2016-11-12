@@ -183,6 +183,16 @@ namespace Rpg.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap redimensionar {
+            get {
+                object obj = ResourceManager.GetObject("redimensionar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap remover_background {
             get {
                 object obj = ResourceManager.GetObject("remover_background", resourceCulture);

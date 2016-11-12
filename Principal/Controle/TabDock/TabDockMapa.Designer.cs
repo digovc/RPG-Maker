@@ -34,6 +34,7 @@
             this.btnSelecionar = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnAddBackground = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnRemoverBackground = new DigoFramework.Controle.Botao.BotaoAtalho();
+            this.btnRedimensionar = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.pnlAtalho.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,6 +44,7 @@
             this.pnlAtalho.Controls.Add(this.btnAddBackground);
             this.pnlAtalho.Controls.Add(this.btnBorracha);
             this.pnlAtalho.Controls.Add(this.btnLapis);
+            this.pnlAtalho.Controls.Add(this.btnRedimensionar);
             this.pnlAtalho.Controls.Add(this.btnSelecionar);
             // 
             // ctrMapa
@@ -99,6 +101,14 @@
             this.btnRemoverBackground.TabIndex = 5;
             this.btnRemoverBackground.Click += new System.EventHandler(this.btnRemoverBackground_Click);
             // 
+            // btnRedimensionar
+            // 
+            this.btnRedimensionar.BackgroundImage = global::Rpg.Properties.Resources.redimensionar;
+            this.btnRedimensionar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRedimensionar.Name = "btnRedimensionar";
+            this.btnRedimensionar.TabIndex = 6;
+            this.btnRedimensionar.Click += new System.EventHandler(this.btnRedimensionar_Click);
+            // 
             // TabDockMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,5 +133,6 @@
         private DigoFramework.Controle.Botao.BotaoAtalho btnSelecionar;
         private DigoFramework.Controle.Botao.BotaoAtalho btnAddBackground;
         private DigoFramework.Controle.Botao.BotaoAtalho btnRemoverBackground;
+        private DigoFramework.Controle.Botao.BotaoAtalho btnRedimensionar;
     }
 }

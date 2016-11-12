@@ -13,6 +13,7 @@ namespace Rpg.Controle.TabDock
         {
             BORRACHA,
             LAPIS,
+            REDIMENSIONAR,
             SELECIONAR,
         }
 
@@ -208,6 +209,18 @@ namespace Rpg.Controle.TabDock
             try
             {
                 this.enmFerramenta = EnmFerramenta.LAPIS;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
+        private void btnRedimensionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.enmFerramenta = EnmFerramenta.REDIMENSIONAR;
             }
             catch (Exception ex)
             {

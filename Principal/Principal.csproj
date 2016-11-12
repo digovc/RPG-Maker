@@ -339,6 +339,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.ico" />
+    <None Include="Resources\redimensionar.png" />
     <None Include="Resources\selecionar tudo.png" />
     <None Include="Resources\alterar tipo.png" />
     <None Include="Resources\bloquear.png" />
