@@ -88,7 +88,7 @@ namespace Rpg.Controle.Editor
 
                 if (_gfcTileSelecionado != null)
                 {
-                    _gfcTileSelecionado.objTile.booSelecionado = false;
+                    _gfcTileSelecionado.desselecionar();
                 }
 
                 _gfcTileSelecionado = value;
@@ -223,7 +223,6 @@ namespace Rpg.Controle.Editor
             {
                 if (gfcCamada.apagar(x, y, objCamada))
                 {
-                    this.Invalidate();
                     return;
                 }
             }
@@ -234,7 +233,6 @@ namespace Rpg.Controle.Editor
             this.gfcBackground.objTile = objTileBackground;
 
             this.gfcBackground.invalidar();
-            this.Invalidate();
         }
 
         private void desenhar(int x, int y)
@@ -403,14 +401,17 @@ namespace Rpg.Controle.Editor
 
         private void moverSelecionado(MouseEventArgs arg)
         {
-            if (TabDockMapa.EnmFerramenta.SELECIONAR.Equals(this.tabDockMapa.enmFerramenta))
+            if (!TabDockMapa.EnmFerramenta.SELECIONAR.Equals(this.tabDockMapa.enmFerramenta))
             {
                 return;
             }
 
-            this.gfcTileSelecionado?.mover(arg);
+            if (this.gfcTileSelecionado == null)
+            {
+                return;
+            }
 
-            this.Invalidate();
+            this.gfcTileSelecionado.mover(arg);
         }
 
         private int normalizarX(int x)
@@ -462,6 +463,11 @@ namespace Rpg.Controle.Editor
 
         private void selecionar(int x, int y)
         {
+            if (this.gfcTileSelecionado != null)
+            {
+                this.gfcTileSelecionado = null;
+            }
+
             if (this.objMapa == null)
             {
                 return;
@@ -502,7 +508,6 @@ namespace Rpg.Controle.Editor
                 }
 
                 this.gfcTileSelecionado = gfcTileSelecionado;
-                this.Invalidate();
             }
         }
 

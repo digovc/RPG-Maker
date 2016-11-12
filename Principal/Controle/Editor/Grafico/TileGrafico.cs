@@ -139,8 +139,8 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            int x = (arg.X - this.intMoveXTemp);
-            int y = (arg.Y - this.intMoveYTemp);
+            int x = (this.normalizarX(arg.X) - this.intMoveXTemp);
+            int y = (this.normalizarY(arg.Y) - this.intMoveYTemp);
 
             this.objTile.rtgMapa = new Rectangle(x, y, this.objTile.rtgMapa.Width, this.objTile.rtgMapa.Height);
 
@@ -159,60 +159,6 @@ namespace Rpg.Controle.Editor.Grafico
             gpc.DrawImage(AppRpg.i.getBmpCache(this.objTile.dirImg), this.rtgDestino, this.objTile.rtgImg, GraphicsUnit.Pixel);
 
             this.renderizarSelecionado(gpc);
-        }
-
-        internal TileGrafico selecionar(int x, int y)
-        {
-            if (this.objTile == null)
-            {
-                return null;
-            }
-
-            if (this.objTile.booFixo)
-            {
-                return null;
-            }
-
-            this.intMoveXTemp = (x - this.objTile.rtgMapa.X);
-            this.intMoveYTemp = (y - this.objTile.rtgMapa.Y);
-
-            x = this.normalizarX(x);
-            y = this.normalizarY(y);
-
-            if (!this.objTile.rtgMapa.Contains(x, y))
-            {
-                return null;
-            }
-
-            this.objTile.booSelecionado = true;
-
-            this.invalidar();
-
-            return this;
-        }
-
-        protected virtual Rectangle getRtgDestino()
-        {
-            if (this.objTile == null)
-            {
-                return default(Rectangle);
-            }
-
-            return this.objTile.rtgMapa;
-        }
-
-        internal override void invalidar()
-        {
-            base.invalidar();
-
-            this.rtgDestino = default(Rectangle);
-        }
-
-        protected override void setEventos()
-        {
-            base.setEventos();
-
-            this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
         internal bool apagar(int x, int y)
@@ -234,6 +180,78 @@ namespace Rpg.Controle.Editor.Grafico
             this.invalidar();
 
             return true;
+        }
+
+        internal void desselecionar()
+        {
+            if (this.objTile == null)
+            {
+                return;
+            }
+
+            if (!this.objTile.booSelecionado)
+            {
+                return;
+            }
+
+            this.objTile.booSelecionado = false;
+
+            this.invalidar();
+
+            this.gfcCamada?.invalidar();
+        }
+
+        internal override void invalidar()
+        {
+            base.invalidar();
+
+            this.rtgDestino = default(Rectangle);
+        }
+
+        internal TileGrafico selecionar(int x, int y)
+        {
+            if (this.objTile == null)
+            {
+                return null;
+            }
+
+            if (this.objTile.booFixo)
+            {
+                return null;
+            }
+
+            x = this.normalizarX(x);
+            y = this.normalizarY(y);
+
+            if (!this.objTile.rtgMapa.Contains(x, y))
+            {
+                return null;
+            }
+
+            this.intMoveXTemp = (x - this.objTile.rtgMapa.X);
+            this.intMoveYTemp = (y - this.objTile.rtgMapa.Y);
+            this.objTile.booSelecionado = true;
+
+            this.invalidar();
+
+            return this;
+        }
+
+        protected virtual Rectangle getRtgDestino()
+        {
+            if (this.objTile == null)
+            {
+                return default(Rectangle);
+            }
+
+            return this.objTile.rtgMapa;
+        }
+
+        protected override void setEventos()
+        {
+            base.setEventos();
+
+            this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
         private void renderizarSelecionado(Graphics gpc)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using Rpg.Dominio;
 
@@ -88,6 +87,41 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        internal bool apagar(int x, int y, CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return false;
+            }
+
+            if (!objCamada.Equals(this.objCamada))
+            {
+                return false;
+            }
+
+            List<TileGrafico> lstGfcTileTemp = new List<TileGrafico>(this.lstGfcTile);
+
+            lstGfcTileTemp.Reverse();
+
+            foreach (TileGrafico gfcTile in lstGfcTileTemp)
+            {
+                if (gfcTile.apagar(x, y))
+                {
+                    this.apagar(objCamada, gfcTile);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        internal override void invalidar()
+        {
+            base.invalidar();
+
+            this.objMapaDisplay.Invalidate();
+        }
+
         internal TileGrafico selecionarTile(int x, int y, CamadaDominio objCamada)
         {
             if (objCamada == null)
@@ -100,7 +134,11 @@ namespace Rpg.Controle.Editor.Grafico
                 return null;
             }
 
-            foreach (TileGrafico gfcTile in this.lstGfcTile)
+            List<TileGrafico> lstGfcTileTemp = new List<TileGrafico>(this.lstGfcTile);
+
+            lstGfcTileTemp.Reverse();
+
+            foreach (TileGrafico gfcTile in lstGfcTileTemp)
             {
                 TileGrafico gfcResultado = gfcTile.selecionar(x, y);
 
@@ -135,6 +173,20 @@ namespace Rpg.Controle.Editor.Grafico
             return true;
         }
 
+        private void apagar(CamadaDominio objCamada, TileGrafico gfcTile)
+        {
+            if (!objCamada.lstObjTile.Contains(gfcTile.objTile))
+            {
+                return;
+            }
+
+            objCamada.removerTile(gfcTile.objTile);
+
+            this.removerGfcTile(gfcTile);
+
+            this.invalidar();
+        }
+
         private TileGrafico getGfcTile(TileDominio objTile)
         {
             if (objTile == null)
@@ -161,61 +213,6 @@ namespace Rpg.Controle.Editor.Grafico
             return gfcTileNovo;
         }
 
-        private void setObjCamada(CamadaDominio objCamada)
-        {
-            if (objCamada == null)
-            {
-                return;
-            }
-
-            objCamada.attBooVisivel.onStrValorAlterado += ((o, e) =>
-            {
-                this.invalidar();
-                this.objDisplay.Invalidate();
-            });
-
-            objCamada.onAddTile += ((o, e) => this.invalidar());
-            objCamada.onRemoverTile += ((o, e) => this.invalidar());
-        }
-
-        internal bool apagar(int x, int y, CamadaDominio objCamada)
-        {
-            if (objCamada == null)
-            {
-                return false ;
-            }
-
-            if (!objCamada.Equals(this.objCamada))
-            {
-                return false;
-            }
-
-            foreach (TileGrafico gfcTile in this.lstGfcTile)
-            {
-                if (gfcTile.apagar(x, y))
-                {
-                    this.apagar(objCamada, gfcTile);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private void apagar(CamadaDominio objCamada, TileGrafico gfcTile)
-        {
-            if (!objCamada.lstObjTile.Contains(gfcTile.objTile))
-            {
-                return;
-            }
-
-            objCamada.removerTile(gfcTile.objTile);
-
-            this.removerGfcTile(gfcTile);
-
-            this.invalidar();
-        }
-
         private void removerGfcTile(TileGrafico gfcTile)
         {
             if (gfcTile == null)
@@ -233,6 +230,22 @@ namespace Rpg.Controle.Editor.Grafico
             gfcTile.Dispose();
         }
 
+        private void setObjCamada(CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return;
+            }
+
+            objCamada.attBooVisivel.onStrValorAlterado += ((o, e) =>
+            {
+                this.invalidar();
+                this.objDisplay.Invalidate();
+            });
+
+            objCamada.onAddTile += ((o, e) => this.invalidar());
+            objCamada.onRemoverTile += ((o, e) => this.invalidar());
+        }
 
         #endregion Métodos
 

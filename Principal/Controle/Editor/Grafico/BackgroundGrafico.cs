@@ -23,6 +23,13 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Métodos
 
+        internal override void invalidar()
+        {
+            base.invalidar();
+
+            this.objDisplay.Invalidate();
+        }
+
         protected override Rectangle getRtgDestino()
         {
             return new Rectangle(0, 0, this.objDisplay.intTamanhoX, this.objDisplay.intTamanhoY);
