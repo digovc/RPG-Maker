@@ -12,22 +12,9 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Atributos
 
-        private bool _booSelecionado;
         private TileDominio _objTile;
+        private Pen _penSelecao;
         private Rectangle _rtgDestino;
-
-        public bool booSelecionado
-        {
-            get
-            {
-                return _booSelecionado;
-            }
-
-            set
-            {
-                _booSelecionado = value;
-            }
-        }
 
         public TileDominio objTile
         {
@@ -38,7 +25,29 @@ namespace Rpg.Controle.Editor.Grafico
 
             set
             {
+                if (_objTile == value)
+                {
+                    return;
+                }
+
                 _objTile = value;
+
+                this.setObjTile(_objTile);
+            }
+        }
+
+        private Pen penSelecao
+        {
+            get
+            {
+                if (_penSelecao != null)
+                {
+                    return _penSelecao;
+                }
+
+                _penSelecao = new Pen(new SolidBrush(Color.DeepSkyBlue));
+
+                return _penSelecao;
             }
         }
 
@@ -83,9 +92,21 @@ namespace Rpg.Controle.Editor.Grafico
             }
 
             gpc.DrawImage(AppRpg.i.getBmpCache(this.objTile.dirImg), this.rtgDestino, this.objTile.rtgImg, GraphicsUnit.Pixel);
+
+            this.renderizarSelecionado(gpc);
         }
 
-        protected override void invalidar()
+        protected virtual Rectangle getRtgDestino()
+        {
+            if (this.objTile == null)
+            {
+                return default(Rectangle);
+            }
+
+            return this.objTile.rtgMapa;
+        }
+
+        public override void invalidar()
         {
             base.invalidar();
 
@@ -99,14 +120,24 @@ namespace Rpg.Controle.Editor.Grafico
             this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
-        protected virtual Rectangle getRtgDestino()
+        private void renderizarSelecionado(Graphics gpc)
         {
-            if (this.objTile == null)
+            if (!this.objTile.booSelecionado)
             {
-                return default(Rectangle);
+                return;
             }
 
-            return this.objTile.rtgMapa;
+            gpc.DrawRectangle(this.penSelecao, this.rtgDestino);
+        }
+
+        private void setObjTile(TileDominio objTile)
+        {
+            if (objTile == null)
+            {
+                return;
+            }
+
+            objTile.onBooSelecionadoChanged += this.objTile_onBooSelecionadoChanged;
         }
 
         #endregion Métodos
@@ -114,6 +145,11 @@ namespace Rpg.Controle.Editor.Grafico
         #region Eventos
 
         private void objDisplay_onZooming(object sender, EventArgs e)
+        {
+            this.invalidar();
+        }
+
+        private void objTile_onBooSelecionadoChanged(object sender, bool booSelecionado)
         {
             this.invalidar();
         }

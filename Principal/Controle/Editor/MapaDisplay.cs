@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Rpg.Controle.Editor.Grafico;
@@ -19,10 +18,10 @@ namespace Rpg.Controle.Editor
         #region Atributos
 
         private BackgroundGrafico _gfcBackground;
-        private PersonagemGrafico _gfcPersonagemSelecionado;
         private List<CamadaGrafico> _lstGfcCamada;
         private List<PersonagemGrafico> _lstGfcPersonagem;
         private MapaDominio _objMapa;
+        private TileDominio _objTileSelecionado;
         private TabDockMapa _tabDockMapa;
 
         public MapaDominio objMapa
@@ -73,31 +72,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private PersonagemGrafico gfcPersonagemSelecionado
-        {
-            get
-            {
-                return _gfcPersonagemSelecionado;
-            }
-
-            set
-            {
-                if (_gfcPersonagemSelecionado == value)
-                {
-                    return;
-                }
-
-                if (_gfcPersonagemSelecionado != null)
-                {
-                    _gfcPersonagemSelecionado.booSelecionado = false;
-                }
-
-                _gfcPersonagemSelecionado = value;
-
-                this.setEventosGfcPersonagemSelecionado(_gfcPersonagemSelecionado);
-            }
-        }
-
         private List<CamadaGrafico> lstGfcCamada
         {
             get
@@ -125,6 +99,31 @@ namespace Rpg.Controle.Editor
                 _lstGfcPersonagem = new List<PersonagemGrafico>();
 
                 return _lstGfcPersonagem;
+            }
+        }
+
+        private TileDominio objTileSelecionado
+        {
+            get
+            {
+                return _objTileSelecionado;
+            }
+
+            set
+            {
+                if (_objTileSelecionado == value)
+                {
+                    return;
+                }
+
+                if (_objTileSelecionado != null)
+                {
+                    _objTileSelecionado.booSelecionado = false;
+                }
+
+                _objTileSelecionado = value;
+
+                this.setObjTileSelecionado(_objTileSelecionado);
             }
         }
 
@@ -483,28 +482,74 @@ namespace Rpg.Controle.Editor
                 return false;
             }
 
-            this.selecionarPersonagem(gfcPersonagem);
-            return true;
-        }
+            gfcPersonagem.objTile.booSelecionado = true;
 
-        private void selecionarPersonagem(PersonagemGrafico gfcPersonagem)
-        {
-            this.gfcPersonagemSelecionado = gfcPersonagem;
+            return true;
         }
 
         private void selecionarTile(int x, int y)
         {
-            throw new NotImplementedException();
-        }
-
-        private void setEventosGfcPersonagemSelecionado(PersonagemGrafico gfcPersonagemSelecionado)
-        {
-            if (gfcPersonagemSelecionado == null)
+            if (AppRpg.i.frmPrincipal.objSelecionado == null)
             {
                 return;
             }
 
-            gfcPersonagemSelecionado.booSelecionado = true;
+            if (!(AppRpg.i.frmPrincipal.objSelecionado is CamadaDominio))
+            {
+                return;
+            }
+
+            this.selecionarTile(x, y, (AppRpg.i.frmPrincipal.objSelecionado as CamadaDominio));
+        }
+
+        private void selecionarTile(int x, int y, CamadaDominio objCamada)
+        {
+            if (!this.objMapa.lstObjCamada.Contains(objCamada))
+            {
+                return;
+            }
+
+            foreach (TileDominio objTile in objCamada.lstObjTile)
+            {
+                if (!this.selecionarTile(x, y, objTile))
+                {
+                    continue;
+                }
+
+                this.selecionarTileInvalidar(objCamada);
+                return;
+            }
+        }
+
+        private bool selecionarTile(int x, int y, TileDominio objTile)
+        {
+            if (objTile == null)
+            {
+                return false;
+            }
+
+            if (!objTile.rtgMapa.Contains(x, y))
+            {
+                return false;
+            }
+
+            this.objTileSelecionado = objTile;
+
+            return true;
+        }
+
+        private void selecionarTileInvalidar(CamadaDominio objCamada)
+        {
+            foreach (CamadaGrafico gfcCamada in this.lstGfcCamada)
+            {
+                if (gfcCamada.objCamada.Equals(objCamada))
+                {
+                    gfcCamada.invalidar();
+                    break;
+                }
+            }
+
+            this.Invalidate();
         }
 
         private void setObjMapa(MapaDominio objMapa)
@@ -519,6 +564,16 @@ namespace Rpg.Controle.Editor
             this.intTamanhoY = (objMapa.attIntQuantidadeY.intValor * INT_TILE_TAMANHO);
 
             this.objMapa.onObjTileBackgroundChanged += this.objMapa_onObjTileBackgroundChanged;
+        }
+
+        private void setObjTileSelecionado(TileDominio objTileSelecionado)
+        {
+            if (objTileSelecionado == null)
+            {
+                return;
+            }
+
+            objTileSelecionado.booSelecionado = true;
         }
 
         #endregion Métodos

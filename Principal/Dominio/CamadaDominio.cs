@@ -129,6 +129,7 @@ namespace Rpg.Dominio
             this.lstObjTile.Remove(objTile);
 
             this.onRemoverTile?.Invoke(objTile, EventArgs.Empty);
+
             return true;
         }
 

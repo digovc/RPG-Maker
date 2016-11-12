@@ -80,7 +80,7 @@ namespace Rpg.Controle.Editor.Grafico
         {
         }
 
-        protected virtual void invalidar()
+        public virtual void invalidar()
         {
             if (_bmpCache != null)
             {
