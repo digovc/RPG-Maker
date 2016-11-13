@@ -13,25 +13,25 @@ namespace Rpg.Controle.TabDock
 
         #region Atributos
 
-        private RpgDominioBase _objDominio;
+        private RpgDominioBase _objSelecionado;
 
-        public RpgDominioBase objDominio
+        public RpgDominioBase objSelecionado
         {
             get
             {
-                return _objDominio;
+                return _objSelecionado;
             }
 
             set
             {
-                if (_objDominio == value)
+                if (_objSelecionado == value)
                 {
                     return;
                 }
 
-                _objDominio = value;
+                _objSelecionado = value;
 
-                this.setObjDominio(_objDominio);
+                this.setObjSelecionado(_objSelecionado);
             }
         }
 
@@ -52,7 +52,14 @@ namespace Rpg.Controle.TabDock
         {
             base.inicializar();
 
-            this.objDominio = AppRpg.i.frmPrincipal.objSelecionado;
+            this.objSelecionado = AppRpg.i.frmPrincipal.objSelecionado;
+        }
+
+        protected override void setEventos()
+        {
+            base.setEventos();
+
+            AppRpg.i.frmPrincipal.onObjSelecionadoChanged += this.frmPrincipal_onObjSelecionadoChanged;
         }
 
         private void atualizarLayout()
@@ -60,12 +67,12 @@ namespace Rpg.Controle.TabDock
             // TODO: Chamar o dispose para todos os componentes em vez de apenas limpar a lista.
             this.pnlConteudo.Controls.Clear();
 
-            if (objDominio.lstAtt == null)
+            if (objSelecionado.lstAtt == null)
             {
                 return;
             }
 
-            foreach (string strGrupo in this.objDominio.lstStrGrupo)
+            foreach (string strGrupo in this.objSelecionado.lstStrGrupo)
             {
                 this.atualizarLayout(strGrupo);
             }
@@ -78,7 +85,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            List<Atributo> lstAttGrupo = this.objDominio.lstAtt.Where((att) => strGrupo.Equals(att.strGrupo)).ToList();
+            List<Atributo> lstAttGrupo = this.objSelecionado.lstAtt.Where((att) => strGrupo.Equals(att.strGrupo)).ToList();
 
             if (lstAttGrupo == null)
             {
@@ -93,28 +100,28 @@ namespace Rpg.Controle.TabDock
             this.pnlConteudo.Controls.SetChildIndex(pnlAttGrupo, 0);
         }
 
-        private void setObjDominio(RpgDominioBase objDominio)
+        private void setObjSelecionado(RpgDominioBase objSelecionado)
         {
             if (!this.Visible)
             {
                 return;
             }
 
-            if (objDominio == null)
+            if (objSelecionado == null)
             {
                 return;
             }
 
-            if (objDominio is ArquivoRefDominio)
+            if (objSelecionado is ArquivoRefDominio)
             {
-                this.setObjDominioArqRef((ArquivoRefDominio)objDominio);
+                this.setobjSelecionadoArqRef((ArquivoRefDominio)objSelecionado);
                 return;
             }
 
             this.atualizarLayout();
         }
 
-        private void setObjDominioArqRef(ArquivoRefDominio objArquivoRef)
+        private void setobjSelecionadoArqRef(ArquivoRefDominio objArquivoRef)
         {
             if (objArquivoRef == null)
             {
@@ -126,12 +133,17 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            this.objDominio = objArquivoRef.objArquivo;
+            this.objSelecionado = objArquivoRef.objArquivo;
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void frmPrincipal_onObjSelecionadoChanged(object sender, RpgDominioBase objSelecionado)
+        {
+            this.objSelecionado = objSelecionado;
+        }
 
         #endregion Eventos
     }

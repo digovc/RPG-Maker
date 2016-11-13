@@ -365,8 +365,6 @@ namespace Rpg.Frm
                 return;
             }
 
-            this.tabDockPropriedade.objDominio = objDominioSelecionado;
-
             this.onObjSelecionadoChanged?.Invoke(this, objDominioSelecionado);
         }
 

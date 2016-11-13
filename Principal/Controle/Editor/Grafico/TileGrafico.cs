@@ -13,6 +13,7 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Atributos
 
+        private bool _booSelecionado;
         private CamadaGrafico _gfcCamada;
         private int _intMoveXTemp;
         private int _intMoveYTemp;
@@ -51,6 +52,26 @@ namespace Rpg.Controle.Editor.Grafico
             set
             {
                 _gfcCamada = value;
+            }
+        }
+
+        private bool booSelecionado
+        {
+            get
+            {
+                return _booSelecionado;
+            }
+
+            set
+            {
+                if (_booSelecionado == value)
+                {
+                    return;
+                }
+
+                _booSelecionado = value;
+
+                this.setBooSelecionado(_booSelecionado);
             }
         }
 
@@ -128,19 +149,6 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
-        private bool _booSelecionado ;
-
-        private bool booSelecionado
-        {
-            get
-            {
-                return _booSelecionado;
-            }
-            set
-            {
-                _booSelecionado = value;
-            }
-        }
         #endregion Atributos
 
         #region Construtores
@@ -311,6 +319,10 @@ namespace Rpg.Controle.Editor.Grafico
             return this.objTile.rtgMapa;
         }
 
+        protected virtual void setBooSelecionado(bool booSelecionado)
+        {
+        }
+
         protected override void setEventos()
         {
             base.setEventos();
@@ -333,7 +345,7 @@ namespace Rpg.Controle.Editor.Grafico
             gpc.DrawRectangle(this.penSelecao, this.rtgDestino);
         }
 
-        private void setObjTile(TileDominio objTile)
+        protected virtual void setObjTile(TileDominio objTile)
         {
             if (objTile == null)
             {
