@@ -543,16 +543,6 @@ namespace Rpg.Controle.Editor
             this.objMapa.onObjTileBackgroundChanged += this.objMapa_onObjTileBackgroundChanged;
         }
 
-        private void setObjTileSelecionado(TileDominio objTileSelecionado)
-        {
-            if (objTileSelecionado == null)
-            {
-                return;
-            }
-
-            objTileSelecionado.booSelecionado = true;
-        }
-
         #endregion Métodos
 
         #region Eventos

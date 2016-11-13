@@ -128,6 +128,19 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        private bool _booSelecionado ;
+
+        private bool booSelecionado
+        {
+            get
+            {
+                return _booSelecionado;
+            }
+            set
+            {
+                _booSelecionado = value;
+            }
+        }
         #endregion Atributos
 
         #region Construtores
@@ -148,12 +161,12 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            if (!this.objTile.booSelecionado)
+            if (this.objTile.booFixo)
             {
                 return;
             }
 
-            if (this.objTile.booFixo)
+            if (!this.booSelecionado)
             {
                 return;
             }
@@ -213,12 +226,12 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            if (!this.objTile.booSelecionado)
+            if (!this.booSelecionado)
             {
                 return;
             }
 
-            this.objTile.booSelecionado = false;
+            this.booSelecionado = false;
 
             this.invalidar();
         }
@@ -239,12 +252,12 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            if (!this.objTile.booSelecionado)
+            if (this.objTile.booFixo)
             {
                 return;
             }
 
-            if (this.objTile.booFixo)
+            if (!this.booSelecionado)
             {
                 return;
             }
@@ -281,7 +294,7 @@ namespace Rpg.Controle.Editor.Grafico
             this.intMoveYTemp = y;
             this.rtgTemp = this.rtgDestino;
 
-            this.objTile.booSelecionado = true;
+            this.booSelecionado = true;
 
             this.invalidar();
 
@@ -307,7 +320,12 @@ namespace Rpg.Controle.Editor.Grafico
 
         private void renderizarSelecionado(Graphics gpc)
         {
-            if (!this.objTile.booSelecionado)
+            if (!this.booSelecionado)
+            {
+                return;
+            }
+
+            if (this.objTile.booFixo)
             {
                 return;
             }

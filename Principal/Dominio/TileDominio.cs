@@ -14,7 +14,6 @@ namespace Rpg.Dominio
         #region Atributos
 
         private bool _booFixo;
-        private bool _booSelecionado;
         private string _dirImg;
         private TileGrafico _gfcTile;
         private Rectangle _rtgImg;
@@ -30,27 +29,6 @@ namespace Rpg.Dominio
             set
             {
                 _booFixo = value;
-            }
-        }
-
-        [JsonIgnore]
-        public bool booSelecionado
-        {
-            get
-            {
-                return _booSelecionado;
-            }
-
-            set
-            {
-                if (_booSelecionado == value)
-                {
-                    return;
-                }
-
-                _booSelecionado = value;
-
-                this.setBooSelecionado(_booSelecionado);
             }
         }
 
