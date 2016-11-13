@@ -15,7 +15,6 @@ namespace Rpg.Dominio
         private Atributo _attIntQuantidadeX;
         private Atributo _attIntQuantidadeY;
         private List<CamadaDominio> _lstObjCamada;
-        private List<PersonagemTileDominio> _lstObjPersonagemTile;
         private TileDominio _objTileBackground;
 
         [JsonIgnore]
@@ -62,21 +61,6 @@ namespace Rpg.Dominio
                 _lstObjCamada = new List<CamadaDominio>();
 
                 return _lstObjCamada;
-            }
-        }
-
-        public List<PersonagemTileDominio> lstObjPersonagemTile
-        {
-            get
-            {
-                if (_lstObjPersonagemTile != null)
-                {
-                    return _lstObjPersonagemTile;
-                }
-
-                _lstObjPersonagemTile = new List<PersonagemTileDominio>();
-
-                return _lstObjPersonagemTile;
             }
         }
 
@@ -132,21 +116,6 @@ namespace Rpg.Dominio
             objMapaResultado.iniciar(true);
 
             return objMapaResultado;
-        }
-
-        internal void addPersonagem(PersonagemDominio objPersonagem)
-        {
-            if (objPersonagem == null)
-            {
-                return;
-            }
-
-            PersonagemTileDominio objPersonagemTile = new PersonagemTileDominio();
-
-            objPersonagemTile.dirImg = objPersonagem.attDirCompleto.strValor;
-            objPersonagemTile.objPersonagem = objPersonagem;
-
-            this.lstObjPersonagemTile.Add(objPersonagemTile);
         }
 
         protected override void inicializar(bool booCriacao)

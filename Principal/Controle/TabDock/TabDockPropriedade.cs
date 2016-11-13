@@ -95,6 +95,11 @@ namespace Rpg.Controle.TabDock
 
         private void setObjDominio(RpgDominioBase objDominio)
         {
+            if (!this.Visible)
+            {
+                return;
+            }
+
             if (objDominio == null)
             {
                 return;

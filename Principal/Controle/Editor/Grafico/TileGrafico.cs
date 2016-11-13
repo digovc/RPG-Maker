@@ -190,7 +190,14 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            gpc.DrawImage(AppRpg.i.getBmpCache(this.objTile.dirImg), this.rtgDestino, this.objTile.rtgImg, GraphicsUnit.Pixel);
+            Bitmap bmpCache = AppRpg.i.getBmpCache(this.objTile.dirImg);
+
+            if (bmpCache == null)
+            {
+                return;
+            }
+
+            gpc.DrawImage(bmpCache, this.rtgDestino, this.objTile.rtgImg, GraphicsUnit.Pixel);
 
             this.renderizarSelecionado(gpc);
         }
@@ -344,6 +351,8 @@ namespace Rpg.Controle.Editor.Grafico
             {
                 return;
             }
+
+            objTile.gfcTile = this;
 
             objTile.onBooSelecionadoChanged += this.objTile_onBooSelecionadoChanged;
         }

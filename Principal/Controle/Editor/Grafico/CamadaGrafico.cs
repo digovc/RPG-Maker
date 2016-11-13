@@ -87,6 +87,41 @@ namespace Rpg.Controle.Editor.Grafico
             }
         }
 
+        internal bool addPersonagem(PersonagemDominio objPersonagem, CamadaDominio objCamada)
+        {
+            if (objCamada == null)
+            {
+                return false;
+            }
+
+            if (!objCamada.Equals(this.objCamada))
+            {
+                return false;
+            }
+
+            PersonagemTileDominio objPersonagemTile = new PersonagemTileDominio();
+
+            objPersonagemTile.dirImg = objPersonagem.objTile.dirImg;
+            objPersonagemTile.objPersonagem = objPersonagem;
+            objPersonagemTile.rtgImg = objPersonagem.objTile.rtgImg;
+            objPersonagemTile.rtgMapa = new Rectangle(0, 0, objPersonagem.objTile.rtgImg.Width, objPersonagem.objTile.rtgImg.Height);
+
+            objPersonagemTile.iniciar(true);
+
+            PersonagemGrafico gfcPersonagem = new PersonagemGrafico(this.objDisplay, objPersonagemTile);
+
+            gfcPersonagem.gfcCamada = this;
+            gfcPersonagem.objTile = objPersonagemTile;
+
+            this.lstGfcTile.Add(gfcPersonagem);
+
+            this.objCamada.addTile(objPersonagemTile);
+
+            this.invalidar();
+
+            return true;
+        }
+
         internal bool apagar(int x, int y, CamadaDominio objCamada)
         {
             if (objCamada == null)
@@ -194,12 +229,19 @@ namespace Rpg.Controle.Editor.Grafico
                 return null;
             }
 
+            if (objTile.gfcTile != null)
+            {
+                return objTile.gfcTile;
+            }
+
             foreach (TileGrafico gfcTile in this.lstGfcTile)
             {
                 if (!objTile.Equals(gfcTile.objTile))
                 {
                     continue;
                 }
+
+                objTile.gfcTile = gfcTile;
 
                 return gfcTile;
             }

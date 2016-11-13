@@ -208,21 +208,6 @@ namespace Rpg.Frm
 
         #region Métodos
 
-        private void fecharAplicacao()
-        {
-            this.fecharAplicacaoMixer();
-        }
-
-        private void fecharAplicacaoMixer()
-        {
-            if (!this.tabDockMixer.Visible)
-            {
-                return;
-            }
-
-            this.tabDockMixer.fecharAplicacao();
-        }
-
         public void abrirMixer()
         {
             this.tabDockMixer.Show(this.pnlDockRpg, DockState.DockBottom);
@@ -343,6 +328,21 @@ namespace Rpg.Frm
             this.abrirJogoTabDock();
         }
 
+        private void fecharAplicacao()
+        {
+            this.fecharAplicacaoMixer();
+        }
+
+        private void fecharAplicacaoMixer()
+        {
+            if (!this.tabDockMixer.Visible)
+            {
+                return;
+            }
+
+            this.tabDockMixer.fecharAplicacao();
+        }
+
         private void salvarJogo()
         {
             AppRpg.i.objJogo.salvar();
@@ -365,12 +365,9 @@ namespace Rpg.Frm
                 return;
             }
 
-            if (!this.tabDockPropriedade.Visible)
-            {
-                return;
-            }
-
             this.tabDockPropriedade.objDominio = objDominioSelecionado;
+
+            this.onObjSelecionadoChanged?.Invoke(this, objDominioSelecionado);
         }
 
         #endregion Métodos
@@ -486,6 +483,8 @@ namespace Rpg.Frm
                 new Erro("Erro inesperado.\n", ex);
             }
         }
+
+        public event EventHandler<RpgDominioBase> onObjSelecionadoChanged;
 
         #endregion Eventos
     }

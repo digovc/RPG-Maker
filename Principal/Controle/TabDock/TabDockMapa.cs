@@ -22,6 +22,7 @@ namespace Rpg.Controle.TabDock
         #region Atributos
 
         private EnmFerramenta _enmFerramenta = EnmFerramenta.LAPIS;
+        private CamadaDominio _objCamadaSelecionada;
         private MapaDominio _objMapa;
 
         public EnmFerramenta enmFerramenta
@@ -34,6 +35,26 @@ namespace Rpg.Controle.TabDock
             set
             {
                 _enmFerramenta = value;
+            }
+        }
+
+        public CamadaDominio objCamadaSelecionada
+        {
+            get
+            {
+                return _objCamadaSelecionada;
+            }
+
+            private set
+            {
+                if (_objCamadaSelecionada == value)
+                {
+                    return;
+                }
+
+                _objCamadaSelecionada = value;
+
+                this.setObjCamadaSelecionada(_objCamadaSelecionada);
             }
         }
 
@@ -82,7 +103,7 @@ namespace Rpg.Controle.TabDock
                 return;
             }
 
-            this.objMapa.addPersonagem(objPersonagem);
+            this.ctrMapa.addPersonagem(objPersonagem);
         }
 
         protected override void inicializar()
@@ -90,6 +111,13 @@ namespace Rpg.Controle.TabDock
             base.inicializar();
 
             this.ctrMapa.tabDockMapa = this;
+        }
+
+        protected override void setEventos()
+        {
+            base.setEventos();
+
+            AppRpg.i.frmPrincipal.onObjSelecionadoChanged += this.frmPrincipal_onObjSelecionadoChanged;
         }
 
         private void addBackground()
@@ -135,6 +163,34 @@ namespace Rpg.Controle.TabDock
             return new Rectangle(0, 0, w, h);
         }
 
+        private void atualizarObjSelecionado(RpgDominioBase objSelecionado)
+        {
+            if (objSelecionado == null)
+            {
+                return;
+            }
+
+            if (objSelecionado is CamadaDominio)
+            {
+                this.atualizarObjSelecionadoCamada(objSelecionado as CamadaDominio);
+            }
+        }
+
+        private void atualizarObjSelecionadoCamada(CamadaDominio objCamada)
+        {
+            if (this.objMapa == null)
+            {
+                return;
+            }
+
+            if (!this.objMapa.lstObjCamada.Contains(objCamada))
+            {
+                return;
+            }
+
+            this.objCamadaSelecionada = objCamada;
+        }
+
         private void carregarMapa()
         {
             this.ctrMapa.objMapa = this.objMapa;
@@ -148,6 +204,18 @@ namespace Rpg.Controle.TabDock
             }
 
             this.objMapa.objTileBackground = null;
+        }
+
+        private void setObjCamadaSelecionada(CamadaDominio objCamadaSelecionada)
+        {
+            this.lblCamada.Text = null;
+
+            if (objCamadaSelecionada == null)
+            {
+                return;
+            }
+
+            this.lblCamada.Text = objCamadaSelecionada.attStrNome.strValor;
         }
 
         private void setObjMapa(MapaDominio objMapa)
@@ -250,6 +318,11 @@ namespace Rpg.Controle.TabDock
             {
                 new Erro("Erro inesperado.\n", ex);
             }
+        }
+
+        private void frmPrincipal_onObjSelecionadoChanged(object sender, RpgDominioBase objSelecionado)
+        {
+            this.atualizarObjSelecionado(objSelecionado);
         }
 
         #endregion Eventos

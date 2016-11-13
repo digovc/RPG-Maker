@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using Newtonsoft.Json;
+using Rpg.Controle.Editor.Grafico;
 
 namespace Rpg.Dominio
 {
@@ -14,6 +16,7 @@ namespace Rpg.Dominio
         private bool _booFixo;
         private bool _booSelecionado;
         private string _dirImg;
+        private TileGrafico _gfcTile;
         private Rectangle _rtgImg;
         private Rectangle _rtgMapa;
 
@@ -60,6 +63,20 @@ namespace Rpg.Dominio
             set
             {
                 _dirImg = value;
+            }
+        }
+
+        [JsonIgnore]
+        public TileGrafico gfcTile
+        {
+            get
+            {
+                return _gfcTile;
+            }
+
+            set
+            {
+                _gfcTile = value;
             }
         }
 

@@ -138,6 +138,21 @@ namespace Rpg.Controle.Editor
 
         #region Métodos
 
+        internal void addPersonagem(PersonagemDominio objPersonagem)
+        {
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            if (this.tabDockMapa.objCamadaSelecionada == null)
+            {
+                return;
+            }
+
+            this.addPersonagem(objPersonagem, this.tabDockMapa.objCamadaSelecionada);
+        }
+
         protected override int getIntTileTamanho()
         {
             return INT_TILE_TAMANHO;
@@ -180,7 +195,6 @@ namespace Rpg.Controle.Editor
 
             this.renderizarBackground(arg);
             this.renderizarCamada(arg);
-            this.renderizarPersonagem(arg);
         }
 
         protected override bool validarRenderizar()
@@ -198,19 +212,25 @@ namespace Rpg.Controle.Editor
             return true;
         }
 
+        private void addPersonagem(PersonagemDominio objPersonagem, CamadaDominio objCamada)
+        {
+            foreach (CamadaGrafico gfcCamada in this.lstGfcCamada)
+            {
+                if (gfcCamada.addPersonagem(objPersonagem, objCamada))
+                {
+                    return;
+                }
+            }
+        }
+
         private void apagar(int x, int y)
         {
-            if (AppRpg.i.frmPrincipal.objSelecionado == null)
+            if (this.tabDockMapa.objCamadaSelecionada == null)
             {
                 return;
             }
 
-            if (!(AppRpg.i.frmPrincipal.objSelecionado is CamadaDominio))
-            {
-                return;
-            }
-
-            this.apagar(x, y, (AppRpg.i.frmPrincipal.objSelecionado as CamadaDominio));
+            this.apagar(x, y, this.tabDockMapa.objCamadaSelecionada);
         }
 
         private void apagar(int x, int y, CamadaDominio objCamada)
@@ -238,17 +258,12 @@ namespace Rpg.Controle.Editor
 
         private void desenhar(int x, int y)
         {
-            if (AppRpg.i.frmPrincipal.objSelecionado == null)
+            if (this.tabDockMapa.objCamadaSelecionada == null)
             {
                 return;
             }
 
-            if (!(AppRpg.i.frmPrincipal.objSelecionado is CamadaDominio))
-            {
-                return;
-            }
-
-            this.desenhar(x, y, (AppRpg.i.frmPrincipal.objSelecionado as CamadaDominio));
+            this.desenhar(x, y, this.tabDockMapa.objCamadaSelecionada);
         }
 
         private void desenhar(int x, int y, CamadaDominio objCamada)
@@ -469,19 +484,6 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private void renderizarPersonagem(PaintEventArgs arg)
-        {
-            if (this.objMapa == null)
-            {
-                return;
-            }
-
-            foreach (PersonagemTileDominio objPersonagemTile in this.objMapa.lstObjPersonagemTile)
-            {
-                this.getGfcPersonagem(objPersonagemTile).renderizar(arg);
-            }
-        }
-
         private void selecionar(int x, int y)
         {
             if (this.gfcTileSelecionado != null)
@@ -499,17 +501,12 @@ namespace Rpg.Controle.Editor
 
         private void selecionarTile(int x, int y)
         {
-            if (AppRpg.i.frmPrincipal.objSelecionado == null)
+            if (this.tabDockMapa.objCamadaSelecionada == null)
             {
                 return;
             }
 
-            if (!(AppRpg.i.frmPrincipal.objSelecionado is CamadaDominio))
-            {
-                return;
-            }
-
-            this.selecionarTile(x, y, (AppRpg.i.frmPrincipal.objSelecionado as CamadaDominio));
+            this.selecionarTile(x, y, this.tabDockMapa.objCamadaSelecionada);
         }
 
         private void selecionarTile(int x, int y, CamadaDominio objCamada)
