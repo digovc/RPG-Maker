@@ -33,6 +33,7 @@ namespace Rpg.Dominio
             }
         }
 
+        [JsonIgnore]
         public bool booSelecionado
         {
             get
