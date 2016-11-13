@@ -38,7 +38,7 @@ namespace Rpg.Controle.Painel
             // 
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitulo.Location = new System.Drawing.Point(8, 0);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(134, 20);
             this.lblTitulo.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace Rpg.Controle.Painel
             this.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitulo.Location = new System.Drawing.Point(8, 0);
-            this.txtTitulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTitulo.Margin = new System.Windows.Forms.Padding(2);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(134, 13);
             this.txtTitulo.TabIndex = 1;

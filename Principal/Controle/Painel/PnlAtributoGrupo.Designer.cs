@@ -41,18 +41,18 @@
             // 
             this.pnlConteudo.AutoSize = true;
             this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConteudo.Location = new System.Drawing.Point(0, 36);
-            this.pnlConteudo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlConteudo.Location = new System.Drawing.Point(0, 41);
+            this.pnlConteudo.Margin = new System.Windows.Forms.Padding(2);
             this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(150, 45);
+            this.pnlConteudo.Size = new System.Drawing.Size(150, 40);
             this.pnlConteudo.TabIndex = 2;
             // 
             // pnlTitulo
             // 
             this.pnlTitulo.booTituloFixo = false;
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitulo.Location = new System.Drawing.Point(0, 20);
-            this.pnlTitulo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlTitulo.Location = new System.Drawing.Point(0, 25);
+            this.pnlTitulo.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTitulo.Name = "pnlTitulo";
             this.pnlTitulo.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.pnlTitulo.Size = new System.Drawing.Size(150, 16);
@@ -61,15 +61,16 @@
             // 
             // pnlComando
             // 
-            this.pnlComando.Controls.Add(this.btnAddAtributo);
-            this.pnlComando.Controls.Add(this.btnAlterarNome);
             this.pnlComando.Controls.Add(this.btnVisivel);
+            this.pnlComando.Controls.Add(this.btnAlterarNome);
+            this.pnlComando.Controls.Add(this.btnAddAtributo);
             this.pnlComando.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComando.Name = "pnlComando";
             this.pnlComando.TabIndex = 3;
             // 
             // btnAddAtributo
             // 
+            this.btnAddAtributo.BackgroundImage = global::Rpg.Properties.Resources.adicionar_item;
             this.btnAddAtributo.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnAddAtributo.Name = "btnAddAtributo";
             this.btnAddAtributo.TabIndex = 4;
@@ -85,6 +86,7 @@
             // 
             // btnVisivel
             // 
+            this.btnVisivel.BackgroundImage = global::Rpg.Properties.Resources.visível_para_jogador;
             this.btnVisivel.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnVisivel.Name = "btnVisivel";
             this.btnVisivel.TabIndex = 2;
