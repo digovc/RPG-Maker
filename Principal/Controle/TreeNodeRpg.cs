@@ -49,6 +49,31 @@ namespace Rpg.Controle
 
         #region Métodos
 
+        internal ArquivoRefDominio getObjArquivoRef(string dirArquivo)
+        {
+            if (string.IsNullOrEmpty(dirArquivo))
+            {
+                return null;
+            }
+
+            if ((this.objDominio is ArquivoRefDominio) && ((this.objDominio as ArquivoRefDominio).attDirArquivo.strValor.Equals(dirArquivo)))
+            {
+                return (this.objDominio as ArquivoRefDominio);
+            }
+
+            foreach (TreeNode tnr in this.Nodes)
+            {
+                ArquivoRefDominio objResultado = (tnr as TreeNodeRpg).getObjArquivoRef(dirArquivo);
+
+                if (objResultado != null)
+                {
+                    return objResultado;
+                }
+            }
+
+            return null;
+        }
+
         private void atualizarText()
         {
             if (this.objDominio == null)
@@ -133,7 +158,7 @@ namespace Rpg.Controle
 
         #region Eventos
 
-        private void objDominio_onNomeAlterado(object sender, EventArgs arg)
+        private void objDominio_onNomeAlterado(object sender, string strValor)
         {
             try
             {

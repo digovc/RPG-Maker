@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
+using Rpg.Controle.EditAtributo;
 using Rpg.Controle.Painel;
 using Rpg.Dominio;
 
@@ -64,10 +66,11 @@ namespace Rpg.Controle.TabDock
 
         private void atualizarLayout()
         {
-            // TODO: Chamar o dispose para todos os componentes em vez de apenas limpar a lista.
-            this.pnlConteudo.Controls.Clear();
+            this.limparLayout();
 
-            if (objSelecionado.lstAtt == null)
+            this.Text = string.Format("Propriedades ({0})", this.objSelecionado.attStrNome.strValor);
+
+            if (this.objSelecionado.lstAtt == null)
             {
                 return;
             }
@@ -100,8 +103,27 @@ namespace Rpg.Controle.TabDock
             this.pnlConteudo.Controls.SetChildIndex(pnlAttGrupo, 0);
         }
 
+        private void limparLayout()
+        {
+            this.Text = "Propriedades";
+
+            foreach (Control edtAtt in this.pnlConteudo.Controls)
+            {
+                if (!(edtAtt is EditAtributoBase))
+                {
+                    continue;
+                }
+
+                (edtAtt as EditAtributoBase).destruir();
+            }
+
+            this.pnlConteudo.Controls.Clear();
+        }
+
         private void setObjSelecionado(RpgDominioBase objSelecionado)
         {
+            this.limparLayout();
+
             if (!this.Visible)
             {
                 return;

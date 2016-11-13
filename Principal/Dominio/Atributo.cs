@@ -284,14 +284,14 @@ namespace Rpg.Dominio
 
         private void setStrValor(string strValor)
         {
-            this.onStrValorAlterado?.Invoke(this, EventArgs.Empty);
+            this.onStrValorAlterado?.Invoke(this, strValor);
         }
 
         #endregion Métodos
 
         #region Eventos
 
-        public event EventHandler onStrValorAlterado;
+        public event EventHandler<string> onStrValorAlterado;
 
         #endregion Eventos
     }

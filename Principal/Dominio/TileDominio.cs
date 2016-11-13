@@ -14,7 +14,7 @@ namespace Rpg.Dominio
         #region Atributos
 
         private bool _booFixo;
-        private string _dirImg;
+        private string _dirImagem;
         private TileGrafico _gfcTile;
         private Rectangle _rtgImg;
         private Rectangle _rtgMapa;
@@ -32,16 +32,16 @@ namespace Rpg.Dominio
             }
         }
 
-        public string dirImg
+        public string dirImagem
         {
             get
             {
-                return _dirImg;
+                return _dirImagem;
             }
 
             set
             {
-                _dirImg = value;
+                _dirImagem = value;
             }
         }
 

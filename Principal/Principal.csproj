@@ -116,7 +116,7 @@
     <Compile Include="Controle\Editor\DisplayBase.Designer.cs">
       <DependentUpon>DisplayBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\Editor\Grafico\PersonagemGrafico.cs" />
+    <Compile Include="Controle\Editor\Grafico\PersonagemTileGrafico.cs" />
     <Compile Include="Controle\Editor\ImagemDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>

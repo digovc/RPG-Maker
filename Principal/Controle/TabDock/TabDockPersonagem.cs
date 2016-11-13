@@ -64,7 +64,7 @@ namespace Rpg.Controle.TabDock
 
             using (Graphics gpc = Graphics.FromImage(bmpPersonagem))
             {
-                Bitmap bmpArte = AppRpg.i.getBmpCache(this.objPersonagem.objTile.dirImg);
+                Bitmap bmpArte = AppRpg.i.getBmpCache(this.objPersonagem.objTile.dirImagem);
 
                 gpc.DrawImage(bmpArte, this.getRtgDestino(), this.objPersonagem.objTile.rtgImg, GraphicsUnit.Pixel);
             }
@@ -110,7 +110,7 @@ namespace Rpg.Controle.TabDock
             TileDominio objTilePersonagem = new TileDominio();
 
             objTilePersonagem.booFixo = true;
-            objTilePersonagem.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
+            objTilePersonagem.dirImagem = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
             objTilePersonagem.rtgImg = this.selecionarPersonagemRtgImg();
 
             this.objPersonagem.objTile = objTilePersonagem;

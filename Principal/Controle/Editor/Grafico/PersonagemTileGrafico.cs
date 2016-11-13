@@ -2,7 +2,7 @@
 
 namespace Rpg.Controle.Editor.Grafico
 {
-    public class PersonagemGrafico : TileGrafico
+    public class PersonagemTileGrafico : TileGrafico
     {
         #region Constantes
 
@@ -29,7 +29,7 @@ namespace Rpg.Controle.Editor.Grafico
 
         #region Construtores
 
-        public PersonagemGrafico(DisplayBase objDisplay, PersonagemTileDominio objPersonagemTile) : base(objDisplay, objPersonagemTile)
+        public PersonagemTileGrafico(DisplayBase objDisplay, PersonagemTileDominio objPersonagemTile) : base(objDisplay, objPersonagemTile)
         {
         }
 

@@ -85,6 +85,26 @@ namespace Rpg.Controle.TabDock
             this.abrirJogo(trnJogo, Path.GetDirectoryName(AppRpg.i.objJogo.attDirCompleto.strValor));
         }
 
+        internal ArquivoRefDominio getObjArquivoRef(string dirArquivo)
+        {
+            if (string.IsNullOrEmpty(dirArquivo))
+            {
+                return null;
+            }
+
+            foreach (TreeNode tnr in this.trv.Nodes)
+            {
+                ArquivoRefDominio objResultado = (tnr as TreeNodeRpg).getObjArquivoRef(dirArquivo);
+
+                if (objResultado != null)
+                {
+                    return objResultado;
+                }
+            }
+
+            return null;
+        }
+
         private void abrirArquivoRef(TreeNodeRpg tnr, ArquivoRefDominio arqRef)
         {
             if (arqRef.objArquivo == null)

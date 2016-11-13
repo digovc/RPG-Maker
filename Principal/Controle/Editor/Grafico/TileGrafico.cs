@@ -194,7 +194,7 @@ namespace Rpg.Controle.Editor.Grafico
                 return;
             }
 
-            Bitmap bmpCache = AppRpg.i.getBmpCache(this.objTile.dirImg);
+            Bitmap bmpCache = AppRpg.i.getBmpCache(this.objTile.dirImagem);
 
             if (bmpCache == null)
             {

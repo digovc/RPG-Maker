@@ -165,7 +165,7 @@ namespace Rpg.Frm
             }
         }
 
-        private TabDockExplorer tabDockExplorer
+        public TabDockExplorer tabDockExplorer
         {
             get
             {
@@ -360,11 +360,6 @@ namespace Rpg.Frm
 
         private void setObjSelecionado(RpgDominioBase objDominioSelecionado)
         {
-            if (objDominioSelecionado == null)
-            {
-                return;
-            }
-
             this.onObjSelecionadoChanged?.Invoke(this, objDominioSelecionado);
         }
 

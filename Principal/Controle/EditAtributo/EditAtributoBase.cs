@@ -80,6 +80,12 @@ namespace Rpg.Controle.EditAtributo
 
         #region Métodos
 
+        internal void destruir()
+        {
+            this.att = null;
+            this.Dispose();
+        }
+
         protected virtual void atualizarCtrValor(string strValor)
         {
         }
@@ -182,11 +188,11 @@ namespace Rpg.Controle.EditAtributo
 
         #region Eventos
 
-        private void att_onStrValorAlterado(object sender, EventArgs e)
+        private void att_onStrValorAlterado(object sender, string strValor)
         {
             try
             {
-                this.atualizarCtrValor(att.strValor);
+                this.atualizarCtrValor(strValor);
             }
             catch (Exception ex)
             {

@@ -81,10 +81,8 @@ namespace Rpg.Controle.Editor.Grafico
 
         public override void renderizar(Graphics gpc)
         {
-            foreach (TileDominio objTile in this.objCamada.lstObjTile)
-            {
-                this.getGfcTile(objTile).renderizar(gpc);
-            }
+            this.renderizarTile(gpc);
+            this.renderizarPersonagemTile(gpc);
         }
 
         internal bool addPersonagem(PersonagemDominio objPersonagem, CamadaDominio objCamada)
@@ -101,21 +99,21 @@ namespace Rpg.Controle.Editor.Grafico
 
             PersonagemTileDominio objPersonagemTile = new PersonagemTileDominio();
 
-            objPersonagemTile.dirImg = objPersonagem.objTile.dirImg;
+            objPersonagemTile.dirImagem = objPersonagem.objTile.dirImagem;
             objPersonagemTile.objPersonagem = objPersonagem;
             objPersonagemTile.rtgImg = objPersonagem.objTile.rtgImg;
             objPersonagemTile.rtgMapa = new Rectangle(0, 0, objPersonagem.objTile.rtgImg.Width, objPersonagem.objTile.rtgImg.Height);
 
             objPersonagemTile.iniciar(true);
 
-            PersonagemGrafico gfcPersonagem = new PersonagemGrafico(this.objDisplay, objPersonagemTile);
+            PersonagemTileGrafico gfcPersonagemTile = new PersonagemTileGrafico(this.objDisplay, objPersonagemTile);
 
-            gfcPersonagem.gfcCamada = this;
-            gfcPersonagem.objTile = objPersonagemTile;
+            gfcPersonagemTile.gfcCamada = this;
+            gfcPersonagemTile.objTile = objPersonagemTile;
 
-            this.lstGfcTile.Add(gfcPersonagem);
+            this.lstGfcTile.Add(gfcPersonagemTile);
 
-            this.objCamada.addTile(objPersonagemTile);
+            this.objCamada.addPersonagemTile(objPersonagemTile);
 
             this.invalidar();
 
@@ -210,12 +208,10 @@ namespace Rpg.Controle.Editor.Grafico
 
         private void apagar(CamadaDominio objCamada, TileGrafico gfcTile)
         {
-            if (!objCamada.lstObjTile.Contains(gfcTile.objTile))
+            if (!objCamada.removerTile(gfcTile.objTile))
             {
                 return;
             }
-
-            objCamada.removerTile(gfcTile.objTile);
 
             this.removerGfcTile(gfcTile);
 
@@ -246,7 +242,16 @@ namespace Rpg.Controle.Editor.Grafico
                 return gfcTile;
             }
 
-            TileGrafico gfcTileNovo = new TileGrafico(this.objDisplay, objTile);
+            TileGrafico gfcTileNovo = null;
+
+            if (objTile is PersonagemTileDominio)
+            {
+                gfcTileNovo = new PersonagemTileGrafico(this.objDisplay, (objTile as PersonagemTileDominio));
+            }
+            else
+            {
+                gfcTileNovo = new TileGrafico(this.objDisplay, objTile);
+            }
 
             gfcTileNovo.gfcCamada = this;
 
@@ -272,6 +277,22 @@ namespace Rpg.Controle.Editor.Grafico
             gfcTile.Dispose();
         }
 
+        private void renderizarPersonagemTile(Graphics gpc)
+        {
+            foreach (PersonagemTileDominio objTile in this.objCamada.lstObjPersonagemTile)
+            {
+                this.getGfcTile(objTile).renderizar(gpc);
+            }
+        }
+
+        private void renderizarTile(Graphics gpc)
+        {
+            foreach (TileDominio objTile in this.objCamada.lstObjTile)
+            {
+                this.getGfcTile(objTile).renderizar(gpc);
+            }
+        }
+
         private void setObjCamada(CamadaDominio objCamada)
         {
             if (objCamada == null)
@@ -286,7 +307,6 @@ namespace Rpg.Controle.Editor.Grafico
             });
 
             objCamada.onAddTile += ((o, e) => this.invalidar());
-            objCamada.onRemoverTile += ((o, e) => this.invalidar());
         }
 
         #endregion Métodos

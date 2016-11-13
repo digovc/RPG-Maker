@@ -139,7 +139,7 @@ namespace Rpg.Controle.TabDock
         {
             TileDominio objTileBackground = new TileDominio();
 
-            objTileBackground.dirImg = tabDockImagem.objImagem.attDirCompleto.strValor;
+            objTileBackground.dirImagem = tabDockImagem.objImagem.attDirCompleto.strValor;
             objTileBackground.rtgImg = this.addBackgroundSelecao(tabDockImagem);
 
             this.objMapa.objTileBackground = objTileBackground;

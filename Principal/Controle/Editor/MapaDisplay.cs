@@ -20,7 +20,7 @@ namespace Rpg.Controle.Editor
         private BackgroundGrafico _gfcBackground;
         private TileGrafico _gfcTileSelecionado;
         private List<CamadaGrafico> _lstGfcCamada;
-        private List<PersonagemGrafico> _lstGfcPersonagem;
+        private List<PersonagemTileGrafico> _lstGfcPersonagemTile;
         private MapaDominio _objMapa;
         private TabDockMapa _tabDockMapa;
 
@@ -110,18 +110,18 @@ namespace Rpg.Controle.Editor
             }
         }
 
-        private List<PersonagemGrafico> lstGfcPersonagem
+        private List<PersonagemTileGrafico> lstGfcPersonagemTile
         {
             get
             {
-                if (_lstGfcPersonagem != null)
+                if (_lstGfcPersonagemTile != null)
                 {
-                    return _lstGfcPersonagem;
+                    return _lstGfcPersonagemTile;
                 }
 
-                _lstGfcPersonagem = new List<PersonagemGrafico>();
+                _lstGfcPersonagemTile = new List<PersonagemTileGrafico>();
 
-                return _lstGfcPersonagem;
+                return _lstGfcPersonagemTile;
             }
         }
 
@@ -268,6 +268,7 @@ namespace Rpg.Controle.Editor
 
         private void desenhar(int x, int y, CamadaDominio objCamada)
         {
+            // TODO: Usar a classe "view" da camada (CamadaGrafico) para adicionar o tile. Não o seu domínio.
             if (AppRpg.i.frmPrincipal.tabDockImagemSelecionada == null)
             {
                 return;
@@ -309,7 +310,7 @@ namespace Rpg.Controle.Editor
             TileDominio objTileResultado = new TileDominio();
 
             objTileResultado.booFixo = false;
-            objTileResultado.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
+            objTileResultado.dirImagem = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
             objTileResultado.rtgImg = this.desenharLivreRtgImg(x, y);
             objTileResultado.rtgMapa = this.desenharLivreRtgMapa(x, y, objTileResultado);
 
@@ -341,7 +342,7 @@ namespace Rpg.Controle.Editor
             TileDominio objTileResultado = new TileDominio();
 
             objTileResultado.booFixo = true;
-            objTileResultado.dirImg = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
+            objTileResultado.dirImagem = AppRpg.i.frmPrincipal.tabDockImagemSelecionada.objImagem.attDirCompleto.strValor;
             objTileResultado.rtgImg = this.desenharTileRtgImg(x, y);
             objTileResultado.rtgMapa = this.desenharTileRtgMapa(x, y);
 
@@ -391,14 +392,14 @@ namespace Rpg.Controle.Editor
             return gfcCamadaNova;
         }
 
-        private PersonagemGrafico getGfcPersonagem(PersonagemTileDominio objPersonagemTile)
+        private PersonagemTileGrafico getGfcPersonagem(PersonagemTileDominio objPersonagemTile)
         {
             if (objPersonagemTile == null)
             {
                 return null;
             }
 
-            foreach (PersonagemGrafico gfcPersonagem in this.lstGfcPersonagem)
+            foreach (PersonagemTileGrafico gfcPersonagem in this.lstGfcPersonagemTile)
             {
                 if (!objPersonagemTile.Equals(gfcPersonagem.objTile))
                 {
@@ -408,11 +409,11 @@ namespace Rpg.Controle.Editor
                 return gfcPersonagem;
             }
 
-            PersonagemGrafico gfcPersonagemNova = new PersonagemGrafico(this, objPersonagemTile);
+            PersonagemTileGrafico gfcPersonagemTileNovo = new PersonagemTileGrafico(this, objPersonagemTile);
 
-            this.lstGfcPersonagem.Add(gfcPersonagemNova);
+            this.lstGfcPersonagemTile.Add(gfcPersonagemTileNovo);
 
-            return gfcPersonagemNova;
+            return gfcPersonagemTileNovo;
         }
 
         private int normalizarX(int x)

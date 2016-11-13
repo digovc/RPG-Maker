@@ -13,6 +13,7 @@ namespace Rpg.Dominio
         #region Atributos
 
         private Atributo _attBooVisivel;
+        private List<PersonagemTileDominio> _lstObjPersonagemTile;
         private List<TileDominio> _lstObjTile;
 
         [JsonIgnore]
@@ -28,6 +29,21 @@ namespace Rpg.Dominio
                 _attBooVisivel = this.getAtt("Visível", true);
 
                 return _attBooVisivel;
+            }
+        }
+
+        public List<PersonagemTileDominio> lstObjPersonagemTile
+        {
+            get
+            {
+                if (_lstObjPersonagemTile != null)
+                {
+                    return _lstObjPersonagemTile;
+                }
+
+                _lstObjPersonagemTile = new List<PersonagemTileDominio>();
+
+                return _lstObjPersonagemTile;
             }
         }
 
@@ -65,6 +81,23 @@ namespace Rpg.Dominio
             return objCamada;
         }
 
+        internal void addPersonagemTile(PersonagemTileDominio objPersonagemTile)
+        {
+            if (objPersonagemTile == null)
+            {
+                return;
+            }
+
+            if (this.lstObjPersonagemTile.Contains(objPersonagemTile))
+            {
+                return;
+            }
+
+            this.lstObjPersonagemTile.Add(objPersonagemTile);
+
+            this.onAddTile?.Invoke(objPersonagemTile, EventArgs.Empty);
+        }
+
         internal void addTile(TileDominio objTile)
         {
             if (objTile == null)
@@ -82,55 +115,61 @@ namespace Rpg.Dominio
             this.onAddTile?.Invoke(objTile, EventArgs.Empty);
         }
 
-        internal void removerTile(TileDominio objTile)
+        internal bool removerTile(TileDominio objTile)
         {
             if (objTile == null)
             {
-                return;
+                return false;
             }
 
-            if (!this.lstObjTile.Contains(objTile))
+            if (objTile is PersonagemTileDominio)
             {
-                return;
+                return this.lstObjPersonagemTile.Remove(objTile as PersonagemTileDominio);
             }
 
-            this.lstObjTile.Remove(objTile);
+            return this.lstObjTile.Remove(objTile);
         }
 
         protected override void inicializar(bool booCriacao)
         {
             base.inicializar(booCriacao);
 
-            this.inicializarAttBooVisivel(booCriacao);
-        }
-
-        private void inicializarAttBooVisivel(bool booCriacao)
-        {
             if (booCriacao)
             {
-                this.attBooVisivel.booValor = true;
+                this.inicializarCriacao();
+                return;
             }
 
-            this.attBooVisivel.enmTipo = Atributo.EnmTipo.BOOLEAN;
+            this.inicializarAbertura();
         }
 
-        private bool removerTile(int x, int y, TileDominio objTile)
+        private void inicializarAbertura()
         {
-            if (objTile == null)
+            this.attBooVisivel.enmTipo = Atributo.EnmTipo.BOOLEAN;
+
+            this.inicializarAberturaLstObjTile();
+            this.inicializarAberturaLstObjPersonagemTile();
+        }
+
+        private void inicializarAberturaLstObjPersonagemTile()
+        {
+            foreach (PersonagemTileDominio objPersonagemTile in this.lstObjPersonagemTile)
             {
-                return false;
+                objPersonagemTile?.iniciar(false);
             }
+        }
 
-            if (!objTile.rtgMapa.Contains(x, y))
+        private void inicializarAberturaLstObjTile()
+        {
+            foreach (TileDominio objTile in this.lstObjTile)
             {
-                return false;
+                objTile?.iniciar(false);
             }
+        }
 
-            this.lstObjTile.Remove(objTile);
-
-            this.onRemoverTile?.Invoke(objTile, EventArgs.Empty);
-
-            return true;
+        private void inicializarCriacao()
+        {
+            this.attBooVisivel.booValor = true;
         }
 
         #endregion Métodos
@@ -138,8 +177,6 @@ namespace Rpg.Dominio
         #region Eventos
 
         public event EventHandler onAddTile;
-
-        public event EventHandler onRemoverTile;
 
         #endregion Eventos
     }

@@ -23,6 +23,7 @@ namespace Rpg
 
         private FrmPrincipal _frmPrincipal;
         private List<Bitmap> _lstBmpCache;
+        private List<ArquivoDominio> _lstObjArquivoCache;
         private JogoDominio _objJogo;
 
         public new static AppRpg i
@@ -88,6 +89,21 @@ namespace Rpg
             }
         }
 
+        private List<ArquivoDominio> lstObjArquivoCache
+        {
+            get
+            {
+                if (_lstObjArquivoCache != null)
+                {
+                    return _lstObjArquivoCache;
+                }
+
+                _lstObjArquivoCache = new List<ArquivoDominio>();
+
+                return _lstObjArquivoCache;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -148,6 +164,28 @@ namespace Rpg
             this.objJogo = JogoDominio.criar(dirJogo);
 
             this.objJogo.salvar();
+        }
+
+        internal ArquivoDominio getArquivoCache(string dirArquivo)
+        {
+            if (!File.Exists(dirArquivo))
+            {
+                return null;
+            }
+
+            foreach (ArquivoDominio objArquivo in this.lstObjArquivoCache)
+            {
+                if (dirArquivo.Equals(objArquivo.attDirCompleto.strValor))
+                {
+                    return objArquivo;
+                }
+            }
+
+            ArquivoDominio objArquivoNovo = JsonRpg.i.fromJson<ArquivoDominio>(File.ReadAllText(dirArquivo));
+
+            objArquivoNovo.iniciar(false);
+
+            return objArquivoNovo;
         }
 
         protected override TemaBase getObjTema()

@@ -124,6 +124,15 @@ namespace Rpg.Dominio
 
             this.inicializarAttIntQuantidadeX(booCriacao);
             this.inicializarAttIntQuantidadeY(booCriacao);
+            this.inicializarLstObjCamada(booCriacao);
+        }
+
+        private void inicializarLstObjCamada(bool booCriacao)
+        {
+            foreach (CamadaDominio objCamada in this.lstObjCamada)
+            {
+                objCamada?.iniciar(booCriacao);
+            }
         }
 
         private void inicializarAttIntQuantidadeX(bool booCriacao)

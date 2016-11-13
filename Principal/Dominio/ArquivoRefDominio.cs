@@ -82,23 +82,11 @@ namespace Rpg.Dominio
 
         private ArquivoDominio getObjArquivo()
         {
-            if (string.IsNullOrEmpty(this.attDirArquivo.strValor))
-            {
-                return null;
-            }
+            ArquivoDominio objResultado = AppRpg.i.getArquivoCache(this.attDirArquivo.strValor);
 
-            if (!File.Exists(this.attDirArquivo.strValor))
-            {
-                return null;
-            }
+            objResultado.objArqRef = this;
 
-            ArquivoDominio objArqResultado = JsonRpg.i.fromJson<ArquivoDominio>(File.ReadAllText(this.attDirArquivo.strValor));
-
-            objArqResultado.objArqRef = this;
-
-            objArqResultado.iniciar(false);
-
-            return objArqResultado;
+            return objResultado;
         }
 
         private void setObjArquivo(ArquivoDominio objArquivo)
@@ -118,11 +106,11 @@ namespace Rpg.Dominio
 
         #region Eventos
 
-        private void objArquivo_attDirCompleto_onStrValorAlterado(object sender, EventArgs e)
+        private void objArquivo_attDirCompleto_onStrValorAlterado(object sender, string strValor)
         {
             try
             {
-                this.attDirArquivo.strValor = this.objArquivo.attDirCompleto.strValor;
+                this.attDirArquivo.strValor = strValor;
             }
             catch (Exception ex)
             {
@@ -130,11 +118,11 @@ namespace Rpg.Dominio
             }
         }
 
-        private void objArquivo_attStrNome_onStrValorAlterado(object sender, EventArgs e)
+        private void objArquivo_attStrNome_onStrValorAlterado(object sender, string strValor)
         {
             try
             {
-                this.attStrNome.strValor = this.objArquivo.attStrNome.strValor;
+                this.attStrNome.strValor = strValor;
             }
             catch (Exception ex)
             {

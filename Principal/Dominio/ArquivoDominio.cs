@@ -162,7 +162,7 @@ namespace Rpg.Dominio
 
         #region Eventos
 
-        private void attStrNome_onStrValorAlterado(object sender, EventArgs e)
+        private void attStrNome_onStrValorAlterado(object sender, string strValor)
         {
             try
             {
@@ -174,11 +174,11 @@ namespace Rpg.Dominio
             }
         }
 
-        private void objArqRef_attDirArquivo_onStrValorAlterado(object sender, EventArgs e)
+        private void objArqRef_attDirArquivo_onStrValorAlterado(object sender, string strValor)
         {
             try
             {
-                this.attDirCompleto.strValor = this.objArqRef.attDirArquivo.strValor;
+                this.attDirCompleto.strValor = strValor;
             }
             catch (Exception ex)
             {
