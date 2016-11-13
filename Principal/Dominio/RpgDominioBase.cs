@@ -125,9 +125,9 @@ namespace Rpg.Dominio
             this.addStrGrupo(att.strGrupo);
         }
 
-        protected Atributo getAtt(string strattStrNome, string strValor = null)
+        protected Atributo getAtt(string strAttStrNome, string strValor = null)
         {
-            if (string.IsNullOrEmpty(strattStrNome))
+            if (string.IsNullOrEmpty(strAttStrNome))
             {
                 return null;
             }
@@ -139,7 +139,7 @@ namespace Rpg.Dominio
                     continue;
                 }
 
-                if (!strattStrNome.Equals(att.strNome))
+                if (!strAttStrNome.Equals(att.strNome))
                 {
                     continue;
                 }
@@ -147,7 +147,7 @@ namespace Rpg.Dominio
                 return att;
             }
 
-            return new Atributo(this, strattStrNome, strValor);
+            return new Atributo(this, strAttStrNome, strValor);
         }
 
         protected virtual void inicializar(bool booCriacao)

@@ -134,6 +134,8 @@ namespace Rpg
         internal void abrirJogo(string dirJogo)
         {
             this.objJogo = ArquivoDominio.fromJson<JogoDominio>(dirJogo);
+
+            this.objJogo.iniciar(false);
         }
 
         internal void criarJogo(string dirJogo)

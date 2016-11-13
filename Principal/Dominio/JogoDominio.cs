@@ -48,6 +48,8 @@ namespace Rpg.Dominio
             objJogoResultado.attDirCompleto.strValor = dirJogo;
             objJogoResultado.attStrNome.strValor = Path.GetFileNameWithoutExtension(dirJogo);
 
+            objJogoResultado.iniciar(true);
+
             return objJogoResultado;
         }
 
