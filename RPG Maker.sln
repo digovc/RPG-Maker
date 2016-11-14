@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetZ.Web.TypeScript", "Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG Maker TypeScript", "RPG Maker TypeScript\RPG Maker TypeScript.csproj", "{A94C2830-1553-4013-8D46-F04CEC74C587}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TypeScript", "TypeScript", "{665C74C6-97CB-4267-93E4-C187138976DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug (local)|Any CPU = Debug (local)|Any CPU
@@ -108,5 +110,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{502B98CF-A528-4168-A5F4-F04641BCEE6D} = {665C74C6-97CB-4267-93E4-C187138976DE}
+		{A94C2830-1553-4013-8D46-F04CEC74C587} = {665C74C6-97CB-4267-93E4-C187138976DE}
 	EndGlobalSection
 EndGlobal
