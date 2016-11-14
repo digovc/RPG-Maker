@@ -218,19 +218,19 @@ namespace Rpg.Controle
         {
             try
             {
-                if (ConfigRpg.i.intAudioFade <= 0)
+                if (AppRpg.i.objJogo.attIntAudioFade.intValor <= 0)
                 {
                     return;
                 }
 
-                float fltVolumeParte = this.objSoundOut.Volume / ConfigRpg.i.intAudioFade;
+                float fltVolumeParte = this.objSoundOut.Volume / AppRpg.i.objJogo.attIntAudioFade.intValor;
 
                 if (fltVolumeParte <= 0)
                 {
                     return;
                 }
 
-                for (int i = 0; i < ConfigRpg.i.intAudioFade; i++)
+                for (int i = 0; i < AppRpg.i.objJogo.attIntAudioFade.intValor; i++)
                 {
                     if ((this.objSoundOut.Volume - fltVolumeParte) <= 0)
                     {

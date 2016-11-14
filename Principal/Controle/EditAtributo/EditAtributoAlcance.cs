@@ -89,8 +89,8 @@ namespace Rpg.Controle.EditAtributo
         {
             if (intValor > intValorMaximo)
             {
-                intValor = 0;
-                intValorMaximo = 100;
+                intValor = 100;
+                intValorMaximo = intValor;
             }
 
             int r = (int)(this.pnlProgressBar.Width - this.pnlProgressBar.Width * ((decimal)intValor / (decimal)intValorMaximo));

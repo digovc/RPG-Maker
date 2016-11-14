@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Rpg.Dominio
 {
@@ -11,7 +12,24 @@ namespace Rpg.Dominio
 
         #region Atributos
 
+        private Atributo _attIntAudioFade;
         private List<AudioDominio> _lstObjAudio;
+
+        [JsonIgnore]
+        public Atributo attIntAudioFade
+        {
+            get
+            {
+                if (_attIntAudioFade != null)
+                {
+                    return _attIntAudioFade;
+                }
+
+                _attIntAudioFade = this.getAtt("Fade dos canais de áudio", null);
+
+                return _attIntAudioFade;
+            }
+        }
 
         public List<AudioDominio> lstObjAudio
         {
@@ -74,6 +92,13 @@ namespace Rpg.Dominio
             }
 
             this.lstObjAudio.Add(objAudio);
+        }
+
+        protected override void inicializar(bool booCriacao)
+        {
+            base.inicializar(booCriacao);
+
+            this.attIntAudioFade.intValor = (!booCriacao) ? this.attIntAudioFade.intValor : 1500;
         }
 
         #endregion Métodos

@@ -191,9 +191,10 @@ namespace Rpg.Controle.Editor
 
         protected override void renderizar(PaintEventArgs arg)
         {
+            this.renderizarBackground(arg);
+
             base.renderizar(arg);
 
-            this.renderizarBackground(arg);
             this.renderizarCamada(arg);
         }
 
@@ -254,6 +255,14 @@ namespace Rpg.Controle.Editor
             this.gfcBackground.objTile = objTileBackground;
 
             this.gfcBackground.invalidar();
+        }
+
+        private void atualizarTamanho()
+        {
+            this.intTamanhoX = (objMapa.attIntQuantidadeX.intValor * INT_TILE_TAMANHO);
+            this.intTamanhoY = (objMapa.attIntQuantidadeY.intValor * INT_TILE_TAMANHO);
+
+            this.Invalidate();
         }
 
         private void desenhar(int x, int y)
@@ -542,11 +551,18 @@ namespace Rpg.Controle.Editor
             this.intTamanhoY = (objMapa.attIntQuantidadeY.intValor * INT_TILE_TAMANHO);
 
             this.objMapa.onObjTileBackgroundChanged += this.objMapa_onObjTileBackgroundChanged;
+
+            this.objMapa.attIntQuantidadeX.onStrValorAlterado += this.objMapa_attIntQuantidadeX_onStrValorAlterado;
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void objMapa_attIntQuantidadeX_onStrValorAlterado(object sender, string strValor)
+        {
+            this.atualizarTamanho();
+        }
 
         private void objMapa_onObjTileBackgroundChanged(object sender, TileDominio objTileBackground)
         {

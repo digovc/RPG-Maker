@@ -47,7 +47,7 @@
             this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.pnlMixer);
             this.Name = "TabDockMixer";
-            this.Text = "TabDockAudio";
+            this.Text = "Mixer";
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
             this.Controls.SetChildIndex(this.pnlMixer, 0);
             this.ResumeLayout(false);

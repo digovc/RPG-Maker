@@ -208,14 +208,14 @@ namespace Rpg.Controle.TabDock
 
         private void setObjCamadaSelecionada(CamadaDominio objCamadaSelecionada)
         {
-            this.lblCamada.Text = null;
+            this.Text = this.objMapa.attStrNome.strValor;
 
             if (objCamadaSelecionada == null)
             {
                 return;
             }
 
-            this.lblCamada.Text = objCamadaSelecionada.attStrNome.strValor;
+            this.Text = string.Format("{0} (camada: {1})", this.objMapa.attStrNome.strValor, objCamadaSelecionada.attStrNome.strValor);
         }
 
         private void setObjMapa(MapaDominio objMapa)

@@ -35,7 +35,6 @@
             this.btnAddBackground = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnRemoverBackground = new DigoFramework.Controle.Botao.BotaoAtalho();
             this.btnRedimensionar = new DigoFramework.Controle.Botao.BotaoAtalho();
-            this.lblCamada = new System.Windows.Forms.Label();
             this.pnlAtalho.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,20 +109,11 @@
             this.btnRedimensionar.TabIndex = 6;
             this.btnRedimensionar.Click += new System.EventHandler(this.btnRedimensionar_Click);
             // 
-            // lblCamada
-            // 
-            this.lblCamada.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblCamada.Location = new System.Drawing.Point(0, 448);
-            this.lblCamada.Name = "lblCamada";
-            this.lblCamada.Size = new System.Drawing.Size(484, 13);
-            this.lblCamada.TabIndex = 1;
-            // 
             // TabDockMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
-            this.Controls.Add(this.lblCamada);
             this.Controls.Add(this.ctrMapa);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -131,7 +121,6 @@
             this.Text = "Mapa";
             this.Controls.SetChildIndex(this.pnlAtalho, 0);
             this.Controls.SetChildIndex(this.ctrMapa, 0);
-            this.Controls.SetChildIndex(this.lblCamada, 0);
             this.pnlAtalho.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -145,6 +134,5 @@
         private DigoFramework.Controle.Botao.BotaoAtalho btnAddBackground;
         private DigoFramework.Controle.Botao.BotaoAtalho btnRemoverBackground;
         private DigoFramework.Controle.Botao.BotaoAtalho btnRedimensionar;
-        private System.Windows.Forms.Label lblCamada;
     }
 }
