@@ -41,6 +41,21 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
+        protected override void montarLayout()
+        {
+            base.montarLayout();
+
+            this.montarLayoutPersonagem();
+        }
+
+        private Rectangle getRtgDestino()
+        {
+            int h = this.objPersonagem.objTile.rtgImg.Height;
+            int w = this.objPersonagem.objTile.rtgImg.Width;
+
+            return new Rectangle(0, 0, w, h);
+        }
+
         private void montarLayoutPersonagem()
         {
             if (this.imgPersonagem.BackgroundImage != null)
@@ -70,14 +85,6 @@ namespace Rpg.Controle.TabDock
             }
 
             this.imgPersonagem.BackgroundImage = bmpPersonagem;
-        }
-
-        private Rectangle getRtgDestino()
-        {
-            int h = this.objPersonagem.objTile.rtgImg.Height;
-            int w = this.objPersonagem.objTile.rtgImg.Width;
-
-            return new Rectangle(0, 0, w, h);
         }
 
         private void selecionarPersonagem()
@@ -129,17 +136,9 @@ namespace Rpg.Controle.TabDock
             return new Rectangle(x, y, w, h);
         }
 
-        protected override void montarLayout()
-        {
-            base.montarLayout();
-
-            this.montarLayoutPersonagem();
-        }
-
         #endregion Métodos
 
         #region Eventos
-
 
         private void imgPersonagem_Click(object sender, System.EventArgs e)
         {

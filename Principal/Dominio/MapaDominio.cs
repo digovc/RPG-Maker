@@ -127,14 +127,6 @@ namespace Rpg.Dominio
             this.inicializarLstObjCamada(booCriacao);
         }
 
-        private void inicializarLstObjCamada(bool booCriacao)
-        {
-            foreach (CamadaDominio objCamada in this.lstObjCamada)
-            {
-                objCamada?.iniciar(booCriacao);
-            }
-        }
-
         private void inicializarAttIntQuantidadeX(bool booCriacao)
         {
             this.attIntQuantidadeX.enmTipo = Atributo.EnmTipo.NUMERICO;
@@ -154,6 +146,14 @@ namespace Rpg.Dominio
             if (booCriacao)
             {
                 this.attIntQuantidadeY.intValor = 25;
+            }
+        }
+
+        private void inicializarLstObjCamada(bool booCriacao)
+        {
+            foreach (CamadaDominio objCamada in this.lstObjCamada)
+            {
+                objCamada?.iniciar(booCriacao);
             }
         }
 

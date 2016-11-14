@@ -330,6 +330,18 @@ namespace Rpg.Controle.Editor.Grafico
             this.objDisplay.onZooming += this.objDisplay_onZooming;
         }
 
+        protected virtual void setObjTile(TileDominio objTile)
+        {
+            if (objTile == null)
+            {
+                return;
+            }
+
+            objTile.gfcTile = this;
+
+            objTile.onBooSelecionadoChanged += this.objTile_onBooSelecionadoChanged;
+        }
+
         private void renderizarSelecionado(Graphics gpc)
         {
             if (!this.booSelecionado)
@@ -343,18 +355,6 @@ namespace Rpg.Controle.Editor.Grafico
             }
 
             gpc.DrawRectangle(this.penSelecao, this.rtgDestino);
-        }
-
-        protected virtual void setObjTile(TileDominio objTile)
-        {
-            if (objTile == null)
-            {
-                return;
-            }
-
-            objTile.gfcTile = this;
-
-            objTile.onBooSelecionadoChanged += this.objTile_onBooSelecionadoChanged;
         }
 
         #endregion Métodos

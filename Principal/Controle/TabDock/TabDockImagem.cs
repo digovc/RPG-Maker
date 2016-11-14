@@ -71,6 +71,11 @@ namespace Rpg.Controle.TabDock
             this.ctrImagem.intTileTamanho = Convert.ToInt16(this.txtTileTamanho.Text);
         }
 
+        private void selecinarTudo()
+        {
+            this.ctrImagem.selecionarTudo();
+        }
+
         private void setObjImagem(ImagemDominio objImagem)
         {
             this.ctrImagem.objImagem = objImagem;
@@ -83,18 +88,26 @@ namespace Rpg.Controle.TabDock
             this.Text = objImagem.attStrNome.strValor;
         }
 
-        private void selecinarTudo()
-        {
-            this.ctrImagem.selecionarTudo();
-        }
-
         #endregion Métodos
 
         #region Eventos
 
+        protected override void OnEnter(EventArgs e)
+        {
+            base.OnEnter(e);
+
+            try
+            {
+                AppRpg.i.frmPrincipal.tabDockImagemSelecionada = this;
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         private void btnAtivarGrid_Click(object sender, EventArgs e)
         {
-
             try
             {
                 this.ativarDesativarGrid();
@@ -105,13 +118,11 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-        protected override void OnEnter(EventArgs e)
+        private void btnSelecionarTudo_Click(object sender, EventArgs e)
         {
-            base.OnEnter(e);
-
             try
             {
-                AppRpg.i.frmPrincipal.tabDockImagemSelecionada = this;
+                this.selecinarTudo();
             }
             catch (Exception ex)
             {
@@ -131,20 +142,6 @@ namespace Rpg.Controle.TabDock
             }
         }
 
-        private void btnSelecionarTudo_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                this.selecinarTudo();
-            }
-            catch (Exception ex)
-            {
-                new Erro("Erro inesperado.\n", ex);
-            }
-        }
-
         #endregion Eventos
-
     }
 }

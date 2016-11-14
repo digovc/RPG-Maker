@@ -49,6 +49,21 @@ namespace Rpg.Frm
             }
         }
 
+        public TabDockExplorer tabDockExplorer
+        {
+            get
+            {
+                if (_tabDockExplorer != null)
+                {
+                    return _tabDockExplorer;
+                }
+
+                _tabDockExplorer = new TabDockExplorer();
+
+                return _tabDockExplorer;
+            }
+        }
+
         public TabDockImagem tabDockImagemSelecionada
         {
             get
@@ -162,21 +177,6 @@ namespace Rpg.Frm
                 _tabDockDados = new TabDockDados();
 
                 return _tabDockDados;
-            }
-        }
-
-        public TabDockExplorer tabDockExplorer
-        {
-            get
-            {
-                if (_tabDockExplorer != null)
-                {
-                    return _tabDockExplorer;
-                }
-
-                _tabDockExplorer = new TabDockExplorer();
-
-                return _tabDockExplorer;
             }
         }
 

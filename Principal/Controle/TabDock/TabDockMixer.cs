@@ -44,14 +44,6 @@ namespace Rpg.Controle.TabDock
 
         #region Métodos
 
-        internal void fecharAplicacao()
-        {
-            foreach (Control ctrCanal in this.pnlMixer.Controls)
-            {
-                ((CanalMixer)ctrCanal).fecharAplicacao();
-            }
-        }
-
         internal void abrirAudio(AudioDominio objAudio)
         {
             if (objAudio == null)
@@ -67,6 +59,14 @@ namespace Rpg.Controle.TabDock
             AppRpg.i.objJogo.addObjAudio(objAudio);
 
             this.addObjAdudio(objAudio);
+        }
+
+        internal void fecharAplicacao()
+        {
+            foreach (Control ctrCanal in this.pnlMixer.Controls)
+            {
+                ((CanalMixer)ctrCanal).fecharAplicacao();
+            }
         }
 
         private void addObjAdudio(AudioDominio objAudio)

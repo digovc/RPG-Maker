@@ -21,9 +21,9 @@ namespace Rpg.Dominio
         #region Atributos
 
         private bool _booBloqueado;
+        private bool _booFixo;
         private bool _booJogadorBloqueado = true;
         private bool _booJogadorVisivel = true;
-        private bool _booFixo;
         private bool _booSomenteLeitura;
         private bool _booValor;
         private decimal _decValor;
@@ -46,6 +46,19 @@ namespace Rpg.Dominio
             set
             {
                 _booBloqueado = value;
+            }
+        }
+
+        public bool booFixo
+        {
+            get
+            {
+                return _booFixo;
+            }
+
+            set
+            {
+                _booFixo = value;
             }
         }
 
@@ -72,19 +85,6 @@ namespace Rpg.Dominio
             set
             {
                 _booJogadorVisivel = value;
-            }
-        }
-
-        public bool booFixo
-        {
-            get
-            {
-                return _booFixo;
-            }
-
-            set
-            {
-                _booFixo = value;
             }
         }
 
