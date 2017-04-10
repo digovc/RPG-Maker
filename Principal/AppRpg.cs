@@ -2,12 +2,15 @@
 using System.Drawing;
 using System.IO;
 using DigoFramework;
+using NetZ.Web;
+using NetZ.Web.Server;
 using Rpg.Dominio;
 using Rpg.Frm;
+using Rpg.Web.Server;
 
 namespace Rpg
 {
-    public class AppRpg : AppBase
+    public class AppRpg : AppWebBase
     {
         #region Constantes
 
@@ -188,9 +191,19 @@ namespace Rpg
             return objArquivoNovo;
         }
 
+        protected override ConfigWebBase getObjConfig()
+        {
+            return ConfigRpg.i;
+        }
+
         protected override TemaBase getObjTema()
         {
             return TemaRpg.i;
+        }
+
+        protected override void inicializarLstSrv(List<ServerBase> lstSrv)
+        {
+            lstSrv.Add(new ServerHttpRpg());
         }
 
         private void setFrmPrincipal(FrmPrincipal frmPrincipal)

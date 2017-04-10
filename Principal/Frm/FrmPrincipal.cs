@@ -477,6 +477,18 @@ namespace Rpg.Frm
             }
         }
 
+        private void tsmServidorIniciar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AppRpg.i.iniciarServidorWeb();
+            }
+            catch (Exception ex)
+            {
+                new Erro("Erro inesperado.\n", ex);
+            }
+        }
+
         public event EventHandler<RpgDominioBase> onObjSelecionadoChanged;
 
         #endregion Eventos

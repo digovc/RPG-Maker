@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRpg.cs" />
+    <Compile Include="ConfigRpg.cs" />
     <Compile Include="Controle\CanalMixer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,6 +240,9 @@
     <Compile Include="JsonRpg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\Html\Pagina\PagRpgBase.cs" />
+    <Compile Include="Web\Html\Pagina\PagRpgPrincipal.cs" />
+    <Compile Include="Web\Server\ServerHttpRpg.cs" />
     <Compile Include="TemaRpg.cs" />
     <EmbeddedResource Include="Controle\CanalMixer.resx">
       <DependentUpon>CanalMixer.cs</DependentUpon>

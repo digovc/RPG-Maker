@@ -45,6 +45,8 @@
             this.pnlDockRpg = new Rpg.Controle.DockPanelRpg();
             this.pnlAtalho = new Rpg.Controle.PainelAtalhoRpg();
             this.sfdJogo = new System.Windows.Forms.SaveFileDialog();
+            this.tsmServidor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmServidorIniciar = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +55,8 @@
             this.mnu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmArquivo,
-            this.exibirToolStripMenuItem});
+            this.exibirToolStripMenuItem,
+            this.tsmServidor});
             this.mnu.Location = new System.Drawing.Point(0, 0);
             this.mnu.Name = "mnu";
             this.mnu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -120,27 +123,27 @@
             // tsmExibirExplorer
             // 
             this.tsmExibirExplorer.Name = "tsmExibirExplorer";
-            this.tsmExibirExplorer.Size = new System.Drawing.Size(143, 22);
+            this.tsmExibirExplorer.Size = new System.Drawing.Size(152, 22);
             this.tsmExibirExplorer.Text = "Explorer";
             // 
             // tsmExibirPropriedade
             // 
             this.tsmExibirPropriedade.Name = "tsmExibirPropriedade";
-            this.tsmExibirPropriedade.Size = new System.Drawing.Size(143, 22);
+            this.tsmExibirPropriedade.Size = new System.Drawing.Size(152, 22);
             this.tsmExibirPropriedade.Text = "Propriedades";
             this.tsmExibirPropriedade.Click += new System.EventHandler(this.tsmExibirPropriedade_Click);
             // 
             // tsmExibirDados
             // 
             this.tsmExibirDados.Name = "tsmExibirDados";
-            this.tsmExibirDados.Size = new System.Drawing.Size(143, 22);
+            this.tsmExibirDados.Size = new System.Drawing.Size(152, 22);
             this.tsmExibirDados.Text = "Dados";
             this.tsmExibirDados.Click += new System.EventHandler(this.tsmExibirDados_Click);
             // 
             // tsmExibirMixer
             // 
             this.tsmExibirMixer.Name = "tsmExibirMixer";
-            this.tsmExibirMixer.Size = new System.Drawing.Size(143, 22);
+            this.tsmExibirMixer.Size = new System.Drawing.Size(152, 22);
             this.tsmExibirMixer.Text = "Mixer";
             this.tsmExibirMixer.Click += new System.EventHandler(this.tsmExibirMixer_Click);
             // 
@@ -155,6 +158,21 @@
             this.pnlAtalho.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAtalho.Name = "pnlAtalho";
             this.pnlAtalho.TabIndex = 3;
+            // 
+            // tsmServidor
+            // 
+            this.tsmServidor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmServidorIniciar});
+            this.tsmServidor.Name = "tsmServidor";
+            this.tsmServidor.Size = new System.Drawing.Size(62, 20);
+            this.tsmServidor.Text = "Servidor";
+            // 
+            // tsmServidorIniciar
+            // 
+            this.tsmServidorIniciar.Name = "tsmServidorIniciar";
+            this.tsmServidorIniciar.Size = new System.Drawing.Size(152, 22);
+            this.tsmServidorIniciar.Text = "Iniciar";
+            this.tsmServidorIniciar.Click += new System.EventHandler(this.tsmServidorIniciar_Click);
             // 
             // FrmPrincipal
             // 
@@ -193,5 +211,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tsmReiniciar;
         private System.Windows.Forms.ToolStripMenuItem tsmExibirMixer;
+        private System.Windows.Forms.ToolStripMenuItem tsmServidor;
+        private System.Windows.Forms.ToolStripMenuItem tsmServidorIniciar;
     }
 }
